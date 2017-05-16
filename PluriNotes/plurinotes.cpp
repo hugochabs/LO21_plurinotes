@@ -123,7 +123,7 @@ ostream& operator << (ostream& f, Couple& C){
 
 /**********************************/
 
-void NoteVersions::addNote(Note * t){
+void NoteVersions::addNote(Note * N){
     if (nb == nbMax){
         nbMax += 5;
         Note ** newTab = new Note*[nbMax];
@@ -132,7 +132,7 @@ void NoteVersions::addNote(Note * t){
         }
         versions = newTab;
     }
-    versions[nb++] = t;
+    versions[nb++] = N;
 }
 
 
@@ -162,4 +162,26 @@ void Relation::addCouple(Couple * c){
 }
 
 
+Couple** NoteVersions::getRelations(Note* N){
+    unsigned int nbR = 0;
+    unsigned int nbMaxR = 10;
+    Couple ** relations = new Couple*[nbMax];
 
+    for(unsigned int i = 0 ; i < RelationManager::getNb() ; i++){
+        //Attention, ici il faudra utiliser l'iterator plutôt que getNthElement.
+        Relation* R = RelationManager::getNthElement(i);
+        for(unsigned int j = 0 ; j < R->getNb() ; j++){
+            if((R->getNthElement(j)->getX() == N) || (R->getNthElement(j)->getY() == N)){
+                if (nbR == nbMaxR){
+                    nbMaxR += 5;
+                    Couple ** newTab  = new Couple*[nbMax];
+                    for (unsigned int i = 0 ; i < nbMax ; i++){
+                        newTab[i] = relations[i];
+                    }
+                    relations = newTab;
+                }
+                relations[nb++] = R->getNthElement(j);
+            }
+        }
+    }
+}
