@@ -15,15 +15,10 @@ enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relat
 
 //Définition des classes
 
+class Couple;
 
 
 
-
-
-
-//Je ne sais pas si c'est nécessaire d'utiliser template ici, on pourrait tout simplement mettre
-//des Notes à la place et utiliser l'héritage, ça compliquerait peut-être quelques fonctions tout en
-//en simplifiant d'autres.
 
 
 
@@ -93,7 +88,8 @@ public :
     const unsigned int& getNb(){return nb;}
     const unsigned int& getNbMax(){return nbMax;}
 
-    void addNote(Note* t);
+    void addNote(Note* N);
+    Couple** getRelations(Note* N);
 };
 
 
@@ -283,6 +279,9 @@ class RelationManager {
 /*Classe permettant de gérer l'ensemble des relations
  *
  */
+ //Il faut déclarer pas mal de trucs static ici pour pouvoir utiliser les relations dans les autres classes
+ //A mon avis relationManager devra être un singleton, en plus on aurait aucun intérêt à avoir plusieurs
+ //RelationManagers.
 private :
     Relation ** relations;
     unsigned int nb;
@@ -298,6 +297,7 @@ public :
     const unsigned int& getNbMax(){return nbMax;}
 
     //faire un iterator
+    Relation* getNthElement(unsigned int n){return relations[n];}
 
 };
 
