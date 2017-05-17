@@ -89,7 +89,7 @@ public :
     const unsigned int& getNbMax(){return nbMax;}
 
     void addNote(Note* N);
-    Couple** getRelations(Note* N);
+
 };
 
 
@@ -243,6 +243,8 @@ public :
     const string& getLabel(){return label;}
     Note* getX(){return x;}
     Note* getY(){return y;}
+    void setX(Note * Xs){x = Xs;}
+    void setY(Note * Ys){y = Ys;}
 };
 
 
@@ -268,7 +270,16 @@ public :
     Couple* getNthElement(unsigned int n){return couples[n];}
     const unsigned int& getNb(){return nb;}
     const unsigned int& getNbMax(){return nbMax;}
+    const string& getTitle(){return title;}
+    const string& getDescription(){return description;}
     RelationOrientation& getOrientation(){return orientation;}
+    //setters
+    void setNb(unsigned int n){nb = n;}
+    void setNbMax(unsigned int nM){nbMax = nM;}
+    void setTitle(const string& t){title = t;}
+    void setDescription(const string& d){description = d;}
+    void setOrientation(RelationOrientation& ori){orientation = ori;}
+    void setCouple(Couple ** C){couples = C;}
     void addCouple(Couple * c);
 
     //faire un iterator
@@ -283,24 +294,40 @@ class RelationManager {
  //A mon avis relationManager devra être un singleton, en plus on aurait aucun intérêt à avoir plusieurs
  //RelationManagers.
 private :
-    Relation ** relations;
-    unsigned int nb;
-    unsigned int nbMax;
-public :
-    RelationManager(Relation ** r = new Relation*[0], unsigned int n = 0, unsigned int nM = 0)
-        : relations(new Relation*[nM]), nb(n), nbMax(nM){
+    static RelationManager * uniqueInstance;
+    static Relation ** relations;
+    static unsigned int nb;
+    static unsigned int nbMax;
+    RelationManager(Relation ** r = new Relation*[0], unsigned int n = 0, unsigned int nM = 0){
+        nb = n;
+        nbMax = nM;
+        relations = new Relation*[nM];
         for (unsigned int i = 0 ; i< n ; i++){
             relations[i] = r[i];
         }
     }
-    const unsigned int& getNb(){return nb;}
-    const unsigned int& getNbMax(){return nbMax;}
+    virtual ~RelationManager();
+    operator= (const RelationManager& RM);
+    RelationManager(const RelationManager& RM);
 
+public :
+    static RelationManager& getRelationManager(Relation ** r = new Relation*[0], unsigned int n = 0, unsigned int nM = 0);
+    static void freeRelationManager();
+    static const unsigned int& getNb(){return nb;}
+    static const unsigned int& getNbMax(){return nbMax;}
+    static void setNb(unsigned int n){nb = n;}
+    static void setNbMax(unsigned int nM){nbMax = nM;}
+
+    static void addRelation(Relation* R);
     //faire un iterator
-    Relation* getNthElement(unsigned int n){return relations[n];}
+    static Relation* getNthElement(unsigned int n){return relations[n];}
 
 };
 
+
+//Méthodes externes aux classes
+
+Relation &getRelations(Note* N);
 
 //redéfinition des opérateurs
 
@@ -321,6 +348,7 @@ ostream& operator<< (ostream& f, TaskWithDeadline& T);
 ostream& operator<< (ostream& f, OtherNote& T);
 ostream& operator << (ostream& f, Relation& R);
 ostream& operator << (ostream& f, Couple& C);
+ostream& operator << (ostream& f, Couple** C);
 
 //La redéfinition de cet opérateur doit se faire ici parce qu'on utilise "template"
 //Si on la définit dans le .cpp, le compilateur ne la reconnait pas.

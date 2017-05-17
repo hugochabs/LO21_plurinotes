@@ -1,5 +1,10 @@
 #include "plurinotes.h"
 
+unsigned int RelationManager::nb = 0;
+unsigned int RelationManager::nbMax = 0;
+RelationManager* RelationManager::uniqueInstance = 0;
+Relation** RelationManager::relations = new Relation*[0];
+
 
 //Redéfinition des opérateurs
 
@@ -106,17 +111,18 @@ ostream& operator<< (ostream& f, OtherNote& T){
 }
 
 ostream& operator << (ostream& f, Relation& R){
+    f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;
+    f<<"Description : "<<R.getDescription()<<endl
+     <<"Orientation : "<<R.getOrientation()<<endl;
     for (unsigned int i = 0 ; i < R.getNb() ; i++){
-        f<<"R["<<i<<"] : "<<endl
-         <<"Orientation"<<R.getOrientation()<<endl
-         <<*R.getNthElement(i)<<endl;
+        f<<*R.getNthElement(i)<<endl;
     }
     return f;
 }
 
 ostream& operator << (ostream& f, Couple& C){
-    f<<"Label : "<<C.getLabel()<<endl
-     <<"x :"<<endl<<*C.getX()<<"y :"<<endl<<*C.getY()<<endl;
+    f<<"----------Couple - "<<C.getLabel()<<"---------"<<endl;
+    f<<"x :"<<endl<<*C.getX()<<"y :"<<endl<<*C.getY()<<endl;
     return f;
 }
 
@@ -153,35 +159,79 @@ void Relation::addCouple(Couple * c){
     if (nb == nbMax){
         nbMax += 5;
         Couple ** newTab = new Couple*[nbMax];
-        for (unsigned int i = 0 ; i < nbMax ; i++){
+        for (unsigned int i = 0 ; i < nb ; i++){
             newTab[i] = couples[i];
         }
         couples = newTab;
+        for (unsigned int i = 0 ; i < nb ; i++){
+            delete newTab[i];
+        }
     }
     couples[nb++] = c;
 }
 
 
-Couple** NoteVersions::getRelations(Note* N){
-    unsigned int nbR = 0;
-    unsigned int nbMaxR = 10;
-    Couple ** relations = new Couple*[nbMax];
+void RelationManager::addRelation(Relation* R){
+    if (getNb() == getNbMax()){
+        setNbMax(getNbMax() + 5);
+        Relation ** newTab = new Relation*[getNbMax()];
+        for (unsigned int i = 0 ; i < getNb() ; i++){
+            newTab[i] = relations[i];
+            for(unsigned int j = 0 ; j < relations[i]->getNb() ; j++){
+                newTab[i]->addCouple(relations[i]->getNthElement(j));
+            }
+        }
+        relations = newTab;
+    }
+    relations[nb++] = R;
+}
 
+Relation& getRelations(Note* N){
+    Relation *Rel = new Relation();
+    Rel->setNb(0);
+    Rel->setNbMax(0);
+    Rel->setTitle("Relations de \"" + N->getTitle()+"\"");
+    Rel->setDescription("Relations dans laquelle la note" + N->getTitle() + "est impliquée");
+    //Parcours de l'ensemble des notes de NoteManager;
     for(unsigned int i = 0 ; i < RelationManager::getNb() ; i++){
         //Attention, ici il faudra utiliser l'iterator plutôt que getNthElement.
         Relation* R = RelationManager::getNthElement(i);
         for(unsigned int j = 0 ; j < R->getNb() ; j++){
             if((R->getNthElement(j)->getX() == N) || (R->getNthElement(j)->getY() == N)){
-                if (nbR == nbMaxR){
-                    nbMaxR += 5;
-                    Couple ** newTab  = new Couple*[nbMax];
-                    for (unsigned int i = 0 ; i < nbMax ; i++){
-                        newTab[i] = relations[i];
+                //Peut être à garder, pas sur
+                /*if (Rel->getNb() == Rel->getNbMax()){
+                    Rel->setNbMax(Rel->getNbMax()+5);
+                    Couple ** newTab  = new Couple*[Rel->getNbMax()];
+                    for (unsigned int i = 0 ; i < Rel->getNbMax() ; i++){
+                        Rel->addCouple(newTab[i]);
                     }
-                    relations = newTab;
-                }
-                relations[nb++] = R->getNthElement(j);
+
+                }*/
+                Rel->addCouple(R->getNthElement(j));
             }
         }
+    }
+    return *Rel;
+}
+
+
+RelationManager::~RelationManager(){
+    for (unsigned int i = 0 ; i< nb ; i++){
+        delete getNthElement(i);
+    }
+}
+
+RelationManager& RelationManager::getRelationManager(Relation ** r, unsigned int n, unsigned int nM){
+    if (!uniqueInstance){
+        uniqueInstance = new RelationManager(r, n, nM);
+    }
+    return *uniqueInstance;
+}
+
+void RelationManager::freeRelationManager(){
+    if(uniqueInstance){
+        uniqueInstance->~RelationManager();
+    }else{
+        //renvoyer une erreur.
     }
 }
