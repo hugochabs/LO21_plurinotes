@@ -62,17 +62,18 @@ void Note::affiche(ostream& f){
     afficheSuite(f);
 }
 
+//Implémentation avec un iterator
 ostream& operator<< (ostream& f, NoteVersions& V){
-    for (unsigned int i = 0 ; i < V.getNb() ; i++){
-        f<<"V["<<i<<"] : "<<*V.getNthElement(i)<<endl;
+    for (NoteVersions::iterator it=getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<it.current()<<endl;
     }
     return f;
 }
 
-
+//Implémentation avec iterator
 ostream& operator<< (ostream& f, NoteManager& NM){
-    for (unsigned int i = 0 ; i < NM.getNb() ; i++){
-        f<<"Note["<<i<<"] : \n"<<*NM.getNthElement(i)<<endl;
+    for (NoteManager::iterator it=getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<it.current()<<endl;
     }
     return f;
 }

@@ -17,7 +17,13 @@ enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relat
 
 class Couple;
 
-
+class NotesException{
+public:
+    NotesException(const string& message):info(message){}
+    string getInfo() const { return info; }
+private:
+    string info;
+};
 
 
 
@@ -90,6 +96,29 @@ public :
 
     void addNote(Note* N);
 
+    class iterator{
+        friend class NotesVersions;
+private:
+    unsigned int nbRemain;
+    Note** currentV;
+    iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}
+public:
+    unsigned int getNbRemain()const{return nbRemain;}
+    bool isDone(){return nbRemain==0;}
+    void isNext(){
+        if(isDone())
+            throw NotesException("Error, no more versions of notes");
+        currentV++; nbRemain--;
+    }
+    Note& current(){
+        if(isDone())
+            throw NotesException("Error, no more versions of notes");
+        return **currentV;
+    }
+    };
+    iterator getIterator(){
+        return iterator(versions, nb);
+    }
 };
 
 
@@ -112,6 +141,29 @@ public :
     const unsigned int& getNbMax(){return nbMax;}
 
     void addNoteVersion(NoteVersions *NV);
+    class iterator{
+        friend class NotesManager;
+private:
+    unsigned int nbRemain;
+    Note** currentN;
+    iterator(Note** c, unsigned int nb):nbRemain(nb), currentN(c){}
+public:
+    unsigned int getNbRemain()const{return nbRemain;}
+    bool isDone(){return nbRemain==0;}
+    void isNext(){
+        if(isDone())
+            throw NotesException("Error, no more versions of notes");
+        currentV++; nbRemain--;
+    }
+    Note& current(){
+        if(isDone())
+            throw NotesException("Error, no more versions of notes");
+        return **currentN;
+    }
+    };
+    iterator getIterator(){
+        return iterator(notes, nb);
+    }
 };
 
 
