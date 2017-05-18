@@ -144,6 +144,7 @@ ostream& operator << (ostream& f, Couple& C){
 /**********************************/
 
 void NoteVersions::addNote(Note * N){
+    //agrandissemtn du tableau si nécessaire
     if (nb == nbMax){
         nbMax += 5;
         Note ** newTab = new Note*[nbMax];
@@ -151,42 +152,63 @@ void NoteVersions::addNote(Note * N){
             newTab[i] = versions[i];
         }
         versions = newTab;
+        for (unsigned int i = 0 ; i < nb ; i++){
+            delete newTab[i];
+        }
+        delete[] newTab;
     }
+    //ajout de l'élément dans le tableau
     versions[nb++] = N;
 }
 
 
 void NoteVersions::updateNewVersion(Note *N){
+    //agrandissement éventuel du tableau
     if (nb == nbMax){
         ++nbMax;
     }
+    //décalage de tous les éléments dans le tableau pour
+    //laisser la première place libre
     Note ** newTab = new Note*[nbMax];
     for (unsigned int i = 0 ; i < nb ; i++){
         newTab[i+1] = versions[i];
     }
     nb++;
     versions = newTab;
+    //ajout de la note en tête de tableau
     versions[0] = N;
+    for (unsigned int i = 0 ; i < nb ; i++){
+        delete newTab[i];
+    }
+    delete[] newTab;
 }
 
 
 void NoteVersions::restoreVersion(Note *N){
+    //on parcours le tableau à la recherche de la note à restaurer
     iterator it = getIterator();
     while ((!it.isDone())&&(&it.current() != N)){
         it.isNext();
-        cout<<"remain"<<it.getNbRemain()<<endl;
     }
+    /*nb - it.nbRemain indique le rang de la note à déplacer, il faut
+     * donc décaler tous les éléments suivant d'un rang vers la gauche
+     * afin qu'on ne laisse pas d'espace vide en enlevant la note.
+     */
     for(unsigned int i = (nb - it.getNbRemain()) ; i < nb-1 ; i++){
         cout<<"T["<<i<<"] passe de : "<<versions[i]->getIdentifier()<<" a : "<<versions[i+1]->getIdentifier()<<endl;
         versions[i] = versions[i+1];
     }
+    //puisqu'on a tout décalé vers la gauche, la dernière note ne doit plus exister
     versions[nb-1] = nullptr;
+    //on a enlevé une note donc on décrémente le nombre de notes
     nb--;
+    //puis on rajoute la version à restaurer en tête de liste.
     updateNewVersion(N);
 }
 
 
 void NoteManager::addNoteVersion(NoteVersions *NV){
+    //agrandissement du tableau si nécessaire
     if (nb == nbMax){
         nbMax += 5;
         NoteVersions ** newTab = new NoteVersions*[nbMax];
@@ -194,12 +216,18 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
             newTab[i] = notes[i];
         }
         notes = newTab;
+        for (unsigned int i = 0 ; i < nb ; i++){
+            delete newTab[i];
+        }
+        delete[] newTab;
     }
+    //ajout de la NoteVersions dans le tableau
     notes[nb++] = NV;
 }
 
 
 void Relation::addCouple(Couple * c){
+    //agrandissement du tableau si nécessaire
     if (nb == nbMax){
         nbMax += 5;
         Couple ** newTab = new Couple*[nbMax];
@@ -210,12 +238,15 @@ void Relation::addCouple(Couple * c){
         for (unsigned int i = 0 ; i < nb ; i++){
             delete newTab[i];
         }
+        delete[] newTab;
     }
+    //ajout de l'élément
     couples[nb++] = c;
 }
 
 
 void RelationManager::addRelation(Relation* R){
+    //agrandissement du tableau si nécessaire
     if (getNb() == getNbMax()){
         setNbMax(getNbMax() + 5);
         Relation ** newTab = new Relation*[getNbMax()];
@@ -226,7 +257,12 @@ void RelationManager::addRelation(Relation* R){
             }
         }
         relations = newTab;
+        for (unsigned int i = 0 ; i < nb ; i++){
+            delete newTab[i];
+        }
+        delete[] newTab;
     }
+    //ajout de l'élément
     relations[nb++] = R;
 }
 
