@@ -5,6 +5,7 @@
 #include <ctime> //librairie pour gérer le temps et les dates
 #include <string>
 
+
 using namespace std;
 
 //Définition des énumérations
@@ -16,6 +17,8 @@ enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relat
 //Définition des classes
 
 class Couple;
+
+//Classe d'exception :
 
 class NotesException{
 public:
@@ -78,6 +81,7 @@ class NoteVersions {
  * modifications, etc...
 */
 private :
+
     Note ** versions;
     unsigned int nb;
     unsigned int nbMax;
@@ -97,28 +101,30 @@ public :
     void addNote(Note* N);
 
     class iterator{
-        friend class NotesVersions;
-private:
-    unsigned int nbRemain;
-    Note** currentV;
-    iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}
-public:
-    unsigned int getNbRemain()const{return nbRemain;}
-    bool isDone(){return nbRemain==0;}
-    void isNext(){
-        if(isDone())
-            throw NotesException("Error, no more versions of notes");
-        currentV++; nbRemain--;
-    }
-    Note& current(){
-        if(isDone())
-            throw NotesException("Error, no more versions of notes");
-        return **currentV;
-    }
+        friend class NoteVersions;
+    private:
+        unsigned int nbRemain;
+        Note** currentV;
+        iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}
+    public:
+        unsigned int getNbRemain()const{return nbRemain;}
+        bool isDone(){return nbRemain==0;}
+        void isNext(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            currentV++; nbRemain--;
+        }
+        Note& current(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            return **currentV;
+        }
     };
+
     iterator getIterator(){
         return iterator(versions, nb);
     }
+
 };
 
 
@@ -141,26 +147,28 @@ public :
     const unsigned int& getNbMax(){return nbMax;}
 
     void addNoteVersion(NoteVersions *NV);
+
     class iterator{
-        friend class NotesManager;
-private:
-    unsigned int nbRemain;
-    Note** currentN;
-    iterator(Note** c, unsigned int nb):nbRemain(nb), currentN(c){}
-public:
-    unsigned int getNbRemain()const{return nbRemain;}
-    bool isDone(){return nbRemain==0;}
-    void isNext(){
-        if(isDone())
-            throw NotesException("Error, no more versions of notes");
-        currentV++; nbRemain--;
-    }
-    Note& current(){
-        if(isDone())
-            throw NotesException("Error, no more versions of notes");
-        return **currentN;
-    }
+        friend class NoteManager;
+    private:
+        unsigned int nbRemain;
+        NoteVersions** currentN;
+        iterator(NoteVersions** c, unsigned int nb):nbRemain(nb), currentN(c){}
+    public:
+        unsigned int getNbRemain()const{return nbRemain;}
+        bool isDone(){return nbRemain==0;}
+        void isNext(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            currentN++; nbRemain--;
+        }
+        NoteVersions& current(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            return **currentN;
+        }
     };
+
     iterator getIterator(){
         return iterator(notes, nb);
     }
@@ -401,9 +409,6 @@ ostream& operator<< (ostream& f, OtherNote& T);
 ostream& operator << (ostream& f, Relation& R);
 ostream& operator << (ostream& f, Couple& C);
 ostream& operator << (ostream& f, Couple** C);
-
-//La redéfinition de cet opérateur doit se faire ici parce qu'on utilise "template"
-//Si on la définit dans le .cpp, le compilateur ne la reconnait pas.
 
 
 

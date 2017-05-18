@@ -62,18 +62,20 @@ void Note::affiche(ostream& f){
     afficheSuite(f);
 }
 
+
 //Implémentation avec un iterator
 ostream& operator<< (ostream& f, NoteVersions& V){
-    for (NoteVersions::iterator it=getIterator() ; !it.isDone() ; it.isNext()){
-        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<it.current()<<endl;
+    for (NoteVersions::iterator it = V.NoteVersions::getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
     }
     return f;
 }
 
+
 //Implémentation avec iterator
 ostream& operator<< (ostream& f, NoteManager& NM){
-    for (NoteManager::iterator it=getIterator() ; !it.isDone() ; it.isNext()){
-        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<it.current()<<endl;
+    for (NoteManager::iterator it = NM.NoteManager::getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"M["<<NM.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
     }
     return f;
 }
@@ -192,7 +194,7 @@ Relation& getRelations(Note* N){
     Rel->setNb(0);
     Rel->setNbMax(0);
     Rel->setTitle("Relations de \"" + N->getTitle()+"\"");
-    Rel->setDescription("Relations dans laquelle la note" + N->getTitle() + "est impliquée");
+    Rel->setDescription("Relations dans laquelle la note \"" + N->getTitle() + "\" est impliquee");
     //Parcours de l'ensemble des notes de NoteManager;
     for(unsigned int i = 0 ; i < RelationManager::getNb() ; i++){
         //Attention, ici il faudra utiliser l'iterator plutôt que getNthElement.

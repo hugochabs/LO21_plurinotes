@@ -16,10 +16,8 @@ int main (){
     //création de deux task
     Task T("ID-T", "Titre Task", now, now, act, "Action Task", doing);
     Task T2("ID-T2", "Titre Task 2", now, now, act, "Action Task 2", done);
-    //création d'un tableau de notes et d'un objet NoteVersions
-    Note ** tabA = new Note*[5];
-    NoteVersions NV(tabA, 2, 5); //Lors de la définition, il faut préciser le type de noteVersions qu'on crée.
-    //ajout des tasks dans NV
+    //ajout des tasks dans NV que l'on crée
+    NoteVersions NV;
     NV.addNote(&T);
     NV.addNote(&T2);
     //pareil ici
@@ -27,12 +25,9 @@ int main (){
     NV2.addNote(&B);
     NV2.addNote(&A);
     //création d'un tableau de NV
-    NoteVersions ** tabVers = new NoteVersions*[5];
-    /*
-    tabVers[0] = &NV;
-    tabVers[1] = &NV2;
-    */
-    NoteManager NM(tabVers, 2, 5);
+    //NoteVersions ** tabVers = new NoteVersions*[5];
+    //NoteManager NM(tabVers, 2, 5);
+    NoteManager NM;
     NM.addNoteVersion(&NV);
     NM.addNoteVersion(&NV2);
     //création d'une relation
@@ -52,7 +47,8 @@ int main (){
     RM.addRelation(&R);
     RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
-    cout<<getRelations(&A);
+    //cout<<getRelations(&A);
+    cout<<NM;
 
     return 0;
 }
