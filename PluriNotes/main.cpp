@@ -48,7 +48,7 @@ int main (){
     RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
     //cout<<getRelations(&A);
-    cout<<NM;
+    cout<<getRelations(&T);
 
     return 0;
 }

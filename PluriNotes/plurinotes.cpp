@@ -64,9 +64,10 @@ void Note::affiche(ostream& f){
 
 
 //Implémentation avec un iterator
-ostream& operator<< (ostream& f, NoteVersions& V){
-    for (NoteVersions::iterator it = V.NoteVersions::getIterator() ; !it.isDone() ; it.isNext()){
-        f<<"V["<<V.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
+ostream& operator<< (ostream& f, NoteVersions& NV){
+    f<<"-------NoteVersion-------"<<endl;
+    for (NoteVersions::iterator it = NV.NoteVersions::getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"V["<<NV.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
     }
     return f;
 }
@@ -74,6 +75,7 @@ ostream& operator<< (ostream& f, NoteVersions& V){
 
 //Implémentation avec iterator
 ostream& operator<< (ostream& f, NoteManager& NM){
+    f<<"-------NoteManager-------"<<endl;
     for (NoteManager::iterator it = NM.NoteManager::getIterator() ; !it.isDone() ; it.isNext()){
         f<<"M["<<NM.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
     }
@@ -117,8 +119,17 @@ ostream& operator << (ostream& f, Relation& R){
     f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;
     f<<"Description : "<<R.getDescription()<<endl
      <<"Orientation : "<<R.getOrientation()<<endl;
-    for (unsigned int i = 0 ; i < R.getNb() ; i++){
-        f<<*R.getNthElement(i)<<endl;
+    for (Relation::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"R["<<R.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
+    }
+    return f;
+}
+
+
+ostream& operator<< (ostream& f, RelationManager& RM){
+    f<<"-------RelationManager-------"<<endl;
+    for(RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"RM["<<RM.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
     }
     return f;
 }
@@ -191,26 +202,15 @@ void RelationManager::addRelation(Relation* R){
 
 Relation& getRelations(Note* N){
     Relation *Rel = new Relation();
-    Rel->setNb(0);
-    Rel->setNbMax(0);
     Rel->setTitle("Relations de \"" + N->getTitle()+"\"");
     Rel->setDescription("Relations dans laquelle la note \"" + N->getTitle() + "\" est impliquee");
     //Parcours de l'ensemble des notes de NoteManager;
-    for(unsigned int i = 0 ; i < RelationManager::getNb() ; i++){
-        //Attention, ici il faudra utiliser l'iterator plutôt que getNthElement.
-        Relation* R = RelationManager::getNthElement(i);
-        for(unsigned int j = 0 ; j < R->getNb() ; j++){
-            if((R->getNthElement(j)->getX() == N) || (R->getNthElement(j)->getY() == N)){
-                //Peut être à garder, pas sur
-                /*if (Rel->getNb() == Rel->getNbMax()){
-                    Rel->setNbMax(Rel->getNbMax()+5);
-                    Couple ** newTab  = new Couple*[Rel->getNbMax()];
-                    for (unsigned int i = 0 ; i < Rel->getNbMax() ; i++){
-                        Rel->addCouple(newTab[i]);
-                    }
-
-                }*/
-                Rel->addCouple(R->getNthElement(j));
+    for(RelationManager::iterator it = RelationManager::getIterator() ; !it.isDone() ; it.isNext()){
+        Relation R = it.current();
+        for(Relation::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
+            //Si la note apparait dans le couple examiné.
+            if((it.current().getX() == N) || (it.current().getY() == N)){
+                Rel->addCouple(&it.current());
             }
         }
     }
@@ -235,6 +235,6 @@ void RelationManager::freeRelationManager(){
     if(uniqueInstance){
         uniqueInstance->~RelationManager();
     }else{
-        //renvoyer une erreur.
+        throw(NotesException("Impossible de libérer l'espace mémoire, aucun RelationManager n'existe."));
     }
 }

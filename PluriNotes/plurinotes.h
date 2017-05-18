@@ -342,7 +342,31 @@ public :
     void setCouple(Couple ** C){couples = C;}
     void addCouple(Couple * c);
 
-    //faire un iterator
+    class iterator{
+        friend class Relation;
+    private:
+        unsigned int nbRemain;
+        Couple** currentR;
+        iterator(Couple** R, unsigned int nb):nbRemain(nb), currentR(R){}
+    public:
+        unsigned int getNbRemain()const{return nbRemain;}
+        bool isDone(){return nbRemain==0;}
+        void isNext(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            currentR++; nbRemain--;
+        }
+        Couple& current(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            return **currentR;
+        }
+    };
+
+    iterator getIterator(){
+        return iterator(couples, nb);
+    }
+
 };
 
 
@@ -382,6 +406,31 @@ public :
     //faire un iterator
     static Relation* getNthElement(unsigned int n){return relations[n];}
 
+    class iterator{
+        friend class RelationManager;
+    private:
+        unsigned int nbRemain;
+        Relation** currentRM;
+        iterator(Relation** R, unsigned int nb):nbRemain(nb), currentRM(R){}
+    public:
+        unsigned int getNbRemain()const{return nbRemain;}
+        bool isDone(){return nbRemain==0;}
+        void isNext(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            currentRM++; nbRemain--;
+        }
+        Relation& current(){
+            if(isDone())
+                throw NotesException("Error, no more versions of notes");
+            return **currentRM;
+        }
+    };
+
+    static iterator getIterator(){
+        return iterator(relations, nb);
+    }
+
 };
 
 
@@ -406,9 +455,10 @@ ostream& operator<< (ostream& f, Task& T);
 ostream& operator<< (ostream& f, TaskWithPriority& T);
 ostream& operator<< (ostream& f, TaskWithDeadline& T);
 ostream& operator<< (ostream& f, OtherNote& T);
-ostream& operator << (ostream& f, Relation& R);
-ostream& operator << (ostream& f, Couple& C);
-ostream& operator << (ostream& f, Couple** C);
+ostream& operator<< (ostream& f, Relation& R);
+ostream& operator<< (ostream& f, RelationManager& RM);
+ostream& operator<< (ostream& f, Couple& C);
+
 
 
 
