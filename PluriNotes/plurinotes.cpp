@@ -156,6 +156,36 @@ void NoteVersions::addNote(Note * N){
 }
 
 
+void NoteVersions::updateNewVersion(Note *N){
+    if (nb == nbMax){
+        ++nbMax;
+    }
+    Note ** newTab = new Note*[nbMax];
+    for (unsigned int i = 0 ; i < nb ; i++){
+        newTab[i+1] = versions[i];
+    }
+    nb++;
+    versions = newTab;
+    versions[0] = N;
+}
+
+
+void NoteVersions::restoreVersion(Note *N){
+    iterator it = getIterator();
+    while ((!it.isDone())&&(&it.current() != N)){
+        it.isNext();
+        cout<<"remain"<<it.getNbRemain()<<endl;
+    }
+    for(unsigned int i = (nb - it.getNbRemain()) ; i < nb-1 ; i++){
+        cout<<"T["<<i<<"] passe de : "<<versions[i]->getIdentifier()<<" a : "<<versions[i+1]->getIdentifier()<<endl;
+        versions[i] = versions[i+1];
+    }
+    versions[nb-1] = nullptr;
+    nb--;
+    updateNewVersion(N);
+}
+
+
 void NoteManager::addNoteVersion(NoteVersions *NV){
     if (nb == nbMax){
         nbMax += 5;

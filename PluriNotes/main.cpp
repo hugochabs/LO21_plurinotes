@@ -48,8 +48,11 @@ int main (){
     RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
     //cout<<getRelations(&A);
-    cout<<getRelations(&T);
-
+    NV.updateNewVersion(&T2);
+    NV.updateNewVersion(&T2);
+    cout<<NV;
+    NV.restoreVersion(&T);
+    cout<<"///////////////////////////////////////////"<<NV;
     return 0;
 }
 
