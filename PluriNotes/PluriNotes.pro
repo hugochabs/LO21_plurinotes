@@ -5,8 +5,13 @@ QMAKE_LFLAGS = -std=c++11
 
 SOURCES += \
     main.cpp \
-    plurinotes.cpp
+    note.cpp \
+    relation.cpp \
+    notefille.cpp
 
 HEADERS += \
-    plurinotes.h
+    note.h \
+    relation.h \
+    notefille.h \
+    exception.h
 
