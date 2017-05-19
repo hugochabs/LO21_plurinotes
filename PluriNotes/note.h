@@ -6,6 +6,8 @@
 #include <string>
 #include "exception.h"
 
+#include <QString>
+
 using namespace std;
 
 //Définition des énumérations
@@ -153,6 +155,8 @@ public :
 
 };
 
+
+
 /*!
  * \brief La classe NoteManager sert à gérer et stocker les différentes NotesVersions
  */
@@ -217,6 +221,8 @@ public :
     }
 };
 
+
+
 //redéfinition des opérateurs
 
 ostream& operator<< (ostream& f, const tm* tps); //necessiare pour afficher les heures de façon stylée
@@ -229,7 +235,7 @@ ostream& operator<< (ostream& f, const tm* tps); //necessiare pour afficher les 
  */
 ostream& operator<< (ostream& f, const TaskStatus& S);
 ostream& operator<< (ostream& f, const OtherNoteType& T);
-
+ostream& operator<< (ostream& f, const RelationOrientation& R);
 
 ostream& operator << (ostream& f, Note& N);
 ostream& operator<< (ostream& f, NoteVersions& V);

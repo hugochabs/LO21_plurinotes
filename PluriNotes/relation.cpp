@@ -1,5 +1,9 @@
 #include "relation.h"
 
+unsigned int RelationManager::nb = 0;
+unsigned int RelationManager::nbMax = 0;
+RelationManager* RelationManager::uniqueInstance = 0;
+Relation** RelationManager::relations = 0;
 
 ostream& operator << (ostream& f, Relation& R){
     f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;
@@ -50,10 +54,7 @@ void Relation::addCouple(Couple * c){
             newTab[i] = couples[i];
         }
         couples = newTab;
-        for (unsigned int i = 0 ; i < nb ; i++){
-            delete newTab[i];
-        }
-        delete[] newTab;
+
     }
     //ajout de l'élément
     couples[nb++] = c;
@@ -72,10 +73,6 @@ void RelationManager::addRelation(Relation* R){
             }
         }
         relations = newTab;
-        for (unsigned int i = 0 ; i < nb ; i++){
-            delete newTab[i];
-        }
-        delete[] newTab;
     }
     //ajout de l'élément
     relations[nb++] = R;

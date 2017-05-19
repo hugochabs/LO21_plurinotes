@@ -40,6 +40,15 @@ ostream& operator<< (ostream& f, const OtherNoteType& T){
     return f;
 }
 
+ostream& operator<< (ostream& f, const RelationOrientation& R){
+    if (R){
+        f<<"oriented";
+    }else{
+        f<<"non-oriented";
+    }
+    return f;
+}
+
 void Note::affiche(ostream& f){
     f<<"Id : "<<getIdentifier()<<endl
     <<"Title : "<<getTitle()<<endl
@@ -105,10 +114,6 @@ void NoteVersions::addNote(Note * N){
             newTab[i] = versions[i];
         }
         versions = newTab;
-        for (unsigned int i = 0 ; i < nb ; i++){
-            delete newTab[i];
-        }
-        delete[] newTab;
     }
     //ajout de l'élément dans le tableau
     versions[nb++] = N;
@@ -129,10 +134,6 @@ void NoteVersions::updateNewVersion(Note *N){
     versions = newTab;
     //ajout de la note en tête de tableau
     versions[0] = N;
-    for (unsigned int i = 0 ; i < nb ; i++){
-        delete newTab[i];
-    }
-    delete[] newTab;
 }
 
 void NoteManager::addNoteVersion(NoteVersions *NV){
@@ -144,10 +145,6 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
             newTab[i] = notes[i];
         }
         notes = newTab;
-        for (unsigned int i = 0 ; i < nb ; i++){
-            delete newTab[i];
-        }
-        delete[] newTab;
     }
     //ajout de la NoteVersions dans le tableau
     notes[nb++] = NV;

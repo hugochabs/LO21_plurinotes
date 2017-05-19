@@ -1,5 +1,5 @@
 #include "plurinotes.h"
-
+#include "relation.h"
 
 
 
@@ -25,8 +25,6 @@ int main (){
     NV2.addNote(&B);
     NV2.addNote(&A);
     //création d'un tableau de NV
-    //NoteVersions ** tabVers = new NoteVersions*[5];
-    //NoteManager NM(tabVers, 2, 5);
     NoteManager NM;
     NM.addNoteVersion(&NV);
     NM.addNoteVersion(&NV2);
@@ -47,12 +45,12 @@ int main (){
     RM.addRelation(&R);
     RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
-    //cout<<getRelations(&A);
+    cout<<getRelations(&A);
     NV.updateNewVersion(&T2);
     NV.updateNewVersion(&T2);
-    cout<<NV;
+    //cout<<NV;
     NV.restoreVersion(&T);
-    cout<<"///////////////////////////////////////////"<<NV;
+    cout<<"///////////////////////////////////////////"<<endl<<NV;
     return 0;
 }
 
