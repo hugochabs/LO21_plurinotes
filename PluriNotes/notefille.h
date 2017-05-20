@@ -1,9 +1,7 @@
 #ifndef NOTEFILLE_H
 #define NOTEFILLE_H
 
-#include <iostream>
-#include <ctime> //librairie pour gérer le temps et les dates
-#include <string>
+
 #include "note.h"
 
 using namespace std;
@@ -14,21 +12,21 @@ using namespace std;
  */
 class Article : public Note {
 private :
-    string text;//!texte de l'article
+    QString text;//!texte de l'article
 public :
-    Article(const string& i, const string& t, tm* dC, tm* dLU, bool a, const string& s)
+    Article(const QString& i, const QString& t, tm* dC, tm* dLU, bool a, const QString& s)
         : Note(i, t, dC, dLU, a), text(s){}//!constructeur de l'article
     //getters
-    const string& getText(){return text;}//!getter de text
+    const QString& getText(){return text;}//!getter de text
     //setters
-    void setText(string& t){text = t;}//!setter de text
+    void setText(QString& t){text = t;}//!setter de text
     /*!
      * \brief afficheSuite surcharge pour l'affichage
      * \param f flot de sortie
      * \return flot de sortie
      */
     ostream& afficheSuite(ostream& f){
-        f<<"Text : "<<getText()<<endl;
+        f<<"Text\t: "<<getText()<<endl;
         return f;
     }
 };
@@ -38,20 +36,20 @@ public :
  */
 class Task : public Note {
 private :
-    string action;
+    QString action;
     TaskStatus status;
 public :
-    Task(const string& i, const string& t, tm* dC, tm* dLU, bool a, const string& ac, TaskStatus s = waiting)
+    Task(const QString& i, const QString& t, tm* dC, tm* dLU, bool a, const QString& ac, TaskStatus s = waiting)
         : Note(i, t, dC, dLU, a), action(ac), status(s){}
     //getters
-    const string& getAction(){return action;}
+    const QString& getAction(){return action;}
     const TaskStatus& getStatus(){return status;}
     //setters
-    void getAction(string& a){action = a;}
+    void getAction(QString& a){action = a;}
     void getStatus(TaskStatus& s){status = s;}
     ostream& afficheSuite(ostream& f){
-        f<<"Action : "<<getAction()<<endl
-        <<"Status : "<<getStatus()<<endl;
+        f<<"Action\t: "<<getAction()<<endl
+        <<"Status\t: "<<getStatus()<<endl;
         return f;
     }
 };
@@ -63,7 +61,7 @@ class TaskWithPriority : public Task {
 private :
     int priority;
 public :
-    TaskWithPriority(const string& i, const string& t, tm* dC, tm* dLU, bool a, const string& ac, TaskStatus s, int p)
+    TaskWithPriority(const QString& i, const QString& t, tm* dC, tm* dLU, bool a, const QString& ac, TaskStatus s, int p)
         : Task(i, t, dC, dLU, a, ac, s), priority(p){}
     //getters
     const int& getPriority(){return priority;}
@@ -84,12 +82,12 @@ class TaskWithDeadline : public Task {
 private :
     struct tm* deadline;
 public :
-    TaskWithDeadline(const string& i, const string& t, tm* dC, tm* dLU, bool a, const string& ac, TaskStatus s, tm* d)
+    TaskWithDeadline(const QString& i, const QString& t, tm* dC, tm* dLU, bool a, const QString& ac, TaskStatus s, tm* d)
         : Task(i, t, dC, dLU, a, ac, s), deadline(d){}
     //getters
     const tm* getDeadline(){return deadline;}
     //setters
-    void setDeadline(tm * d){deadline = d;}
+    void setDeadline(tm* d){deadline = d;}
     ostream& afficheSuite(ostream& f){
         f<<"Action : "<<getAction()<<endl
         <<"Status : "<<getStatus()<<endl
@@ -103,19 +101,19 @@ public :
  */
 class OtherNote : public Note{
 private :
-    string description;
-    string fileName;
+    QString description;
+    QString fileName;
     OtherNoteType type;
 public :
-    OtherNote(const string& i, const string& t, tm* dC, tm* dLU, bool a, const string& d, const string& fName, const OtherNoteType& ty)
+    OtherNote(const QString& i, const QString& t, tm* dC, tm* dLU, bool a, const QString& d, const QString& fName, const OtherNoteType& ty)
         : Note(i, t, dC, dLU, a), description(d), fileName(fName), type(ty){}
     //getters
-    const string& getDescription(){return description;}
-    const string& getFileName(){return fileName;}
+    const QString& getDescription(){return description;}
+    const QString& getFileName(){return fileName;}
     const OtherNoteType& getType(){return type;}
     //setters
-    void getDescription(string& d){description = d;}
-    void getFileName(string& f){fileName = f;}
+    void getDescription(QString& d){description = d;}
+    void getFileName(QString& f){fileName = f;}
     void getType(OtherNoteType& t){type = t;}
     ostream& afficheSuite(ostream& f){
         f<<"Description : "<<getDescription()<<endl

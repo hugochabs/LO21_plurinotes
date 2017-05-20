@@ -1,13 +1,16 @@
 #ifndef NOTE_H
 #define NOTE_H
 
-#include <iostream>
-#include <ctime> //librairie pour gérer le temps et les dates
-#include <string>
+
+#include "json.h"
 #include "exception.h"
 
-#include <QString>
 
+
+
+
+
+using json = nlohmann::json;
 using namespace std;
 
 //Définition des énumérations
@@ -15,7 +18,9 @@ using namespace std;
 enum TaskStatus{ waiting, doing, done}; //pour le statut d'un objet Task
 enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
 enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
+enum NoteType{A, T, TWP, TWD, ON};
 
+const QString DATEFORMAT = "%d-%m-%Y %H-%M-%S";
 
 //----Classes de Notes----//
 
@@ -26,18 +31,18 @@ enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relat
  */
 class Note {
 private :
-    string identifier;//!identifant de la note
-    string title;//!titre de la note
-    struct tm* dateCreation;//!date de création de la note
-    struct tm* dateLastUpdate;//!date de la dernière mise à jour de la note
+    QString identifier;//!identifant de la note
+    QString title;//!titre de la note
+    tm* dateCreation;//!date de création de la note
+    tm* dateLastUpdate;//!date de la dernière mise à jour de la note
     bool active;//! statut de la note
 protected:
-    Note(const string& i, const string& t, tm* dC, tm* dLU, bool a)
+    Note(const QString& i, const QString& t, tm* dC, tm* dLU, bool a)
         : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), active(a){}//!constructeur de la classe
 public :
     //getters
-    const string& getIdentifier(){return identifier;}//!getter d'identifier
-    const string& getTitle(){return title;}//!getter de title
+    const QString& getIdentifier(){return identifier;}//!getter d'identifier
+    const QString& getTitle(){return title;}//!getter de title
     const tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
     const tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     const bool& getActive(){return active;}//!getter de active
@@ -46,8 +51,8 @@ public :
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
-    const string& getActiveString(){
-        string *act =  new string;
+    const QString& getActiveString(){
+        QString *act =  new QString;
         if (active) {
             *act = "Active";
         }else{
@@ -56,9 +61,9 @@ public :
         return *act;
     }
     //setters
-    void setTitle(string& t){title = t;}//!setter de title
-    void setDateCreation(tm * dC){dateCreation = dC;}//!setter de dateCreation
-    void setDateLastUpdate(tm * dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
+    void setTitle(QString& t){title = t;}//!setter de title
+    void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
+    void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
     void setActive(bool a){active = a;}//!setter de active
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
@@ -68,6 +73,19 @@ public :
      */
     virtual ostream& afficheSuite(ostream& f){return f;}
     void affiche(ostream& f);
+
+    /*!
+     * \brief Utility method to convert a QString into a date
+     *
+     * \see DATEFORMAT
+     * \param s the QString to parse
+     * \return the date associated to the QString
+     */
+
+
+    void fromJson(json j);
+    json toJson();
+
 };
 
 
@@ -81,8 +99,10 @@ private :
     Note ** versions;//!tableau de pointeurs de notes regroupant les versions
     unsigned int nb;//!nombre de versions
     unsigned int nbMax;//!nombre max de versions
+    NoteType type;
 public :
-    NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0) : versions(new Note*[nM]), nb(n), nbMax(nM){
+    NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
+        : versions(new Note*[nM]), nb(n), nbMax(nM), type(ty){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
@@ -91,6 +111,9 @@ public :
     // getters
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
+    const NoteType& getType(){return type;}
+    //setters
+    void setNoteType(NoteType& t){type = t;}
     /*!
      * \brief addNote ajoute une note à la fin du tableau
      * \param N Note à ajouter
@@ -109,6 +132,10 @@ public :
      * \param N version à restaurer
      */
     void restoreVersion(Note * N);
+
+
+
+    json toJson();
 
     /*!
      * \brief La classe iterator sert à parcourir les éléments de la classe
@@ -165,13 +192,20 @@ private :
     NoteVersions ** notes;//!tableau des NoteVersions
     unsigned int nb;//!nombre de NoteVersions
     unsigned int nbMax;//!nombre max de NoteVersions
+    QString directory;
 public :
-    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0) : notes(new NoteVersions*[nM]), nb(n), nbMax(nM){
+    //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
+    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "C:\\Users\\Public\\Documents")
+        : notes(new NoteVersions*[nM]), nb(n), nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
     }//!consturcteur de NoteManager
+    NoteManager( QString dir = "C:\\Users\\Public\\Documents\\")
+        : notes(new NoteVersions*[0]), nb(0), nbMax(0), directory(dir){
+    }//! overload du constructeur pour pouvoir facilement modifier le directory.
+
     // getters
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
@@ -180,6 +214,11 @@ public :
      * \param NV NoteVersions à ajouter.
      */
     void addNoteVersion(NoteVersions *NV);
+
+
+    json toJson();
+    void save();
+    NoteManager load();
 
     /*!
      * \brief La classe iterator sert à parcourir les éléments de la classe
@@ -236,6 +275,9 @@ ostream& operator<< (ostream& f, const tm* tps); //necessiare pour afficher les 
 ostream& operator<< (ostream& f, const TaskStatus& S);
 ostream& operator<< (ostream& f, const OtherNoteType& T);
 ostream& operator<< (ostream& f, const RelationOrientation& R);
+ostream& operator<< (ostream& f, const QString& S);
+ostream& operator<< (ostream& f, const tm* tps);
+//ostream& operator<< (ostream& f, tm*& D);
 
 ostream& operator << (ostream& f, Note& N);
 ostream& operator<< (ostream& f, NoteVersions& V);

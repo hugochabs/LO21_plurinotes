@@ -3,23 +3,26 @@
 
 
 #include <iostream>
+//#include <time.h>
 #include <ctime> //librairie pour gérer le temps et les dates
 #include <string>
+#include <fstream>
 
+#include <QString>
 
 using namespace std;
 
 //----Classe d'exception----//
 /*!
  * \brief La classe NotesException sert à gérer les exceptions,
- * renvoyées par l'ensemble du programme sous forme de string.
+ * renvoyées par l'ensemble du programme sous forme de QString.
  */
 class NotesException{
 public:
-    NotesException(const string& message):info(message){}
-    string getInfo() const { return info; }
+    NotesException(const QString& message):info(message){}
+    QString getInfo() const { return info; }
 private:
-    string info;
+    QString info;
 };
 
 

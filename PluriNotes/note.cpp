@@ -1,18 +1,13 @@
 #include "notefille.h"
 
 using namespace std;
-
+/*
 ostream& operator<< (ostream& f, const tm* tps)
 {
-    int year = tps->tm_year + 1900;
-    int month = tps->tm_mon + 1;
-    int day = tps->tm_mday;
-    int min = tps->tm_min;
-    int hour = tps->tm_hour;
-    int sec = tps->tm_sec;
-    f<<day<<"/"<<month<<"/"<<year<<" - "<<hour<<":"<<min<<":"<<sec;
+    f<<tps->toString();
     return f;
 }
+*/
 
 ostream& operator<< (ostream& f, const TaskStatus& S){
     if (S == 0) {
@@ -49,12 +44,22 @@ ostream& operator<< (ostream& f, const RelationOrientation& R){
     return f;
 }
 
+ostream& operator<< (ostream& f, const QString& S){
+    f<<S.toStdString();
+    return f;
+}
+
+
+
+
+
+
 void Note::affiche(ostream& f){
-    f<<"Id : "<<getIdentifier()<<endl
-    <<"Title : "<<getTitle()<<endl
-    <<"Creation date : "<<getDateCreation()<<endl
-    <<"Last Update date : "<<getDateLastUpdate()<<endl
-    <<"Active : "<<getActiveString()<<endl;
+    f<<"Id\t: "<<getIdentifier()<<endl
+    <<"Title\t: "<<getTitle()<<endl
+    <<"Creation date\t: "<<getDateCreation()<<endl
+    <<"Last Update date\t: "<<getDateLastUpdate()<<endl
+    <<"Active\t: "<<getActiveString()<<endl;
     afficheSuite(f);
 }
 
@@ -118,6 +123,8 @@ void NoteVersions::addNote(Note * N){
     //ajout de l'élément dans le tableau
     versions[nb++] = N;
 }
+
+
 
 void NoteVersions::updateNewVersion(Note *N){
     //agrandissement éventuel du tableau

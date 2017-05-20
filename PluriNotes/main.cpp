@@ -1,12 +1,7 @@
-#include "plurinotes.h"
 #include "relation.h"
 
-
-
-
-
 int main (){
-
+    //tm* now = tm*::currentDateTime();
     time_t t = time(0);   // get time now
     struct tm * now = localtime( & t );
     bool act = false;
@@ -25,7 +20,7 @@ int main (){
     NV2.addNote(&B);
     NV2.addNote(&A);
     //création d'un tableau de NV
-    NoteManager NM;
+    NoteManager NM("C:\\Users\\Public\\");
     NM.addNoteVersion(&NV);
     NM.addNoteVersion(&NV2);
     //création d'une relation
@@ -45,12 +40,14 @@ int main (){
     RM.addRelation(&R);
     RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
-    cout<<getRelations(&A);
+    //cout<<getRelations(&A);
     NV.updateNewVersion(&T2);
     NV.updateNewVersion(&T2);
     //cout<<NV;
     NV.restoreVersion(&T);
-    cout<<"///////////////////////////////////////////"<<endl<<NV;
+    //cout<<"///////////////////////////////////////////"<<endl<<NV;
+    cout<<NM.toJson();
+    NM.save();
     return 0;
 }
 

@@ -1,9 +1,7 @@
 #ifndef RELATION_H
 #define RELATION_H
 
-#include <iostream>
-#include <ctime> //librairie pour gérer le temps et les dates
-#include <string>
+
 #include "notefille.h"
 
 using namespace std;
@@ -17,13 +15,13 @@ using namespace std;
  */
 class Couple {
 private :
-    string label;
+    QString label;
     Note* x;
     Note* y;
 public :
-    Couple(const string& l, Note* x , Note* y): label(l), x(x), y(y) {}
+    Couple(const QString& l, Note* x , Note* y): label(l), x(x), y(y) {}
     //getters
-    const string& getLabel(){return label;}
+    const QString& getLabel(){return label;}
     Note* getX(){return x;}
     Note* getY(){return y;}
     void setX(Note * Xs){x = Xs;}
@@ -38,11 +36,11 @@ private :
     Couple ** couples;
     unsigned int nb;
     unsigned int nbMax;
-    string title;
-    string description;
+    QString title;
+    QString description;
     RelationOrientation orientation;
 public :
-    Relation(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const string& t = "", const string& d = "", const RelationOrientation& o = oriented)
+    Relation(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const QString& t = "", const QString& d = "", const RelationOrientation& o = oriented)
         : couples(new Couple*[nM]), nb(n), nbMax(nM), title(t), description(d), orientation(o){
         for (unsigned int i = 0 ; i< n ; i++){
             couples[i] = c[i];
@@ -52,14 +50,14 @@ public :
     Couple* getNthElement(unsigned int n){return couples[n];}
     const unsigned int& getNb(){return nb;}
     const unsigned int& getNbMax(){return nbMax;}
-    const string& getTitle(){return title;}
-    const string& getDescription(){return description;}
+    const QString& getTitle(){return title;}
+    const QString& getDescription(){return description;}
     RelationOrientation& getOrientation(){return orientation;}
     //setters
     void setNb(unsigned int n){nb = n;}
     void setNbMax(unsigned int nM){nbMax = nM;}
-    void setTitle(const string& t){title = t;}
-    void setDescription(const string& d){description = d;}
+    void setTitle(const QString& t){title = t;}
+    void setDescription(const QString& d){description = d;}
     void setOrientation(RelationOrientation& ori){orientation = ori;}
     void setCouple(Couple ** C){couples = C;}
     void addCouple(Couple * c);
