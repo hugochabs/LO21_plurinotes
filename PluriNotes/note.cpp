@@ -1,13 +1,15 @@
 #include "notefille.h"
 
 using namespace std;
-/*
-ostream& operator<< (ostream& f, const tm* tps)
-{
-    f<<tps->toString();
+
+NoteManager * NoteManager::uniqueInstance = &NoteManager::getNoteManager();
+
+ostream& operator<< (ostream& f, const tm* t){
+    f<<t->tm_mday<<"/"<<t->tm_mon<<"/"<<t->tm_year<<" - "<<t->tm_hour<<":"<<t->tm_min<<":"<<t->tm_sec;
     return f;
 }
-*/
+
+
 
 ostream& operator<< (ostream& f, const TaskStatus& S){
     if (S == 0) {
@@ -49,17 +51,79 @@ ostream& operator<< (ostream& f, const QString& S){
     return f;
 }
 
+QString Note::getDateCQString(){
 
+    int year = dateCreation->tm_year + 1900;
 
+    //cout<<year<<endl;
 
+    QString y = QString::number(year);
+
+    int month = dateCreation->tm_mon + 1;
+
+    QString mo = QString::number(month);
+
+    int day = dateCreation->tm_mday;
+
+    QString d = QString::number(day);
+
+    int min = dateCreation->tm_min;
+
+    QString mi = QString::number(min);
+
+    int hour = dateCreation->tm_hour;
+
+    QString h = QString::number(hour);
+
+    int sec = dateCreation->tm_sec;
+
+    QString s = QString::number(sec);
+
+    QString dateC = d + "/" + mo + "/" + y + " - " + h + ":" + mi + ":" + s;
+
+    return dateC;
+
+}
+
+QString Note::getDateLUQString(){
+    int year = dateLastUpdate->tm_year + 1900;
+    QString y = QString::number(year,10);
+    int month =dateLastUpdate->tm_mon + 1;
+    QString mo = QString::number(month);
+    int day = dateLastUpdate->tm_mday;
+    QString d = QString::number(day);
+    int min = dateLastUpdate->tm_min;
+    QString mi = QString::number(min);
+    int hour = dateLastUpdate->tm_hour;
+    QString h = QString::number(hour);
+    int sec = dateLastUpdate->tm_sec;
+    QString s = QString::number(sec);
+    QString dateLU = d + "/" +mo+"/"+ y + " - " + h + ":"+mi+":"+s;
+    return dateLU;
+}
+
+QString NoteVersions::getTypeQS(){
+    switch(type){
+    case NoteType::A:
+        return "Article";
+    case NoteType::T:
+        return "Task";
+    case NoteType::TWP:
+        return "Task with priority";
+    case NoteType::TWD:
+        return "Task with deadline";
+    case NoteType::ON:
+        return "Other note";
+    }
+}
 
 
 void Note::affiche(ostream& f){
-    f<<"Id\t: "<<getIdentifier()<<endl
-    <<"Title\t: "<<getTitle()<<endl
+    f<<"Id\t\t: "<<getIdentifier()<<endl
+    <<"Title\t\t: "<<getTitle()<<endl
     <<"Creation date\t: "<<getDateCreation()<<endl
     <<"Last Update date\t: "<<getDateLastUpdate()<<endl
-    <<"Active\t: "<<getActiveString()<<endl;
+    <<"Active\t\t: "<<getActiveString()<<endl;
     afficheSuite(f);
 }
 
@@ -118,7 +182,9 @@ void NoteVersions::addNote(Note * N){
         for (unsigned int i = 0 ; i < nbMax ; i++){
             newTab[i] = versions[i];
         }
+        Note** old = versions;
         versions = newTab;
+        delete[] old;
     }
     //ajout de l'élément dans le tableau
     versions[nb++] = N;
@@ -138,7 +204,9 @@ void NoteVersions::updateNewVersion(Note *N){
         newTab[i+1] = versions[i];
     }
     nb++;
+    Note** old = versions;
     versions = newTab;
+    delete[] old;
     //ajout de la note en tête de tableau
     versions[0] = N;
 }
@@ -151,8 +219,35 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
         for (unsigned int i = 0 ; i < nbMax ; i++){
             newTab[i] = notes[i];
         }
+        NoteVersions** old = notes;
         notes = newTab;
+        delete[] old;
     }
     //ajout de la NoteVersions dans le tableau
     notes[nb++] = NV;
+}
+
+
+
+NoteManager::~NoteManager(){
+    for (unsigned int i=0 ; i<nb ; i++){
+        delete notes[i];
+    }
+    delete notes;
+}
+
+
+NoteManager& NoteManager::getNoteManager(NoteVersions **nv, unsigned int n, unsigned int nM){
+    if (!uniqueInstance){
+        uniqueInstance = new NoteManager(nv, n, nM);
+    }
+    return *uniqueInstance;
+}
+
+void NoteManager::freeNoteManager(){
+    if(uniqueInstance){
+        uniqueInstance->~NoteManager();
+    }else{
+        throw(NotesException("Impossible de libérer l'espace mémoire, aucun RelationManager n'existe."));
+    }
 }

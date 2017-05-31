@@ -78,11 +78,12 @@ void RelationManager::addRelation(Relation* R){
     relations[nb++] = R;
 }
 
+
 Relation& getRelations(Note* N){
-    Relation *Rel = new Relation();
+    Relation *Rel = new Relation;
     Rel->setTitle("Relations de \"" + N->getTitle()+"\"");
     Rel->setDescription("Relations dans laquelle la note \"" + N->getTitle() + "\" est impliquee");
-    //Parcours de l'ensemble des notes de NoteManager;
+    //Parcours de l'ensemble des relations de RelationManager;
     for(RelationManager::iterator it = RelationManager::getIterator() ; !it.isDone() ; it.isNext()){
         Relation R = it.current();
         for(Relation::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){

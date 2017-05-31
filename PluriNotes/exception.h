@@ -9,6 +9,8 @@
 #include <fstream>
 
 #include <QString>
+#include <QMessageBox>
+#include <QWidget>
 
 using namespace std;
 
@@ -17,12 +19,13 @@ using namespace std;
  * \brief La classe NotesException sert à gérer les exceptions,
  * renvoyées par l'ensemble du programme sous forme de QString.
  */
-class NotesException{
+class NotesException {
 public:
     NotesException(const QString& message):info(message){}
     QString getInfo() const { return info; }
 private:
     QString info;
+   // QMessageBox::information();
 };
 
 
