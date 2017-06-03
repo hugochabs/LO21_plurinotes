@@ -68,7 +68,7 @@ void MainWindow::initialisationNA(NoteManager& nm){
             Note n = it1.current();
 
             QTreeWidgetItem* note1;
-            if(n.getActive()){
+            if(n.getNoteStatus()){
                  note1 = addRoot(n.getIdentifier(), nv.getTypeQS());
                 for(NoteVersions::iterator it2=nv.getIterator();!it2.isDone1(); it2.isNext()){
                      cout<<"test2"<<endl;

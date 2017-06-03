@@ -17,7 +17,7 @@ using namespace std;
 
 //Définition des énumérations
 
-enum TaskStatus{ waiting, doing, done}; //pour le statut d'un objet Task
+enum TaskStatus{waiting, doing, done}; //pour le statut d'un objet Task
 enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
 enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
 enum NoteType{A, T, TWP, TWD, ON};
@@ -38,13 +38,13 @@ private :
     QString title;//!titre de la note
     tm* dateCreation;//!date de création de la note
     tm* dateLastUpdate;//!date de la dernière mise à jour de la note
-    NoteStatus active;//! statut de la note
+    NoteStatus noteStatus;//! statut de la note
 protected:
 
 public :
     Note(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a)
-        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), active(a){}//!constructeur de la classe
-    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), active(active){}
+        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
+    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
     //getters
     const QString& getIdentifier(){return identifier;}//!getter d'identifier
@@ -54,18 +54,25 @@ public :
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     QString getDateLUQString();
     //virtual const QString& getText()const;
-    const NoteStatus& getActive(){return active;}//!getter de active
+    const NoteStatus& getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-     * \brief getActiveString retourne la valeur de active
+     * \brief getStatusString retourne la valeur de noteStatus
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
-    const QString& getActiveString(){
+    const QString& getStatusString(){
         QString *act =  new QString;
-        if (active) {
+
+        switch (noteStatus) {
+        case active :
             *act = "Active";
-        }else{
-            *act = "Inactive";
+            break;
+        case archived :
+            *act = "Archived";
+            break;
+        case trash :
+            *act = "In the Trash";
+            break;
         }
         return *act;
     }
@@ -74,7 +81,7 @@ public :
     void setTitle(QString& t){title = t;}//!setter de title
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
-    void setActive(NoteStatus a){active = a;}//!setter de active
+    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
 
     //autres méthodes
 

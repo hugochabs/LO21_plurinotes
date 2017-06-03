@@ -3,15 +3,15 @@
 
 NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
 
-    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différets informations");
+    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
 
     //Bouton pour choisir le type de note
-    note = new QRadioButton("Note", this);
+    //note = new QRadioButton("Note", this);
     task = new QRadioButton("Task", this);
     article = new QRadioButton("Article", this);
     other = new QRadioButton("Other", this);
     layouthbutton = new QHBoxLayout;
-    layouthbutton->addWidget(note);
+    //layouthbutton->addWidget(note);
     layouthbutton->addWidget(task);
     layouthbutton->addWidget(article);
     layouthbutton->addWidget(other);
@@ -103,12 +103,12 @@ NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
     connect(quit, SIGNAL(clicked()),this, SLOT(close()));
     connect(task, SIGNAL(clicked(bool)), this, SLOT(changeTask()));
     connect(article, SIGNAL(clicked(bool)), this, SLOT(changeArticle()));
-    connect(note, SIGNAL(clicked(bool)), this, SLOT(changeNote()));
+    //connect(note, SIGNAL(clicked(bool)), this, SLOT(changeNote()));
     connect(other, SIGNAL(clicked(bool)), this, SLOT(changeOther()));
     connect(id, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
     //connect(save, SIGNAL(clicked()), this, SLOT())
 
-};
+}
 
 void NoteEditeur::activerSave(){
     save->setEnabled(true);

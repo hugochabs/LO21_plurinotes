@@ -123,7 +123,7 @@ void Note::affiche(ostream& f){
     <<"Title\t\t: "<<getTitle()<<endl
     <<"Creation date\t: "<<getDateCreation()<<endl
     <<"Last Update date\t: "<<getDateLastUpdate()<<endl
-    <<"Active\t\t: "<<getActiveString()<<endl;
+    <<"Active\t\t: "<<getStatusString()<<endl;
     afficheSuite(f);
 }
 
@@ -233,7 +233,7 @@ NoteManager::~NoteManager(){
     for (unsigned int i=0 ; i<nb ; i++){
         delete notes[i];
     }
-    delete notes;
+    delete[] notes;
 }
 
 
