@@ -237,7 +237,7 @@ NoteManager::~NoteManager(){
     for (unsigned int i=0 ; i<nb ; i++){
         delete notes[i];
     }
-    delete notes;
+    delete[] notes;
 }
 
 

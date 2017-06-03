@@ -13,7 +13,7 @@ using namespace std;
 
 //Définition des énumérations
 
-enum TaskStatus{ waiting, doing, done}; //pour le statut d'un objet Task
+enum TaskStatus{waiting, doing, done}; //pour le statut d'un objet Task
 enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
 enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
 enum NoteType{A, T, TWP, TWD, ON};
@@ -50,9 +50,9 @@ public :
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     QString getDateLUQString();
     //virtual const QString& getText()const;
-    NoteStatus getNoteStatus(){return noteStatus;}//!getter de active
+    NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-     * \brief getActiveString retourne la valeur de active
+     * \brief getStatusString retourne la valeur de noteStatus
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
@@ -71,8 +71,9 @@ public :
     void setTitle(QString& t){title = t;}//!setter de title
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
-    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de active
+    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
 
+    //autres méthodes
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
      * surchargée par les classes filles
