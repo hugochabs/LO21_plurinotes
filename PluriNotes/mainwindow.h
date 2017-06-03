@@ -16,6 +16,10 @@
 #include <QObject>
 #include "notefille.h"
 #include "noteediteur.h"
+//#include "strategy.h
+
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -25,25 +29,44 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    friend class NoteEditeur;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void initialisationNA(NoteManager &nm);
-    void initialisationT(NoteManager &nm);
+
+    /*static MainWindow& getMainWindow();
+    static void freeMainWindow();*/
+    void initialisationNA();
+    void initialisationT();
+    void InitialisationArchive();
+
 
     //!Fonctions pour remplir QTreeWidget
     QTreeWidgetItem* addRoot(QString id, QString type);
-    void addChild(QTreeWidgetItem* parent, QString id, QString type);
-
-    void fillA(Article& a) const;
-    void fillT(Task& t)const;
+    void addChild(QTreeWidgetItem* parent, QString title, QString type);
+    void fillNote(Note* n)const;
+    void fillA(Article& a)const;
+    void fillT(Task &t)const;
     void fillTWD(TaskWithDeadline& t)const;
     void fillTWP(TaskWithPriority& t)const;
-    void fillON(OtherNote& on)const;
+    void fillON(OtherNote &on)const;
+    void setAffichage(NoteType nt, Note& n);
+    static void emitModify();
 
+
+
+
+
+    //void affichage(QTreeWidgetItem *item, int i);
+    //Slots modification affichage principal
 private:
     Ui::MainWindow *ui;
     int ind;
+    Note* n;
+    NoteVersions* nv;
+
+
 
 signals:
     //!Signaux pour modifier affichage principal
@@ -52,6 +75,7 @@ signals:
     void  signalTWD();
     void  signalTWP();
     void  signalON();
+    void  modify();
 
 
 public slots:
@@ -62,9 +86,11 @@ public slots:
     void slotA();
     void slotT();
     void slotON();
-
-
-
+    void update();
+    void updateAff();
 };
+
+
+
 
 #endif // MAINWINDOW_H

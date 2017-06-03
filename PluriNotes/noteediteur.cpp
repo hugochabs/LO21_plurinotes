@@ -1,9 +1,11 @@
 #include "noteediteur.h"
 
+/*QApplication app(int n, char** argv);
+MainWindow& mymw = MainWindow::getMainWindow();*/
 
 NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
 
-    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
+    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différets informations");
 
     //Bouton pour choisir le type de note
     //note = new QRadioButton("Note", this);
@@ -106,35 +108,16 @@ NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
     //connect(note, SIGNAL(clicked(bool)), this, SLOT(changeNote()));
     connect(other, SIGNAL(clicked(bool)), this, SLOT(changeOther()));
     connect(id, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
-    //connect(save, SIGNAL(clicked()), this, SLOT())
+    connect(save, SIGNAL(clicked()), this, SLOT(addN()));
 
-}
+};
 
 void NoteEditeur::activerSave(){
     save->setEnabled(true);
 }
 
 
-void NoteEditeur::changeNote(){
-      if(ind!=0){
-          prop1L->setVisible(false);
-          prop1->setVisible(false);
-          art->setVisible(false);
 
-          prop2L->setVisible(false);
-          prop2->setVisible(false);
-
-          prop3L->setVisible(false);
-          prop3->setVisible(false);
-          menu->setVisible(false);
-
-          prop4L->setVisible(false);
-          prop4->setVisible(false);
-
-          save->setVisible(true);
-          ind=0;
-      }
-}
 
 void NoteEditeur::changeTask(){
     if(ind!=1){
@@ -207,4 +190,44 @@ void NoteEditeur::changeOther(){
           save->setVisible(true);
           ind=3;
       }
+}
+
+time_t t = time(0);   // get time now
+struct tm * now1 = localtime( & t );
+
+
+
+NoteManager& nm = NoteManager::getNoteManager();
+//MainWindow w(0);
+
+void NoteEditeur::addN(){
+    QString idN = id->text();
+    QString titleN = titre->text();
+    NoteVersions* nv = new NoteVersions(new Note*[0], 0,0);
+    if(ind==2){
+        Article* a = new Article(idN, titleN, now1, now1, true, art->toPlainText());
+        nv->updateNewVersion(a);
+
+
+    }
+    else if(ind==1){
+        nv->setNoteType(NoteType::T);
+        QString action = prop1->text();
+        Task* t = new Task(idN, titleN, now1, now1, true, action, waiting);
+        nv->updateNewVersion(t);
+
+    }
+    else if(ind==3){
+        nv->setNoteType(ON);
+        QString desc = prop1->text();
+        QString type = menu->currentText();
+        QString fn = prop2->text();
+        OtherNoteType t = OtherNote::toONTFromQString(type);
+        OtherNote* on = new OtherNote(idN, titleN, now1, now1, true, desc, fn, t);
+        nv->updateNewVersion(on);
+    }
+    nm.addNoteVersion(nv);
+    cout<<"apres ajout"<<endl;
+   // emit MainWindow::modify();
+    cout<<"apres update"<<endl;
 }

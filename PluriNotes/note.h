@@ -4,10 +4,6 @@
 
 #include "json.h"
 #include "exception.h"
-//#include "contener.h"
-
-
-
 
 
 
@@ -17,7 +13,7 @@ using namespace std;
 
 //Définition des énumérations
 
-enum TaskStatus{waiting, doing, done}; //pour le statut d'un objet Task
+enum TaskStatus{ waiting, doing, done}; //pour le statut d'un objet Task
 enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
 enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
 enum NoteType{A, T, TWP, TWD, ON};
@@ -42,9 +38,9 @@ private :
 protected:
 
 public :
-    Note(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a)
-        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
-    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
+    Note(const QString& i, const QString& t, tm* dC, tm* dLU, bool a)
+        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), active(a){}//!constructeur de la classe
+    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), active(false){}
 
     //getters
     const QString& getIdentifier(){return identifier;}//!getter d'identifier
@@ -56,7 +52,7 @@ public :
     //virtual const QString& getText()const;
     const NoteStatus& getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-     * \brief getStatusString retourne la valeur de noteStatus
+     * \brief getActiveString retourne la valeur de active
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
@@ -82,9 +78,6 @@ public :
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
     void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
-
-    //autres méthodes
-
 
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
@@ -142,7 +135,7 @@ private :
     NoteType type;
 public :
     NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
-        : nb(n), nbMax(nM), versions(new Note*[nM]), type(ty){
+        : nbMax(nM),versions(new Note*[nM]), nb(n), type(ty){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
@@ -155,9 +148,9 @@ public :
     QString getTypeQS();
 
 
+
     //setters
-    void setNoteType(NoteType& t){type = t;}
-    //a virer
+    void setNoteType(NoteType t){type = t;}
     /*!
      * \brief addNote ajoute une note à la fin du tableau
      * \param N Note à ajouter

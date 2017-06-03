@@ -1,4 +1,4 @@
-#include "notefille.h"
+﻿#include "notefille.h"
 
 using namespace std;
 
@@ -197,16 +197,21 @@ void NoteVersions::updateNewVersion(Note *N){
     if (nb == nbMax){
         ++nbMax;
     }
+    cout<<"apres if updateNewversion"<<endl;
+    cout<<nb<<endl<<nbMax<<endl;
     //décalage de tous les éléments dans le tableau pour
     //laisser la première place libre
     Note ** newTab = new Note*[nbMax];
     for (unsigned int i = 0 ; i < nb ; i++){
+        cout<<"boucle for :"<<i<<endl;
         newTab[i+1] = versions[i];
     }
-    nb++;
     Note** old = versions;
-    versions = newTab;
+    cout<<"apres agrandissement tableau"<<endl;
+    nb++;
     delete[] old;
+    versions = newTab;
+
     //ajout de la note en tête de tableau
     versions[0] = N;
 }
@@ -219,12 +224,11 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
         for (unsigned int i = 0 ; i < nbMax ; i++){
             newTab[i] = notes[i];
         }
-        NoteVersions** old = notes;
         notes = newTab;
-        delete[] old;
     }
     //ajout de la NoteVersions dans le tableau
     notes[nb++] = NV;
+    cout<<"ajout de la noteersion" <<endl;
 }
 
 
@@ -234,6 +238,7 @@ NoteManager::~NoteManager(){
         delete notes[i];
     }
     delete[] notes;
+    delete notes;
 }
 
 

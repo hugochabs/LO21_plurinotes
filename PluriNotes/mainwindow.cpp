@@ -1,18 +1,27 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), ind(-1)
+    ui(new Ui::MainWindow), ind(-1), n(0), nv(0)
+
 {
     ui->setupUi(this);
 
-    ui->ListNotes->setColumnCount(2);
 
-    QStringList labels;
-    labels<<"Task"<<"Deadline"<<"Priority";
+
+
+    QStringList labels1, labels2;
+    labels1<<"Task"<<"Deadline"<<"Priority";
     ui->listTask->setColumnCount(3);
-    ui->listTask->setHorizontalHeaderLabels(labels);
+    ui->listTask->setHorizontalHeaderLabels(labels1);
+
+    labels2<<"Titre"<<"Type";
+    ui->ListNotes->setColumnCount(2);
+    ui->ListNotes->setHeaderLabels(labels2);
+
     ui->id->setReadOnly(true);
 
     //Différentes propriétés des class filles de note qu'on affiche dans la fenetre centrale
@@ -32,6 +41,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->addNote, SIGNAL(clicked(bool)), this, SLOT(add()));
     connect(this, SIGNAL(signalA()), this, SLOT(slotA()));
     connect(this, SIGNAL(signalT()), this, SLOT(slotT()));
+    connect(this, SIGNAL(signalON()), this, SLOT(slotON()));
+    connect(ui->saveMW, SIGNAL(clicked()), this, SLOT(update()));
+    connect(this, SIGNAL(modify()), ui->listTask, SLOT(clear()));
+    connect(this, SIGNAL(modify()), ui->ListNotes, SLOT(clear()));
+    connect(this, SIGNAL(modify()), this, SLOT(updateAff()));
+
+
 
 }
 
@@ -42,6 +58,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+NoteManager& manager = NoteManager::getNoteManager();
+int n =manager.getNb();
+
 //!Fonctions qui permet d'ajouter les notes présentes dans NoteManager
 QTreeWidgetItem* MainWindow::addRoot(QString id, QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem(ui->ListNotes);
@@ -51,18 +71,18 @@ QTreeWidgetItem* MainWindow::addRoot(QString id, QString type){
     return note;
 }
 
-void MainWindow::addChild(QTreeWidgetItem* parent, QString id,QString type){
+void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem();
     cout<<"enfant"<<endl;
-    note->setText(0, id);
+    note->setText(0, title);
     note->setText(1, type);
     parent->addChild(note);
 }
 
 //!On initialise l'affichage au lancement de l'application
-void MainWindow::initialisationNA(NoteManager& nm){
+void MainWindow::initialisationNA(){
     unsigned int i=1;
-    for(NoteManager::iterator it = nm.getIterator();!it.isDone();it.isNext()){
+    for(NoteManager::iterator it = manager.getIterator();!it.isDone();it.isNext()){
             NoteVersions nv = it.current();
             NoteVersions::iterator it1 = nv.end();
             Note n = it1.current();
@@ -71,7 +91,7 @@ void MainWindow::initialisationNA(NoteManager& nm){
             if(n.getNoteStatus()){
                  note1 = addRoot(n.getIdentifier(), nv.getTypeQS());
                 for(NoteVersions::iterator it2=nv.getIterator();!it2.isDone1(); it2.isNext()){
-                     cout<<"test2"<<endl;
+
                      Note temp = it2.current();
                      addChild(note1, temp.getIdentifier(), nv.getTypeQS());
                  }
@@ -81,81 +101,93 @@ void MainWindow::initialisationNA(NoteManager& nm){
 
 }
 
-void MainWindow::initialisationT(NoteManager& nm){
-    unsigned int i=1;
-    for(NoteManager::iterator it = nm.getIterator();!it.isDone();it.isNext()){
+void MainWindow::initialisationT(){
+    //unsigned int i=1;
+    for(NoteManager::iterator it = manager.NoteManager::getIterator();!it.isDone();it.isNext()){
             NoteVersions nv = it.current();
-            NoteVersions::iterator it1 = nv.getIterator();
+            NoteVersions::iterator it1 = nv.NoteVersions::getIterator();
             Note& n = it1.current();
-
-            if(nv.getTypeQS()=="Task" || nv.getTypeQS()=="Task with priority" || nv.getTypeQS()=="Task with deadline"){
-                cout<<"if"<<endl;
+            int row;
+            cout<<nv.getTypeQS()<<endl;
+            cout<<it.getNbRemain()<<endl;
+            cout<<manager.getNb()<<endl;
+            switch(nv.getType()){
+            case NoteType::T :{
+                    cout<<"ifT"<<endl;
                     Task& t = static_cast<Task&>(n);
-                    QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
-                    QTableWidgetItem* status=new QTableWidgetItem(t.getStatusQS());
-                    //QTableWidgetItem* action=new QTableWidgetItem(t.getAction());
-
+                    //cout<<t.getAction()<<endl;
+                    //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
+                    QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
                     ui->listTask->insertRow(ui->listTask->rowCount());
-                    int row = ui->listTask->rowCount()-1;
+                    row = ui->listTask->rowCount()-1;
                     cout<<row<<endl;
-                    ui->listTask->setItem(row,0, id);
-                    ui->listTask->setItem(row,1, status);
-                    //ui->listTask->setItem(row,2, action);
-            }
-            i++;
-    }
+                    ui->listTask->setItem(row,0, action);
+                    /*ui->listTask->setItem(row,1, status);
+                    ui->listTask->setItem(row,2, action);*/
+                    cout<<"fin"<<endl;
+
+                    break;}
+
+             case NoteType::TWD : {
+                cout<<"ifTWD"<<endl;
+                TaskWithDeadline& t = static_cast<TaskWithDeadline&>(n);
+
+                QString date = Note::QStringFromDate(t.getDeadline());
+                QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
+                //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
+                QTableWidgetItem* d=new QTableWidgetItem(date);
+                cout<<"apres insertion"<<endl;
+                ui->listTask->insertRow(ui->listTask->rowCount());
+                cout<<"apres insertion"<<endl;
+                row = ui->listTask->rowCount()-1;
+                cout<<row<<endl;
+                ui->listTask->setItem(row,0, action);
+                ui->listTask->setItem(row,1, d);
+                /*ui->listTask->setItem(row,2, status2);*/
+                break;}
+
+            case NoteType::TWP : {
+               cout<<"ifTWD"<<endl;
+               TaskWithPriority& t = static_cast<TaskWithPriority&>(n);
+
+               QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
+
+               QTableWidgetItem* prio=new QTableWidgetItem(t.getPriorityQS());
+
+               ui->listTask->insertRow(ui->listTask->rowCount());
+
+               row = ui->listTask->rowCount()-1;
+               cout<<row<<endl;
+               ui->listTask->setItem(row,0, action);
+               ui->listTask->setItem(row,2, prio);
+               break;}
+
+           }
+}
+}
+
+void MainWindow::InitialisationArchive(){
 
 }
 
-NoteManager& manager = NoteManager::getNoteManager();
+
 
 //! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note actie sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
     QString id = item->text(i);
     for(NoteManager::iterator it = manager.getIterator();!it.isDone();it.isNext()){
-        NoteVersions nv = it.current();
-
-        for(NoteVersions::iterator it2=nv.getIterator();!it2.isDone(); it2.isNext()){
-
+        NoteVersions& nvt = it.current();
+        cout<<"for1"<<endl;
+        for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
+        cout<<"for1"<<endl;
              Note& temp = it2.current();
              if(id==temp.getIdentifier()){
-                 ui->id->setText(temp.getIdentifier());
-                 ui->titre->setText(temp.getTitle());
-                 ui->dc->setText(temp.getDateCQString());
-                 ui->dm->setText(temp.getDateLUQString());
-
-                 //! Selon le type de Note, on modifie l'affichage et on remplie les champs de chaque sous-clase de Note
-                 switch(nv.getType()){
-                 case NoteType::A :
-                 {
-                     Article &art = static_cast<Article&>(temp);
-                     fillA(art);
-                     emit signalA();}
-                    return;
-                 case NoteType::T :
-                 {
-                     Task &t = static_cast<Task&>(temp);
-                     fillT(t);
-                     emit signalT();}
-                     return;
-
-                 case NoteType::TWD :{
-                     TaskWithDeadline &t = static_cast<TaskWithDeadline&>(temp);
-                     fillTWD(t);
-                     emit signalT();}
-                     return;
-                 case NoteType::TWP :{
-                     TaskWithPriority &t = static_cast<TaskWithPriority&>(temp);
-                     fillTWP(t);
-                     emit signalT();}
-                     return;
-                 case NoteType::ON:{
-                         OtherNote &on = static_cast<OtherNote&>(temp);
-                         fillON(on);
-                     emit signalON();}
-                     return;
-                 }
-
+                 cout<<"id temp"<<endl;
+                 fillNote(&temp);
+                 setAffichage(nvt.getType(), temp);
+                 n=&temp;
+                 nv=&nvt;
+                 return ;
 
              }
          }
@@ -237,12 +269,13 @@ void MainWindow::slotON(){
         ui->prop2L->setText("Filename");
         ui->prop2->setVisible(true);
 
-        ui->prop3L->setVisible(true);
-        ui->prop3L->setText("Type");
+        ui->prop3L->setVisible(false);
         ui->prop3->setVisible(false);
-        ui->typeON->setVisible(true);
 
-        ui->prop4L->setVisible(false);
+
+        ui->prop4L->setVisible(true);
+        ui->prop4L->setText("Type");
+        ui->typeON->setVisible(true);
 
         ui->prop4->setVisible(false);
 
@@ -251,8 +284,51 @@ void MainWindow::slotON(){
     }
 }
 
+void MainWindow::setAffichage(NoteType nt, Note& n){
+    switch(nt){
+    case NoteType::A :
+    {
+        Article& a = static_cast<Article&>(n);
+        fillA(a);
+        emit signalA();}
+       return;
+    case NoteType::T :
+    {
+        Task& t = static_cast<Task&>(n);
+        fillT(t);
+        emit signalT();}
+        return;
+
+    case NoteType::TWD :
+    {
+        TaskWithDeadline& t = static_cast<TaskWithDeadline&>(n);
+        fillTWD(t);
+        emit signalT();}
+        return;
+    case NoteType::TWP :{
+        TaskWithPriority& t = static_cast<TaskWithPriority&>(n);
+        fillTWP(t);
+        emit signalT();}
+        return;
+    case NoteType::ON:{
+        OtherNote& t = static_cast<OtherNote&>(n);
+        fillON(t);
+        emit signalON();}
+        return;
+    }
+}
+
 
 //!Fonctions qui permettent de remplir les champs de l'affichage principal
+    void MainWindow::fillNote(Note* n)const{
+    cout<<"fillNote"<<endl;
+        ui->id->setText(n->getIdentifier());
+    ui->titre->setText(n->getTitle());
+    ui->dc->setText(n->getDateCQString());
+    ui->dm->setText(n->getDateLUQString());
+}
+
+
 void MainWindow::fillA(Article& a)const{
 
     ui->text->setText(a.getText());
@@ -264,7 +340,7 @@ void MainWindow::fillT(Task& t)const{
     ui->prop4->setText(t.getStatusQS());
 }
 
-void MainWindow::fillTWD(TaskWithDeadline& t)const{
+void MainWindow::fillTWD(TaskWithDeadline &t)const{
     fillT(t);
     QString date = Note::QStringFromDate(t.getDeadline());
 
@@ -280,5 +356,67 @@ void MainWindow::fillON(OtherNote& on)const{
     ui->prop1->setText(on.getDescription());
     ui->prop2->setText(on.getFileName());
 }
+
+//void MainWindow::afficherItem()
+//MainWindow& mw = MainWindow::getMainWindow();
+
+time_t ti = time(0);
+struct tm * now = localtime( & ti );
+
+void MainWindow::update(){
+    cout<<"update"<<endl;
+    QString i = ui->id->text();
+    QString title = ui->titre->text();
+    QString dc = ui->dc->text();
+    tm* DC = Note::dateFromQString(dc);
+    switch(ind){
+    case 1:{
+        QString t = ui->text->toPlainText();
+        Article* a = new Article(i+"nv", title, DC, now, true, t);
+        nv->updateNewVersion(a);
+        break;
+    }
+    case 2:{
+        QString act = ui->prop1->text();
+        QString s = ui->prop4->text();
+        TaskStatus ts = Task::toTSfromQString(s);
+        Task* t;
+        if(ui->prop2->isModified()){
+            QString p = ui->prop2->text();
+            t = new TaskWithPriority(i, title, DC, now, true, act, ts, p.toInt());
+        }
+        else if(ui->prop3->isModified()){
+            tm* dl = Note::dateFromQString(ui->prop3->text());
+             t = new TaskWithDeadline(i,title,DC, now, true, act, ts, dl);
+        }
+        else{
+
+             t= new Task(i, title, DC, now,  true, act, ts);
+
+        }
+        nv->updateNewVersion(t);
+        cout<<"apres maj"<<endl;
+        break;
+    }
+    case 3:{
+        QString desc = ui->prop1->text();
+        QString fn = ui->prop2->text();
+        OtherNote* on = new OtherNote(i,title,DC,now, true, desc, fn, OtherNoteType::audio);
+        nv->updateNewVersion(on);
+        break;
+    }
+    }
+    emit modify();
+
+}
+
+void MainWindow::updateAff(){
+    cout<<"reinitialisaion"<<endl;
+    initialisationT();
+    initialisationNA();
+}
+
+
+
 
 
