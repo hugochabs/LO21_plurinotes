@@ -7,10 +7,6 @@
 //#include "contener.h"
 
 
-
-
-
-
 using json = nlohmann::json;
 using namespace std;
 //using namespace TD;
@@ -38,13 +34,13 @@ private :
     QString title;//!titre de la note
     tm* dateCreation;//!date de création de la note
     tm* dateLastUpdate;//!date de la dernière mise à jour de la note
-    NoteStatus active;//! statut de la note
+    NoteStatus noteStatus;//! statut de la note
 protected:
 
 public :
     Note(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a)
-        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), active(a){}//!constructeur de la classe
-    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), active(active){}
+        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
+    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
     //getters
     const QString& getIdentifier(){return identifier;}//!getter d'identifier
@@ -54,30 +50,28 @@ public :
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     QString getDateLUQString();
     //virtual const QString& getText()const;
-    const NoteStatus& getActive(){return active;}//!getter de active
+    NoteStatus getNoteStatus(){return noteStatus;}//!getter de active
     /*!
      * \brief getActiveString retourne la valeur de active
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
-    const QString& getActiveString(){
-        QString *act =  new QString;
-        if (active) {
-            *act = "Active";
-        }else{
-            *act = "Inactive";
+    QString getNoteStatusString(){
+        switch(noteStatus){
+        case NoteStatus::active:
+            return "active";
+        case NoteStatus::archived:
+            return "archived";
+        case NoteStatus::trash:
+            return "trash";
         }
-        return *act;
     }
     //setters
     void setIdentifier(QString& i){identifier = i;}//!setter de identifier
     void setTitle(QString& t){title = t;}//!setter de title
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
-    void setActive(NoteStatus a){active = a;}//!setter de active
-
-    //autres méthodes
-
+    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de active
 
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
@@ -135,7 +129,7 @@ private :
     NoteType type;
 public :
     NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
-        : nb(n), nbMax(nM), versions(new Note*[nM]), type(ty){
+        : nbMax(nM),versions(new Note*[nM]), nb(n), type(ty){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
@@ -148,9 +142,9 @@ public :
     QString getTypeQS();
 
 
+
     //setters
-    void setNoteType(NoteType& t){type = t;}
-    //a virer
+    void setNoteType(NoteType t){type = t;}
     /*!
      * \brief addNote ajoute une note à la fin du tableau
      * \param N Note à ajouter
@@ -218,6 +212,10 @@ public :
      */
     iterator getIterator(){
         return iterator(versions, nb);
+    }
+
+    iterator getIterator1(){
+        return iterator(++versions, nb-1);
     }
 
     iterator end(){

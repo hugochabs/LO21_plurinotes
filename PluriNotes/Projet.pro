@@ -28,7 +28,9 @@ SOURCES += main.cpp \
     relation.cpp \
     noteediteur.cpp \
     notefille.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    initialisationnote.cpp \
+    slotnote.cpp
 
 HEADERS  += \
     exception.h \

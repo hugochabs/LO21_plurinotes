@@ -44,10 +44,10 @@ private :
     TaskStatus status;
 
 public :
-    Task(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a, const QString& ac, TaskStatus s = waiting)
+    Task(const QString& i, const QString& t, tm* dC, tm* dLU,NoteStatus a, const QString& ac, TaskStatus s = waiting)
         : Note(i, t, dC, dLU, a), action(ac), status(s){}
     //getters
-    const QString& getAction(){return action;}
+    QString getAction()const {return action;}
     const TaskStatus& getStatus(){return status;}
     QString getStatusQS(){ //!Getter pour avoir status en QString
         switch(status){
@@ -58,6 +58,15 @@ public :
         case TaskStatus::waiting:
             return "Waiting";
         }
+    }
+
+    static TaskStatus toTSfromQString(const QString& t){
+        if(t=="waiting")
+             return waiting;
+         else if(t=="done")
+             return done;
+         else if(t=="en realisation")
+             return doing;
     }
 
     //setters
@@ -143,6 +152,14 @@ public :
     const QString& getFileName(){return fileName;}
     const OtherNoteType& getType(){return type;}
     QString getTypeQS();//! On convertit le type en QString
+    static OtherNoteType toONTFromQString(const QString& t){
+        if(t=="Audio")
+             return OtherNoteType::audio;
+         else if(t=="Vidéo")
+             return OtherNoteType::video;
+         else if(t=="Image")
+             return OtherNoteType::image;
+    }
 
     //setters
     void getDescription(QString& d){description = d;}
