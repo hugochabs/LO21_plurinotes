@@ -93,6 +93,7 @@ public slots:
     void update();
     void updateAff();
     void archive();
+    void delete2();
     void chooseFile();
 };
 

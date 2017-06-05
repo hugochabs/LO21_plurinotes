@@ -137,6 +137,7 @@ public :
         }//!constructeur de NoteVersions
     }
     // getters
+    Note** getVersions(){ return versions; } //! getter de versions
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
     const NoteType& getType(){return type;}
@@ -177,13 +178,13 @@ public :
      * sans exposer la structure
      */
     class iterator{
-        friend class NoteVersions;//!amitié avec la classe à parcourir
+        friend class NoteVersions;      //!amitié avec la classe à parcourir
     private:
-        unsigned int nbRemain;//!nombre d'éléments restant à parcourir
-        Note** currentV;//!élément courant
-        iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}//!constructeur de l'iterator
+        unsigned int nbRemain;          //!nombre d'éléments restant à parcourir
+        Note** currentV;                //!élément courant
+        iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}     //!constructeur de l'iterator
     public:
-        unsigned int getNbRemain()const{return nbRemain;}//!getter de nbRemain
+        unsigned int getNbRemain()const{return nbRemain;}       //!getter de nbRemain
         /*!
          * \brief isDone savoir s'il reste des éléments à parcourir
          * \return bool dépendant de la valeur de nbRemain
@@ -200,7 +201,7 @@ public :
             nbRemain--;
         }
         /*!
-         * \brief current retourne l'élément cournat si c'est possible
+         * \brief current retourne l'élément courant si c'est possible
          * \return current
          */
         Note& current(){
@@ -273,6 +274,13 @@ public :
     NoteVersions* getNVfromNote(Note* N);
 
     /*!
+     * \brief checkIfNoteInReference permet de vérifier si une Note
+     *  se trouve dans une Référence
+     * \param N Note
+     */
+    bool checkIfNoteInReference(Note* N);
+
+    /*!
      * \brief archiveNoteVersions permet d'archiver une note
      * ainsi que toutes ses versions (= archiver une NoteVersions)
      * \param NV NoteVersions à archiver
@@ -286,6 +294,21 @@ public :
      * \param N note à supprimer
      */
     void deleteNoteVersions(Note* N);
+
+    /*!
+     * \brief putNVToTrash permet de mettre dans la corbeille une note
+     * ainsi que toutes ses versions.
+     * \param N note à mettre à la corbeille
+     */
+    void putNVToTrash(NoteVersions* NV);
+
+    /*!
+     * \brief deleteNoteCouples permet de supprimer tous les Couples
+     * des Relations dans lesquels une note passée en paramètre se trouve.
+     * \param N note que l'on veut supprimer
+     */
+    void deleteNoteCouples(Note* N);
+
 
 
     json toJson();

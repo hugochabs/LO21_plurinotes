@@ -1,4 +1,5 @@
 #include "notefille.h"
+#include "relation.h"
 
 using namespace std;
 
@@ -229,7 +230,7 @@ NoteVersions* NoteManager::getNVfromNote(Note* N){
     // parcours des différentes NotesVersions contenues dans le NoteManager
     for (unsigned int i = 0 ; i < this->nb ; i++){
         // on part du principe que toutes les versions d'une note ont le même id
-            if (N->identifier == notes[i]->versions[0]->identifier){
+            if (N->getIdentifier() == notes[i]->getVersions()[0]->getIdentifier()){
                 return notes[i];
             }
     }
@@ -237,22 +238,51 @@ NoteVersions* NoteManager::getNVfromNote(Note* N){
     throw NotesException("Pas de NoteVersions correspondant à la Note que vous recherchez");
 }
 
+bool NoteManager::checkIfNoteInReference(Note* N){
+    // TODO WHEN REFERENCE
+    return true;
+}
+
 void NoteManager::archiveNoteVersions(NoteVersions *NV){
-    // for (NoteVersions::iterator it )
-    setNoteStatus(archived);
+    for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext())
+        it.current().setNoteStatus(archived);
 }
 
 void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
     NoteVersions* NV = getNVfromNote(N);
-    // if
-    // TO DO FUNCTION checkIfNoteInReference()
-    // archiveNoteVersions(NV)
-    // else
-    // TO DO deleteCouplesFromNotes
-    // TO DO fct putNVToTrash()
-    putNVToTrash(NV);
+     if ( checkIfNoteInReference(N) ){
+        archiveNoteVersions(NV);
+     }
+     else {
+        deleteNoteCouples(N);
+        putNVToTrash(NV);
+     }
 }
+
+void NoteManager::deleteNoteCouples(Note* N){
+    RelationManager& RM = RelationManager::getRelationManager();
+    // itération parmi les différentes Relations
+    for (RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
+        // itération parmi les différents couples d'une Relation
+        Relation R = it.current();
+        for (Relation::iterator it2 = it.current().getIterator() ; !it2.isDone() ; it2.isNext() ){
+            if ( it2.current().getX() == N || it2.current().getY() == N ){
+                // TODO
+                R.deleteCouple(&it2.current());
+
+            }
+        }
+    }
+
+}
+
+
+void NoteManager::putNVToTrash(NoteVersions* NV){
+    for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext())
+        it.current().setNoteStatus(trash);
+}
+
 
 NoteManager::~NoteManager(){
     for (unsigned int i=0 ; i<nb ; i++){

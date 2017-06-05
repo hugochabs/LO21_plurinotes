@@ -50,7 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(signalON()), this, SLOT(slotON()));
     connect(ui->saveMW, SIGNAL(clicked()), this, SLOT(update()));
     connect(this, SIGNAL(modify()), this, SLOT(updateAff()));
-    connect(ui->archiver, SIGNAL(clicked()), this, SLOT(archive()));
+    connect(ui->delete_2, SIGNAL(clicked()), this, SLOT(delete2()));
+
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
 
 }
