@@ -9,8 +9,6 @@ ostream& operator<< (ostream& f, const tm* t){
     return f;
 }
 
-
-
 ostream& operator<< (ostream& f, const TaskStatus& S){
     if (S == 0) {
         f<<"Waiting";
@@ -123,7 +121,7 @@ void Note::affiche(ostream& f){
     <<"Title\t\t: "<<getTitle()<<endl
     <<"Creation date\t: "<<getDateCreation()<<endl
     <<"Last Update date\t: "<<getDateLastUpdate()<<endl
-    <<"Active\t\t: "<<getNoteStatusString()<<endl;
+    <<"Status\t\t: "<<getNoteStatusString()<<endl;
     afficheSuite(f);
 }
 
@@ -136,7 +134,6 @@ ostream& operator<< (ostream& f, NoteVersions& NV){
     return f;
 }
 
-
 //Implémentation avec iterator
 ostream& operator<< (ostream& f, NoteManager& NM){
     f<<"-------NoteManager-------"<<endl;
@@ -145,7 +142,6 @@ ostream& operator<< (ostream& f, NoteManager& NM){
     }
     return f;
 }
-
 
 ostream& operator<< (ostream& f, Note& N){
     N.affiche(f);
@@ -190,8 +186,6 @@ void NoteVersions::addNote(Note * N){
     versions[nb++] = N;
 }
 
-
-
 void NoteVersions::updateNewVersion(Note *N){
     //agrandissement éventuel du tableau
     if (nb == nbMax){
@@ -231,7 +225,34 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
     cout<<"ajout de la noteersion" <<endl;
 }
 
+NoteVersions* NoteManager::getNVfromNote(Note* N){
+    // parcours des différentes NotesVersions contenues dans le NoteManager
+    for (unsigned int i = 0 ; i < this->nb ; i++){
+        // on part du principe que toutes les versions d'une note ont le même id
+            if (N->identifier == notes[i]->versions[0]->identifier){
+                return notes[i];
+            }
+    }
+    // si parcours effectué et rien correspondant de trouvé on renvoit null
+    throw NotesException("Pas de NoteVersions correspondant à la Note que vous recherchez");
+}
 
+void NoteManager::archiveNoteVersions(NoteVersions *NV){
+    // for (NoteVersions::iterator it )
+    setNoteStatus(archived);
+}
+
+void NoteManager::deleteNoteVersions(Note* N){
+    // get NoteVersions for the Note in parameter
+    NoteVersions* NV = getNVfromNote(N);
+    // if
+    // TO DO FUNCTION checkIfNoteInReference()
+    // archiveNoteVersions(NV)
+    // else
+    // TO DO deleteCouplesFromNotes
+    // TO DO fct putNVToTrash()
+    putNVToTrash(NV);
+}
 
 NoteManager::~NoteManager(){
     for (unsigned int i=0 ; i<nb ; i++){

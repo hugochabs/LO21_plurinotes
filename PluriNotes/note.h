@@ -52,7 +52,7 @@ public :
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-     * \brief getStatusString retourne la valeur de noteStatus
+     * \brief getNoteStatusString retourne la valeur de noteStatus
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
@@ -73,7 +73,8 @@ public :
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
     void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
 
-    //autres méthodes
+    //autres méthodesnoteStatus
+
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
      * surchargée par les classes filles
@@ -108,7 +109,6 @@ public :
             QString * res = new QString(date_char);
             return *res;
         }
-
 
     static Note& fromJson(json j);
     virtual json toJson();
@@ -164,6 +164,8 @@ public :
      * \param N version à restaurer
      */
     void restoreVersion(Note * N);
+
+
 
 
 
@@ -233,9 +235,9 @@ public :
 //template<class T>
 class NoteManager{
 private :
-    NoteVersions** notes;//!tableau des NoteVersions
-    unsigned int nb;//!nombre de NoteVersions
-    unsigned int nbMax;//!nombre max de NoteVersions
+    NoteVersions** notes;       //!tableau des NoteVersions
+    unsigned int nb;            //!nombre de NoteVersions
+    unsigned int nbMax;         //!nombre max de NoteVersions
     QString directory;
     static NoteManager * uniqueInstance;
 
@@ -262,6 +264,28 @@ public :
      * \param NV NoteVersions à ajouter.
      */
     void addNoteVersion(NoteVersions *NV);
+
+    /*!
+     * \brief getNVfromNote permet de récupérer le NoteVersions
+     * en fonction de la Note passée en paramètres
+     * \param N note dont on veut récupérer le NoteVersions
+     */
+    NoteVersions* getNVfromNote(Note* N);
+
+    /*!
+     * \brief archiveNoteVersions permet d'archiver une note
+     * ainsi que toutes ses versions (= archiver une NoteVersions)
+     * \param NV NoteVersions à archiver
+     */
+    void archiveNoteVersions(NoteVersions*NV);
+
+    /*!
+     * \brief deleteNoteVersions permet de supprimer une note
+     * ainsi que toutes ses versions. (= mettre à la corbeille si possible, soit si la Note
+     * n'apparaît pas dans une Référence, et l'archiver sinon)
+     * \param N note à supprimer
+     */
+    void deleteNoteVersions(Note* N);
 
 
     json toJson();
