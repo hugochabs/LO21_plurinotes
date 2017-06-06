@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(modify()), this, SLOT(updateAff()));
     connect(ui->archiver, SIGNAL(clicked()), this, SLOT(archive()));
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
-    connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
+    connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(restore()));
 
 }
 

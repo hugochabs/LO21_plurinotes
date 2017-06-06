@@ -193,3 +193,8 @@ void MainWindow::chooseFile(){
     QFileDialog* file = new QFileDialog;
     file->show();
 }
+
+void MainWindow::restore(){
+    cout<<"restore"<<endl;
+    nv->restoreVersion(n);
+}

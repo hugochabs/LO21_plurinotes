@@ -59,7 +59,7 @@ public:
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_9;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *restoreButton;
     QHBoxLayout *horizontalLayout;
     QLabel *idl;
     QLineEdit *id;
@@ -240,7 +240,7 @@ public:
 
         layoutWidget2 = new QWidget(centralWidget);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(520, 40, 321, 445));
+        layoutWidget2->setGeometry(QRect(520, 40, 321, 451));
         verticalLayout_5 = new QVBoxLayout(layoutWidget2);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -254,10 +254,10 @@ public:
 
         horizontalLayout_9->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(layoutWidget2);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        restoreButton = new QPushButton(layoutWidget2);
+        restoreButton->setObjectName(QStringLiteral("restoreButton"));
 
-        horizontalLayout_9->addWidget(pushButton_2);
+        horizontalLayout_9->addWidget(restoreButton);
 
 
         verticalLayout_5->addLayout(horizontalLayout_9);
@@ -444,7 +444,7 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Relation", Q_NULLPTR));
         addRelation_2->setText(QApplication::translate("MainWindow", "Acc\303\251der aux relations", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Annuler", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "R\303\251tablir", Q_NULLPTR));
+        restoreButton->setText(QApplication::translate("MainWindow", "R\303\251tablir", Q_NULLPTR));
         idl->setText(QApplication::translate("MainWindow", "Identificateur", Q_NULLPTR));
         label_8->setText(QApplication::translate("MainWindow", "Titre", Q_NULLPTR));
         label_10->setText(QApplication::translate("MainWindow", "Date de cr\303\251ation", Q_NULLPTR));

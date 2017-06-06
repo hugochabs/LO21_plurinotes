@@ -94,6 +94,7 @@ public slots:
     void updateAff();
     void archive();
     void chooseFile();
+    void restore();
 };
 
 
