@@ -8,7 +8,7 @@ json Note::toJson(){
     j["title"] = title.toStdString();
     j["dateCreation"] = QStringFromDate(const_cast<tm*>(getDateCreation())).toStdString();
     j["dateLastUpdate"] = QStringFromDate(const_cast<tm*>(getDateLastUpdate())).toStdString();
-    j["active"] = active;
+    j["noteStatus"] = noteStatus;
     return j;
 }
 
@@ -97,7 +97,7 @@ json OtherNote::toJson(){
 
 
 Note& Note::fromJson(json j){
-    Note* n = new Note(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["active"]);
+    Note* n = new Note(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"]);
     return *n;
 }
 

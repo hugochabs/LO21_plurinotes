@@ -5,7 +5,7 @@ MainWindow& mymw = MainWindow::getMainWindow();*/
 
 NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
 
-    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différets informations");
+    setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
 
     //Bouton pour choisir le type de note
     //note = new QRadioButton("Note", this);
@@ -110,7 +110,7 @@ NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
     connect(id, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
     connect(save, SIGNAL(clicked()), this, SLOT(addN()));
 
-};
+}
 
 void NoteEditeur::activerSave(){
     save->setEnabled(true);

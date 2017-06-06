@@ -61,6 +61,10 @@ void Relation::addCouple(Couple * c){
     couples[nb++] = c;
 }
 
+void Relation::deleteCouple(Couple * c){
+    // TODO
+}
+
 
 void RelationManager::addRelation(Relation* R){
     //agrandissement du tableau si nécessaire
@@ -106,6 +110,13 @@ RelationManager::~RelationManager(){
 RelationManager& RelationManager::getRelationManager(Relation ** r, unsigned int n, unsigned int nM){
     if (!uniqueInstance){
         uniqueInstance = new RelationManager(r, n, nM);
+    }
+    return *uniqueInstance;
+}
+
+RelationManager& RelationManager::getRelationManager(){
+    if (!uniqueInstance){
+        uniqueInstance = new RelationManager();
     }
     return *uniqueInstance;
 }

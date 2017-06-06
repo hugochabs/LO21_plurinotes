@@ -59,24 +59,26 @@ public :
     void setTitle(const QString& t){title = t;}
     void setDescription(const QString& d){description = d;}
     void setOrientation(RelationOrientation& ori){orientation = ori;}
-    void setCouple(Couple ** C){couples = C;}
+    void setCouple(Couple ** C){couples = C;} // TO DELETE ? (NOT USED)
     void addCouple(Couple * c);
+    void deleteCouple(Couple * c); // TODO
 
     class iterator{
         friend class Relation;
     private:
         unsigned int nbRemain;
-        Couple** currentR;
+        Couple** currentR;      // = currentCouple ?
         iterator(Couple** R, unsigned int nb):nbRemain(nb), currentR(R){}
     public:
         unsigned int getNbRemain()const{return nbRemain;}
         bool isDone(){return nbRemain==0;}
         void isNext(){
             if(isDone())
+                // TODO change comments
                 throw NotesException("Error, no more versions of notes");
             currentR++; nbRemain--;
         }
-        Couple& current(){
+        Couple& current(){ // = getCurrentR
             if(isDone())
                 throw NotesException("Error, no more versions of notes");
             return **currentR;
@@ -114,7 +116,8 @@ private :
     RelationManager(const RelationManager& RM);
 
 public :
-    static RelationManager& getRelationManager(Relation ** r = new Relation*[0], unsigned int n = 0, unsigned int nM = 0);
+    static RelationManager& getRelationManager(Relation ** r, unsigned int n, unsigned int nM);
+    static RelationManager& getRelationManager();
     static void freeRelationManager();
     static const unsigned int& getNb(){return nb;}
     static const unsigned int& getNbMax(){return nbMax;}
@@ -129,15 +132,17 @@ public :
         friend class RelationManager;
     private:
         unsigned int nbRemain;
-        Relation** currentRM;
+        Relation** currentRM; // TODO CHANGE ??? iterate through Relation not RM !?
         iterator(Relation** R, unsigned int nb):nbRemain(nb), currentRM(R){}
     public:
         unsigned int getNbRemain()const{return nbRemain;}
         bool isDone(){return nbRemain==0;}
         void isNext(){
             if(isDone())
+                // TODO change comments
                 throw NotesException("Error, no more versions of notes");
-            currentRM++; nbRemain--;
+            currentRM++;
+            nbRemain--;
         }
         Relation& current(){
             if(isDone())

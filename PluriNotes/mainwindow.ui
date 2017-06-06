@@ -41,13 +41,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="archiver">
-       <property name="text">
-        <string>Archiver</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="delete_2">
        <property name="text">
         <string>Supprimer</string>
