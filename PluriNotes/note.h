@@ -52,9 +52,9 @@ public :
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de active
     /*!
-     * \brief getActiveString retourne la valeur de active
+     * \brief getNoteStatusString retourne la valeur de NoteStatus
      * sous forme de chaîne de caractères.
-     * \return (string)active.
+     * \return (string)noteStatus.
      */
     QString getNoteStatusString(){
         switch(noteStatus){
@@ -83,36 +83,49 @@ public :
     void affiche(ostream& f);
 
     /*!
-         * \brief Utility method to convert a QString into a date
-         *
-         * \see DATEFORMAT
-         * \param s the QString to parse
-         * \return the date associated to the QString
-         */
-        static tm * dateFromQString(const QString& s){
-            struct tm* date = new tm;
-            strptime(s.toStdString().c_str(), DATEFORMAT.toStdString().c_str(), date);
-            return date;
-        }
+     * \brief Utility method to convert a QString into a date
+     *
+     * \see DATEFORMAT
+     * \param s the QString to parse
+     * \return the date associated to the QString
+     */
+    static tm * dateFromQString(const QString& s){
+        struct tm* date = new tm;
+        strptime(s.toStdString().c_str(), DATEFORMAT.toStdString().c_str(), date);
+        return date;
+    }
 
-        /*!
-         * \brief Utility method to convert a date into a QString
-         * \see DATEFORMAT
-         * \param date the date to QStringify
-         * \return a QString representation of the date
-         */
-        static const QString& QStringFromDate(const struct tm* date){
-            char date_char[64];
-            strftime(date_char, sizeof(date_char), DATEFORMAT.toStdString().c_str(), date);
-            QString * res = new QString(date_char);
-            return *res;
-        }
+    /*!
+     * \brief Utility method to convert a date into a QString
+     * \see DATEFORMAT
+     * \param date the date to QStringify
+     * \return a QString representation of the date
+     */
+    static const QString& QStringFromDate(const struct tm* date){
+        char date_char[64];
+        strftime(date_char, sizeof(date_char), DATEFORMAT.toStdString().c_str(), date);
+        QString * res = new QString(date_char);
+        return *res;
+    }
 
-
+    /*!
+     * \brief fromJson Renvoie une référence sur une Note qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return La note créée
+     */
     static Note& fromJson(json j);
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     virtual json toJson();
+    virtual QString& getStringAttributes();
+    Note *getReferences();
 
 };
+
 
 
 /*!
@@ -165,8 +178,19 @@ public :
     void restoreVersion(Note * N);
 
 
-
+    /*!
+     * \brief toJson insère le contenu d'un objet NoteVersions dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la NoteVersions
+     */
     json toJson();
+
+    /*!
+     * \brief fromJson Renvoie une référence sur une NoteVersions qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return La NoteVersions créée
+     */
     static NoteVersions& fromJson(json j);
 
     /*!
@@ -237,7 +261,6 @@ private :
     unsigned int nbMax;//!nombre max de NoteVersions
     QString directory;
     static NoteManager * uniqueInstance;
-
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
     NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "C:\\Users\\Public\\Documents")
         :notes(new NoteVersions*[nM]),nb(n),nbMax(nM),  directory(dir){
@@ -262,11 +285,31 @@ public :
      */
     void addNoteVersion(NoteVersions *NV);
 
-
+    /*!
+     * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations du NoteManager
+     */
     json toJson();
+
+    /*!
+     * \brief fromJson ajoute les informations contenues dans le
+     * fichier json à l'intérieur du tableau de NoteVersions
+     * \param j l'objet de type json
+     */
     void fromJson(json j);
+    /*!
+     * \brief save Méthode permettant de sauvegarder en mémoire les
+     * informations sur les Notes dans un fichier json
+     */
     void save();
+    /*!
+     * \brief load méthode permettant de récupérer les informations stockées en
+     * mémoire dans le fichier json
+     */
     void load();
+
+    static Note *searchNote(QString& id);
 
     /*!
      * \brief La classe iterator sert à parcourir les éléments de la classe

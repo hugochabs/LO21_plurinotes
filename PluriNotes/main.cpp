@@ -103,6 +103,10 @@ int main (int argc, char *argv[]){
     cout<<"apres initialisation"<<endl;
     w.show();
     cout<<"apres initialisation"<<endl;
+    Article Z("ID-A", "Titre \\ref{ID-B} Article A", now, now, act, "Texte\\ref{ID-T} A");
+    Note * RZ = Z.getReferences();
+    cout<<"a"<<endl;
+    cout<<RZ[0]<<endl;
     return a.exec();
 
 }

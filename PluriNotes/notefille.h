@@ -31,6 +31,7 @@ public :
         f<<"Text\t: "<<getText()<<endl;
         return f;
     }
+    QString& getStringAttributes();
     json toJson();
     void fromJson();
 };
@@ -77,7 +78,7 @@ public :
         <<"Status\t: "<<getStatus()<<endl;
         return f;
     }
-
+    QString& getStringAttributes();
     json toJson();
     void fromJson();
 };
@@ -105,7 +106,7 @@ public :
         <<"Priority : "<<getPriority()<<endl;
         return f;
     }
-
+    QString& getStringAttributes();
     json toJson();
     void fromJson();
 };
@@ -131,7 +132,7 @@ public :
         <<"Deadline : "<<getDeadline()<<endl;
         return f;
     }
-
+    QString& getStringAttributes();
     json toJson();
     void fromJson();
 };
@@ -173,7 +174,7 @@ public :
         <<"Type : "<<getType()<<endl;
         return f;
     }
-
+    QString& getStringAttributes();
     json toJson();
     void fromJson();
 };
