@@ -197,4 +197,5 @@ void MainWindow::chooseFile(){
 void MainWindow::restore(){
     cout<<"restore"<<endl;
     nv->restoreVersion(n);
+    updateAff();
 }
