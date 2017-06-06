@@ -4,6 +4,7 @@ unsigned int RelationManager::nb = 0;
 unsigned int RelationManager::nbMax = 0;
 RelationManager* RelationManager::uniqueInstance = 0;
 Relation** RelationManager::relations = 0;
+Reference* Reference::uniqueRef = 0;
 
 ostream& operator << (ostream& f, Relation& R){
     f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;
@@ -127,3 +128,46 @@ void RelationManager::freeRelationManager(){
         throw(NotesException("Impossible de libérer l'espace mémoire, aucun RelationManager n'existe."));
     }
 }
+
+Reference& Reference::getRef(){
+    if (!uniqueRef){
+        uniqueRef = new Reference();
+    }
+    return *uniqueRef;
+}
+
+void Reference::freeRef(){
+    if (uniqueRef){
+        delete uniqueRef;
+    }
+    uniqueRef = nullptr;
+}
+
+
+void Reference::getReferences(){
+    NoteManager& NM = NoteManager::getNoteManager();
+    for (NoteManager::iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
+        NoteVersions NV = it.current();
+        for (NoteVersions::iterator it2 = NV.getIterator() ; !it2.isDone() ; it2.isNext()){
+            Note* N = &it2.current();
+            /*switch (NV.getType()){
+            case NoteType::A :
+                Article
+            break;
+            case NoteType::T :
+
+            break;
+            case NoteType::TWD :
+
+            break;
+            case NoteType::TWP :
+
+            break;
+            case NoteType::ON :
+
+            break;
+            }*/
+        }
+    }
+}
+

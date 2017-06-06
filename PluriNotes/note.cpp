@@ -306,3 +306,93 @@ void NoteManager::freeNoteManager(){
         throw(NotesException("Impossible de libérer l'espace mémoire, aucun RelationManager n'existe."));
     }
 }
+
+Note* NoteManager::searchNote(QString& id){
+    NoteManager& NM = getNoteManager();
+    for(iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
+        NoteVersions NV = it.current();
+        for (NoteVersions::iterator it2 = NV.getIterator() ; !it2.isDone() ; it2.isNext()){
+            Note& N = it2.current();
+            if (N.getIdentifier() == id){
+                return &N;
+            }
+        }
+    }
+    return nullptr;
+}
+
+QString& Note::getStringAttributes(){
+    QString& chaine = title;
+    return chaine;
+}
+
+
+QString& Article::getStringAttributes(){
+    QString* chaine = new QString;
+    *chaine = getTitle() + getText();
+    return *chaine;
+}
+
+QString& Task::getStringAttributes(){
+    QString* chaine = new QString;
+    *chaine = getTitle() + action;
+    return *chaine;
+}
+
+QString& TaskWithDeadline::getStringAttributes(){
+    QString* chaine = new QString;
+    *chaine = getTitle() + getAction();
+    return *chaine;
+}
+
+QString& TaskWithPriority::getStringAttributes(){
+    QString* chaine = new QString;
+    *chaine = getTitle() + getAction();
+    return *chaine;
+}
+
+QString& OtherNote::getStringAttributes(){
+    QString* chaine = new QString;
+    *chaine = getTitle() + description;
+    return *chaine;
+}
+
+
+Note* Note::getReferences(){
+    vector<Note> refs;
+    QString chaine = getStringAttributes();
+    cout<<"Chaine : "<<chaine<<endl;
+    int pos = 0;
+    int pos2 = 0;
+    QString beg = "\\ref{";
+    QString end = "}";
+    while ((pos != -1) && (pos2 != -1)){
+        if (pos != -1){
+            pos = chaine.indexOf(beg, pos);
+            pos2 = chaine.indexOf(end, pos2);
+        }
+        cout<<"pos : "<<pos<<endl
+            <<"pos2 : "<<pos2<<endl;
+        if (pos != -1){
+            pos += 5;
+            QString idToSearch;
+            for(int i = pos ; i < pos2 ; i++){
+                idToSearch += chaine[i];
+            }
+            cout<<"idToSearch : "<<idToSearch<<endl;
+            Note* toAdd = NoteManager::searchNote(idToSearch);
+            cout<<"toAdd : "<<toAdd<<endl;
+            refs.push_back(*toAdd);
+            pos2++;
+        }
+        pos = pos2;
+    }
+    unsigned int nbRefs = refs.size();
+    Note * tabRefs = new Note[nbRefs];
+    int i = 0;
+    for (vector<Note>::iterator it = refs.begin() ; it != refs.end() ; it++){
+        tabRefs[i] = *it;
+        i++;
+    }
+    return tabRefs;
+}

@@ -158,6 +158,20 @@ public :
 };
 
 
+class Reference : public Relation {
+private :
+    static Reference * uniqueRef;
+    Reference(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const QString& t = "References", const QString& d = "Cette realtion contient les références", const RelationOrientation& o = oriented)
+        : Relation(c, n, nM, t, d, o){}
+    ~Reference(){}
+
+public :
+    static Reference& getRef();
+    static void freeRef();
+    void getReferencesNote();
+    void getReferences();
+};
+
 //--------------------------------//
 
 //Méthodes externes aux classes
