@@ -177,6 +177,7 @@ void MainWindow::updateAff(){
     cout<<"reinitialisaion"<<endl;
     ui->listTask->setRowCount(0);
     ui->ListNotes->clear();
+    ui->listArchived->clear();
     initialisationNA();
     initialisationT();
     try{
@@ -216,4 +217,9 @@ void MainWindow::restore(){
     cout<<"restore"<<endl;
     nv->restoreVersion(n);
     updateAff();
+}
+
+void  MainWindow::goToTrash(){
+    TrashViewer* newWindow = new TrashViewer;
+    newWindow->show();
 }

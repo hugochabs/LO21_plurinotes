@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 {
     ui->setupUi(this);
+    setWindowTitle(tr("PluriNote"));
 
 
 
@@ -54,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
     connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(restore()));
+    connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
 
 }
 

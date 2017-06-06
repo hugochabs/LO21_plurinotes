@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     notefille.cpp \
     mainwindow.cpp \
     initialisationnote.cpp \
-    slotnote.cpp
+    slotnote.cpp \
+    trashviewer.cpp
 
 HEADERS  += \
     exception.h \
@@ -39,7 +40,9 @@ HEADERS  += \
     notefille.h \
     relation.h \
     noteediteur.h \
-    mainwindow.h
+    mainwindow.h \
+    trashviewer.h
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    trashviewer.ui

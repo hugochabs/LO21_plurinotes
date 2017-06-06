@@ -17,6 +17,7 @@
 #include "notefille.h"
 #include "noteediteur.h"
 //#include "strategy.h
+#include "trashviewer.h"
 
 
 using namespace std;
@@ -96,6 +97,7 @@ public slots:
     void delete2();
     void chooseFile();
     void restore();
+    void goToTrash();
 };
 
 

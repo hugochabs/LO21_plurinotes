@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1012</width>
-    <height>657</height>
+    <height>716</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -171,6 +171,13 @@
            <string notr="true">1</string>
           </property>
          </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="trashButton">
+         <property name="text">
+          <string>Corbeille</string>
+         </property>
         </widget>
        </item>
        <item>
