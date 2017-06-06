@@ -13,7 +13,7 @@ using namespace std;
 
 //Définition des énumérations
 
-enum TaskStatus{ waiting, doing, done}; //pour le statut d'un objet Task
+enum TaskStatus{waiting, doing, done}; //pour le statut d'un objet Task
 enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
 enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
 enum NoteType{A, T, TWP, TWD, ON};
@@ -50,9 +50,9 @@ public :
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     QString getDateLUQString();
     //virtual const QString& getText()const;
-    NoteStatus getNoteStatus(){return noteStatus;}//!getter de active
+    NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-     * \brief getActiveString retourne la valeur de active
+     * \brief getNoteStatusString retourne la valeur de noteStatus
      * sous forme de chaîne de caractères.
      * \return (string)active.
      */
@@ -71,7 +71,9 @@ public :
     void setTitle(QString& t){title = t;}//!setter de title
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
-    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de active
+    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
+
+    //autres méthodesnoteStatus
 
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
@@ -108,7 +110,6 @@ public :
             return *res;
         }
 
-
     static Note& fromJson(json j);
     virtual json toJson();
 
@@ -136,6 +137,7 @@ public :
         }//!constructeur de NoteVersions
     }
     // getters
+    Note** getVersions(){ return versions; } //! getter de versions
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
     const NoteType& getType(){return type;}
@@ -166,6 +168,8 @@ public :
 
 
 
+
+
     json toJson();
     static NoteVersions& fromJson(json j);
 
@@ -174,13 +178,13 @@ public :
      * sans exposer la structure
      */
     class iterator{
-        friend class NoteVersions;//!amitié avec la classe à parcourir
+        friend class NoteVersions;      //!amitié avec la classe à parcourir
     private:
-        unsigned int nbRemain;//!nombre d'éléments restant à parcourir
-        Note** currentV;//!élément courant
-        iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}//!constructeur de l'iterator
+        unsigned int nbRemain;          //!nombre d'éléments restant à parcourir
+        Note** currentV;                //!élément courant
+        iterator(Note** c, unsigned int nb):nbRemain(nb), currentV(c){}     //!constructeur de l'iterator
     public:
-        unsigned int getNbRemain()const{return nbRemain;}//!getter de nbRemain
+        unsigned int getNbRemain()const{return nbRemain;}       //!getter de nbRemain
         /*!
          * \brief isDone savoir s'il reste des éléments à parcourir
          * \return bool dépendant de la valeur de nbRemain
@@ -197,7 +201,7 @@ public :
             nbRemain--;
         }
         /*!
-         * \brief current retourne l'élément cournat si c'est possible
+         * \brief current retourne l'élément courant si c'est possible
          * \return current
          */
         Note& current(){
@@ -232,9 +236,9 @@ public :
 //template<class T>
 class NoteManager{
 private :
-    NoteVersions** notes;//!tableau des NoteVersions
-    unsigned int nb;//!nombre de NoteVersions
-    unsigned int nbMax;//!nombre max de NoteVersions
+    NoteVersions** notes;       //!tableau des NoteVersions
+    unsigned int nb;            //!nombre de NoteVersions
+    unsigned int nbMax;         //!nombre max de NoteVersions
     QString directory;
     static NoteManager * uniqueInstance;
 
@@ -261,6 +265,50 @@ public :
      * \param NV NoteVersions à ajouter.
      */
     void addNoteVersion(NoteVersions *NV);
+
+    /*!
+     * \brief getNVfromNote permet de récupérer le NoteVersions
+     * en fonction de la Note passée en paramètres
+     * \param N note dont on veut récupérer le NoteVersions
+     */
+    NoteVersions* getNVfromNote(Note* N);
+
+    /*!
+     * \brief checkIfNoteInReference permet de vérifier si une Note
+     *  se trouve dans une Référence
+     * \param N Note
+     */
+    bool checkIfNoteInReference(Note* N);
+
+    /*!
+     * \brief archiveNoteVersions permet d'archiver une note
+     * ainsi que toutes ses versions (= archiver une NoteVersions)
+     * \param NV NoteVersions à archiver
+     */
+    void archiveNoteVersions(NoteVersions*NV);
+
+    /*!
+     * \brief deleteNoteVersions permet de supprimer une note
+     * ainsi que toutes ses versions. (= mettre à la corbeille si possible, soit si la Note
+     * n'apparaît pas dans une Référence, et l'archiver sinon)
+     * \param N note à supprimer
+     */
+    void deleteNoteVersions(Note* N);
+
+    /*!
+     * \brief putNVToTrash permet de mettre dans la corbeille une note
+     * ainsi que toutes ses versions.
+     * \param N note à mettre à la corbeille
+     */
+    void putNVToTrash(NoteVersions* NV);
+
+    /*!
+     * \brief deleteNoteCouples permet de supprimer tous les Couples
+     * des Relations dans lesquels une note passée en paramètre se trouve.
+     * \param N note que l'on veut supprimer
+     */
+    void deleteNoteCouples(Note* N);
+
 
 
     json toJson();

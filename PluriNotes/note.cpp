@@ -1,4 +1,5 @@
 #include "notefille.h"
+#include "relation.h"
 
 using namespace std;
 
@@ -8,8 +9,6 @@ ostream& operator<< (ostream& f, const tm* t){
     f<<t->tm_mday<<"/"<<t->tm_mon<<"/"<<t->tm_year<<" - "<<t->tm_hour<<":"<<t->tm_min<<":"<<t->tm_sec;
     return f;
 }
-
-
 
 ostream& operator<< (ostream& f, const TaskStatus& S){
     if (S == 0) {
@@ -123,7 +122,7 @@ void Note::affiche(ostream& f){
     <<"Title\t\t: "<<getTitle()<<endl
     <<"Creation date\t: "<<getDateCreation()<<endl
     <<"Last Update date\t: "<<getDateLastUpdate()<<endl
-    <<"Active\t\t: "<<getNoteStatusString()<<endl;
+    <<"Status\t\t: "<<getNoteStatusString()<<endl;
     afficheSuite(f);
 }
 
@@ -136,7 +135,6 @@ ostream& operator<< (ostream& f, NoteVersions& NV){
     return f;
 }
 
-
 //Implémentation avec iterator
 ostream& operator<< (ostream& f, NoteManager& NM){
     f<<"-------NoteManager-------"<<endl;
@@ -145,7 +143,6 @@ ostream& operator<< (ostream& f, NoteManager& NM){
     }
     return f;
 }
-
 
 ostream& operator<< (ostream& f, Note& N){
     N.affiche(f);
@@ -190,8 +187,6 @@ void NoteVersions::addNote(Note * N){
     versions[nb++] = N;
 }
 
-
-
 void NoteVersions::updateNewVersion(Note *N){
     //agrandissement éventuel du tableau
     if (nb == nbMax){
@@ -231,13 +226,69 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
     cout<<"ajout de la noteersion" <<endl;
 }
 
+NoteVersions* NoteManager::getNVfromNote(Note* N){
+    // parcours des différentes NotesVersions contenues dans le NoteManager
+    for (unsigned int i = 0 ; i < this->nb ; i++){
+        // on part du principe que toutes les versions d'une note ont le même id
+            if (N->getIdentifier() == notes[i]->getVersions()[0]->getIdentifier()){
+                return notes[i];
+            }
+    }
+    // si parcours effectué et rien correspondant de trouvé on renvoit null
+    throw NotesException("Pas de NoteVersions correspondant à la Note que vous recherchez");
+}
+
+bool NoteManager::checkIfNoteInReference(Note* N){
+    // TODO WHEN REFERENCE
+    return true;
+}
+
+void NoteManager::archiveNoteVersions(NoteVersions *NV){
+    for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext())
+        it.current().setNoteStatus(archived);
+}
+
+void NoteManager::deleteNoteVersions(Note* N){
+    // get NoteVersions for the Note in parameter
+    NoteVersions* NV = getNVfromNote(N);
+     if ( checkIfNoteInReference(N) ){
+        archiveNoteVersions(NV);
+     }
+     else {
+        deleteNoteCouples(N);
+        putNVToTrash(NV);
+     }
+}
+
+void NoteManager::deleteNoteCouples(Note* N){
+    RelationManager& RM = RelationManager::getRelationManager();
+    // itération parmi les différentes Relations
+    for (RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
+        // itération parmi les différents couples d'une Relation
+        Relation R = it.current();
+        for (Relation::iterator it2 = it.current().getIterator() ; !it2.isDone() ; it2.isNext() ){
+            if ( it2.current().getX() == N || it2.current().getY() == N ){
+                // TODO
+                R.deleteCouple(&it2.current());
+
+            }
+        }
+    }
+
+}
+
+
+void NoteManager::putNVToTrash(NoteVersions* NV){
+    for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext())
+        it.current().setNoteStatus(trash);
+}
 
 
 NoteManager::~NoteManager(){
     for (unsigned int i=0 ; i<nb ; i++){
         delete notes[i];
     }
-    delete notes;
+    delete[] notes;
 }
 
 

@@ -173,19 +173,37 @@ void MainWindow::update(){
 
 }
 
-
-
 void MainWindow::updateAff(){
     cout<<"reinitialisaion"<<endl;
     ui->listTask->setRowCount(0);
     ui->ListNotes->clear();
     initialisationNA();
     initialisationT();
+    try{
+        initialisationArchive();
+    } catch (NotesException e) {
+        cout<<e.getInfo()<<endl;
+    }
+
 }
 
+// TO DELETE LATER ? (NOT USED)
 void MainWindow::archive(){
-    for(NoteVersions::iterator it = nv->getIterator() ; !it.isDone();it.isNext())
+    for(NoteVersions::iterator it = nv->getIterator() ; !it.isDone() ; it.isNext())
         it.current().setNoteStatus(archived);
+    updateAff();
+}
+
+void MainWindow::delete2(){
+    // TO DO (work mais seulement si on sélectionne une note d'abord)
+    for(NoteVersions::iterator it = nv->getIterator() ; !it.isDone() ; it.isNext()){
+        try{
+            manager2.deleteNoteVersions(&it.current());
+        } catch(NotesException e) {
+            cout<< e.getInfo()<<endl;
+        }
+
+    }
     updateAff();
 }
 
