@@ -110,7 +110,7 @@ private :
         }
     }
     virtual ~RelationManager();
-    RelationManager& operator= (const RelationManager& RM);
+    bool operator= (const RelationManager& RM);
     RelationManager(const RelationManager& RM);
 
 public :

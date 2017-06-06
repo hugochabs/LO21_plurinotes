@@ -1,6 +1,7 @@
 #include "relation.h"
 #include "mainwindow.h"
 #include <QApplication>
+//#include "colleague.h"
 
 int main (int argc, char *argv[]){
     QString * path = new QString;
@@ -14,6 +15,17 @@ int main (int argc, char *argv[]){
     //création de deux task
     Task T("ID-T", "Titre Task", now, now, act, "Action Task", doing);
     Task T2("ID-T2", "Titre Task 2", now, now, act, "Action Task 2", done);
+
+    //Création de OotherNote
+    OtherNote On1("ID-ON1", "Test1", now, now, act, "petite description", "filename", audio);
+    OtherNote On2("ID-ON2", "Test2", now, now, act, "petite description", "filename2", video);
+
+    //création de taskwithdeadline
+    TaskWithDeadline twd1("ID-TWD1", "taskwithdeadline", now, now, act,"action twd", waiting, now);
+    TaskWithDeadline twd2("ID-TWD2", "taskwithdeadline", now, now, act, "Action twd", waiting, now);
+
+    TaskWithPriority twp1("ID-TWP1", "taskwithpriority", now, now, NoteStatus::archived,"action twp", waiting,56);
+    TaskWithPriority twp2("ID-TWP2", "taskwithpriority", now, now,NoteStatus::archived, "Action twp", waiting,52);
     //ajout des tasks dans NV que l'on crée
     Note ** tab = new Note*[0];
     NoteVersions NV(tab,0,0, NoteType::T);
@@ -23,6 +35,18 @@ int main (int argc, char *argv[]){
     NoteVersions NV2(tab,0,0, NoteType::A);
     NV2.addNote(&B);
     NV2.addNote(&A);
+
+    NoteVersions NV3(tab,0,0, NoteType::TWD);
+    NV3.addNote(&twd1);
+    NV3.addNote(&twd2);
+
+    NoteVersions NV4(tab,0,0, NoteType::TWP);
+    NV4.addNote(&twp1);
+    NV4.addNote(&twp2);
+
+    NoteVersions NV5(tab,0,0, NoteType::ON);
+    NV5.addNote(&On1);
+    NV5.addNote(&On2);
 
     /*NoteVersions::iterator it = NV2.getIterator();
     Note &n = it.current();
@@ -34,6 +58,10 @@ int main (int argc, char *argv[]){
     NoteManager& NM = NoteManager::getNoteManager();
     NM.addNoteVersion(&NV);
     NM.addNoteVersion(&NV2);
+    NM.addNoteVersion(&NV3);
+    NM.addNoteVersion(&NV4);
+    NM.addNoteVersion(&NV5);
+    cout<<NM.getNb()<<endl;
 
     //création d'une relation
     Relation R;
@@ -60,19 +88,22 @@ int main (int argc, char *argv[]){
     //cout<<NV;
     NV.restoreVersion(&T);
     //cout<<"///////////////////////////////////////////"<<endl<<NV;
-    cout<<NM.toJson();
+    //cout<<NM.toJson();
     NM.save();
     NoteManager& NM2 = NoteManager::getNoteManager();
-    NM2.load();
-    cout<<NM2;
+    //NM2.load();
+    cout<<NM2.getNb()<<endl;
+    //cout<<NM2;
 
     QApplication a(argc, argv);
     MainWindow w;
-    w.initialisationNA(NM);
-    w.initialisationT(NM);
-
+    w.initialisationNA();
+    w.initialisationT();
+    w.initialisationArchive();
+    cout<<"apres initialisation"<<endl;
     w.show();
-
+    cout<<"apres initialisation"<<endl;
     return a.exec();
+
 }
 

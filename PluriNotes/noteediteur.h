@@ -13,10 +13,15 @@
 #include <QObject>
 #include <QRadioButton>
 #include <QComboBox>
+#include "notefille.h"
+#include "exception.h"
+#include "mainwindow.h"
 
 class NoteEditeur : public QDialog {
 
     Q_OBJECT
+
+    friend class MainWindow;
 
     QVBoxLayout* layoutv;
     QHBoxLayout* layouth1;
@@ -33,7 +38,7 @@ class NoteEditeur : public QDialog {
     QRadioButton* task;
     QRadioButton* article;
     QRadioButton* other;
-    QRadioButton* note;
+
 
     //propriétés notefille
     unsigned int ind;
@@ -54,17 +59,24 @@ class NoteEditeur : public QDialog {
     QHBoxLayout* layout4;
     //Article* article;
 
+
+
 public:
     NoteEditeur(QWidget *parent=0);
     void changed();
+
 
 public slots :
     /*void saveArticle();*/
     void activerSave();
     void changeTask();
     void changeArticle();
-    void changeNote();
+
     void changeOther();
+    void addN();
+signals:
+    // modify();
+
 
 };
 
