@@ -19,7 +19,7 @@ enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relat
 enum NoteType{A, T, TWP, TWD, ON};
 enum NoteStatus{active, archived, trash};
 
-const QString DATEFORMAT = "%d-%m-%Y %H-%M-%S";
+const QString DATEFORMAT = "%d/%m/%Y %H:%M:%S";
 
 //----Classes de Notes----//
 

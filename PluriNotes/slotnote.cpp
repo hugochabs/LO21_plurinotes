@@ -126,11 +126,15 @@ void MainWindow::update(){
     cout<<"update"<<endl;
     QString i = ui->id->text();
     QString title = ui->titre->text();
-    QString dc = ui->dc->text();
-    tm* DC = Note::dateFromQString(dc);
+    QString * dc = new QString;
+    *dc = ui->dc->text();
+//    QString dc = ui->dc->text();
+    tm* DC = Note::dateFromQString(*dc);
     switch(ind){
     case 1:{
         QString t = ui->text->toPlainText();
+        time_t ti = time(0);
+        struct tm * now = localtime( & ti );
         Article* a = new Article(i+"nv", title, DC, now,  active, t);
         nv->updateNewVersion(a);
         break;

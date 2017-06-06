@@ -243,7 +243,7 @@
       <x>520</x>
       <y>40</y>
       <width>321</width>
-      <height>445</height>
+      <height>451</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -257,7 +257,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="restoreButton">
          <property name="text">
           <string>Rétablir</string>
          </property>

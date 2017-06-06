@@ -160,8 +160,11 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
     cout<<"fillNote"<<endl;
         ui->id->setText(n->getIdentifier());
     ui->titre->setText(n->getTitle());
-    ui->dc->setText(n->getDateCQString());
-    ui->dm->setText(n->getDateLUQString());
+    QString dateC = Note::QStringFromDate(n->getDateCreation());
+    QString dateLU = Note::QStringFromDate(n->getDateLastUpdate());
+
+    ui->dc->setText(dateC);
+    ui->dm->setText(dateLU);
 }
 
 
