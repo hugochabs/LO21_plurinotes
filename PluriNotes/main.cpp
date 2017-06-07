@@ -3,6 +3,34 @@
 #include <QApplication>
 //#include "colleague.h"
 
+
+ostream& operator<< (ostream& f, Article& A){
+    A.affiche(f);
+    return f;
+}
+
+
+ostream& operator<< (ostream& f, Task& T){
+    T.affiche(f);
+    return f;
+}
+
+ostream& operator<< (ostream& f, TaskWithPriority& T){
+    T.affiche(f);
+    return f;
+}
+
+ostream& operator<< (ostream& f, TaskWithDeadline& T){
+    T.affiche(f);
+    return f;
+}
+
+ostream& operator<< (ostream& f, OtherNote& T){
+    T.affiche(f);
+    return f;
+}
+
+
 int main (int argc, char *argv[]){
     QString * path = new QString;
     *path = "/home/guilllaume/DATA/";
@@ -12,6 +40,7 @@ int main (int argc, char *argv[]){
     //création de deux articles
     Article A("ID-A", "Titre Article A", now, now, act, "Texte A");
     Article B("ID-B", "Titre Article B", now, now, act, "Texte B");
+    Article Z("ID-A", "Titre \\ref{ID-B} Article A", now, now, act, "Texte\\ref{ID-T} A");
     //création de deux task
     Task T("ID-T", "Titre Task", now, now, act, "Action Task", doing);
     Task T2("ID-T2", "Titre Task 2", now, now, act, "Action Task 2", done);
@@ -35,7 +64,7 @@ int main (int argc, char *argv[]){
     NoteVersions NV2(tab,0,0, NoteType::A);
     NV2.addNote(&B);
     NV2.addNote(&A);
-
+    NV2.addNote(&Z);
     NoteVersions NV3(tab,0,0, NoteType::TWD);
     NV3.addNote(&twd1);
     NV3.addNote(&twd2);
@@ -103,10 +132,12 @@ int main (int argc, char *argv[]){
     cout<<"apres initialisation"<<endl;
     w.show();
     cout<<"apres initialisation"<<endl;
-    Article Z("ID-A", "Titre \\ref{ID-B} Article A", now, now, act, "Texte\\ref{ID-T} A");
-    Note * RZ = Z.getReferences();
-    cout<<"a"<<endl;
-    cout<<RZ[0]<<endl;
+
+    //Note * RZ = Z.getReferences();
+    //cout<<"a"<<endl;
+    //cout<<RZ[0]<<endl;
+    Reference& Ref = Reference::getRef();
+    Ref.getReferences();
     return a.exec();
 
 }

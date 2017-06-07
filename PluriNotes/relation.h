@@ -168,7 +168,7 @@ private :
 public :
     static Reference& getRef();
     static void freeRef();
-    void getReferencesNote();
+    void getReferencesNote(Note * N);
     void getReferences();
 };
 

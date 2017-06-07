@@ -16,6 +16,15 @@ ostream& operator << (ostream& f, Relation& R){
     return f;
 }
 
+ostream& operator << (ostream& f, Reference& R){
+    f<<"----------Reference - "<<R.getTitle()<<"---------"<<endl;
+    f<<"Description : "<<R.getDescription()<<endl
+     <<"Orientation : "<<R.getOrientation()<<endl;
+    for (Relation::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
+        f<<"R["<<R.getNb()-it.getNbRemain()<<"] : "<<endl<<it.current()<<endl;
+    }
+    return f;
+}
 
 ostream& operator<< (ostream& f, RelationManager& RM){
     f<<"-------RelationManager-------"<<endl;
@@ -27,7 +36,9 @@ ostream& operator<< (ostream& f, RelationManager& RM){
 
 ostream& operator << (ostream& f, Couple& C){
     f<<"----------Couple - "<<C.getLabel()<<"---------"<<endl;
-    f<<"x :"<<endl<<*C.getX()<<"y :"<<endl<<*C.getY()<<endl;
+    f<<"x :"<<endl<<*(C.getX())<<"";
+    f<<"y :"<<endl;
+    f<<*(C.getY())<<endl;
     return f;
 }
 
@@ -144,29 +155,22 @@ void Reference::freeRef(){
 }
 
 
+
 void Reference::getReferences(){
     NoteManager& NM = NoteManager::getNoteManager();
     for (NoteManager::iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
         NoteVersions NV = it.current();
         for (NoteVersions::iterator it2 = NV.getIterator() ; !it2.isDone() ; it2.isNext()){
             Note* N = &it2.current();
-            /*switch (NV.getType()){
-            case NoteType::A :
-                Article
-            break;
-            case NoteType::T :
-
-            break;
-            case NoteType::TWD :
-
-            break;
-            case NoteType::TWP :
-
-            break;
-            case NoteType::ON :
-
-            break;
-            }*/
+            vector<Note> refs;
+            refs = N->getReferences();
+            for (unsigned int i = 0 ; i < refs.size() ; i++){
+                cout<<"refs["<<i<<"]"<<refs[i]<<endl;
+                QString desc = "" + i;
+                Note& tmp = refs[i];
+                Couple * c = new Couple(desc, N, &tmp);
+                addCouple(c);
+            }
         }
     }
 }

@@ -130,7 +130,7 @@ public :
      */
     virtual json toJson();
     virtual QString& getStringAttributes();
-    Note *getReferences();
+    vector<Note> getReferences();
 
 };
 
@@ -193,9 +193,13 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la NoteVersions
      */
+<<<<<<< HEAD
 
 
 
+=======
+
+>>>>>>> 95f20d62f1d8711e882c977b59a6aa838c34099f
     json toJson();
 
     /*!
@@ -303,8 +307,13 @@ public :
      * type json
      * \return Le fichier json contenant les informations du NoteManager
      */
+<<<<<<< HEAD
     /*!
      * \brief getNVfromNote permet de récupérer le NoteVersions
+=======
+
+     /*! \brief getNVfromNote permet de récupérer le NoteVersions
+>>>>>>> 95f20d62f1d8711e882c977b59a6aa838c34099f
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */
@@ -366,7 +375,12 @@ public :
      * mémoire dans le fichier json
      */
     void load();
-
+    /*!
+     * \brief searchNote retourne un pointeur vers la Note
+     * dont l'id est passé en paramètre
+     * \param id identificateur de la note à chercher
+     * \return La Note correspondante
+     */
     static Note *searchNote(QString& id);
 
     /*!
