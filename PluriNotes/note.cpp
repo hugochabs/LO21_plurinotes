@@ -314,12 +314,11 @@ Note* NoteManager::searchNote(QString& id){
     //On parcourt l'ensemble des Notes
     for(iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
         NoteVersions NV = it.current();
-        for (NoteVersions::iterator it2 = NV.getIterator() ; !it2.isDone() ; it2.isNext()){
-            Note& N = it2.current();
-            //Si on trouve la Note on la retourne
-            if (N.getIdentifier() == id){
-                return &N;
-            }
+        NoteVersions::iterator it2 = NV.getIterator() ;
+        Note& N = it2.current();
+        //Si on trouve la Note on la retourne
+        if (N.getIdentifier() == id){
+            return &N;
         }
     }
     return nullptr;
@@ -362,7 +361,7 @@ QString& OtherNote::getStringAttributes(){
 }
 
 
-Note* Note::getReferences(){
+vector<Note> Note::getReferences(){
     //On crée un vector pour la simplicité d'utilisation
     vector<Note> refs;
     //On récupère sous forme de QString l'ensemble des attributs
@@ -405,13 +404,9 @@ Note* Note::getReferences(){
     }
     //Pour avoir une valeur de retour sous forme de Note*, il faut recopier le
     //contenu du vector dans le tableau
-    unsigned int nbRefs = refs.size();
-    Note * tabRefs = new Note[nbRefs];
-    int i = 0;
-    for (vector<Note>::iterator it = refs.begin() ; it != refs.end() ; it++){
-        tabRefs[i] = *it;
-        i++;
-    }
-    //On retourne le tableau
-    return tabRefs;
+    return refs;
 }
+
+
+
+

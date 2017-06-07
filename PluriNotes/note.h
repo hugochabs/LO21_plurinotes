@@ -130,7 +130,7 @@ public :
      */
     virtual json toJson();
     virtual QString& getStringAttributes();
-    Note *getReferences();
+    vector<Note> getReferences();
 
 };
 
