@@ -16,6 +16,7 @@
 #include "notefille.h"
 #include "exception.h"
 #include "mainwindow.h"
+#include "colleague.h"
 
 class NoteEditeur : public QDialog {
 

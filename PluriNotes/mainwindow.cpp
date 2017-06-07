@@ -69,6 +69,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QTreeWidget* MainWindow::getTreeNote(){
+    return ui->ListNotes;
+}
+
+QTreeWidget* MainWindow::getTreeArchived(){
+    return ui->listArchived;
+}
+
 
 
 

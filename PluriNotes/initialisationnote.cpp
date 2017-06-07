@@ -16,7 +16,6 @@ QTreeWidgetItem* MainWindow::addRoot(QTreeWidget* parent, QString id, QString ty
 
 void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem();
-    cout<<"enfant"<<endl;
     note->setText(0, title);
     note->setText(1, type);
     parent->addChild(note);
@@ -54,10 +53,9 @@ void MainWindow::initialisationT(){
             cout<<manager1.getNb()<<endl;
             switch(nv.getType()){
             case NoteType::T :{
-                    cout<<"ifT"<<endl;
+
                     Task& t = static_cast<Task&>(n);
-                    //cout<<t.getAction()<<endl;
-                    //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
+
                     QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
                     ui->listTask->insertRow(ui->listTask->rowCount());
                     row = ui->listTask->rowCount()-1;
@@ -66,16 +64,16 @@ void MainWindow::initialisationT(){
                     break;}
 
              case NoteType::TWD : {
-                cout<<"ifTWD"<<endl;
+
                 TaskWithDeadline& t = static_cast<TaskWithDeadline&>(n);
 
                 QString date = Note::QStringFromDate(t.getDeadline());
                 QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
                 //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
                 QTableWidgetItem* d=new QTableWidgetItem(date);
-                cout<<"apres insertion"<<endl;
+
                 ui->listTask->insertRow(ui->listTask->rowCount());
-                cout<<"apres insertion"<<endl;
+
                 row = ui->listTask->rowCount()-1;
                 cout<<row<<endl;
                 ui->listTask->setItem(row,0, action);
@@ -84,7 +82,7 @@ void MainWindow::initialisationT(){
                 break;}
 
             case NoteType::TWP : {
-               cout<<"ifTWD"<<endl;
+
                TaskWithPriority& t = static_cast<TaskWithPriority&>(n);
 
                QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
@@ -112,7 +110,7 @@ void MainWindow::initialisationArchive(){
 
             QTreeWidgetItem* note1;
             if(n.getNoteStatus() == NoteStatus::archived){
-                cout<<"initialisation archived"<<endl;
+
                  note1 = addRoot(ui->listArchived, n.getIdentifier(), nv.getTypeQS());
             }
 
@@ -157,7 +155,7 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
 
 //!Fonctions qui permettent de remplir les champs de l'affichage principal
     void MainWindow::fillNote(Note* n)const{
-    cout<<"fillNote"<<endl;
+
         ui->id->setText(n->getIdentifier());
     ui->titre->setText(n->getTitle());
     QString dateC = Note::QStringFromDate(n->getDateCreation());

@@ -3,6 +3,8 @@
 /*QApplication app(int n, char** argv);
 MainWindow& mymw = MainWindow::getMainWindow();*/
 
+Mediator& med = Mediator::getMediator();
+
 NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
 
     setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
@@ -192,15 +194,14 @@ void NoteEditeur::changeOther(){
       }
 }
 
-time_t t = time(0);   // get time now
-struct tm * now1 = localtime( & t );
 
 
 
 NoteManager& nm = NoteManager::getNoteManager();
-//MainWindow w(0);
-
 void NoteEditeur::addN(){
+    time_t t = time(0);   // get time now
+    struct tm * now1 = localtime( & t );
+
     QString idN = id->text();
     QString titleN = titre->text();
     NoteVersions* nv = new NoteVersions(new Note*[0], 0,0);
@@ -226,8 +227,9 @@ void NoteEditeur::addN(){
         OtherNote* on = new OtherNote(idN, titleN, now1, now1,  active, desc, fn, t);
         nv->updateNewVersion(on);
     }
-    nm.addNoteVersion(nv);
-    cout<<"apres ajout"<<endl;
-
-    cout<<"apres update"<<endl;
+    nm.addNoteVersion(nv);    
+    Window* w = new Window(this, &med, 12);
+    med.registerC(w);
+    w->sendMessage("salut");
+    cout<<"apres send message"<<endl;
 }

@@ -1,7 +1,7 @@
 #include "relation.h"
 #include "mainwindow.h"
 #include <QApplication>
-//#include "colleague.h"
+#include "colleague.h"
 
 
 ostream& operator<< (ostream& f, Article& A){
@@ -136,6 +136,21 @@ int main (int argc, char *argv[]){
     //Note * RZ = Z.getReferences();
     //cout<<"a"<<endl;
     //cout<<RZ[0]<<endl;
+    //vector<Widget*> colleague;
+    cout<<"test"<<endl;
+    Mediator& mediator = Mediator::getMediator();
+    TreeWidget* tw1 = new TreeWidget(w.getTreeNote(), &mediator, 0);
+    TreeWidget* tw2 = new TreeWidget(w.getTreeArchived(), &mediator, 1);
+    //TableWidget* tw3 = new TreeWidget()
+
+    mediator.registerC(tw1);
+    mediator.registerC(tw2);
+    mediator.distributeMessage(tw1, "salut toi");
+    tw1->sendMessage("Coucou bebe");
+
+
+
+
     Reference& Ref = Reference::getRef();
     Ref.getReferences();
     return a.exec();

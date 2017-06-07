@@ -193,13 +193,7 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la NoteVersions
      */
-<<<<<<< HEAD
 
-
-
-=======
-
->>>>>>> 95f20d62f1d8711e882c977b59a6aa838c34099f
     json toJson();
 
     /*!
@@ -306,14 +300,13 @@ public :
      * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
      * type json
      * \return Le fichier json contenant les informations du NoteManager
-     */
-<<<<<<< HEAD
+    */
     /*!
      * \brief getNVfromNote permet de récupérer le NoteVersions
-=======
+    */
 
      /*! \brief getNVfromNote permet de récupérer le NoteVersions
->>>>>>> 95f20d62f1d8711e882c977b59a6aa838c34099f
+
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */

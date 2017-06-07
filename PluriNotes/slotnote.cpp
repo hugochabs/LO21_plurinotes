@@ -8,10 +8,8 @@ NoteManager& manager2 = NoteManager::getNoteManager();
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
     QString id = item->text(i);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
-        NoteVersions& nvt = it.current();
-        cout<<"for1"<<endl;
+        NoteVersions& nvt = it.current();       
         for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
-        cout<<"for1"<<endl;
              Note& temp = it2.current();
              if(id==temp.getIdentifier()){
                  cout<<"id temp"<<endl;

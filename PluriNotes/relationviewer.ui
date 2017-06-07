@@ -6,30 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>308</height>
+    <width>686</width>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QPushButton" name="quit">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>310</y>
+     <width>279</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>381</width>
-     <height>281</height>
+     <width>281</width>
+     <height>231</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
-     <widget class="QPushButton" name="quit">
-      <property name="text">
-       <string>Quitter</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QTreeWidget" name="treeWidget">
       <column>

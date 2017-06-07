@@ -44,7 +44,9 @@ public:
     void initialisationArchive();
 
 
-
+    //! Getters element MainWindow
+    QTreeWidget* getTreeNote();
+    QTreeWidget* getTreeArchived();
     //!Fonctions pour remplir QTreeWidget
     QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
     void addChild(QTreeWidgetItem* parent, QString title, QString type);

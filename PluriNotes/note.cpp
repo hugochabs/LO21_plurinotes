@@ -192,7 +192,7 @@ void NoteVersions::updateNewVersion(Note *N){
     if (nb == nbMax){
         ++nbMax;
     }
-    cout<<"apres if updateNewversion"<<endl;
+
     cout<<nb<<endl<<nbMax<<endl;
     //décalage de tous les éléments dans le tableau pour
     //laisser la première place libre
@@ -202,7 +202,7 @@ void NoteVersions::updateNewVersion(Note *N){
         newTab[i+1] = versions[i];
     }
     Note** old = versions;
-    cout<<"apres agrandissement tableau"<<endl;
+
     nb++;
     delete[] old;
     versions = newTab;
