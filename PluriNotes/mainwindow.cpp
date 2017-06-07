@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(tr("PluriNote"));
 
 
-
+    ui->dc->setReadOnly(true);
+    ui->dm->setReadOnly(true);
 
     QStringList labels1, labels2,labels3;
     labels1<<"Task"<<"Deadline"<<"Priority";
@@ -42,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->prop4->setVisible(false);
     ui->typeON->setVisible(false);
     ui->directoryFile->setVisible(false);
+    ui->dateTimeEdit->setVisible(false);
 
     //on connecte les différents signaux et slots
     QObject::connect(ui->ListNotes, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(affichage(QTreeWidgetItem*, int)));
@@ -56,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
     connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(restore()));
     connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
+    connect(ui->relationButton, SIGNAL(clicked(bool)), this ,SLOT(goToRelation()));
 
 }
 

@@ -177,6 +177,8 @@ void MainWindow::fillT(Task& t)const{
 
     ui->prop1->setText(t.getAction());
     ui->prop4->setText(t.getStatusQS());
+    ui->prop3->setReadOnly(true);
+    ui->prop2->setReadOnly(true);
 }
 
 void MainWindow::fillTWD(TaskWithDeadline &t)const{
@@ -184,11 +186,13 @@ void MainWindow::fillTWD(TaskWithDeadline &t)const{
     QString date = Note::QStringFromDate(t.getDeadline());
 
     ui->prop3->setText(date);
+    ui->prop2->setReadOnly(true);
 }
 
 void MainWindow::fillTWP(TaskWithPriority& t)const{
     fillT(t);
     ui->prop2->setText(t.getPriorityQS());
+    ui->prop3->setReadOnly(true);
 }
 
 void MainWindow::fillON(OtherNote& on)const{

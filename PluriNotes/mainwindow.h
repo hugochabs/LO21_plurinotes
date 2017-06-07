@@ -18,6 +18,7 @@
 #include "noteediteur.h"
 //#include "strategy.h
 #include "trashviewer.h"
+#include "relationviewer.h"
 
 
 using namespace std;
@@ -98,6 +99,7 @@ public slots:
     void chooseFile();
     void restore();
     void goToTrash();
+    void goToRelation();
 };
 
 

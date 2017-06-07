@@ -21,8 +21,8 @@ int main (int argc, char *argv[]){
     OtherNote On2("ID-ON2", "Test2", now, now, act, "petite description", "filename2", video);
 
     //création de taskwithdeadline
-    TaskWithDeadline twd1("ID-TWD1", "taskwithdeadline", now, now, act,"action twd", waiting, now);
-    TaskWithDeadline twd2("ID-TWD2", "taskwithdeadline", now, now, act, "Action twd", waiting, now);
+    TaskWithDeadline twd1("ID-TWD1", "taskwithdeadline", now, now, trash,"action twd", waiting, now);
+    TaskWithDeadline twd2("ID-TWD2", "taskwithdeadline", now, now, trash, "Action twd", waiting, now);
 
     TaskWithPriority twp1("ID-TWP1", "taskwithpriority", now, now, NoteStatus::archived,"action twp", waiting,56);
     TaskWithPriority twp2("ID-TWP2", "taskwithpriority", now, now,NoteStatus::archived, "Action twp", waiting,52);

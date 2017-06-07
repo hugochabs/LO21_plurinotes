@@ -204,7 +204,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="addRelation_2">
+          <widget class="QPushButton" name="relationButton">
            <property name="font">
             <font>
              <family>Corbel</family>

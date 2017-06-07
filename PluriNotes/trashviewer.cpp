@@ -7,6 +7,7 @@ TrashViewer::TrashViewer(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("Corbeille"));
+    ui->listTrash->setColumnCount(2);
 
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(close()));
 }
@@ -26,7 +27,11 @@ void TrashViewer::initialisationTrash(){
 
         QTreeWidgetItem* note1;
         if(n.getNoteStatus()==trash){
-
+            note1 = addRoot(ui->listTrash, n.getIdentifier(), nv.getTypeQS());
+            for(NoteVersions::iterator it2=nv.getIterator1();!it2.isDone(); it2.isNext()){
+                 Note temp = it2.current();
+                 addChild(note1, temp.getIdentifier(), nv.getTypeQS());
+             }
         }
     }
 }

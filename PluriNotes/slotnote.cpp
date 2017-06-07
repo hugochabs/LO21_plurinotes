@@ -144,11 +144,11 @@ void MainWindow::update(){
         QString s = ui->prop4->text();
         TaskStatus ts = Task::toTSfromQString(s);
         Task* t;
-        if(ui->prop2->isModified()){
+        if(nv->getType()==TWP){
             QString p = ui->prop2->text();
             t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
         }
-        else if(ui->prop3->isModified()){
+        else if(nv->getType()==TWD){
             tm* dl = Note::dateFromQString(ui->prop3->text());
              t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
         }
@@ -221,5 +221,12 @@ void MainWindow::restore(){
 
 void  MainWindow::goToTrash(){
     TrashViewer* newWindow = new TrashViewer;
+    newWindow->initialisationTrash();
+    newWindow->show();
+}
+
+void  MainWindow::goToRelation(){
+    RelationViewer* newWindow = new RelationViewer;
+    //newWindow->initialisationTrash();
     newWindow->show();
 }
