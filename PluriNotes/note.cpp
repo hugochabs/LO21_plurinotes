@@ -307,12 +307,16 @@ void NoteManager::freeNoteManager(){
     }
 }
 
+
 Note* NoteManager::searchNote(QString& id){
+    //On récupère le NM
     NoteManager& NM = getNoteManager();
+    //On parcourt l'ensemble des Notes
     for(iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
         NoteVersions NV = it.current();
         for (NoteVersions::iterator it2 = NV.getIterator() ; !it2.isDone() ; it2.isNext()){
             Note& N = it2.current();
+            //Si on trouve la Note on la retourne
             if (N.getIdentifier() == id){
                 return &N;
             }
@@ -359,34 +363,48 @@ QString& OtherNote::getStringAttributes(){
 
 
 Note* Note::getReferences(){
+    //On crée un vector pour la simplicité d'utilisation
     vector<Note> refs;
+    //On récupère sous forme de QString l'ensemble des attributs
+    //de type QString de la Note
     QString chaine = getStringAttributes();
-    cout<<"Chaine : "<<chaine<<endl;
+    //pour récupérer la position des réferences dans le QSrting
     int pos = 0;
     int pos2 = 0;
+    //Les marqueurs à aller chercher dans le texte
     QString beg = "\\ref{";
     QString end = "}";
+    //Tant qu'on trouve une référence on continue d'en chercher
     while ((pos != -1) && (pos2 != -1)){
+        //if obligatoire sinon bug
         if (pos != -1){
+            //On récupère la position de la reférence (début et fin)
             pos = chaine.indexOf(beg, pos);
             pos2 = chaine.indexOf(end, pos2);
         }
-        cout<<"pos : "<<pos<<endl
-            <<"pos2 : "<<pos2<<endl;
         if (pos != -1){
+            //incrémentation pour l'offset du à \ref{
             pos += 5;
+            //variable qui contiendra l'id de la note référencée
             QString idToSearch;
+            //On récupère l'id dans la chaine
             for(int i = pos ; i < pos2 ; i++){
                 idToSearch += chaine[i];
             }
-            cout<<"idToSearch : "<<idToSearch<<endl;
+            //On recherche la Note correspondante
             Note* toAdd = NoteManager::searchNote(idToSearch);
-            cout<<"toAdd : "<<toAdd<<endl;
+            //On l'ajoute au vector
             refs.push_back(*toAdd);
+            //On incrémente la position parce que ça sert à rien de chercher
+            //La ou on à déjà cherché
             pos2++;
         }
+        //On incrémente la position parce que ça sert à rien de chercher
+        //La ou on à déjà cherché
         pos = pos2;
     }
+    //Pour avoir une valeur de retour sous forme de Note*, il faut recopier le
+    //contenu du vector dans le tableau
     unsigned int nbRefs = refs.size();
     Note * tabRefs = new Note[nbRefs];
     int i = 0;
@@ -394,5 +412,6 @@ Note* Note::getReferences(){
         tabRefs[i] = *it;
         i++;
     }
+    //On retourne le tableau
     return tabRefs;
 }

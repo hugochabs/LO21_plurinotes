@@ -101,7 +101,7 @@ public :
         return date;
     }
 
-<<<<<<< HEAD
+
     /*!
      * \brief Utility method to convert a date into a QString
      * \see DATEFORMAT
@@ -121,8 +121,7 @@ public :
      * \param j l'objet de type json
      * \return La note créée
      */
-=======
->>>>>>> 4f97131176c1ab214ba75f92af0cea66e20c53c1
+
     static Note& fromJson(json j);
     /*!
      * \brief toJson insère le contenu d'un objet Note dans un objet de
@@ -188,17 +187,13 @@ public :
     void restoreVersion(Note * N);
 
 
-<<<<<<< HEAD
+
     /*!
      * \brief toJson insère le contenu d'un objet NoteVersions dans un objet de
      * type json
      * \return Le fichier json contenant les informations de la NoteVersions
      */
-=======
 
-
-
->>>>>>> 4f97131176c1ab214ba75f92af0cea66e20c53c1
     json toJson();
 
     /*!
@@ -302,13 +297,12 @@ public :
     void addNoteVersion(NoteVersions *NV);
 
     /*!
-<<<<<<< HEAD
      * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
      * type json
      * \return Le fichier json contenant les informations du NoteManager
      */
-=======
-     * \brief getNVfromNote permet de récupérer le NoteVersions
+
+     /*! \brief getNVfromNote permet de récupérer le NoteVersions
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */
@@ -352,7 +346,6 @@ public :
 
 
 
->>>>>>> 4f97131176c1ab214ba75f92af0cea66e20c53c1
     json toJson();
 
     /*!
@@ -371,7 +364,12 @@ public :
      * mémoire dans le fichier json
      */
     void load();
-
+    /*!
+     * \brief searchNote retourne un pointeur vers la Note
+     * dont l'id est passé en paramètre
+     * \param id identificateur de la note à chercher
+     * \return La Note correspondante
+     */
     static Note *searchNote(QString& id);
 
     /*!
