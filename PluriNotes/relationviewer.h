@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "relation.h"
 #include "colleague.h"
+#include "mainwindow.h"
 
 
 
@@ -23,8 +24,14 @@ public:
     void initialisation();
     void update(){}
 
+
 private:
+    Relation* r;
     Ui::RelationViewer *ui;
+    void addChild(QTreeWidgetItem* parent, QString label);
+
+public slots:
+    void quit();
 };
 
 #endif // RELATIONVIEWER_H

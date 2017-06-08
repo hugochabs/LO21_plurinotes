@@ -4,7 +4,7 @@
 
 NoteManager& manager2 = NoteManager::getNoteManager();
 
-//! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note actie sélectionnée
+//! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note active sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
     QString id = item->text(i);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
@@ -12,7 +12,6 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
         for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
              Note& temp = it2.current();
              if(id==temp.getIdentifier()){
-                 cout<<"id temp"<<endl;
                  fillNote(&temp);
                  setAffichage(nvt.getType(), temp);
                  n=&temp;
@@ -229,5 +228,6 @@ void  MainWindow::goToRelation(){
     RelationViewer* newWindow = new RelationViewer(2);
     //newWindow->initialisationTrash();
     mediator->registerC(newWindow);
+    newWindow->initialisation();
     newWindow->show();
 }

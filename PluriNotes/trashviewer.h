@@ -6,6 +6,7 @@
 #include <QDialog>
 #include <QTreeWidget>
 #include "colleague.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class TrashViewer;
@@ -25,9 +26,6 @@ public:
 
 private:
     Ui::TrashViewer *ui;
-
-    QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
-    void addChild(QTreeWidgetItem* parent, QString title,QString type);
 
 public slots:
     void quit();

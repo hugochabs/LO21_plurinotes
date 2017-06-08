@@ -52,8 +52,8 @@ public:
     QTreeWidget* getTreeNote();
     QTreeWidget* getTreeArchived();
     //!Fonctions pour remplir QTreeWidget
-    QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
-    void addChild(QTreeWidgetItem* parent, QString title, QString type);
+    static QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
+    static void addChild(QTreeWidgetItem* parent, QString title, QString type);
     void fillNote(Note* n)const;
     void fillA(Article& a)const;
     void fillT(Task &t)const;
