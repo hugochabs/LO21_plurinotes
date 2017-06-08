@@ -5,7 +5,7 @@ MainWindow& mymw = MainWindow::getMainWindow();*/
 
 Mediator& med = Mediator::getMediator();
 
-NoteEditeur::NoteEditeur(QWidget* parent): QDialog(parent){
+NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widget(i){
 
     setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
 
@@ -228,8 +228,6 @@ void NoteEditeur::addN(){
         nv->updateNewVersion(on);
     }
     nm.addNoteVersion(nv);    
-    Window* w = new Window(this, &med, 12);
-    med.registerC(w);
-    w->sendMessage("salut");
-    cout<<"apres send message"<<endl;
+    mediator->distributeMessage(this, "salut");
+    close();
 }

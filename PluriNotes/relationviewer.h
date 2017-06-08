@@ -3,19 +3,23 @@
 
 #include <QDialog>
 #include "relation.h"
+#include "colleague.h"
+
+
 
 namespace Ui {
 class RelationViewer;
 }
 
-class RelationViewer : public QDialog
+class RelationViewer : public QDialog, public Widget
 {
     Q_OBJECT
 
 public:
-    explicit RelationViewer(QWidget *parent = 0);
+    explicit RelationViewer( unsigned int i, QWidget *parent = 0);
     ~RelationViewer();
     void initialisation();
+    void update(){}
 
 private:
     Ui::RelationViewer *ui;

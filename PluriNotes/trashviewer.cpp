@@ -1,8 +1,9 @@
 #include "trashviewer.h"
 #include "ui_trashviewer.h"
 
-TrashViewer::TrashViewer(QWidget *parent) :
+TrashViewer::TrashViewer(unsigned int i, QWidget *parent) :
     QDialog(parent),
+    Widget(i),
     ui(new Ui::TrashViewer)
 {
     ui->setupUi(this);

@@ -3,9 +3,9 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     QMainWindow(parent),
-     ui(new Ui::MainWindow),ind(-1), n(0), nv(0)
+     ui(new Ui::MainWindow),ind(-1), n(0), nv(0), Widget(i)
 
 {
     ui->setupUi(this);
@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(signalA()), this, SLOT(slotA()));
     connect(this, SIGNAL(signalT()), this, SLOT(slotT()));
     connect(this, SIGNAL(signalON()), this, SLOT(slotON()));
-    connect(ui->saveMW, SIGNAL(clicked()), this, SLOT(update()));
+    connect(ui->saveMW, SIGNAL(clicked()), this, SLOT(updateN()));
     connect(this, SIGNAL(modify()), this, SLOT(updateAff()));
     connect(ui->delete_2, SIGNAL(clicked()), this, SLOT(delete2()));
 
@@ -75,6 +75,20 @@ QTreeWidget* MainWindow::getTreeNote(){
 
 QTreeWidget* MainWindow::getTreeArchived(){
     return ui->listArchived;
+}
+
+void MainWindow::clearAffichage(){
+    ui->listArchived->clear();
+    ui->ListNotes->clear();
+    ui->listTask->clear();
+    ui->listTask->setRowCount(0);
+}
+
+void MainWindow::update(){
+    clearAffichage();
+    initialisationArchive();
+    initialisationNA();
+    initialisationT();
 }
 
 

@@ -5,19 +5,21 @@
 
 #include <QDialog>
 #include <QTreeWidget>
+#include "colleague.h"
 
 namespace Ui {
 class TrashViewer;
 }
 
-class TrashViewer : public QDialog
+class TrashViewer : public QDialog, public Widget
 {
     Q_OBJECT
 
 public:
-    explicit TrashViewer(QWidget *parent = 0);
+    explicit TrashViewer( unsigned int i, QWidget *parent = 0);
     ~TrashViewer();
     void initialisationTrash();
+    void update(){}
 
 private:
     Ui::TrashViewer *ui;

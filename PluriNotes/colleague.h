@@ -7,8 +7,7 @@
 #include <QDialog>
 #include<string>
 //#include"contener.h"
-#include "notefille.h"
-#include "noteediteur.h"
+#include "note.h"
 
 using namespace std;
 //using namespace TD;
@@ -31,7 +30,7 @@ public :
 
     ~Mediator();
     virtual void distributeMessage(Widget* sender, const string message);
-    virtual void registerC( Widget* c);
+    virtual void registerC(Widget* c);
 
     static Mediator& getMediator(){
         if (!uniqueInstance){
@@ -48,6 +47,7 @@ public :
 
 signals:
     void signalMediator();
+};
 
 //    class iterator{
 //        friend class Mediator;
@@ -90,7 +90,7 @@ signals:
 //        cout<<"iterator"<<endl;
 //        return iterator(colleagues, nb);
 //    }
-};
+
 
 
 
@@ -106,7 +106,9 @@ protected :
     unsigned int colleagueCode;
 
 public:
-    Widget(Mediator* m, unsigned int i) : mediator(m), colleagueCode(i){}
+    Widget(unsigned int i) : colleagueCode(i){
+        mediator = &Mediator::getMediator();
+    }
     virtual void sendMessage(const string &message);//ok implémenté
     virtual void receiveMessage(const string& message);//ok implémenté
     unsigned int getCode(){return colleagueCode;}
@@ -127,7 +129,7 @@ public:
     widget(QWidget* p, Mediator m, unsigned int i):Colleague(m,i), parent(p){}
     void update(){}
 };*/
-
+/*
 class TreeWidget : public Widget{
 private :
 
@@ -149,13 +151,21 @@ class TableWidget : public Widget{
         void update(){}
 };
 
-class Window : public Widget {
+class SWindow : public Widget {
 private:
     QWidget* parent;
 public :
-    Window(QWidget* w, Mediator* m, unsigned int i) : Widget(m,i), parent(w){ cout<<"creation ok"<<endl;}
+    SWindow(QWidget* w, Mediator* m, unsigned int i) : Widget(m,i), parent(w){ cout<<"creation ok"<<endl;}
     void update(){}
 };
+
+class MWindow : public Widget {
+private:
+    Ui::MainWindow* parent;
+public :
+    MWindow(Ui::MainWindow* w, Mediator* m, unsigned int i) : Widget(m,i), parent(w){ cout<<"creation ok"<<endl;}
+    void update(){}
+};*/
 
 
 #endif // COLLEAGUE

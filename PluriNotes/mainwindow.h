@@ -23,18 +23,19 @@
 
 using namespace std;
 
+
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Widget
 {
     Q_OBJECT
 
     friend class NoteEditeur;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(unsigned int i, QWidget *parent = 0);
     ~MainWindow();
 
     /*static MainWindow& getMainWindow();
@@ -57,6 +58,9 @@ public:
     void fillTWP(TaskWithPriority& t)const;
     void fillON(OtherNote &on)const;
     void setAffichage(NoteType nt, Note& n);
+    void clearAffichage();
+
+    void update();
 
 
 
@@ -94,7 +98,7 @@ public slots:
     void slotA();
     void slotT();
     void slotON();
-    void update();
+    void updateN();
     void updateAff();
     void archive();
     void delete2();

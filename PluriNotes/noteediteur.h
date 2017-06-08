@@ -18,7 +18,8 @@
 #include "mainwindow.h"
 #include "colleague.h"
 
-class NoteEditeur : public QDialog {
+
+class NoteEditeur : public QDialog, public Widget {
 
     Q_OBJECT
 
@@ -63,8 +64,11 @@ class NoteEditeur : public QDialog {
 
 
 public:
-    NoteEditeur(QWidget *parent=0);
+    NoteEditeur(unsigned int i, QWidget *parent=0);
     void changed();
+    void update(){
+
+    }
 
 
 public slots :

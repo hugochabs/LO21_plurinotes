@@ -29,7 +29,8 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
 
 //! SLOT : Quand on clique sur "Ajouter une Note", ouverture d'une nouvelle fenêtre
 void MainWindow::add(){
-    NoteEditeur* newNote = new NoteEditeur;
+    NoteEditeur* newNote = new NoteEditeur(3);
+    mediator->registerC(newNote);
     newNote->show();
 }
 
@@ -120,7 +121,7 @@ void MainWindow::slotON(){
 time_t ti = time(0);
 struct tm * now = localtime( & ti );
 
-void MainWindow::update(){
+void MainWindow::updateN(){
     cout<<"update"<<endl;
     QString i = ui->id->text();
     QString title = ui->titre->text();
@@ -218,13 +219,15 @@ void MainWindow::restore(){
 }
 
 void  MainWindow::goToTrash(){
-    TrashViewer* newWindow = new TrashViewer;
+    TrashViewer* newWindow = new TrashViewer(1);
+    mediator->registerC(newWindow);
     newWindow->initialisationTrash();
     newWindow->show();
 }
 
 void  MainWindow::goToRelation(){
-    RelationViewer* newWindow = new RelationViewer;
+    RelationViewer* newWindow = new RelationViewer(2);
     //newWindow->initialisationTrash();
+    mediator->registerC(newWindow);
     newWindow->show();
 }
