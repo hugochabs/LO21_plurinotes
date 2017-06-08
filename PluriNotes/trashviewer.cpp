@@ -10,7 +10,7 @@ TrashViewer::TrashViewer(unsigned int i, QWidget *parent) :
     setWindowTitle(tr("Corbeille"));
     ui->listTrash->setColumnCount(2);
 
-    connect(ui->quit, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
 }
 
 TrashViewer::~TrashViewer()
@@ -51,4 +51,9 @@ void TrashViewer::addChild(QTreeWidgetItem* parent, QString title,QString type){
     note->setText(0, title);
     note->setText(1, type);
     parent->addChild(note);
+}
+
+void TrashViewer::quit(){
+    mediator->distributeMessage(this, "salut");
+    close();
 }

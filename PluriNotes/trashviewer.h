@@ -28,6 +28,9 @@ private:
 
     QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
     void addChild(QTreeWidgetItem* parent, QString title,QString type);
+
+public slots:
+    void quit();
 };
 
 #endif // TRASHVIEWER_H

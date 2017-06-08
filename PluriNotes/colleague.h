@@ -27,7 +27,7 @@ protected:
     unsigned int nbMax;
 
 public :
-    Mediator( unsigned int n=0, unsigned int nMax=0): nb(n),nbMax(nMax), colleagues(n, nullptr){
+    Mediator( unsigned int n=0, unsigned int nMax=0): colleagues(n, nullptr), nb(n),nbMax(nMax){
     nm = &NoteManager::getNoteManager();
     }
 
