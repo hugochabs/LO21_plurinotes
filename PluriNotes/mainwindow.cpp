@@ -84,6 +84,9 @@ void MainWindow::clearAffichage(){
     ui->listTask->setRowCount(0);
 }
 
+//!Méthode virtuelle définit dans la classe Widget
+//! Elle permet de mettre à jour l'affichage quand un de ses collègues
+//! le notifie
 void MainWindow::update(){
     clearAffichage();
     initialisationArchive();

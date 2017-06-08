@@ -35,14 +35,4 @@ void Mediator::registerC(Widget *c){
 }
 
 
-//void TreeWidget::update(){
-
-//}
-
-//void MWindow::update(){
-//    parent->initialisationArchive();
-//    parent->initialisationT();
-//    parent->initialisationNA();
-//}
-
 
