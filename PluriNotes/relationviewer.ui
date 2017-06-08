@@ -116,16 +116,16 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="edit">
+       <widget class="QPushButton" name="create">
         <property name="text">
-         <string>Éditer</string>
+         <string>Créer</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="delete_2">
+       <widget class="QPushButton" name="edit">
         <property name="text">
-         <string>Supprimer</string>
+         <string>Éditer</string>
         </property>
        </widget>
       </item>
@@ -137,9 +137,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="create">
+       <widget class="QPushButton" name="delete_2">
         <property name="text">
-         <string>Créer</string>
+         <string>Supprimer</string>
         </property>
        </widget>
       </item>
