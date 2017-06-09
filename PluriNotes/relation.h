@@ -53,6 +53,15 @@ public :
     const QString& getTitle(){return title;}
     const QString& getDescription(){return description;}
     RelationOrientation& getOrientation(){return orientation;}
+    QString getOrientationQS(){
+        switch(orientation){
+        case oriented:
+            return "orientée";
+        case non_oriented:
+            return "non orientée";
+        }
+    }
+
     //setters
     void setNb(unsigned int n){nb = n;}
     void setNbMax(unsigned int nM){nbMax = nM;}
@@ -138,6 +147,7 @@ public :
         unsigned int getNbRemain()const{return nbRemain;}
         bool isDone(){return nbRemain==0;}
         void isNext(){
+
             if(isDone())
                 // TODO change comments
                 throw NotesException("Error, no more versions of notes");

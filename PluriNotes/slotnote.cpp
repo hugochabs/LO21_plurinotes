@@ -4,17 +4,14 @@
 
 NoteManager& manager2 = NoteManager::getNoteManager();
 
-//! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note actie sélectionnée
+//! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note active sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
     QString id = item->text(i);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
-        NoteVersions& nvt = it.current();
-        cout<<"for1"<<endl;
+        NoteVersions& nvt = it.current();       
         for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
-        cout<<"for1"<<endl;
              Note& temp = it2.current();
              if(id==temp.getIdentifier()){
-                 cout<<"id temp"<<endl;
                  fillNote(&temp);
                  setAffichage(nvt.getType(), temp);
                  n=&temp;
@@ -31,7 +28,8 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
 
 //! SLOT : Quand on clique sur "Ajouter une Note", ouverture d'une nouvelle fenêtre
 void MainWindow::add(){
-    NoteEditeur* newNote = new NoteEditeur;
+    NoteEditeur* newNote = new NoteEditeur(3);
+    mediator->registerC(newNote);
     newNote->show();
 }
 
@@ -122,7 +120,7 @@ void MainWindow::slotON(){
 time_t ti = time(0);
 struct tm * now = localtime( & ti );
 
-void MainWindow::update(){
+void MainWindow::updateN(){
     cout<<"update"<<endl;
     QString i = ui->id->text();
     QString title = ui->titre->text();
@@ -144,11 +142,11 @@ void MainWindow::update(){
         QString s = ui->prop4->text();
         TaskStatus ts = Task::toTSfromQString(s);
         Task* t;
-        if(ui->prop2->isModified()){
+        if(nv->getType()==TWP){
             QString p = ui->prop2->text();
             t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
         }
-        else if(ui->prop3->isModified()){
+        else if(nv->getType()==TWD){
             tm* dl = Note::dateFromQString(ui->prop3->text());
              t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
         }
@@ -220,7 +218,21 @@ void MainWindow::restore(){
 }
 
 void  MainWindow::goToTrash(){
+<<<<<<< HEAD
     TrashViewer* newWindow = new TrashViewer;
     newWindow->initialisationTrash();
+=======
+    TrashViewer* newWindow = new TrashViewer(1);
+    mediator->registerC(newWindow);
+    newWindow->initialisationTrash();
+    newWindow->show();
+}
+
+void  MainWindow::goToRelation(){
+    RelationViewer* newWindow = new RelationViewer(2);
+    //newWindow->initialisationTrash();
+    mediator->registerC(newWindow);
+    newWindow->initialisation();
+>>>>>>> d6e12d129748f5b2b45056259622cad4d15ed3d4
     newWindow->show();
 }

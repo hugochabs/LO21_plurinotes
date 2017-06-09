@@ -150,7 +150,7 @@ private :
     NoteType type;
 public :
     NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
-        : nbMax(nM),versions(new Note*[nM]), nb(n), type(ty){
+        : versions(new Note*[nM]), nb(n), nbMax(nM), type(ty){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
@@ -264,7 +264,7 @@ public :
 /*!
  * \brief La classe NoteManager sert à gérer et stocker les différentes NotesVersions
  */
-//template<class T>
+
 class NoteManager{
 private :
     NoteVersions** notes;       //!tableau des NoteVersions
@@ -274,7 +274,7 @@ private :
     static NoteManager * uniqueInstance;
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
     NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "C:\\Users\\Public\\Documents")
-        :notes(new NoteVersions*[nM]),nb(n),nbMax(nM),  directory(dir){
+        :notes(new NoteVersions*[nM]),nb(n),nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
@@ -300,9 +300,13 @@ public :
      * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
      * type json
      * \return Le fichier json contenant les informations du NoteManager
-     */
+    */
+    /*!
+     * \brief getNVfromNote permet de récupérer le NoteVersions
+    */
 
      /*! \brief getNVfromNote permet de récupérer le NoteVersions
+
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */

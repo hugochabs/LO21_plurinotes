@@ -18,22 +18,28 @@
 #include "noteediteur.h"
 //#include "strategy.h
 #include "trashviewer.h"
+#include "relationviewer.h"
+#include "alertviewer.h"
 
 
 using namespace std;
+
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+//!MainWindow est hérité de la classe Widget pour pouvoir communiquer
+//! avec le Mediator ainsi que ses collegues
+
+class MainWindow : public QMainWindow, public Widget
 {
     Q_OBJECT
 
     friend class NoteEditeur;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(unsigned int i, QWidget *parent = 0);
     ~MainWindow();
 
     /*static MainWindow& getMainWindow();
@@ -43,10 +49,12 @@ public:
     void initialisationArchive();
 
 
-
+    //! Getters element MainWindow
+    QTreeWidget* getTreeNote();
+    QTreeWidget* getTreeArchived();
     //!Fonctions pour remplir QTreeWidget
-    QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
-    void addChild(QTreeWidgetItem* parent, QString title, QString type);
+    static QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
+    static void addChild(QTreeWidgetItem* parent, QString title, QString type);
     void fillNote(Note* n)const;
     void fillA(Article& a)const;
     void fillT(Task &t)const;
@@ -54,6 +62,9 @@ public:
     void fillTWP(TaskWithPriority& t)const;
     void fillON(OtherNote &on)const;
     void setAffichage(NoteType nt, Note& n);
+    void clearAffichage();
+
+    void update();
 
 
 
@@ -91,13 +102,15 @@ public slots:
     void slotA();
     void slotT();
     void slotON();
-    void update();
+    void updateN();
     void updateAff();
     void archive();
     void delete2();
     void chooseFile();
     void restore();
     void goToTrash();
+    void goToRelation();
+    void quit();
 };
 
 

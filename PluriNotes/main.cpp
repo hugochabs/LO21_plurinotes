@@ -1,8 +1,8 @@
 #include "relation.h"
 #include "mainwindow.h"
 #include <QApplication>
-//#include "colleague.h"
-
+#include "colleague.h"
+#include <QTextCodec>
 
 ostream& operator<< (ostream& f, Article& A){
     A.affiche(f);
@@ -32,6 +32,11 @@ ostream& operator<< (ostream& f, OtherNote& T){
 
 
 int main (int argc, char *argv[]){
+    //!Ces codecs permettent d'afficher les accents dans les fenêtres
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+
     QString * path = new QString;
     *path = "/home/guilllaume/DATA/";
     time_t t = time(0);   // get time now
@@ -50,8 +55,8 @@ int main (int argc, char *argv[]){
     OtherNote On2("ID-ON2", "Test2", now, now, act, "petite description", "filename2", video);
 
     //création de taskwithdeadline
-    TaskWithDeadline twd1("ID-TWD1", "taskwithdeadline", now, now, act,"action twd", waiting, now);
-    TaskWithDeadline twd2("ID-TWD2", "taskwithdeadline", now, now, act, "Action twd", waiting, now);
+    TaskWithDeadline twd1("ID-TWD1", "taskwithdeadline", now, now, trash,"action twd", waiting, now);
+    TaskWithDeadline twd2("ID-TWD2", "taskwithdeadline", now, now, trash, "Action twd", waiting, now);
 
     TaskWithPriority twp1("ID-TWP1", "taskwithpriority", now, now, NoteStatus::archived,"action twp", waiting,56);
     TaskWithPriority twp2("ID-TWP2", "taskwithpriority", now, now,NoteStatus::archived, "Action twp", waiting,52);
@@ -125,7 +130,7 @@ int main (int argc, char *argv[]){
     //cout<<NM2;
 
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow w(0);
     w.initialisationNA();
     w.initialisationT();
     w.initialisationArchive();
@@ -136,6 +141,24 @@ int main (int argc, char *argv[]){
     //Note * RZ = Z.getReferences();
     //cout<<"a"<<endl;
     //cout<<RZ[0]<<endl;
+    //vector<Widget*> colleague;
+    cout<<"test"<<endl;
+    Mediator& mediator = Mediator::getMediator();
+    /*TreeWidget* tw1 = new TreeWidget(w.getTreeNote(), &mediator, 0);
+    TreeWidget* tw2 = new TreeWidget(w.getTreeArchived(), &mediator, 1);
+    //TableWidget* tw3 = new TreeWidget()
+    MWindow* mw = new MWindow(&w, &mediator, 2);
+
+    mediator.registerC(tw1);
+    mediator.registerC(tw2);
+    mediator.registerC(mw);
+    mediator.distributeMessage(tw1, "salut toi");
+    tw1->sendMessage("Coucou bebe");*/
+    mediator.registerC(&w);
+
+
+
+
     Reference& Ref = Reference::getRef();
     Ref.getReferences();
     return a.exec();

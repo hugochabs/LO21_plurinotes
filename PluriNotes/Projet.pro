@@ -19,6 +19,7 @@ greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG += c++11
 } else {
 QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS_WARN_ON += -Wno-reorder
 }
 
 SOURCES += main.cpp \
@@ -31,7 +32,10 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     initialisationnote.cpp \
     slotnote.cpp \
-    trashviewer.cpp
+    trashviewer.cpp \
+    relationviewer.cpp \
+    colleague.cpp \
+    alertviewer.cpp
 
 HEADERS  += \
     exception.h \
@@ -41,8 +45,12 @@ HEADERS  += \
     relation.h \
     noteediteur.h \
     mainwindow.h \
-    trashviewer.h
+    trashviewer.h \
+    relationviewer.h \
+    colleague.h \
+    alertviewer.h
 
 FORMS    += \
     mainwindow.ui \
-    trashviewer.ui
+    trashviewer.ui \
+    relationviewer.ui
