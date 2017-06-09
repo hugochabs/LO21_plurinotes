@@ -250,7 +250,6 @@ void NoteManager::archiveNoteVersions(NoteVersions *NV){
 
 void NoteManager::restoreNoteVersions(NoteVersions *NV){
     for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext()){
-        cout<<"restore"<<endl;
         it.current().setNoteStatus(active);
     }
 }

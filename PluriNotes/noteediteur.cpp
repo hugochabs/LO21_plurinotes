@@ -102,6 +102,7 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     layoutv->addWidget(quit);
     setLayout(layoutv);
     setWindowTitle(tr("Ajout d'une note"));
+    setModal(true);
 
     //connexion des différents boutons
     connect(quit, SIGNAL(clicked()),this, SLOT(close()));
