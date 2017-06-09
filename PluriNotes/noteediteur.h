@@ -17,6 +17,7 @@
 #include "exception.h"
 #include "mainwindow.h"
 #include "colleague.h"
+#include "alertviewer.h"
 
 
 //!NoteEditeur est hérité de la classe Widget pour pouvoir communiquer

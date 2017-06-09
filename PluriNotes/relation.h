@@ -56,9 +56,9 @@ public :
     QString getOrientationQS(){
         switch(orientation){
         case oriented:
-            return "orientee";
+            return "orientée";
         case non_oriented:
-            return "non orientee";
+            return "non orientée";
         }
     }
 

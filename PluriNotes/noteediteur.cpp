@@ -229,5 +229,7 @@ void NoteEditeur::addN(){
     }
     nm.addNoteVersion(nv);    
     mediator->distributeMessage(this, "salut");
+    AlertViewer* alert = new AlertViewer("Confirmation", "Votre note a bien ajoutée");
+    alert->exec();
     close();
 }

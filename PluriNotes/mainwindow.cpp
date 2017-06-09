@@ -59,7 +59,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(restore()));
     connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
     connect(ui->relationButton, SIGNAL(clicked(bool)), this ,SLOT(goToRelation()));
-    connect(ui->quit, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->quit, SIGNAL(clicked(bool)), this, SLOT(quit()));
 
 }
 
@@ -93,6 +93,14 @@ void MainWindow::update(){
     initialisationArchive();
     initialisationNA();
     initialisationT();
+}
+
+void MainWindow::quit(){
+    AlertViewer* alert = new AlertViewer("Corbeille", "Voulez-vous vider la corbeille ?");
+    QPushButton* o = alert->addButton("Oui", QMessageBox::YesRole);
+    QPushButton* no = alert->addButton("Non", QMessageBox::NoRole);
+    alert->exec();
+    close();
 }
 
 

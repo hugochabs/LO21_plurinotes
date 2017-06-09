@@ -19,6 +19,7 @@
 //#include "strategy.h
 #include "trashviewer.h"
 #include "relationviewer.h"
+#include "alertviewer.h"
 
 
 using namespace std;
@@ -109,6 +110,7 @@ public slots:
     void restore();
     void goToTrash();
     void goToRelation();
+    void quit();
 };
 
 

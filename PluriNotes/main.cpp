@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include "colleague.h"
-
+#include <QTextCodec>
 
 ostream& operator<< (ostream& f, Article& A){
     A.affiche(f);
@@ -32,6 +32,11 @@ ostream& operator<< (ostream& f, OtherNote& T){
 
 
 int main (int argc, char *argv[]){
+    //!Ces codecs permettent d'afficher les accents dans les fenêtres
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+
     QString * path = new QString;
     *path = "/home/guilllaume/DATA/";
     time_t t = time(0);   // get time now

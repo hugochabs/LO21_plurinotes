@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     slotnote.cpp \
     trashviewer.cpp \
     relationviewer.cpp \
-    colleague.cpp
+    colleague.cpp \
+    alertviewer.cpp
 
 HEADERS  += \
     exception.h \
@@ -46,7 +47,8 @@ HEADERS  += \
     mainwindow.h \
     trashviewer.h \
     relationviewer.h \
-    colleague.h
+    colleague.h \
+    alertviewer.h
 
 FORMS    += \
     mainwindow.ui \
