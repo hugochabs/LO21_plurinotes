@@ -11,7 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));
 
-
+    ui->dc->setReadOnly(true);
+    ui->dm->setReadOnly(true);
 
 
     QStringList labels1, labels2,labels3;

@@ -221,5 +221,6 @@ void MainWindow::restore(){
 
 void  MainWindow::goToTrash(){
     TrashViewer* newWindow = new TrashViewer;
+    newWindow->initialisationTrash();
     newWindow->show();
 }
