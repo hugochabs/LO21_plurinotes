@@ -218,10 +218,8 @@ void MainWindow::restore(){
 }
 
 void  MainWindow::goToTrash(){
-<<<<<<< HEAD
-    TrashViewer* newWindow = new TrashViewer;
-    newWindow->initialisationTrash();
-=======
+
+
     TrashViewer* newWindow = new TrashViewer(1);
     mediator->registerC(newWindow);
     newWindow->initialisationTrash();
@@ -233,6 +231,5 @@ void  MainWindow::goToRelation(){
     //newWindow->initialisationTrash();
     mediator->registerC(newWindow);
     newWindow->initialisation();
->>>>>>> d6e12d129748f5b2b45056259622cad4d15ed3d4
     newWindow->show();
 }

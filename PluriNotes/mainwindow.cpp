@@ -11,15 +11,12 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));
 
-<<<<<<< HEAD
     ui->dc->setReadOnly(true);
     ui->dm->setReadOnly(true);
 
-=======
 
     ui->dc->setReadOnly(true);
     ui->dm->setReadOnly(true);
->>>>>>> d6e12d129748f5b2b45056259622cad4d15ed3d4
 
     QStringList labels1, labels2,labels3;
     labels1<<"Task"<<"Deadline"<<"Priority";
