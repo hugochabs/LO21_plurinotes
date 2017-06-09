@@ -4,32 +4,6 @@
 #include "colleague.h"
 #include <QTextCodec>
 
-ostream& operator<< (ostream& f, Article& A){
-    A.affiche(f);
-    return f;
-}
-
-
-ostream& operator<< (ostream& f, Task& T){
-    T.affiche(f);
-    return f;
-}
-
-ostream& operator<< (ostream& f, TaskWithPriority& T){
-    T.affiche(f);
-    return f;
-}
-
-ostream& operator<< (ostream& f, TaskWithDeadline& T){
-    T.affiche(f);
-    return f;
-}
-
-ostream& operator<< (ostream& f, OtherNote& T){
-    T.affiche(f);
-    return f;
-}
-
 
 int main (int argc, char *argv[]){
     //!Ces codecs permettent d'afficher les accents dans les fenêtres
@@ -161,6 +135,15 @@ int main (int argc, char *argv[]){
 
     Reference& Ref = Reference::getRef();
     Ref.getReferences();
+    bool referenced = Reference::isNoteReferenced(&B);
+    cout<<referenced;
+    try{
+    map<Note *, int> M = RelationManager::getDescendants(&A);
+    cout<<M;
+    }catch(NotesException N){
+        cout<<N.getInfo()<<endl;
+    }
+
     return a.exec();
 
 }

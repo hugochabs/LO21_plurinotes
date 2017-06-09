@@ -52,11 +52,8 @@ public :
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     /*!
-<<<<<<< HEAD
+
      * \brief getNoteStatusString retourne la valeur de NoteStatus
-=======
-     * \brief getNoteStatusString retourne la valeur de noteStatus
->>>>>>> 4f97131176c1ab214ba75f92af0cea66e20c53c1
      * sous forme de chaîne de caractères.
      * \return (string)noteStatus.
      */
@@ -131,7 +128,6 @@ public :
     virtual json toJson();
     virtual QString& getStringAttributes();
     vector<Note> getReferences();
-
 };
 
 
@@ -227,7 +223,7 @@ public :
          */
         void isNext(){
             if(isDone())
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes from NV");
             currentV++;
             nbRemain--;
         }
@@ -237,7 +233,7 @@ public :
          */
         Note& current(){
             if(isDone())
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes from NV current");
             return **currentV;
         }
     };
@@ -394,7 +390,7 @@ public :
          */
         void isNext(){
             if(isDone())
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes NM");
             currentN++; nbRemain--;
         }
         /*!
@@ -403,7 +399,7 @@ public :
          */
         NoteVersions& current(){
             if(isDone())
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes NM current");
             return **currentN;
         }
 
@@ -439,7 +435,7 @@ ostream& operator<< (ostream& f, const OtherNoteType& T);
 ostream& operator<< (ostream& f, const RelationOrientation& R);
 ostream& operator<< (ostream& f, const QString& S);
 ostream& operator<< (ostream& f, const tm* tps);
-//ostream& operator<< (ostream& f, tm*& D);
+
 
 ostream& operator << (ostream& f, Note& N);
 ostream& operator<< (ostream& f, NoteVersions& V);

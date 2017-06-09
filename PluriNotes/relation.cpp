@@ -42,6 +42,14 @@ ostream& operator << (ostream& f, Couple& C){
     return f;
 }
 
+//Pour pouvoir afficher le map des descendants
+ostream& operator<< (ostream& f, map<Note*, int> M){
+    for(auto it = M.begin() ; it != M.end() ; it++){
+        f<<"N : "<<endl<<*it->first<<endl
+         <<"O : "<<it->second<<endl;
+    }
+    return f;
+}
 
 /**********************************/
 
@@ -140,6 +148,44 @@ void RelationManager::freeRelationManager(){
     }
 }
 
+
+
+map<Note*, int> RelationManager::getDescendants(Note* N, unsigned int order){
+    //map de retour de la forme :
+    //<Note* ,  ordre auquel la Note* à été trouvée>
+    map<Note*, int> M;
+    //condition d'arrèt de la procédure récursive
+    if(order > 0){
+        //Petite itérationd de tous les couples
+        RelationManager& RM = getRelationManager();
+        for(RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
+            Relation& R = it.current();
+            for (Relation::iterator it2 = R.getIterator() ; !it2.isDone() ; it2.isNext()){
+                Couple& C = it2.current();
+                //On regarde si la note en paramètre est X tq le couple soit (X,Y)
+                if (C.getX()->getIdentifier() == N->getIdentifier()){
+                    //si c'est le cas on l'ajoute au map avec l'ordre correspondant
+                    M[C.getY()] = 3 - order;
+                }
+                //Si Le fils n'est pas nul, on relance la procédure récursivement
+                if (C.getY()){
+                    map<Note*, int> Tmp;
+                    Tmp = getDescendants(C.getY(), order-1);
+                    //et on copie le résultat de la procédure récursive dans le tableau actuel
+                    for(auto it3 = Tmp.begin() ; it3 != Tmp.end() ; it3++){
+                        M[it3->first] = it3->second;
+                    }
+                }
+            }
+        }
+    }
+    //on retourne le map
+    return M;
+}
+
+
+
+
 Reference& Reference::getRef(){
     if (!uniqueRef){
         uniqueRef = new Reference();
@@ -154,8 +200,14 @@ void Reference::freeRef(){
     uniqueRef = nullptr;
 }
 
+//fonction statique pour pouvoir update les références plus facilement
+void Reference::updateRefs(){
+    Reference& R = *getRef();
+    R.getReferences();
+}
 
 
+//fonction qui parcourt toutes les notes et crée les reférences correspondantes
 void Reference::getReferences(){
     NoteManager& NM = NoteManager::getNoteManager();
     for (NoteManager::iterator it = NM.getIterator() ; !it.isDone() ; it.isNext()){
@@ -175,3 +227,15 @@ void Reference::getReferences(){
     }
 }
 
+//retourne vrai si la note N est référencée par une autre note
+bool Reference::isNoteReferenced(Note * N){
+    Reference& R = *getRef();
+    R.getReferences();
+    for (Reference::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
+        Couple& C = it.current();
+        if (C.getY()->getIdentifier() == N->getIdentifier()){
+            return true;
+        }
+    }
+    return false;
+}

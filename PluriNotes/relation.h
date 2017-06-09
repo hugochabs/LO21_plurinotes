@@ -136,7 +136,13 @@ public :
     static void addRelation(Relation* R);
     //faire un iterator
     static Relation* getNthElement(unsigned int n){return relations[n];}
-
+    /*!
+     * \brief getDescendants renvoie l'ensemble des descendants d'une note
+     * \param N La note en question
+     * \param order l'ordre jusqu'auquel on veut chercher des descendants
+     * \return un map de la forme <Note* ,  ordre auquel la Note* à été trouvée>
+     */
+    static map<Note *, int> getDescendants(Note* N, unsigned int order = 3);
     class iterator{
         friend class RelationManager;
     private:
@@ -150,13 +156,13 @@ public :
 
             if(isDone())
                 // TODO change comments
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes RM");
             currentRM++;
             nbRemain--;
         }
         Relation& current(){
             if(isDone())
-                throw NotesException("Error, no more versions of notes");
+                throw NotesException("Error, no more versions of notes RM");
             return **currentRM;
         }
     };
@@ -178,9 +184,14 @@ private :
 public :
     static Reference& getRef();
     static void freeRef();
+    static void updateRefs();
+    static bool isNoteReferenced(Note * N);
     void getReferencesNote(Note * N);
     void getReferences();
+    Reference& operator* (){return *uniqueRef;}
 };
+
+
 
 //--------------------------------//
 
@@ -194,6 +205,7 @@ ostream& operator<< (ostream& f, Relation& R);
 ostream& operator<< (ostream& f, RelationManager& RM);
 ostream& operator<< (ostream& f, Couple& C);
 
+ostream& operator<< (ostream& f, map<Note*, int> M);
 
 
 #endif // RELATION_H

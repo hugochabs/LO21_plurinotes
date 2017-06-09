@@ -180,13 +180,13 @@ public :
 };
 
 //redéfinition des opérateurs
-
+/*
 ostream& operator<< (ostream& f, Article& A);
 ostream& operator<< (ostream& f, Task& T);
 ostream& operator<< (ostream& f, TaskWithPriority& T);
 ostream& operator<< (ostream& f, TaskWithDeadline& T);
 ostream& operator<< (ostream& f, OtherNote& T);
-
+*/
 
 
 
