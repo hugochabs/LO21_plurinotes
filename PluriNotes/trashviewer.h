@@ -26,9 +26,13 @@ public:
 
 private:
     Ui::TrashViewer *ui;
+    Note* n;
+    NoteVersions* nv;
 
 public slots:
     void quit();
+    void restore();
+    void select(QTreeWidgetItem* item, int i);
 };
 
 #endif // TRASHVIEWER_H

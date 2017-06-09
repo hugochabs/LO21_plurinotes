@@ -248,6 +248,13 @@ void NoteManager::archiveNoteVersions(NoteVersions *NV){
         it.current().setNoteStatus(archived);
 }
 
+void NoteManager::restoreNoteVersions(NoteVersions *NV){
+    for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext()){
+        cout<<"restore"<<endl;
+        it.current().setNoteStatus(active);
+    }
+}
+
 void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
     NoteVersions* NV = getNVfromNote(N);

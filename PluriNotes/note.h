@@ -323,6 +323,13 @@ public :
     void archiveNoteVersions(NoteVersions*NV);
 
     /*!
+     * \brief restoreNoteVersions permet de restaurer une note
+     * ainsi que toutes ses versions (= restaurer une NoteVersions)
+     * \param NV NoteVersions à archiver
+     */
+    void restoreNoteVersions(NoteVersions *NV);
+
+    /*!
      * \brief deleteNoteVersions permet de supprimer une note
      * ainsi que toutes ses versions. (= mettre à la corbeille si possible, soit si la Note
      * n'apparaît pas dans une Référence, et l'archiver sinon)

@@ -13,6 +13,8 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     labels<<"Titre"<<"Orientation";
     ui->listRelation->setHeaderLabels(labels);
 
+    setModal(true);
+
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
 }
 

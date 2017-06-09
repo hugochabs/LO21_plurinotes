@@ -59,7 +59,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     connect(ui->delete_2, SIGNAL(clicked()), this, SLOT(delete2()));
 
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
-    connect(ui->restoreButton, SIGNAL(clicked()), this, SLOT(restore()));
+    connect(ui->restoreButton_2, SIGNAL(clicked()), this, SLOT(restore()));
     connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
     connect(ui->relationButton, SIGNAL(clicked(bool)), this ,SLOT(goToRelation()));
     connect(ui->quit, SIGNAL(clicked(bool)), this, SLOT(quit()));

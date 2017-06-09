@@ -22,7 +22,6 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
          }
 
     }
-
 }
 
 
@@ -212,13 +211,11 @@ void MainWindow::chooseFile(){
 }
 
 void MainWindow::restore(){
-    cout<<"restore"<<endl;
     nv->restoreVersion(n);
     updateAff();
 }
 
 void  MainWindow::goToTrash(){
-
 
     TrashViewer* newWindow = new TrashViewer(1);
     mediator->registerC(newWindow);

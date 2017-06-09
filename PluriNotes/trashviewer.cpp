@@ -9,8 +9,11 @@ TrashViewer::TrashViewer(unsigned int i, QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("Corbeille"));
     ui->listTrash->setColumnCount(2);
+    setModal(true);
 
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
+    connect(ui->listTrash, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(select(QTreeWidgetItem*,int)));
+    connect(ui->restoreButton, SIGNAL(clicked(bool)), this, SLOT(restore()));
 }
 
 TrashViewer::~TrashViewer()
@@ -21,6 +24,7 @@ TrashViewer::~TrashViewer()
 NoteManager& manager = NoteManager::getNoteManager();
 
 void TrashViewer::initialisationTrash(){
+    cout<<"initialisation"<<endl;
     for(NoteManager::iterator it = manager.getIterator() ;!it.isDone();it.isNext()){
         NoteVersions nv = it.current();
         NoteVersions::iterator it2 = nv.getIterator();
@@ -37,6 +41,29 @@ void TrashViewer::initialisationTrash(){
     }
 }
 
+void TrashViewer::select(QTreeWidgetItem* item, int i){
+    QString id = item->text(i);
+    for(NoteManager::iterator it = manager.getIterator();!it.isDone();it.isNext()){
+        NoteVersions& nvt = it.current();
+        for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
+             Note& temp = it2.current();
+             if(id==temp.getIdentifier()){
+                 n=&temp;
+                 nv=&nvt;
+                 return ;
+
+             }
+         }
+
+    }
+}
+
+void TrashViewer::restore(){
+    cout<<"restore"<<endl;
+    manager.restoreNoteVersions(nv);
+    mediator->distributeMessage(this, "salut");
+    initialisationTrash();
+}
 
 
 void TrashViewer::quit(){
