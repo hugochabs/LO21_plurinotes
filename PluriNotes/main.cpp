@@ -78,6 +78,7 @@ int main (int argc, char *argv[]){
     Couple* c2 = new Couple("label2", &T, &B);
     //paramétrage de la relation
     R.setTitle("Titre");
+    R.setDescription("Relation qui joint les deux notes lde l'espace");
     //ajout des couples
     R.addCouple(c);
     R.addCouple(c2);

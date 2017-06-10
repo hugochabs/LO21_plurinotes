@@ -16,7 +16,7 @@ void Widget::sendMessage(const string& message){
 
 void Widget::receiveMessage(const string &message){
     update();
-    cout<<"le widget "<<getCode()<<" a recu le message " <<message<<endl;
+    cout<<"le widget "<<getCode()<<" a recu le message : " <<message<<endl;
 }
 
 void Mediator::distributeMessage(Widget* sender, string message){

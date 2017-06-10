@@ -68,8 +68,8 @@ public:
     }
     virtual void sendMessage(const string &message);//ok implémenté
     virtual void receiveMessage(const string& message);//ok implémenté
-    unsigned int getCode(){return colleagueCode;}
-    const Mediator* getMediator(){return mediator;}
+    unsigned int getCode()const{return colleagueCode;}
+    const Mediator* getMediator()const{return mediator;}
 
     virtual void update()=0;
 

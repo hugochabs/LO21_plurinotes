@@ -16,6 +16,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     setModal(true);
 
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
+    connect(ui->listRelation, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(affichage(QTreeWidgetItem*,int)));
 }
 
 RelationViewer::~RelationViewer()
@@ -46,4 +47,18 @@ void RelationViewer::initialisation(){
 void RelationViewer::quit(){
     mediator->distributeMessage(this, "salut");
     close();
+}
+
+void RelationViewer::affichage(QTreeWidgetItem* item, int i){
+    QString title = item->text(0);
+    for(RelationManager::iterator it = rm.getIterator();!it.isDone();it.isNext()){
+        if(it.current().getTitle()==title){
+            fillRelation(it.current());
+        }
+    }
+}
+
+void RelationViewer::fillRelation(Relation& r){
+    ui->title->setText(r.getTitle());
+    ui->description->setText(r.getDescription());
 }

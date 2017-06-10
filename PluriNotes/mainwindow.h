@@ -11,6 +11,7 @@
 #include <QBoxLayout>
 #include <QListWidgetItem>
 #include <QTreeWidget>
+//#include <QMediaPlayer>
 
 #include <QFileDialog>
 #include <QObject>
@@ -80,6 +81,7 @@ private:
     int ind;
     Note* n;
     NoteVersions* nv;
+    QString dir;
 
 
 
@@ -107,6 +109,7 @@ public slots:
     void archive();
     void delete2();
     void chooseFile();
+    void open();
     void restore();
     void goToTrash();
     void goToRelation();

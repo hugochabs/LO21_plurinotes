@@ -200,7 +200,7 @@ void MainWindow::fillTWP(TaskWithPriority& t)const{
 
 void MainWindow::fillON(OtherNote& on)const{
     ui->prop1->setText(on.getDescription());
-    ui->prop2->setText(on.getFileName());
+    //ui->prop2->setText(on.getFileName());
 }
 
 

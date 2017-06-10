@@ -260,9 +260,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>480</x>
       <y>40</y>
-      <width>321</width>
+      <width>384</width>
       <height>451</height>
      </rect>
     </property>
@@ -343,7 +343,7 @@
        <item>
         <widget class="QDateTimeEdit" name="dc">
          <property name="calendarPopup">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -367,7 +367,7 @@
        <item>
         <widget class="QDateTimeEdit" name="dm">
          <property name="calendarPopup">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -403,6 +403,13 @@
         <widget class="QPushButton" name="directoryFile">
          <property name="text">
           <string>Choisir un fichier</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="openFile">
+         <property name="text">
+          <string>Ouvrir fichier</string>
          </property>
         </widget>
        </item>

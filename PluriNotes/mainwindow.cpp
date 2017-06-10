@@ -8,6 +8,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
      ui(new Ui::MainWindow),ind(-1), n(0), nv(0), Widget(i)
 
 {
+    dir="";
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));
 
@@ -46,6 +47,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->prop4->setVisible(false);
     ui->typeON->setVisible(false);
     ui->directoryFile->setVisible(false);
+    ui->openFile->setVisible(false);
     ui->dl->setVisible(false);
     ui->dl->setCalendarPopup(true);
 
@@ -60,6 +62,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     connect(ui->delete_2, SIGNAL(clicked()), this, SLOT(delete2()));
 
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
+    connect(ui->openFile, SIGNAL(clicked(bool)), this, SLOT(open()));
     connect(ui->restoreButton_2, SIGNAL(clicked()), this, SLOT(restore()));
     connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
     connect(ui->relationButton, SIGNAL(clicked(bool)), this ,SLOT(goToRelation()));

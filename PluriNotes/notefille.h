@@ -171,9 +171,9 @@ public :
     }
 
     //setters
-    void getDescription(QString& d){description = d;}
-    void getFileName(QString& f){fileName = f;}
-    void getType(OtherNoteType& t){type = t;}
+    void setDescription(QString& d){description = d;}
+    void setFileName(QString& f){fileName = f;}
+    void setType(OtherNoteType& t){type = t;}
 
 
     ostream& afficheSuite(ostream& f){

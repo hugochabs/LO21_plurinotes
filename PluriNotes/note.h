@@ -50,10 +50,10 @@ public :
     QString& getTitle(){return title;}
     tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
     const tm* getDateCreation() const{return dateCreation;}//!getter de dateCreation
-    QString getDateCQString();
+
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     const tm* getDateLastUpdate() const{return dateLastUpdate;}//!getter de dateLastUpdate
-    QString getDateLUQString();
+
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     const NoteStatus& getNoteStatus() const{return noteStatus;}//!getter de noteStatus

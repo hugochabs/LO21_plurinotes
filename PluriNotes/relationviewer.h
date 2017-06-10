@@ -23,15 +23,18 @@ public:
     ~RelationViewer();
     void initialisation();
     void update(){}
+    void fillRelation(Relation& r);
 
 
 private:
     Relation* r;
+    Couple* c;
     Ui::RelationViewer *ui;
     void addChild(QTreeWidgetItem* parent, QString label);
 
 public slots:
     void quit();
+    void affichage(QTreeWidgetItem* item, int i);
 };
 
 #endif // RELATIONVIEWER_H
