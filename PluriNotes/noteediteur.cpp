@@ -34,7 +34,7 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     titre = new QLineEdit;
 
     //propriété de Notefille
-    ind=-1;
+    ind=-1; ind2 = -1;
     prop1L = new QLabel;
     prop1 = new QLineEdit;
     art = new QTextEdit;
@@ -44,6 +44,20 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     prop3 = new QLineEdit;
     prop4L = new QLabel;
     prop4 = new QLineEdit;
+
+    twd = new QRadioButton;
+    twp = new QRadioButton;
+
+    selectType = new QButtonGroup;
+    selectOption = new QButtonGroup;
+
+    selectType->addButton(task);
+    selectType->addButton(article);
+    selectType->addButton(other);
+
+    selectOption->addButton(twp);
+    selectOption->addButton(twd);
+
 
     menu = new QComboBox;
     menu->addItem("Audio");
@@ -59,6 +73,8 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     prop3->setVisible(false);
     prop4L->setVisible(false);
     prop4->setVisible(false);
+    twp->setVisible(false);
+    twd->setVisible(false);
     menu->setVisible(false);
 
     layout1 = new QHBoxLayout;
@@ -70,8 +86,10 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     layout1->addWidget(art);
     layout2->addWidget(prop2L);
     layout2->addWidget(prop2);
+    layout2->addWidget(twp);
     layout3->addWidget(prop3L);
     layout3->addWidget(prop3);
+    layout3->addWidget(twd);
     layout3->addWidget(menu);
     layout4->addWidget(prop4L);
     layout4->addWidget(prop4);
@@ -142,6 +160,9 @@ void NoteEditeur::changeTask(){
         prop4L->setText("Status");
         prop4->setVisible(true);
 
+        twd->setVisible(true);
+        twp->setVisible(true);
+
         save->setVisible(true);
         ind=1;
     }
@@ -163,6 +184,9 @@ void NoteEditeur::changeArticle(){
 
         prop4L->setVisible(false);
         prop4->setVisible(false);
+
+        twd->setVisible(false);
+        twp->setVisible(false);
 
         save->setVisible(true);
         ind=2;
@@ -189,6 +213,9 @@ void NoteEditeur::changeOther(){
 
           prop4L->setVisible(false);
           prop4->setVisible(false);
+
+          twd->setVisible(false);
+          twp->setVisible(false);
 
           save->setVisible(true);
           ind=3;
