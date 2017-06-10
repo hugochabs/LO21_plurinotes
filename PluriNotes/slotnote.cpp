@@ -49,6 +49,7 @@ void  MainWindow::slotA(){
         ui->prop3L->setVisible(false);
         ui->prop3->setVisible(false);
         ui->typeON->setVisible(false);
+        ui->dl->setVisible(false);
 
         ui->prop4L->setVisible(false);
         ui->prop4->setVisible(false);
@@ -61,7 +62,7 @@ void  MainWindow::slotA(){
 
 void MainWindow::slotT(){
     if(ind!=2){
-        cout<<"if"<<endl;
+
         ui->prop1L->setVisible(true);
         ui->prop1L->setText("Action");
         ui->prop1->setVisible(true);
@@ -74,8 +75,9 @@ void MainWindow::slotT(){
 
         ui->prop3L->setVisible(true);
         ui->prop3L->setText("Deadline");
-        ui->prop3->setVisible(true);
+        ui->prop3->setVisible(false);
         ui->typeON->setVisible(false);
+        ui->dl->setVisible(true);
 
         ui->prop4L->setVisible(true);
         ui->prop4L->setText("Status");
@@ -103,6 +105,7 @@ void MainWindow::slotON(){
 
         ui->prop3L->setVisible(false);
         ui->prop3->setVisible(false);
+        ui->dl->setVisible(false);
 
 
         ui->prop4L->setVisible(true);
@@ -116,22 +119,21 @@ void MainWindow::slotON(){
     }
 }
 
-time_t ti = time(0);
-struct tm * now = localtime( & ti );
 
 void MainWindow::updateN(){
-    cout<<"update"<<endl;
+
     QString i = ui->id->text();
     QString title = ui->titre->text();
-    QString * dc = new QString;
-    *dc = ui->dc->text();
+    QString  datec;
+    datec = ui->dc->dateTime().toString();
 //    QString dc = ui->dc->text();
-    tm* DC = Note::dateFromQString(*dc);
+    tm* DC = Note::dateFromQString(datec);
+    time_t ti = time(0);
+    struct tm * now = localtime( & ti );
     switch(ind){
     case 1:{
         QString t = ui->text->toPlainText();
-        time_t ti = time(0);
-        struct tm * now = localtime( & ti );
+
         Article* a = new Article(i+"nv", title, DC, now,  active, t);
         nv->updateNewVersion(a);
         break;
@@ -143,25 +145,27 @@ void MainWindow::updateN(){
         Task* t;
         if(nv->getType()==TWP){
             QString p = ui->prop2->text();
-            t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
+            t = new TaskWithPriority(i+"nv", title, DC, now,  active, act, ts, p.toInt());
         }
         else if(nv->getType()==TWD){
-            tm* dl = Note::dateFromQString(ui->prop3->text());
-             t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
+            QString d = ui->dm->dateTime().toString(DATEFORMAT);
+            tm* dl = Note::dateFromQString(d);
+             t = new TaskWithDeadline(i+"nv",title,DC, now,  active, act, ts, dl);
         }
         else{
 
-             t= new Task(i, title, DC, now,  active, act, ts);
+             t= new Task(i+"nv", title, DC, now,  active, act, ts);
 
         }
         nv->updateNewVersion(t);
-        cout<<"apres maj"<<endl;
+
         break;
     }
     case 3:{
         QString desc = ui->prop1->text();
-        QString fn = ui->prop2->text();
-        OtherNote* on = new OtherNote(i,title,DC,now,  active, desc, fn, OtherNoteType::audio);
+        //QString fn = ui->prop2->text();
+        //QString dir = ui->directoryFile->selec
+        OtherNote* on = new OtherNote(i+"nv",title,DC,now,  active, desc, dir, OtherNoteType::audio);
         nv->updateNewVersion(on);
         break;
     }
@@ -171,7 +175,7 @@ void MainWindow::updateN(){
 }
 
 void MainWindow::updateAff(){
-    cout<<"reinitialisaion"<<endl;
+
     ui->listTask->setRowCount(0);
     ui->ListNotes->clear();
     ui->listArchived->clear();
@@ -206,8 +210,13 @@ void MainWindow::delete2(){
 }
 
 void MainWindow::chooseFile(){
-    QFileDialog* file = new QFileDialog;
-    file->show();
+    QString dF = QFileDialog::getOpenFileName();
+    dir = dF;
+    cout<<dir<<endl;
+}
+
+void MainWindow::open(){
+    //Qmedi
 }
 
 void MainWindow::restore(){
@@ -230,3 +239,5 @@ void  MainWindow::goToRelation(){
     newWindow->initialisation();
     newWindow->show();
 }
+
+

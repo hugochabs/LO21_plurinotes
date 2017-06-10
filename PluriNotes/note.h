@@ -5,6 +5,7 @@
 #include "json.h"
 #include "exception.h"
 //#include "contener.h"
+#include <QDateTime>
 
 
 using json = nlohmann::json;
@@ -49,10 +50,10 @@ public :
     QString& getTitle(){return title;}
     tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
     const tm* getDateCreation() const{return dateCreation;}//!getter de dateCreation
-    QString getDateCQString();
+
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     const tm* getDateLastUpdate() const{return dateLastUpdate;}//!getter de dateLastUpdate
-    QString getDateLUQString();
+
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     const NoteStatus& getNoteStatus() const{return noteStatus;}//!getter de noteStatus
@@ -116,6 +117,18 @@ public :
         strftime(date_char, sizeof(date_char), DATEFORMAT.toStdString().c_str(), date);
         QString * res = new QString(date_char);
         return *res;
+    }
+
+    static const QDateTime* QdatefromDate(const struct tm* date){
+        int y = date->tm_year + 1900;
+        int mo = date->tm_mon + 1;
+        int day = date->tm_mday;
+        int min = date->tm_min;
+        int hour = date->tm_hour;
+        int sec = date->tm_sec;
+        QDate d(y, mo, day);
+        QDateTime* dt = new QDateTime(d);
+        return dt;
     }
 
     /*!

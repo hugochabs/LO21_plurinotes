@@ -50,56 +50,8 @@ ostream& operator<< (ostream& f, const QString& S){
     return f;
 }
 
-QString Note::getDateCQString(){
 
-    int year = dateCreation->tm_year + 1900;
 
-    //cout<<year<<endl;
-
-    QString y = QString::number(year);
-
-    int month = dateCreation->tm_mon + 1;
-
-    QString mo = QString::number(month);
-
-    int day = dateCreation->tm_mday;
-
-    QString d = QString::number(day);
-
-    int min = dateCreation->tm_min;
-
-    QString mi = QString::number(min);
-
-    int hour = dateCreation->tm_hour;
-
-    QString h = QString::number(hour);
-
-    int sec = dateCreation->tm_sec;
-
-    QString s = QString::number(sec);
-
-    QString dateC = d + "/" + mo + "/" + y + " - " + h + ":" + mi + ":" + s;
-
-    return dateC;
-
-}
-
-QString Note::getDateLUQString(){
-    int year = dateLastUpdate->tm_year + 1900;
-    QString y = QString::number(year,10);
-    int month =dateLastUpdate->tm_mon + 1;
-    QString mo = QString::number(month);
-    int day = dateLastUpdate->tm_mday;
-    QString d = QString::number(day);
-    int min = dateLastUpdate->tm_min;
-    QString mi = QString::number(min);
-    int hour = dateLastUpdate->tm_hour;
-    QString h = QString::number(hour);
-    int sec = dateLastUpdate->tm_sec;
-    QString s = QString::number(sec);
-    QString dateLU = d + "/" +mo+"/"+ y + " - " + h + ":"+mi+":"+s;
-    return dateLU;
-}
 
 QString NoteVersions::getTypeQS(){
     switch(type){
