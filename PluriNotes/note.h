@@ -44,14 +44,19 @@ public :
     Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
     //getters
-    const QString& getIdentifier(){return identifier;}//!getter d'identifier
-    const QString& getTitle(){return title;}//!getter de title
+    const QString& getIdentifier() const{return identifier;}//!getter d'identifier
+    QString& getIdentifier(){return identifier;}//!getter d'identifier
+    const QString& getTitle() const{return title;}//!getter de title
+    QString& getTitle(){return title;}
     tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
+    const tm* getDateCreation() const{return dateCreation;}//!getter de dateCreation
     QString getDateCQString();
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
+    const tm* getDateLastUpdate() const{return dateLastUpdate;}//!getter de dateLastUpdate
     QString getDateLUQString();
     //virtual const QString& getText()const;
     NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
+    const NoteStatus& getNoteStatus() const{return noteStatus;}//!getter de noteStatus
     /*!
 
      * \brief getNoteStatusString retourne la valeur de NoteStatus
@@ -67,6 +72,7 @@ public :
         case NoteStatus::trash:
             return "trash";
         }
+        return "active";
     }
     //setters
     void setIdentifier(QString& i){identifier = i;}//!setter de identifier
@@ -139,6 +145,7 @@ public :
      * \return Le fichier json contenant les informations de la note
      */
     virtual json toJson();
+
     virtual QString& getStringAttributes();
     vector<Note> getReferences();
 };
@@ -166,13 +173,15 @@ public :
         }//!constructeur de NoteVersions
     }
     // getters
-    Note** getVersions(){ return versions; } //! getter de versions
+    const unsigned int& getNb() const{return nb;}//!getter de nb
+    const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
+    const NoteType& getType() const{return type;}//!getter de type
+    // getter const
+    Note** getVersions(){return versions;} //! getter de versions
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
-    const NoteType& getType(){return type;}
+    const NoteType& getType(){return type;}//!getter de type
     QString getTypeQS();
-
-
 
     //setters
     void setNoteType(NoteType t){type = t;}
@@ -297,8 +306,11 @@ public :
     static void freeNoteManager();
     static NoteManager& getNoteManager(NoteVersions ** nv = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0);
     // getters
-    const unsigned int& getNb(){return nb;}//!getter de nb
-    const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
+    const unsigned int& getNb() const{return nb;}//!getter de nb
+    const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
+    unsigned int& getNb(){return nb;}//!getter de nb
+    unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
+
     /*!
      * \brief addNoteVersion permet d'ajouter une NoteVersions dans le tableau
      * \param NV NoteVersions à ajouter.

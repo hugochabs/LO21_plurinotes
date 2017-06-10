@@ -21,9 +21,14 @@ private :
 public :
     Couple(const QString& l, Note* x , Note* y): label(l), x(x), y(y) {}
     //getters
-    const QString& getLabel(){return label;}
+    const QString& getLabel() const{return label;}
+    const Note* getX() const{return x;}
+    const Note* getY() const{return y;}
+
+    QString& getLabel(){return label;}
     Note* getX(){return x;}
     Note* getY(){return y;}
+    //setters
     void setX(Note * Xs){x = Xs;}
     void setY(Note * Ys){y = Ys;}
 };
@@ -47,12 +52,17 @@ public :
         }
     }
     //getters
-    Couple* getNthElement(unsigned int n){return couples[n];}
-    const unsigned int& getNb(){return nb;}
-    const unsigned int& getNbMax(){return nbMax;}
-    const QString& getTitle(){return title;}
-    const QString& getDescription(){return description;}
+    const unsigned int& getNb() const{return nb;}
+    const unsigned int& getNbMax() const{return nbMax;}
+    const QString& getTitle() const{return title;}
+    const QString& getDescription() const{return description;}
+    const RelationOrientation& getOrientation() const{return orientation;}
+    unsigned int& getNb(){return nb;}
+    unsigned int& getNbMax(){return nbMax;}
+    QString& getTitle(){return title;}
+    QString& getDescription(){return description;}
     RelationOrientation& getOrientation(){return orientation;}
+
     QString getOrientationQS(){
         switch(orientation){
         case oriented:
@@ -60,6 +70,7 @@ public :
         case non_oriented:
             return "non orientée";
         }
+        return "orientée";
     }
 
     //setters
@@ -128,8 +139,12 @@ public :
     static RelationManager& getRelationManager(Relation ** r, unsigned int n, unsigned int nM);
     static RelationManager& getRelationManager();
     static void freeRelationManager();
-    static const unsigned int& getNb(){return nb;}
-    static const unsigned int& getNbMax(){return nbMax;}
+    //getters
+    static const unsigned int& getNb() const{return nb;}
+    static const unsigned int& getNbMax() const{return nbMax;}
+    static unsigned int& getNb(){return nb;}
+    static unsigned int& getNbMax(){return nbMax;}
+    //setters
     static void setNb(unsigned int n){nb = n;}
     static void setNbMax(unsigned int nM){nbMax = nM;}
 
@@ -143,6 +158,7 @@ public :
      * \return un map de la forme <Note* ,  ordre auquel la Note* à été trouvée>
      */
     static map<Note *, int> getDescendants(Note* N, unsigned int order = 3);
+    static map<Note *, int> getAscendants(Note* N, unsigned int order = 3);
     class iterator{
         friend class RelationManager;
     private:

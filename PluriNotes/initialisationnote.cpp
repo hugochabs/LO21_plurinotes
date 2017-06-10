@@ -156,7 +156,7 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
 
 
 //!Fonctions qui permettent de remplir les champs de l'affichage principal
-    void MainWindow::fillNote(Note* n)const{
+void MainWindow::fillNote(Note* n)const{
 
     ui->id->setText(n->getIdentifier());
     ui->titre->setText(n->getTitle());
