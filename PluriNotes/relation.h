@@ -140,8 +140,6 @@ public :
     static RelationManager& getRelationManager();
     static void freeRelationManager();
     //getters
-    static const unsigned int& getNb() const{return nb;}
-    static const unsigned int& getNbMax() const{return nbMax;}
     static unsigned int& getNb(){return nb;}
     static unsigned int& getNbMax(){return nbMax;}
     //setters

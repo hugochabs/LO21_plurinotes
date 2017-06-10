@@ -119,6 +119,9 @@ void MainWindow::initialisationArchive(){
 
 
 void MainWindow::setAffichage(NoteType nt, Note& n){
+    RelationManager& rm = RelationManager::getRelationManager();
+    map<Note*, int> asc = rm.getAscendants(&n);
+    map<Note*, int> desc = rm.getDescendants(&n);
     switch(nt){
     case NoteType::A :
     {
@@ -151,6 +154,18 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
         return;
     }
 }
+
+void MainWindow::addAscendants(map<Note*, int> N){
+    QTreeWidgetItem* lastRootAdded;
+    int currentRank = 0;
+    for (auto it = N.begin() ; it != N.end() ; it++){
+        if(it->second == currentRank){
+            QTreeWidgetItem* tmp;
+            cout<<it->first;
+        }
+    }
+}
+
 
 
 //!Fonctions qui permettent de remplir les champs de l'affichage principal

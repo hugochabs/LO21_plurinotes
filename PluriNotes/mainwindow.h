@@ -63,6 +63,8 @@ public:
     void fillON(OtherNote &on)const;
     void setAffichage(NoteType nt, Note& n);
     void clearAffichage();
+    void addAscendants(map<Note*, int> N);
+    void addDescendants(map<Note*, int> N);
 
     void update();
 

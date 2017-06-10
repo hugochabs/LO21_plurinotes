@@ -80,7 +80,7 @@ public :
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
     void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
 
-    //autres méthodesnoteStatus
+    //autres méthodes
 
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être

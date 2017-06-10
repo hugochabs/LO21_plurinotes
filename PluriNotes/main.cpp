@@ -144,7 +144,6 @@ int main (int argc, char *argv[]){
         cout<<N.getInfo()<<endl;
     }
     //w.showFullScreen();
-
     return a.exec();
 
 }
