@@ -17,7 +17,8 @@ public :
     Article(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a, const QString& s)
         : Note(i, t, dC, dLU, a), text(s){}//!constructeur de l'article
     //getters
-    const QString& getText(){return text;}//!getter de text
+    const QString& getText() const{return text;}//!getter de text
+    QString& getText(){return text;}//!getter de text
 
     //setters
     void setText(QString& t){text = t;}//!setter de text
@@ -48,8 +49,10 @@ public :
     Task(const QString& i, const QString& t, tm* dC, tm* dLU,NoteStatus a, const QString& ac, TaskStatus s = waiting)
         : Note(i, t, dC, dLU, a), action(ac), status(s){}
     //getters
-    QString getAction()const {return action;}
-    const TaskStatus& getStatus(){return status;}
+    QString getAction(){return action;}
+    const QString getAction() const{return action;}
+    TaskStatus& getStatus(){return status;}
+    const TaskStatus& getStatus() const{return status;}
     QString getStatusQS(){ //!Getter pour avoir status en QString
         switch(status){
         case TaskStatus::doing:
@@ -93,7 +96,8 @@ public :
     TaskWithPriority(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a, const QString& ac, TaskStatus s, int p)
         : Task(i, t, dC, dLU, a, ac, s), priority(p){}
     //getters
-    const int& getPriority(){return priority;}
+    int& getPriority(){return priority;}
+    const int& getPriority() const{return priority;}
     QString getPriorityQS(){//!On convertit priority en QString
         return QString::number(priority);
     }
@@ -122,7 +126,8 @@ public :
         : Task(i, t, dC, dLU, a, ac, s), deadline(d){}
 
     //getters
-    const tm* getDeadline(){return deadline;}
+    const tm* getDeadline() const{return deadline;}
+    tm* getDeadline(){return deadline;}
 
     //setters
     void setDeadline(tm* d){deadline = d;}
@@ -149,9 +154,12 @@ public :
     OtherNote(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a, const QString& d, const QString& fName, const OtherNoteType& ty)
         : Note(i, t, dC, dLU, a), description(d), fileName(fName), type(ty){}
     //getters
-    const QString& getDescription(){return description;}
-    const QString& getFileName(){return fileName;}
-    const OtherNoteType& getType(){return type;}
+    const QString& getDescription() const{return description;}
+    const QString& getFileName() const{return fileName;}
+    const OtherNoteType& getType() const{return type;}
+    QString& getDescription(){return description;}
+    QString& getFileName(){return fileName;}
+    OtherNoteType& getType(){return type;}
     QString getTypeQS();//! On convertit le type en QString
     static OtherNoteType toONTFromQString(const QString& t){
         if(t=="Audio")

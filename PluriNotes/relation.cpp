@@ -92,8 +92,8 @@ void RelationManager::addRelation(Relation* R){
         Relation ** newTab = new Relation*[getNbMax()];
         for (unsigned int i = 0 ; i < getNb() ; i++){
             newTab[i] = relations[i];
-            for(unsigned int j = 0 ; j < relations[i]->getNb() ; j++){
-                newTab[i]->addCouple(relations[i]->getNthElement(j));
+            for(Relation::iterator it2 = relations[i]->getIterator() ; !it2.isDone() ; it2.isNext()){
+                newTab[i]->addCouple(&it2.current());
             }
         }
         relations = newTab;
@@ -156,7 +156,7 @@ map<Note*, int> RelationManager::getDescendants(Note* N, unsigned int order){
     map<Note*, int> M;
     //condition d'arrèt de la procédure récursive
     if(order > 0){
-        //Petite itérationd de tous les couples
+        //Petite itération de tous les couples
         RelationManager& RM = getRelationManager();
         for(RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
             Relation& R = it.current();
@@ -171,6 +171,40 @@ map<Note*, int> RelationManager::getDescendants(Note* N, unsigned int order){
                 if (C.getY()){
                     map<Note*, int> Tmp;
                     Tmp = getDescendants(C.getY(), order-1);
+                    //et on copie le résultat de la procédure récursive dans le tableau actuel
+                    for(auto it3 = Tmp.begin() ; it3 != Tmp.end() ; it3++){
+                        M[it3->first] = it3->second;
+                    }
+                }
+            }
+        }
+    }
+    //on retourne le map
+    return M;
+}
+
+
+map<Note *, int> RelationManager::getAscendants(Note* N, unsigned int order){
+    //map de retour de la forme :
+    //<Note* ,  ordre auquel la Note* à été trouvée>
+    map<Note*, int> M;
+    //condition d'arrèt de la procédure récursive
+    if(order > 0){
+        //Petite itération de tous les couples
+        RelationManager& RM = getRelationManager();
+        for(RelationManager::iterator it = RM.getIterator() ; !it.isDone() ; it.isNext()){
+            Relation& R = it.current();
+            for (Relation::iterator it2 = R.getIterator() ; !it2.isDone() ; it2.isNext()){
+                Couple& C = it2.current();
+                //On regarde si la note en paramètre est Y tq le couple soit (X,Y)
+                if (C.getY()->getIdentifier() == N->getIdentifier()){
+                    //si c'est le cas on l'ajoute au map avec l'ordre correspondant
+                    M[C.getX()] = 3 - order;
+                }
+                //Si Le fils n'est pas nul, on relance la procédure récursivement
+                if (C.getX()){
+                    map<Note*, int> Tmp;
+                    Tmp = getDescendants(C.getX(), order-1);
                     //et on copie le résultat de la procédure récursive dans le tableau actuel
                     for(auto it3 = Tmp.begin() ; it3 != Tmp.end() ; it3++){
                         M[it3->first] = it3->second;
