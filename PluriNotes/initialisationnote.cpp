@@ -51,53 +51,55 @@ void MainWindow::initialisationT(){
             cout<<nv.getTypeQS()<<endl;
             cout<<it.getNbRemain()<<endl;
             cout<<manager1.getNb()<<endl;
-            switch(nv.getType()){
-            case NoteType::T :{
+            if(n.getNoteStatusString()=="active"){
+                switch(nv.getType()){
+                case NoteType::T :{
 
-                    Task& t = static_cast<Task&>(n);
+                        Task& t = static_cast<Task&>(n);
 
+                        QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
+                        ui->listTask->insertRow(ui->listTask->rowCount());
+                        row = ui->listTask->rowCount()-1;
+                        cout<<row<<endl;
+                        ui->listTask->setItem(row,0, action);
+                        break;}
+
+                 case NoteType::TWD : {
+
+                    TaskWithDeadline& t = static_cast<TaskWithDeadline&>(n);
+
+                    QString date = Note::QStringFromDate(t.getDeadline());
                     QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
+                    //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
+                    QTableWidgetItem* d=new QTableWidgetItem(date);
+
                     ui->listTask->insertRow(ui->listTask->rowCount());
+
                     row = ui->listTask->rowCount()-1;
                     cout<<row<<endl;
                     ui->listTask->setItem(row,0, action);
+                    ui->listTask->setItem(row,1, d);
+                    /*ui->listTask->setItem(row,2, status2);*/
                     break;}
 
-             case NoteType::TWD : {
+                case NoteType::TWP : {
 
-                TaskWithDeadline& t = static_cast<TaskWithDeadline&>(n);
+                   TaskWithPriority& t = static_cast<TaskWithPriority&>(n);
 
-                QString date = Note::QStringFromDate(t.getDeadline());
-                QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
-                //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
-                QTableWidgetItem* d=new QTableWidgetItem(date);
+                   QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
 
-                ui->listTask->insertRow(ui->listTask->rowCount());
+                   QTableWidgetItem* prio=new QTableWidgetItem(t.getPriorityQS());
 
-                row = ui->listTask->rowCount()-1;
-                cout<<row<<endl;
-                ui->listTask->setItem(row,0, action);
-                ui->listTask->setItem(row,1, d);
-                /*ui->listTask->setItem(row,2, status2);*/
-                break;}
+                   ui->listTask->insertRow(ui->listTask->rowCount());
 
-            case NoteType::TWP : {
+                   row = ui->listTask->rowCount()-1;
+                   cout<<row<<endl;
+                   ui->listTask->setItem(row,0, action);
+                   ui->listTask->setItem(row,2, prio);
+                   break;}
 
-               TaskWithPriority& t = static_cast<TaskWithPriority&>(n);
-
-               QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
-
-               QTableWidgetItem* prio=new QTableWidgetItem(t.getPriorityQS());
-
-               ui->listTask->insertRow(ui->listTask->rowCount());
-
-               row = ui->listTask->rowCount()-1;
-               cout<<row<<endl;
-               ui->listTask->setItem(row,0, action);
-               ui->listTask->setItem(row,2, prio);
-               break;}
-
-           }
+               }
+            }
 }
 }
 
@@ -156,13 +158,15 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
 //!Fonctions qui permettent de remplir les champs de l'affichage principal
     void MainWindow::fillNote(Note* n)const{
 
-        ui->id->setText(n->getIdentifier());
+    ui->id->setText(n->getIdentifier());
     ui->titre->setText(n->getTitle());
-    QString dateC = Note::QStringFromDate(n->getDateCreation());
-    QString dateLU = Note::QStringFromDate(n->getDateLastUpdate());
+    //QString dateC = Note::QStringFromDate(n->getDateCreation());
+    //QString dateLU = Note::QStringFromDate(n->getDateLastUpdate());
 
-    ui->dc->setText(dateC);
-    ui->dm->setText(dateLU);
+    QDateTime dateC = *Note::QdatefromDate(n->getDateCreation());
+    QDateTime dateLU = *Note::QdatefromDate(n->getDateLastUpdate());
+    ui->dc->setDateTime(dateC);
+    ui->dm->setDateTime(dateLU);
 }
 
 
@@ -181,14 +185,15 @@ void MainWindow::fillT(Task& t)const{
 
 void MainWindow::fillTWD(TaskWithDeadline &t)const{
     fillT(t);
-    QString date = Note::QStringFromDate(t.getDeadline());
-
-    ui->prop3->setText(date);
+    QDateTime dateC = *Note::QdatefromDate(t.getDeadline());
+    ui->prop3->setReadOnly(true);
+    ui->dm->setDateTime(dateC);
     ui->prop2->setReadOnly(true);
 }
 
 void MainWindow::fillTWP(TaskWithPriority& t)const{
     fillT(t);
+    ui->prop2->setReadOnly(true);
     ui->prop2->setText(t.getPriorityQS());
     ui->prop3->setReadOnly(true);
 }

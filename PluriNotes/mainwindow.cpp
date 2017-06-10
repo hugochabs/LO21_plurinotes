@@ -46,7 +46,8 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->prop4->setVisible(false);
     ui->typeON->setVisible(false);
     ui->directoryFile->setVisible(false);
-    ui->dateTimeEdit->setVisible(false);
+    ui->dl->setVisible(false);
+    ui->dl->setCalendarPopup(true);
 
     //on connecte les différents signaux et slots
     QObject::connect(ui->ListNotes, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(affichage(QTreeWidgetItem*, int)));

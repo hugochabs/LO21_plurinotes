@@ -49,6 +49,7 @@ void  MainWindow::slotA(){
         ui->prop3L->setVisible(false);
         ui->prop3->setVisible(false);
         ui->typeON->setVisible(false);
+        ui->dl->setVisible(false);
 
         ui->prop4L->setVisible(false);
         ui->prop4->setVisible(false);
@@ -74,8 +75,9 @@ void MainWindow::slotT(){
 
         ui->prop3L->setVisible(true);
         ui->prop3L->setText("Deadline");
-        ui->prop3->setVisible(true);
+        ui->prop3->setVisible(false);
         ui->typeON->setVisible(false);
+        ui->dl->setVisible(true);
 
         ui->prop4L->setVisible(true);
         ui->prop4L->setText("Status");
@@ -103,6 +105,7 @@ void MainWindow::slotON(){
 
         ui->prop3L->setVisible(false);
         ui->prop3->setVisible(false);
+        ui->dl->setVisible(false);
 
 
         ui->prop4L->setVisible(true);
@@ -146,7 +149,8 @@ void MainWindow::updateN(){
             t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
         }
         else if(nv->getType()==TWD){
-            tm* dl = Note::dateFromQString(ui->prop3->text());
+            QString d = ui->dm->dateTime().toString(DATEFORMAT);
+            tm* dl = Note::dateFromQString(d);
              t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
         }
         else{
