@@ -83,6 +83,8 @@ public :
 
     //autres méthodes
 
+    QString getTypeOfNote();
+
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
      * surchargée par les classes filles

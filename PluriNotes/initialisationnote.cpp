@@ -21,6 +21,14 @@ void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     parent->addChild(note);
 }
 
+QTreeWidgetItem* MainWindow::addChildBis(QTreeWidgetItem* parent, QString title,QString type){
+    QTreeWidgetItem* note = new QTreeWidgetItem();
+    note->setText(0, title);
+    note->setText(1, type);
+    parent->addChild(note);
+    return note;
+}
+
 //!On initialise l'affichage au lancement de l'application
 void MainWindow::initialisationNA(){
     for(NoteManager::iterator it = manager1.getIterator();!it.isDone();it.isNext()){
@@ -124,6 +132,7 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
     RelationManager& rm = RelationManager::getRelationManager();
     map<Note*, int> asc = rm.getAscendants(&n);
     map<Note*, int> desc = rm.getDescendants(&n);
+    addAscendants(asc);
     switch(nt){
     case NoteType::A :
     {
@@ -158,12 +167,33 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
 }
 
 void MainWindow::addAscendants(map<Note*, int> N){
-    QTreeWidgetItem* lastRootAdded;
+    cout<<"------av------";
+    cout<<N;
+    cout<<"ap";
+    ui->ascendants->clear();
+    QTreeWidgetItem* beforelastParentAdded;
+    QTreeWidgetItem* lastParentAdded;
+    QTreeWidgetItem* lastChildAdded;
     int currentRank = 0;
     for (auto it = N.begin() ; it != N.end() ; it++){
-        if(it->second == currentRank){
-            QTreeWidgetItem* tmp;
-            cout<<it->first;
+        if(it->second == 0){
+            cout<<"root";
+            lastParentAdded = addRoot(ui->ascendants, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
+            currentRank = 1;
+        }else if (it->second == currentRank){
+            cout<<"cr";
+            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
+        }else if (it->second > currentRank){
+            cout<<"cr+";
+            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
+            beforelastParentAdded = lastParentAdded;
+            lastParentAdded = lastChildAdded;
+            currentRank++;
+        }else{
+            cout<<"else";
+            lastParentAdded = beforelastParentAdded;
+            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
+            currentRank--;
         }
     }
 }

@@ -318,6 +318,17 @@ QString& OtherNote::getStringAttributes(){
     return *chaine;
 }
 
+QString Note::getTypeOfNote(){
+    NoteManager& nm = NoteManager::getNoteManager();
+    for (NoteManager::iterator it = nm.getIterator() ; !it.isDone() ; it.isNext()){
+        NoteVersions nv = it.current();
+        NoteVersions::iterator it2 = nv.getIterator();
+        if (it2.current().getIdentifier() == getIdentifier()){
+            return nv.getTypeQS();
+        }
+    }
+}
+
 
 vector<Note> Note::getReferences(){
     //On crée un vector pour la simplicité d'utilisation

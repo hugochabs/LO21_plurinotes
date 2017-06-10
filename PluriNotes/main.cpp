@@ -76,12 +76,16 @@ int main (int argc, char *argv[]){
     //création de deux couples
     Couple* c = new Couple("label", &A, &T);
     Couple* c2 = new Couple("label2", &T, &B);
+    Couple* c3 = new Couple("label", &B, &A);
+    Couple* c4 = new Couple("label", &Z, &A);
     //paramétrage de la relation
     R.setTitle("Titre");
     R.setDescription("Relation qui joint les deux notes lde l'espace");
     //ajout des couples
     R.addCouple(c);
     R.addCouple(c2);
+    R.addCouple(c3);
+    R.addCouple(c4);
 
     //création d'un tableau de relations et d'un RM
     Relation** tabRel = new Relation*[5];
