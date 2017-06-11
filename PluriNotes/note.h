@@ -336,13 +336,6 @@ public :
     NoteVersions* getNVfromNote(Note* N);
 
     /*!
-     * \brief checkIfNoteInReference permet de vérifier si une Note
-     *  se trouve dans une Référence
-     * \param N Note
-     */
-    bool checkIfNoteInReference(Note* N);
-
-    /*!
      * \brief archiveNoteVersions permet d'archiver une note
      * ainsi que toutes ses versions (= archiver une NoteVersions)
      * \param NV NoteVersions à archiver

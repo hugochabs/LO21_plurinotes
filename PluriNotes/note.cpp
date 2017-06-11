@@ -190,11 +190,6 @@ NoteVersions* NoteManager::getNVfromNote(Note* N){
     throw NotesException("Pas de NoteVersions correspondant à la Note que vous recherchez");
 }
 
-bool NoteManager::checkIfNoteInReference(Note* N){
-    // TODO WHEN REFERENCE
-    return true;
-}
-
 void NoteManager::archiveNoteVersions(NoteVersions *NV){
     for(NoteVersions::iterator it = NV->getIterator() ; !it.isDone() ; it.isNext())
         it.current().setNoteStatus(archived);
@@ -209,7 +204,7 @@ void NoteManager::restoreNoteVersions(NoteVersions *NV){
 void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
     NoteVersions* NV = getNVfromNote(N);
-     if ( checkIfNoteInReference(N) ){
+     if ( Reference::isNoteReferenced(N) ){
         archiveNoteVersions(NV);
      }
      else {
@@ -226,13 +221,11 @@ void NoteManager::deleteNoteCouples(Note* N){
         Relation R = it.current();
         for (Relation::iterator it2 = it.current().getIterator() ; !it2.isDone() ; it2.isNext() ){
             if ( it2.current().getX() == N || it2.current().getY() == N ){
-                // TODO
                 R.deleteCouple(&it2.current());
 
             }
         }
     }
-
 }
 
 

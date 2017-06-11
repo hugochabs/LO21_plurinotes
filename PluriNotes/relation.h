@@ -34,7 +34,7 @@ public :
 };
 
 /*!
- * \brief The Relation class
+ * \brief La classe Relation
  */
 class Relation {
 private :
@@ -200,6 +200,11 @@ public :
     static Reference& getRef();
     static void freeRef();
     static void updateRefs();
+    /*!
+     * \brief isNoteReferenced permet de vérifier si une Note
+     *  se trouve dans une Référence
+     * \param N Note
+     */
     static bool isNoteReferenced(Note * N);
     void getReferencesNote(Note * N);
     void getReferences();

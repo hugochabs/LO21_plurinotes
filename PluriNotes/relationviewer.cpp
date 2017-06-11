@@ -17,6 +17,8 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
 
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
     connect(ui->listRelation, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(affichage(QTreeWidgetItem*,int)));
+
+   //connect(ui->create, SIGNAL(clicked()), this, SLOT());
 }
 
 RelationViewer::~RelationViewer()
