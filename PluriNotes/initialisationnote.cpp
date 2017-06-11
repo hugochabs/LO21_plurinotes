@@ -39,7 +39,9 @@ void MainWindow::initialisationNA(){
             QTreeWidgetItem* note1;
             if(n.getNoteStatusString()=="active"){
                 note1 = addRoot(ui->ListNotes, n.getIdentifier(), nv.getTypeQS());
-                for(NoteVersions::iterator it2=nv.getIterator1();!it2.isDone(); it2.isNext()){
+                NoteVersions::iterator it2=nv.getIterator();
+                it2.isNext();
+                for(it2 ;!it2.isDone(); it2.isNext()){
                      Note temp = it2.current();
                      addChild(note1, temp.getIdentifier(), nv.getTypeQS());
                  }

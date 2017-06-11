@@ -51,6 +51,9 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     selectType = new QButtonGroup;
     selectOption = new QButtonGroup;
 
+    dl = new QDateTimeEdit;
+    dl->setCalendarPopup(true);
+
     selectType->addButton(task);
     selectType->addButton(article);
     selectType->addButton(other);
@@ -71,6 +74,7 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     prop2->setVisible(false);
     prop3L->setVisible(false);
     prop3->setVisible(false);
+    dl->setVisible(false);
     prop4L->setVisible(false);
     prop4->setVisible(false);
     twp->setVisible(false);
@@ -89,6 +93,7 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     layout2->addWidget(twp);
     layout3->addWidget(prop3L);
     layout3->addWidget(prop3);
+    layout3->addWidget(dl);
     layout3->addWidget(twd);
     layout3->addWidget(menu);
     layout4->addWidget(prop4L);
@@ -130,6 +135,8 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     connect(other, SIGNAL(clicked(bool)), this, SLOT(changeOther()));
     connect(id, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
     connect(save, SIGNAL(clicked()), this, SLOT(addN()));
+    connect(twd, SIGNAL(clicked()), this, SLOT(activeDeadline()));
+    connect(twp, SIGNAL(clicked()), this, SLOT(activePriority()));
 
 }
 
@@ -153,7 +160,8 @@ void NoteEditeur::changeTask(){
 
         prop3L->setVisible(true);
         prop3L->setText("Deadline");
-        prop3->setVisible(true);
+        prop3->setVisible(false);
+        dl->setVisible(true);
         menu->setVisible(false);
 
         prop4L->setVisible(true);
@@ -181,6 +189,7 @@ void NoteEditeur::changeArticle(){
         prop3L->setVisible(false);
         prop3->setVisible(false);
         menu->setVisible(false);
+        dl->setVisible(false);
 
         prop4L->setVisible(false);
         prop4->setVisible(false);
@@ -210,6 +219,7 @@ void NoteEditeur::changeOther(){
           prop3L->setText("Type");
           prop3->setVisible(false);
           menu->setVisible(true);
+          dl->setVisible(false);
 
           prop4L->setVisible(false);
           prop4->setVisible(false);
@@ -222,7 +232,12 @@ void NoteEditeur::changeOther(){
       }
 }
 
-
+void NoteEditeur::activeDeadline(){
+    ind2 = 1;
+}
+void NoteEditeur::activePriority(){
+    ind2 = 2;
+}
 
 
 NoteManager& nm = NoteManager::getNoteManager();
@@ -236,13 +251,20 @@ void NoteEditeur::addN(){
     if(ind==2){
         Article* a = new Article(idN, titleN, now1, now1, active, art->toPlainText());
         nv->updateNewVersion(a);
-
-
     }
     else if(ind==1){
         nv->setNoteType(NoteType::T);
         QString action = prop1->text();
         Task* t = new Task(idN, titleN, now1, now1, active, action, waiting);
+        if(ind2==1){
+            QString d = dl->dateTime().toString(DATEFORMAT);
+            tm* date = Note::dateFromQString(d);
+            t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
+        }
+        else if(ind2==2){
+            unsigned int prio = prop2->text().toInt();
+            t = new TaskWithPriority(idN, titleN, now1, now1, active, action, waiting, prio);
+        }
         nv->updateNewVersion(t);
 
     }
