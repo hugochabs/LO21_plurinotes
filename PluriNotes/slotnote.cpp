@@ -6,6 +6,7 @@ NoteManager& manager2 = NoteManager::getNoteManager();
 
 //! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note active sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
+    cout<<"clicked"<<endl;
     QString id = item->text(i);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
         NoteVersions& nvt = it.current();       
@@ -17,7 +18,6 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
                  n=&temp;
                  nv=&nvt;
                  return ;
-
              }
          }
 

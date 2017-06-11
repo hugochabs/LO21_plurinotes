@@ -13,6 +13,9 @@
 #include <QObject>
 #include <QRadioButton>
 #include <QComboBox>
+#include <QButtonGroup>
+#include <QDateTimeEdit>
+
 #include "notefille.h"
 #include "exception.h"
 #include "mainwindow.h"
@@ -44,9 +47,15 @@ class NoteEditeur : public QDialog, public Widget {
     QRadioButton* article;
     QRadioButton* other;
 
+    QButtonGroup* selectType;
+    QButtonGroup* selectOption;
+
+    QDateTimeEdit* dl;
+
 
     //propriétés notefille
     unsigned int ind;
+    unsigned int ind2;
     QLabel* prop1L;
     QLineEdit* prop1;
     QTextEdit* art;
@@ -57,6 +66,8 @@ class NoteEditeur : public QDialog, public Widget {
     QLabel* prop4L;
     QLineEdit* prop4;
     QComboBox* menu;
+    QRadioButton* twp;
+    QRadioButton* twd;
     //layout
     QHBoxLayout* layout1;
     QHBoxLayout* layout2;
@@ -82,6 +93,9 @@ public slots :
 
     void changeOther();
     void addN();
+
+    void activeDeadline();
+    void activePriority();
 signals:
     // modify();
 

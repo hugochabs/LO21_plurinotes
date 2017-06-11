@@ -11,13 +11,12 @@
 #include <QBoxLayout>
 #include <QListWidgetItem>
 #include <QTreeWidget>
-//#include <QMediaPlayer>
 
 #include <QFileDialog>
 #include <QObject>
 #include "notefille.h"
 #include "noteediteur.h"
-//#include "strategy.h
+
 #include "trashviewer.h"
 #include "relationviewer.h"
 #include "alertviewer.h"
@@ -71,14 +70,6 @@ public:
     void update();
 
 
-
-
-
-
-
-
-    //void affichage(QTreeWidgetItem *item, int i);
-    //Slots modification affichage principal
 private:
     Ui::MainWindow *ui;
     int ind;
@@ -102,6 +93,7 @@ signals:
 public slots:
     //!slot quand on clique sur une note dans l'arbre de gauche
     void affichage(QTreeWidgetItem *item, int i);
+
     //Slots modification affichage principal
     void add();
     void slotA();

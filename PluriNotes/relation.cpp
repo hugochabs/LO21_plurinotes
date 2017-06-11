@@ -53,18 +53,6 @@ ostream& operator<< (ostream& f, map<Note*, int> M){
 
 /**********************************/
 
-
-
-
-
-
-
-
-
-
-
-
-
 void Relation::addCouple(Couple * c){
     //agrandissement du tableau si nécessaire
     if (nb == nbMax){
@@ -81,9 +69,8 @@ void Relation::addCouple(Couple * c){
 }
 
 void Relation::deleteCouple(Couple * c){
-    // TODO
+    delete c;
 }
-
 
 void RelationManager::addRelation(Relation* R){
     //agrandissement du tableau si nécessaire
@@ -267,7 +254,7 @@ bool Reference::isNoteReferenced(Note * N){
     R.getReferences();
     for (Reference::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
         Couple& C = it.current();
-        if (C.getY()->getIdentifier() == N->getIdentifier()){
+             if ( C.getX() == N || C.getY() == N ){
             return true;
         }
     }
