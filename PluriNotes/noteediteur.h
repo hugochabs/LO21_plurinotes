@@ -32,14 +32,14 @@ class NoteEditeur : public QDialog, public Widget {
     friend class MainWindow;
 
     QVBoxLayout* layoutv;
-    QHBoxLayout* layouth1;
+
     QHBoxLayout* layouth2;
     QHBoxLayout* layouth3;
     QHBoxLayout* layouthbutton;
-    QLabel* idl;
+
     QLabel* titre1;
 
-    QLineEdit* id;
+
     QLineEdit* titre;
     QPushButton* save;
     QPushButton* quit;

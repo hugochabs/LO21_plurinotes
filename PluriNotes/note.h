@@ -82,6 +82,10 @@ public :
     void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
 
     //autres méthodes
+    static QString createID(const QString& title, unsigned int version){
+        QString id = title+"V"+QString::number(version+1);
+        return id;
+    }
 
     QString getTypeOfNote();
 

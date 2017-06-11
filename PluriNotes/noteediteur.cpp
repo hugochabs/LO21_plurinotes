@@ -9,13 +9,13 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
 
     setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
 
-    //Bouton pour choisir le type de note
-    //note = new QRadioButton("Note", this);
+    //!Bouton pour choisir le type de note
+
     task = new QRadioButton("Task", this);
     article = new QRadioButton("Article", this);
     other = new QRadioButton("Other", this);
     layouthbutton = new QHBoxLayout;
-    //layouthbutton->addWidget(note);
+
     layouthbutton->addWidget(task);
     layouthbutton->addWidget(article);
     layouthbutton->addWidget(other);
@@ -23,14 +23,13 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
 
 
     layoutv = new QVBoxLayout;
-    layouth1 = new QHBoxLayout;
+
     layouth2 = new QHBoxLayout;
     layouth3 = new QHBoxLayout;
 
     //Propriété de note
-    idl = new QLabel("Identificateur");
+
     titre1 = new QLabel("Titre");
-    id = new QLineEdit;
     titre = new QLineEdit;
 
     //propriété de Notefille
@@ -107,14 +106,13 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
 
     quit = new QPushButton("Quitter", this);
 
-    layouth1->addWidget(idl);
+
     layouth2->addWidget(titre1);
 
-    layouth1->addWidget(id);
+
     layouth2->addWidget(titre);
 
     layoutv->addLayout(layouthbutton);
-    layoutv->addLayout(layouth1);
     layoutv->addLayout(layouth2);
     layoutv->addLayout(layout1);
     layoutv->addLayout(layout2);
@@ -133,7 +131,7 @@ NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widg
     connect(article, SIGNAL(clicked(bool)), this, SLOT(changeArticle()));
     //connect(note, SIGNAL(clicked(bool)), this, SLOT(changeNote()));
     connect(other, SIGNAL(clicked(bool)), this, SLOT(changeOther()));
-    connect(id, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
+    connect(titre, SIGNAL(textChanged(QString)), this, SLOT(activerSave()));
     connect(save, SIGNAL(clicked()), this, SLOT(addN()));
     connect(twd, SIGNAL(clicked()), this, SLOT(activeDeadline()));
     connect(twp, SIGNAL(clicked()), this, SLOT(activePriority()));
@@ -245,8 +243,8 @@ void NoteEditeur::addN(){
     time_t t = time(0);   // get time now
     struct tm * now1 = localtime( & t );
 
-    QString idN = id->text();
     QString titleN = titre->text();
+    QString idN = Note::createID(titleN, 0);
     NoteVersions* nv = new NoteVersions(new Note*[0], 0,0);
     if(ind==2){
         Article* a = new Article(idN, titleN, now1, now1, active, art->toPlainText());
@@ -256,15 +254,17 @@ void NoteEditeur::addN(){
         nv->setNoteType(NoteType::T);
         QString action = prop1->text();
         Task* t = new Task(idN, titleN, now1, now1, active, action, waiting);
-//        if(ind2==1){
-//            QString d = dl->dateTime().toString(DATEFORMAT);
-//            tm* date = Note::dateFromQString(d);
-//            t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
-//        }
-//        else if(ind2==2){
-//            unsigned int prio = prop2->text().toInt();
-//            t = new TaskWithPriority(idN, titleN, now1, now1, active, action, waiting, prio);
-//        }
+        if(ind2==1){
+            nv->setNoteType(NoteType::TWD);
+            QString d = dl->dateTime().toString(DATEFORMAT);
+            tm* date = Note::dateFromQString(d);
+            t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
+        }
+        else if(ind2==2){
+            nv->setNoteType(NoteType::TWP);
+            unsigned int prio = prop2->text().toInt();
+            t = new TaskWithPriority(idN, titleN, now1, now1, active, action, waiting, prio);
+        }
         nv->updateNewVersion(t);
 
     }

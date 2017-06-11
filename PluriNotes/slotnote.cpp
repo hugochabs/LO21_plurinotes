@@ -122,8 +122,9 @@ void MainWindow::slotON(){
 
 void MainWindow::updateN(){
 
-    QString i = ui->id->text();
+    QString id = ui->id->text();
     QString title = ui->titre->text();
+    QString i = Note::createID(title, id.right(1).toInt());
     QString  datec;
     datec = ui->dc->dateTime().toString();
 //    QString dc = ui->dc->text();
@@ -134,7 +135,7 @@ void MainWindow::updateN(){
     case 1:{
         QString t = ui->text->toPlainText();
 
-        Article* a = new Article(i+"nv", title, DC, now,  active, t);
+        Article* a = new Article(i, title, DC, now,  active, t);
         nv->updateNewVersion(a);
         break;
     }
@@ -145,16 +146,16 @@ void MainWindow::updateN(){
         Task* t;
         if(nv->getType()==TWP){
             QString p = ui->prop2->text();
-            t = new TaskWithPriority(i+"nv", title, DC, now,  active, act, ts, p.toInt());
+            t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
         }
         else if(nv->getType()==TWD){
             QString d = ui->dm->dateTime().toString(DATEFORMAT);
             tm* dl = Note::dateFromQString(d);
-             t = new TaskWithDeadline(i+"nv",title,DC, now,  active, act, ts, dl);
+             t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
         }
         else{
 
-             t= new Task(i+"nv", title, DC, now,  active, act, ts);
+             t= new Task(i, title, DC, now,  active, act, ts);
 
         }
         nv->updateNewVersion(t);
@@ -165,7 +166,7 @@ void MainWindow::updateN(){
         QString desc = ui->prop1->text();
         //QString fn = ui->prop2->text();
         //QString dir = ui->directoryFile->selec
-        OtherNote* on = new OtherNote(i+"nv",title,DC,now,  active, desc, dir, OtherNoteType::audio);
+        OtherNote* on = new OtherNote(i,title,DC,now,  active, desc, dir, OtherNoteType::audio);
         nv->updateNewVersion(on);
         break;
     }
