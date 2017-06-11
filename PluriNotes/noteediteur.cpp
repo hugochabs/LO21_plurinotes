@@ -256,15 +256,15 @@ void NoteEditeur::addN(){
         nv->setNoteType(NoteType::T);
         QString action = prop1->text();
         Task* t = new Task(idN, titleN, now1, now1, active, action, waiting);
-        if(ind2==1){
-            QString d = dl->dateTime().toString(DATEFORMAT);
-            tm* date = Note::dateFromQString(d);
-            t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
-        }
-        else if(ind2==2){
-            unsigned int prio = prop2->text().toInt();
-            t = new TaskWithPriority(idN, titleN, now1, now1, active, action, waiting, prio);
-        }
+//        if(ind2==1){
+//            QString d = dl->dateTime().toString(DATEFORMAT);
+//            tm* date = Note::dateFromQString(d);
+//            t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
+//        }
+//        else if(ind2==2){
+//            unsigned int prio = prop2->text().toInt();
+//            t = new TaskWithPriority(idN, titleN, now1, now1, active, action, waiting, prio);
+//        }
         nv->updateNewVersion(t);
 
     }

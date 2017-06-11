@@ -123,16 +123,7 @@ int main (int argc, char *argv[]){
     //vector<Widget*> colleague;
     cout<<"test"<<endl;
     Mediator& mediator = Mediator::getMediator();
-    /*TreeWidget* tw1 = new TreeWidget(w.getTreeNote(), &mediator, 0);
-    TreeWidget* tw2 = new TreeWidget(w.getTreeArchived(), &mediator, 1);
-    //TableWidget* tw3 = new TreeWidget()
-    MWindow* mw = new MWindow(&w, &mediator, 2);
 
-    mediator.registerC(tw1);
-    mediator.registerC(tw2);
-    mediator.registerC(mw);
-    mediator.distributeMessage(tw1, "salut toi");
-    tw1->sendMessage("Coucou bebe");*/
     mediator.registerC(&w);
 
 

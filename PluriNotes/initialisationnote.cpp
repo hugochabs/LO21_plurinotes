@@ -122,7 +122,6 @@ void MainWindow::initialisationArchive(){
 
             QTreeWidgetItem* note1;
             if(n.getNoteStatus() == NoteStatus::archived){
-
                  note1 = addRoot(ui->listArchived, n.getIdentifier(), nv.getTypeQS());
             }
 
