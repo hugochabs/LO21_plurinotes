@@ -19,7 +19,7 @@ int main (int argc, char *argv[]){
     //création de deux articles
     Article A("ID-A", "Titre Article A", now, now, act, "Texte A");
     Article B("ID-B", "Titre Article B", now, now, act, "Texte B");
-    Article Z("ID-A", "Titre \\ref{ID-B} Article A", now, now, act, "Texte\\ref{ID-T} A");
+    Article Z("ID-Z", "Titre \\ref{ID-B} Article Z", now, now, act, "Texte\\ref{ID-T} Z");
     //création de deux task
     Task T("ID-T", "Titre Task", now, now, act, "Action Task", doing);
     Task T2("ID-T2", "Titre Task 2", now, now, act, "Action Task 2", done);
@@ -76,8 +76,8 @@ int main (int argc, char *argv[]){
     //création de deux couples
     Couple* c = new Couple("label", &A, &T);
     Couple* c2 = new Couple("label2", &T, &B);
-    Couple* c3 = new Couple("label", &B, &A);
-    Couple* c4 = new Couple("label", &Z, &A);
+    Couple* c3 = new Couple("label3", &Z, &A);
+    Couple* c4 = new Couple("label4", &B, &A);
     //paramétrage de la relation
     R.setTitle("Titre");
     R.setDescription("Relation qui joint les deux notes lde l'espace");
@@ -92,7 +92,7 @@ int main (int argc, char *argv[]){
     RelationManager& RM = RelationManager::getRelationManager(tabRel, 0, 5);
     //Ajout des relations
     RM.addRelation(&R);
-    RM.addRelation(&R);
+    //RM.addRelation(&R);
     //Affichage des relations dans lesquelles A est impliquée
     //cout<<getRelations(&A);
 
@@ -133,12 +133,6 @@ int main (int argc, char *argv[]){
     Ref.getReferences();
     bool referenced = Reference::isNoteReferenced(&B);
     cout<<referenced;
-    try{
-    map<Note *, int> M = RelationManager::getDescendants(&A);
-    cout<<M;
-    }catch(NotesException N){
-        cout<<N.getInfo()<<endl;
-    }
     //w.showFullScreen();
     return a.exec();
 

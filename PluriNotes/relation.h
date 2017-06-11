@@ -156,8 +156,8 @@ public :
      * \param order l'ordre jusqu'auquel on veut chercher des descendants
      * \return un map de la forme <Note* ,  ordre auquel la Note* à été trouvée>
      */
-    static map<Note *, int> getDescendants(Note* N, unsigned int order = 3);
-    static map<Note *, int> getAscendants(Note* N, unsigned int order = 3);
+    static map<Note *, int> getDescendants(Note* N, int order = 2);
+    static map<Note *, int> getAscendants(Note* N, int order = 2);
     class iterator{
         friend class RelationManager;
     private:

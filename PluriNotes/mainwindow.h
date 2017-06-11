@@ -54,8 +54,9 @@ public:
     QTreeWidget* getTreeArchived();
     //!Fonctions pour remplir QTreeWidget
     static QTreeWidgetItem* addRoot(QTreeWidget* parent, QString id, QString type);
+    static QTreeWidgetItem* addRootBis(QTreeWidget* parent, QString id);
     static void addChild(QTreeWidgetItem* parent, QString title, QString type);
-    static QTreeWidgetItem* addChildBis(QTreeWidgetItem* parent, QString title,QString type);
+    static QTreeWidgetItem* addChildBis(QTreeWidgetItem* parent, QString title);
     void fillNote(Note* n)const;
     void fillA(Article& a)const;
     void fillT(Task &t)const;
@@ -64,8 +65,7 @@ public:
     void fillON(OtherNote &on)const;
     void setAffichage(NoteType nt, Note& n);
     void clearAffichage();
-    void addAscendants(map<Note*, int> N);
-    void addDescendants(map<Note*, int> N);
+    void addElementsInWidgets(map<Note *, int>& N, QTreeWidget* widget);
 
     void update();
 

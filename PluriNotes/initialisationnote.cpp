@@ -14,6 +14,13 @@ QTreeWidgetItem* MainWindow::addRoot(QTreeWidget* parent, QString id, QString ty
     return note;
 }
 
+QTreeWidgetItem* MainWindow::addRootBis(QTreeWidget* parent, QString id){
+    QTreeWidgetItem* note = new QTreeWidgetItem(parent);
+    note->setText(0, id);
+    parent->addTopLevelItem(note);
+    return note;
+}
+
 void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem();
     note->setText(0, title);
@@ -21,10 +28,9 @@ void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     parent->addChild(note);
 }
 
-QTreeWidgetItem* MainWindow::addChildBis(QTreeWidgetItem* parent, QString title,QString type){
+QTreeWidgetItem* MainWindow::addChildBis(QTreeWidgetItem* parent, QString title){
     QTreeWidgetItem* note = new QTreeWidgetItem();
     note->setText(0, title);
-    note->setText(1, type);
     parent->addChild(note);
     return note;
 }
@@ -133,7 +139,8 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
     RelationManager& rm = RelationManager::getRelationManager();
     map<Note*, int> asc = rm.getAscendants(&n);
     map<Note*, int> desc = rm.getDescendants(&n);
-    addAscendants(asc);
+    addElementsInWidgets(asc, ui->ascendants);
+    addElementsInWidgets(desc, ui->descendants);
     switch(nt){
     case NoteType::A :
     {
@@ -167,34 +174,51 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
     }
 }
 
-void MainWindow::addAscendants(map<Note*, int> N){
-    cout<<"------av------";
-    cout<<N;
-    cout<<"ap";
-    ui->ascendants->clear();
-    QTreeWidgetItem* beforelastParentAdded;
-    QTreeWidgetItem* lastParentAdded;
-    QTreeWidgetItem* lastChildAdded;
+
+void MainWindow::addElementsInWidgets(map<Note*, int>& N, QTreeWidget* widget){
+    //on nettoie le widget
+    widget->clear();
+    //booléen pour savoir si au moins une racine à été ajoutée
+    bool hasAtleastOneRoot = false;
+    //Variables temporaires pour gérer l'arborescence (retour en arrière, fils, etc...)
+    QTreeWidgetItem* beforelastParentAdded = nullptr;
+    QTreeWidgetItem* lastParentAdded = nullptr;
+    QTreeWidgetItem* lastChildAdded = nullptr;
+    //profondeur actuelle
     int currentRank = 0;
-    for (auto it = N.begin() ; it != N.end() ; it++){
-        if(it->second == 0){
-            cout<<"root";
-            lastParentAdded = addRoot(ui->ascendants, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
-            currentRank = 1;
-        }else if (it->second == currentRank){
-            cout<<"cr";
-            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
-        }else if (it->second > currentRank){
-            cout<<"cr+";
-            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
-            beforelastParentAdded = lastParentAdded;
-            lastParentAdded = lastChildAdded;
-            currentRank++;
-        }else{
-            cout<<"else";
-            lastParentAdded = beforelastParentAdded;
-            lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier(), (it->first)->getTypeOfNote());
-            currentRank--;
+    //On itère tant que le map n'est pas vide
+    while(!N.empty()){
+        //on parcourt tous les éléments
+        for (auto it = N.begin() ; it != N.end() ; it++){
+            //cas ou c'est une racine
+            if(it->second == 0){
+                lastParentAdded = addRootBis(widget, (it->first)->getIdentifier());
+                N.erase(it);
+                hasAtleastOneRoot = true;
+                currentRank = 1;
+            }else{
+                //si il y a au moins une racine
+                if(hasAtleastOneRoot){
+                    //ajout du fils sur le rang en cours
+                    if (it->second == currentRank){
+                        lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier());
+                        N.erase(it);
+                    //ajout du fils sur un rang supérieur
+                    }else if (it->second > currentRank){
+                        lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier());
+                        beforelastParentAdded = lastParentAdded;
+                        lastParentAdded = lastChildAdded;
+                        N.erase(it);
+                        currentRank++;
+                    //ajout du fils sur un rang inférieur
+                    }else{
+                        lastParentAdded = beforelastParentAdded;
+                        lastChildAdded = addChildBis(lastParentAdded, (it->first)->getIdentifier());
+                        N.erase(it);
+                        currentRank--;
+                    }
+                }
+            }
         }
     }
 }
@@ -222,7 +246,6 @@ void MainWindow::fillA(Article& a)const{
 }
 
 void MainWindow::fillT(Task& t)const{
-
     ui->prop1->setText(t.getAction());
     ui->prop4->setText(t.getStatusQS());
     ui->prop3->setReadOnly(true);
