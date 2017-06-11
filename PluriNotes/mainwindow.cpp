@@ -19,7 +19,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->dc->setReadOnly(true);
     ui->dm->setReadOnly(true);
 
-    QStringList labels1, labels2,labels3;
+    QStringList labels1, labels2,labels3, labels4, labels5;
     labels1<<"Task"<<"Deadline"<<"Priority";
     ui->listTask->setColumnCount(3);
     ui->listTask->setHorizontalHeaderLabels(labels1);
@@ -32,6 +32,9 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->listArchived->setColumnCount(2);
     ui->listArchived->setHeaderLabels(labels3);
 
+
+    ui->ascendants->setHeaderLabel("Ascendants");
+    ui->descendants->setHeaderLabel("Descendants");
     ui->id->setReadOnly(true);
 
 
