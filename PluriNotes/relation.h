@@ -103,6 +103,12 @@ public :
                 throw NotesException("Error, no more versions of notes");
             return **currentR;
         }
+        Couple* currentPtr(){
+            if(isDone()){
+                throw NotesException("Error, no more versions of notes");
+            }
+            return *currentR;
+        }
     };
 
     iterator getIterator(){

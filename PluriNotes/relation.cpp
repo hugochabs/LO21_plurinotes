@@ -187,13 +187,13 @@ map<Note *, int> RelationManager::getAscendants(Note* N, int order){
             for (Relation::iterator it2 = R.getIterator() ; !it2.isDone() ; it2.isNext()){
                 bool added = false;
                 Couple& C = it2.current();
-                cout<<"Couple : "<<C.getX()->getIdentifier()<<","<<C.getY()->getIdentifier()<<endl;
                 //On regarde si la note en paramètre est Y tq le couple soit (X,Y)
-                if (C.getY()->getIdentifier() == N->getIdentifier()){
-                    //si c'est le cas on l'ajoute au map avec l'ordre correspondant
-                    cout<<"Ajout de la Note : "<<C.getX()->getIdentifier()<<" de rang : "<<2-order<<endl;
-                    M[C.getX()] = 2 - order;
-                    added = true;
+                if(&C != nullptr){
+                    if (C.getY()->getIdentifier() == N->getIdentifier()){
+                        //si c'est le cas on l'ajoute au map avec l'ordre correspondant
+                        M[C.getX()] = 2 - order;
+                        added = true;
+                    }
                 }
                 //Si Le fils n'est pas nul, on relance la procédure récursivement
                 if (added){

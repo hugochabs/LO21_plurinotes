@@ -203,13 +203,13 @@ void NoteManager::restoreNoteVersions(NoteVersions *NV){
 
 void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
-    NoteVersions* NV = getNVfromNote(N);
+    NoteVersions& NV = *getNVfromNote(N);
      if ( Reference::isNoteReferenced(N) ){
-        archiveNoteVersions(NV);
+        archiveNoteVersions(&NV);
      }
      else {
         deleteNoteCouples(N);
-        putNVToTrash(NV);
+        putNVToTrash(&NV);
      }
 }
 
@@ -221,8 +221,8 @@ void NoteManager::deleteNoteCouples(Note* N){
         Relation R = it.current();
         for (Relation::iterator it2 = it.current().getIterator() ; !it2.isDone() ; it2.isNext() ){
             if ( it2.current().getX() == N || it2.current().getY() == N ){
-                R.deleteCouple(&it2.current());
-
+                Couple * tmp = it2.currentPtr();
+                tmp = nullptr;
             }
         }
     }
