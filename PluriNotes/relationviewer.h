@@ -35,7 +35,7 @@ private:
 
 public slots:
     void quit();
-    void affichageRelation(QTreeWidgetItem* item, int i);
+    void affichageRelation(QTreeWidgetItem* item, int i=0);
     void affichageCouple(QTreeWidgetItem* item, int i);
     void addRel();
 };

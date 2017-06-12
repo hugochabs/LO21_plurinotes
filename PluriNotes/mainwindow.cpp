@@ -20,7 +20,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->dm->setReadOnly(true);
 
     QStringList labels1, labels2,labels3;
-    labels1<<"Task"<<"Deadline"<<"Priority";
+    labels1<<"Taches"<<"Deadline"<<"Priorité";
     ui->listTask->setColumnCount(3);
     ui->listTask->setHorizontalHeaderLabels(labels1);
 
@@ -36,6 +36,9 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     ui->ascendants->setHeaderLabel("Ascendants");
     ui->descendants->setHeaderLabel("Descendants");
     ui->id->setReadOnly(true);
+    ui->saveMW->setEnabled(false);
+    ui->delete_2->setEnabled(false);
+    ui->restoreButton_2->setEnabled(false);
 
 
     //Différentes propriétés des class filles de note qu'on affiche dans la fenetre centrale
@@ -65,7 +68,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     connect(ui->delete_2, SIGNAL(clicked()), this, SLOT(delete2()));
 
     connect(ui->directoryFile, SIGNAL(clicked()), this, SLOT(chooseFile()));
-    connect(ui->openFile, SIGNAL(clicked(bool)), this, SLOT(open()));
+    //connect(ui->openFile, SIGNAL(clicked(bool)), this, SLOT(open()));
     connect(ui->restoreButton_2, SIGNAL(clicked()), this, SLOT(restore()));
     connect(ui->trashButton, SIGNAL(clicked()), this, SLOT(goToTrash()));
     connect(ui->relationButton, SIGNAL(clicked(bool)), this ,SLOT(goToRelation()));
@@ -107,11 +110,14 @@ void MainWindow::update(){
 
 void MainWindow::quit(){
     AlertViewer* alert = new AlertViewer("Corbeille", "Voulez-vous vider la corbeille ?");
-    QPushButton* o = alert->addButton("Oui", QMessageBox::YesRole);
+    QPushButton* yes = alert->addButton("Oui", QMessageBox::YesRole);
     QPushButton* no = alert->addButton("Non", QMessageBox::NoRole);
+    connect(yes, SIGNAL(clicked(bool)), this, SLOT(emptyTrash()));
     alert->exec();
     close();
 }
+
+
 
 
 

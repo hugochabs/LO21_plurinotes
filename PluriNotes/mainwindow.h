@@ -29,7 +29,7 @@ namespace Ui {
 class MainWindow;
 }
 
-//!MainWindow est hérité de la classe Widget pour pouvoir communiquer
+//! MainWindow est hérité de la classe Widget pour pouvoir communiquer
 //! avec le Mediator ainsi que ses collegues
 
 class MainWindow : public QMainWindow, public Widget
@@ -99,15 +99,20 @@ public slots:
     void slotA();
     void slotT();
     void slotON();
+
+    //!Permet l'enregistrement d'e note'une nouvelle version de note
     void updateN();
+    //!Met à jour les différents widges de la fenêtre
     void updateAff();
+
     void archive();
     void delete2();
     void chooseFile();
-    void open();
+    //void open();
     void restore();
     void goToTrash();
     void goToRelation();
+    void emptyTrash();
     void quit();
 };
 

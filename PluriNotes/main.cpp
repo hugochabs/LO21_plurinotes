@@ -56,12 +56,6 @@ int main (int argc, char *argv[]){
     NV5.addNote(&On1);
     NV5.addNote(&On2);
 
-    /*NoteVersions::iterator it = NV2.getIterator();
-    Note &n = it.current();
-    Article &art = static_cast<Article&>(n);
-    QString text = art.getText();
-    cout<<"ESSAI text"<<endl;
-    cout << text <<endl;*/
 
     NoteManager& NM = NoteManager::getNoteManager();
     NM.addNoteVersion(&NV);
@@ -92,16 +86,12 @@ int main (int argc, char *argv[]){
     RelationManager& RM = RelationManager::getRelationManager(tabRel, 0, 5);
     //Ajout des relations
     RM.addRelation(&R);
-    //RM.addRelation(&R);
-    //Affichage des relations dans lesquelles A est impliquée
-    //cout<<getRelations(&A);
 
     NV.updateNewVersion(&T2);
     NV.updateNewVersion(&T2);
-    //cout<<NV;
+
     NV.restoreVersion(&T);
-    //cout<<"///////////////////////////////////////////"<<endl<<NV;
-    //cout<<NM.toJson();
+
     NM.save();
     NoteManager& NM2 = NoteManager::getNoteManager();
     //NM2.load();
@@ -113,15 +103,14 @@ int main (int argc, char *argv[]){
     w.initialisationNA();
     w.initialisationT();
     w.initialisationArchive();
-    cout<<"apres initialisation"<<endl;
+
     w.show();
-    cout<<"apres initialisation"<<endl;
+
 
     //Note * RZ = Z.getReferences();
     //cout<<"a"<<endl;
     //cout<<RZ[0]<<endl;
-    //vector<Widget*> colleague;
-    cout<<"test"<<endl;
+
     Mediator& mediator = Mediator::getMediator();
 
     mediator.registerC(&w);
@@ -133,8 +122,9 @@ int main (int argc, char *argv[]){
     Ref.getReferences();
     bool referenced = Reference::isNoteReferenced(&B);
     cout<<referenced;
-    //w.showFullScreen();
+
     return a.exec();
+
 
 }
 

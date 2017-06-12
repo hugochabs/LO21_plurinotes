@@ -51,6 +51,13 @@ public :
             couples[i] = c[i];
         }
     }
+    virtual ~Relation(){
+        for(unsigned int i=0 ; i<nb ; i++){
+            delete couples[i];
+        }
+        delete[] couples;
+    }
+
     //getters
     const unsigned int& getNb() const{return nb;}
     const unsigned int& getNbMax() const{return nbMax;}
@@ -138,7 +145,7 @@ private :
         }
     }
     virtual ~RelationManager();
-    bool operator= (const RelationManager& RM);
+    RelationManager& operator= (const RelationManager& RM);
     RelationManager(const RelationManager& RM);
 
 public :
@@ -201,6 +208,8 @@ private :
     Reference(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const QString& t = "References", const QString& d = "Cette realtion contient les références", const RelationOrientation& o = oriented)
         : Relation(c, n, nM, t, d, o){}
     ~Reference(){}
+    Reference(const Reference& r);
+    Reference& operator=(const Reference& r);
 
 public :
     static Reference& getRef();

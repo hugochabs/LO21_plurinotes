@@ -18,7 +18,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
     connect(ui->listRelation, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->listRelation, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affichageCouple(QTreeWidgetItem*,int)));
-
+    connect(ui->listRelation, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->create, SIGNAL(clicked()), this, SLOT(addRel()));
 }
 
@@ -53,8 +53,7 @@ void RelationViewer::quit(){
 }
 
 void RelationViewer::affichageRelation(QTreeWidgetItem* item, int i){
-    QString title = item->text(0);
-
+    QString title = item->text(i);
     for(RelationManager::iterator it = rm.getIterator();!it.isDone();it.isNext()){
         if(it.current().getTitle()==title){
             r = &it.current();
@@ -64,7 +63,7 @@ void RelationViewer::affichageRelation(QTreeWidgetItem* item, int i){
 }
 
 void RelationViewer::affichageCouple(QTreeWidgetItem* item, int i){
-    QString label = item->text(0);
+    QString label = item->text(i);
     for(Relation::iterator it = r->getIterator();!it.isDone();it.isNext()){
         if(it.current().getLabel()==label){
             fillCouple(it.current());
@@ -86,3 +85,4 @@ void RelationViewer::fillCouple(Couple& c){
 void RelationViewer::addRel(){
 
 }
+

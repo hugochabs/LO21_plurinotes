@@ -6,8 +6,10 @@ NoteManager& manager2 = NoteManager::getNoteManager();
 
 //! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note active sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
-    cout<<"clicked"<<endl;
     QString id = item->text(i);
+    ui->saveMW->setEnabled(true);
+    ui->restoreButton_2->setEnabled(true);
+    ui->delete_2->setEnabled(true);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
         NoteVersions& nvt = it.current();       
         for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
@@ -127,7 +129,7 @@ void MainWindow::updateN(){
     QString i = Note::createID(title, id.right(1).toInt());
     QString  datec;
     datec = ui->dc->dateTime().toString();
-//    QString dc = ui->dc->text();
+
     tm* DC = Note::dateFromQString(datec);
     time_t ti = time(0);
     struct tm * now = localtime( & ti );
@@ -216,9 +218,6 @@ void MainWindow::chooseFile(){
     cout<<dir<<endl;
 }
 
-void MainWindow::open(){
-    //Qmedi
-}
 
 void MainWindow::restore(){
     nv->restoreVersion(n);
@@ -242,3 +241,12 @@ void  MainWindow::goToRelation(){
 }
 
 
+void MainWindow::emptyTrash(){
+    for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
+        NoteVersions& nv = it.current();
+        Note& nc=nv.getIterator().current();
+        if(nc.getNoteStatus()==NoteStatus::trash){
+            nv.~NoteVersions();
+        }
+    }
+}

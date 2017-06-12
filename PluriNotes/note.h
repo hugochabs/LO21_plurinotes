@@ -43,6 +43,7 @@ public :
         : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
     Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
+    virtual ~Note(){}
     //getters
     const QString& getIdentifier() const{return identifier;}//!getter d'identifier
     QString& getIdentifier(){return identifier;}//!getter d'identifier
@@ -132,8 +133,9 @@ public :
         int min = date->tm_min;
         int hour = date->tm_hour;
         int sec = date->tm_sec;
+        QTime t(hour, min ,sec);
         QDate d(y, mo, day);
-        QDateTime* dt = new QDateTime(d);
+        QDateTime* dt = new QDateTime(d, t);
         return dt;
     }
 
@@ -163,7 +165,7 @@ public :
  * de pointeurs. Pour des questions de simplicité la version la plus récente est en tête
  * de tableau.
 */
-//template<class T>
+
 class NoteVersions {
 private :
     Note** versions;//!tableau de pointeurs de notes regroupant les versions
@@ -178,6 +180,16 @@ public :
             versions[i] = t[i];
         }//!constructeur de NoteVersions
     }
+
+     virtual ~NoteVersions(){
+//        delete[] versions;
+    }
+//        for (unsigned int i=0 ; i<nb ; i++){
+//            delete versions[i];
+//        }
+//            delete[] versions;
+//    }
+
     // getters
     const unsigned int& getNb() const{return nb;}//!getter de nb
     const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
@@ -272,15 +284,6 @@ public :
     iterator getIterator(){
         return iterator(versions, nb);
     }
-
-    iterator getIterator1(){
-        return iterator(++versions, nb-1);
-    }
-
-    iterator end(){
-        return iterator(versions+nb-1,1);
-    }
-
 };
 
 
@@ -306,6 +309,8 @@ private :
     }//!consturcteur de NoteManager
     NoteManager( QString dir = "/home/guillaume/DATA/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
+    NoteManager(const NoteManager& nm);
+    NoteManager& operator=(const NoteManager &nm);
     ~NoteManager();
 
 public :

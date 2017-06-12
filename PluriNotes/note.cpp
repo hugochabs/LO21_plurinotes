@@ -101,6 +101,13 @@ ostream& operator<< (ostream& f, Note& N){
     return f;
 }
 
+//NoteVersions::~NoteVersions(){
+//    for (unsigned int i=0 ; i<nb ; i++){
+//        delete versions[i];
+//    }
+//    delete[] versions;
+//}
+
 void NoteVersions::restoreVersion(Note *N){
     //on parcours le tableau à la recherche de la note à restaurer
     iterator it = getIterator();

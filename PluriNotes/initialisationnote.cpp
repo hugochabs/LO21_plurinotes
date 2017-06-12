@@ -41,7 +41,6 @@ void MainWindow::initialisationNA(){
             NoteVersions nv = it.current();
             NoteVersions::iterator it1 = nv.getIterator();
             Note n = it1.current();
-
             QTreeWidgetItem* note1;
             if(n.getNoteStatusString()=="active"){
                 note1 = addRoot(ui->ListNotes, n.getIdentifier(), nv.getTypeQS());
@@ -70,9 +69,7 @@ void MainWindow::initialisationT(){
             if(n.getNoteStatusString()=="active"){
                 switch(nv.getType()){
                 case NoteType::T :{
-
                         Task& t = static_cast<Task&>(n);
-
                         QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
                         ui->listTask->insertRow(ui->listTask->rowCount());
                         row = ui->listTask->rowCount()-1;
@@ -86,7 +83,7 @@ void MainWindow::initialisationT(){
 
                     QString date = Note::QStringFromDate(t.getDeadline());
                     QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
-                    //QTableWidgetItem* id=new QTableWidgetItem(t.getIdentifier());
+
                     QTableWidgetItem* d=new QTableWidgetItem(date);
 
                     ui->listTask->insertRow(ui->listTask->rowCount());
@@ -95,7 +92,7 @@ void MainWindow::initialisationT(){
                     cout<<row<<endl;
                     ui->listTask->setItem(row,0, action);
                     ui->listTask->setItem(row,1, d);
-                    /*ui->listTask->setItem(row,2, status2);*/
+
                     break;}
 
                 case NoteType::TWP : {
@@ -254,9 +251,9 @@ void MainWindow::fillT(Task& t)const{
 
 void MainWindow::fillTWD(TaskWithDeadline &t)const{
     fillT(t);
-    QDateTime dateC = *Note::QdatefromDate(t.getDeadline());
+    QDateTime dateL = *Note::QdatefromDate(t.getDeadline());
     ui->prop3->setReadOnly(true);
-    ui->dm->setDateTime(dateC);
+    ui->dl->setDateTime(dateL);
     ui->prop2->setReadOnly(true);
 }
 
