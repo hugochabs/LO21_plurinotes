@@ -233,11 +233,16 @@ void  MainWindow::goToTrash(){
 }
 
 void  MainWindow::goToRelation(){
+    cout<<"gotorelation"<<endl;
     RelationViewer* newWindow = new RelationViewer(2);
-    //newWindow->initialisationTrash();
+    cout<<"gotorelation"<<endl;
+
     mediator->registerC(newWindow);
+    cout<<"gotorelation"<<endl;
     newWindow->initialisation();
+    cout<<"gotorelation"<<endl;
     newWindow->show();
+
 }
 
 

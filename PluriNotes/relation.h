@@ -52,10 +52,10 @@ public :
         }
     }
     virtual ~Relation(){
-        for(unsigned int i=0 ; i<nb ; i++){
-            delete couples[i];
-        }
-        delete[] couples;
+//        for(unsigned int i=0 ; i<nb ; i++){
+//            delete couples[i];
+//        }
+//        delete[] couples;
     }
 
     //getters
