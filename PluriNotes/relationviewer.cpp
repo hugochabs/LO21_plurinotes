@@ -4,8 +4,9 @@
 RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     Widget(i),
     QDialog(parent),
-    ui(new Ui::RelationViewer), r(0)
+    ui(new Ui::RelationViewer), r(0), c(0)
 {
+    cout<<"constructeur relation viewer"<<endl;
     ui->setupUi(this);
     setWindowTitle(tr("Ensemble des relations"));
     ui->listRelation->setColumnCount(2);
@@ -18,7 +19,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     connect(ui->quit, SIGNAL(clicked()), this, SLOT(quit()));
     connect(ui->listRelation, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->listRelation, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affichageCouple(QTreeWidgetItem*,int)));
-    connect(ui->listRelation, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
+    //connect(ui->listRelation, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->create, SIGNAL(clicked()), this, SLOT(addRel()));
 }
 
