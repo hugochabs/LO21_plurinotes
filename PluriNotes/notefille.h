@@ -34,7 +34,7 @@ public :
     }
     QString& getStringAttributes();
     json toJson();
-    void fromJson();
+    static Article& fromJson(json j);
 };
 
 /*!
@@ -83,7 +83,7 @@ public :
     }
     QString& getStringAttributes();
     json toJson();
-    void fromJson();
+    static Task& fromJson(json j);
 };
 
 /*!
@@ -112,7 +112,7 @@ public :
     }
     QString& getStringAttributes();
     json toJson();
-    void fromJson();
+    static TaskWithPriority& fromJson(json j);
 };
 
 /*!
@@ -139,7 +139,7 @@ public :
     }
     QString& getStringAttributes();
     json toJson();
-    void fromJson();
+    static TaskWithDeadline& fromJson(json j);
 };
 
 /*!
@@ -184,7 +184,7 @@ public :
     }
     QString& getStringAttributes();
     json toJson();
-    void fromJson();
+    static OtherNote& fromJson(json j);
 };
 
 //redéfinition des opérateurs

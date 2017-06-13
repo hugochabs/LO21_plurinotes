@@ -10,7 +10,7 @@ int main (int argc, char *argv[]){
     //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     //QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-
+    /*
     QString * path = new QString;
     *path = "/home/guilllaume/DATA/";
     time_t t = time(0);   // get time now
@@ -97,7 +97,7 @@ int main (int argc, char *argv[]){
     //NM2.load();
     cout<<NM2.getNb()<<endl;
     //cout<<NM2;
-
+    */
     QApplication a(argc, argv);
     MainWindow w(0);
     w.initialisationNA();
@@ -117,12 +117,12 @@ int main (int argc, char *argv[]){
 
 
 
-
+    /*
     Reference& Ref = Reference::getRef();
     Ref.getReferences();
     bool referenced = Reference::isNoteReferenced(&B);
     cout<<referenced;
-
+    */
     return a.exec();
 
 
