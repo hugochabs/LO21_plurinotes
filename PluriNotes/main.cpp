@@ -72,6 +72,7 @@ int main (int argc, char *argv[]){
     Couple* c2 = new Couple("label2", &T, &B);
     Couple* c3 = new Couple("label3", &Z, &A);
     Couple* c4 = new Couple("label4", &B, &A);
+    Couple* c5 = new Couple("label5", &B, &T);
     //paramétrage de la relation
     R.setTitle("Titre");
     R.setDescription("Relation qui joint les deux notes lde l'espace");
@@ -80,6 +81,7 @@ int main (int argc, char *argv[]){
     R.addCouple(c2);
     R.addCouple(c3);
     R.addCouple(c4);
+    R.addCouple(c5);
 
     //création d'un tableau de relations et d'un RM
     Relation** tabRel = new Relation*[5];
@@ -101,6 +103,7 @@ int main (int argc, char *argv[]){
     NoteManager& NM = NoteManager::getNoteManager();
     cout<<"debug"<<endl;
     NM.load();
+
     QApplication a(argc, argv);
     MainWindow w(0);
     w.initialisationNA();

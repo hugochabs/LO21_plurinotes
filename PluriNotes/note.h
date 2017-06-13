@@ -38,25 +38,18 @@ private :
 protected:
 
 public :
-    Note(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a)
-        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
+    Note(const QString& id, const QString& t, tm* dC, tm* dLU, NoteStatus s)
+        : identifier(id), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(s){}//!constructeur de la classe
     Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
     virtual ~Note(){}
     //getters
     const QString& getIdentifier() const{return identifier;}//!getter d'identifier
-    QString& getIdentifier(){return identifier;}//!getter d'identifier
     const QString& getTitle() const{return title;}//!getter de title
-    QString& getTitle(){return title;}
-    tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
     const tm* getDateCreation() const{return dateCreation;}//!getter de dateCreation
-
-    tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     const tm* getDateLastUpdate() const{return dateLastUpdate;}//!getter de dateLastUpdate
-
-    //virtual const QString& getText()const;
-    NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     const NoteStatus& getNoteStatus() const{return noteStatus;}//!getter de noteStatus
+
     /*!
 
      * \brief getNoteStatusString retourne la valeur de NoteStatus
@@ -75,11 +68,10 @@ public :
         return "active";
     }
     //setters
-    void setIdentifier(QString& i){identifier = i;}//!setter de identifier
     void setTitle(QString& t){title = t;}//!setter de title
     void setDateCreation(tm* dC){dateCreation = dC;}//!setter de dateCreation
     void setDateLastUpdate(tm* dLU){dateLastUpdate = dLU;}//!setter de datelastUpdate
-    void setNoteStatus(NoteStatus a){noteStatus = a;}//!setter de noteStatus
+    void setNoteStatus(NoteStatus s){noteStatus = s;}//!setter de noteStatus
 
     //autres méthodes
     static QString createID(const QString& title, unsigned int version){
@@ -110,7 +102,6 @@ public :
         strptime(s.toStdString().c_str(), DATEFORMAT.toStdString().c_str(), date);
         return date;
     }
-
 
     /*!
      * \brief Utility method to convert a date into a QString
@@ -151,7 +142,7 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la note
      */
-    virtual json toJson();
+    virtual json &toJson();
 
     virtual QString& getStringAttributes();
     vector<Note> getReferences();
@@ -167,9 +158,9 @@ public :
 
 class NoteVersions {
 private :
-    Note** versions;//!tableau de pointeurs de notes regroupant les versions
-    unsigned int nb;//!nombre de versions
-    unsigned int nbMax;//!nombre max de versions
+    Note** versions;        //!tableau de pointeurs de notes regroupant les versions
+    unsigned int nb;        //!nombre de versions
+    unsigned int nbMax;     //!nombre max de versions
     NoteType type;
 public :
     NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
@@ -177,7 +168,7 @@ public :
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
-        }//!constructeur de NoteVersions
+        }                   //!constructeur de NoteVersions
     }
 
      virtual ~NoteVersions(){
@@ -190,23 +181,21 @@ public :
 //    }
 
     // getters
-    const unsigned int& getNb() const{return nb;}//!getter de nb
-    const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
-    const NoteType& getType() const{return type;}//!getter de type
-    // getter const
-    Note** getVersions(){return versions;} //! getter de versions
-    const unsigned int& getNb(){return nb;}//!getter de nb
-    const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
-    const NoteType& getType(){return type;}//!getter de type
+    Note** getVersions(){return versions;}          //! getter de versions
+    const unsigned int& getNb(){return nb;}         //!getter de nb
+    const unsigned int& getNbMax(){return nbMax;}   //!getter de nbMax
+    const NoteType& getType(){return type;}         //!getter de type
     QString getTypeQS();
 
     //setters
     void setNoteType(NoteType t){type = t;}
+
     /*!
      * \brief addNote ajoute une note à la fin du tableau
      * \param N Note à ajouter
      */
     void addNote(Note* N);
+
     /*!
      * \brief Méthode qui ajoute une note (dernière version)
      * en tête de la liste.
@@ -221,14 +210,11 @@ public :
      */
     void restoreVersion(Note * N);
 
-
-
     /*!
      * \brief toJson insère le contenu d'un objet NoteVersions dans un objet de
      * type json
      * \return Le fichier json contenant les informations de la NoteVersions
      */
-
     json toJson();
 
     /*!
@@ -285,8 +271,6 @@ public :
     }
 };
 
-
-
 /*!
  * \brief La classe NoteManager sert à gérer et stocker les différentes NotesVersions
  */
@@ -298,6 +282,7 @@ private :
     unsigned int nbMax;         //!nombre max de NoteVersions
     QString directory;
     static NoteManager * uniqueInstance;
+
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
     //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"
     //Directory Hugo : /home/hugo/LO21/Depot/LO21_plurinotes/PluriNotes
@@ -308,21 +293,26 @@ private :
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
+<<<<<<< HEAD
     }//!consturcteur de NoteManager
     NoteManager( QString dir = "/home/hugo/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+=======
+
+    }//!constructeur de NoteManager
+    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+>>>>>>> f13093ab7f2880ee27e4751e0c52058e0851c632
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
     NoteManager(const NoteManager& nm);
     NoteManager& operator=(const NoteManager &nm);
     ~NoteManager();
 
 public :
-    static void freeNoteManager();
-    static NoteManager& getNoteManager(NoteVersions ** nv = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0);
+    static void freeNoteManager();    
+    static NoteManager& getNoteManager();
+
     // getters
-    const unsigned int& getNb() const{return nb;}//!getter de nb
-    const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
-    unsigned int& getNb(){return nb;}//!getter de nb
-    unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
+    const unsigned int& getNb() const{return nb;}           //!getter de nb
+    const unsigned int& getNbMax() const{return nbMax;}     //!getter de nbMax
 
     /*!
      * \brief addNoteVersion permet d'ajouter une NoteVersions dans le tableau
@@ -330,17 +320,7 @@ public :
      */
     void addNoteVersion(NoteVersions *NV);
 
-    /*!
-     * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
-     * type json
-     * \return Le fichier json contenant les informations du NoteManager
-    */
-    /*!
-     * \brief getNVfromNote permet de récupérer le NoteVersions
-    */
-
      /*! \brief getNVfromNote permet de récupérer le NoteVersions
-
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */
@@ -355,8 +335,8 @@ public :
 
     /*!
      * \brief restoreNoteVersions permet de restaurer une note
-     * ainsi que toutes ses versions (= restaurer une NoteVersions)
-     * \param NV NoteVersions à archiver
+     * ainsi que toutes ses versions depuis la corbeille (= restaurer une NoteVersions)
+     * \param NV NoteVersions à restaurer
      */
     void restoreNoteVersions(NoteVersions *NV);
 
@@ -382,43 +362,50 @@ public :
      */
     void deleteNoteCouples(Note* N);
 
-
-
+    // MTD JSON A SUPPRIMER ?
+    /*!
+     * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations du NoteManager
+     */
     json toJson();
 
     /*!
      * \brief fromJson ajoute les informations contenues dans le
-     * fichier json à l'intérieur du tableau de NoteVersions
+     * fichier json à l'intérieur du tableau de NoteManager
      * \param j l'objet de type json
      */
     void fromJson(json j);
+
     /*!
-     * \brief save Méthode permettant de sauvegarder en mémoire les
+     * \brief Méthode save permettant de sauvegarder en mémoire les
      * informations sur les Notes dans un fichier json
      */
     void save();
+
     /*!
-     * \brief load méthode permettant de récupérer les informations stockées en
+     * \brief Méthode load permettant de récupérer les informations stockées en
      * mémoire dans le fichier json
      */
     void load();
+
     /*!
      * \brief searchNote retourne un pointeur vers la Note
      * dont l'id est passé en paramètre
      * \param id identificateur de la note à chercher
-     * \return La Note correspondante
+     * \return la Note correspondante
      */
-    static Note *searchNote(QString& id);
+    static Note* searchNote(QString& id);
 
     /*!
      * \brief La classe iterator sert à parcourir les éléments de la classe
      * sans exposer la structure
      */
     class iterator{
-        friend class NoteManager;//!amitié avec la classe à parcourir
+        friend class NoteManager;   //!amitié avec la classe à parcourir
     private:
-        unsigned int nbRemain;//!nombre d'éléments restant à parcourir
-        NoteVersions** currentN;//!élément courant.
+        unsigned int nbRemain;      //!nombre d'éléments restant à parcourir
+        NoteVersions** currentN;    //!élément courant
         iterator(NoteVersions** c, unsigned int nb):nbRemain(nb), currentN(c){}//!constructeur de l'iterator
     public:
         unsigned int getNbRemain()const{return nbRemain;}//!getter de nbRemain
@@ -440,9 +427,8 @@ public :
                 throw NotesException("Error, no more versions of notes NM current");
             return **currentN;
         }
-
-
     };
+
     /*!
      * \brief getIterator retourne un iterator pour parcourir les éléments du tableau.
      * \return iterator
@@ -455,8 +441,6 @@ public :
         return iterator(notes+nb-1,1);
     }
 };
-
-
 
 //redéfinition des opérateurs
 
@@ -473,8 +457,6 @@ ostream& operator<< (ostream& f, const OtherNoteType& T);
 ostream& operator<< (ostream& f, const RelationOrientation& R);
 ostream& operator<< (ostream& f, const QString& S);
 ostream& operator<< (ostream& f, const tm* tps);
-
-
 ostream& operator << (ostream& f, Note& N);
 ostream& operator<< (ostream& f, NoteVersions& V);
 ostream& operator<< (ostream& f, NoteManager& NM);
