@@ -300,16 +300,16 @@ private :
     static NoteManager * uniqueInstance;
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
     //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"
-    //Directory Hugo :
+    //Directory Hugo : /home/hugo/LO21/Depot/LO21_plurinotes/PluriNotes
     //Directory Garance :
-    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/")
+    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/hugo/")
         :notes(new NoteVersions*[nM]),nb(n),nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
     }//!consturcteur de NoteManager
-    NoteManager( QString dir = "/home/hugo/LO21/Depot/LO21_plurinotes/PluriNotes"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+    NoteManager( QString dir = "/home/hugo/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
     NoteManager(const NoteManager& nm);
     NoteManager& operator=(const NoteManager &nm);

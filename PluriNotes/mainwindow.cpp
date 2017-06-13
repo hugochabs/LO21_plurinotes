@@ -7,9 +7,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
     QMainWindow(parent),
      ui(new Ui::MainWindow),ind(-1), n(0), nv(0), Widget(i)
 
-{
-   NoteManager& NM = NoteManager::getNoteManager();
-    NM.load();
+{ 
     dir="";
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));

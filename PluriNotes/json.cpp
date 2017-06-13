@@ -107,12 +107,12 @@ Article& Article::fromJson(json j){
 }
 
 Task& Task::fromJson(json j){
-    Task* t = new Task(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), j["taskStatus"]);
+    Task* t = new Task(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"])/*, j["taskStatus"]*/);
     return *t;
 }
 
 TaskWithPriority& TaskWithPriority::fromJson(json j){
-    TaskWithPriority* twp = new TaskWithPriority(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), j["taskStatus"], j["priority"]);
+    TaskWithPriority* twp = new TaskWithPriority(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), waiting, j["priority"]);
     return *twp;
 }
 
@@ -176,9 +176,11 @@ void NoteManager::save(){
 
 void NoteManager::load(){
     ifstream file(directory.toStdString()+"plurinotes.json");
-    if(!file.good()){
+    cout<<"debug2"<<endl;
+    cout<<directory.toStdString()+"plurinotes.json"<<endl;
+    if(file.good()!=true){
         QString message;
-        message.fromStdString(directory.toStdString()+"pluriontes.json was not found");
+        message.fromStdString(directory.toStdString()+"plurinotes.json was not found");
         throw NotesException(message);
     }
     json j;
@@ -186,7 +188,7 @@ void NoteManager::load(){
     file.close();
     json j2 = j["NoteVersions"];
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
-        cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
+        //cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
         addNoteVersion(&NoteVersions::fromJson(*it));
     }
     cout<<"NM : \n"<<*this;

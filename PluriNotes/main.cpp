@@ -98,6 +98,9 @@ int main (int argc, char *argv[]){
     cout<<NM2.getNb()<<endl;
     //cout<<NM2;
     */
+    NoteManager& NM = NoteManager::getNoteManager();
+    cout<<"debug"<<endl;
+    NM.load();
     QApplication a(argc, argv);
     MainWindow w(0);
     w.initialisationNA();
