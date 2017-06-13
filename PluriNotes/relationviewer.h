@@ -24,6 +24,7 @@ public:
     void initialisation();
     void update(){}
     void fillRelation(Relation& r);
+    void fillCouple(Couple& c);
 
 
 private:
@@ -34,7 +35,9 @@ private:
 
 public slots:
     void quit();
-    void affichage(QTreeWidgetItem* item, int i);
+    void affichageRelation(QTreeWidgetItem* item, int i=0);
+    void affichageCouple(QTreeWidgetItem* item, int i);
+    void addRel();
 };
 
 #endif // RELATIONVIEWER_H

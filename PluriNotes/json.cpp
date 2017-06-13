@@ -2,8 +2,8 @@
 #include "relation.h"
 
 
-json Note::toJson(){
-    json j;
+json& Note::toJson(){
+    json& j = *new json;
     j["id"] = identifier.toStdString();
     j["title"] = title.toStdString();
     j["dateCreation"] = QStringFromDate(const_cast<tm*>(getDateCreation())).toStdString();
@@ -35,8 +35,8 @@ json NoteManager::toJson(){
 }
 
 
-json Article::toJson(){
-    json j;
+json& Article::toJson(){
+    json& j = *new json;
     json j2;
     j2 = this->Note::toJson();
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
@@ -46,8 +46,8 @@ json Article::toJson(){
     return j;
 }
 
-json Task::toJson(){
-    json j;
+json& Task::toJson(){
+    json& j = *new json;
     json j2;
     j2 = this->Note::toJson();
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
@@ -59,10 +59,11 @@ json Task::toJson(){
 }
 
 
-json TaskWithPriority::toJson(){
-    json j;
+json& TaskWithPriority::toJson(){
+    json& j = *new json;
     json j2;
     j2 = this->Task::toJson();
+    cout<<"j2 : \n"<<j2;
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
         j[it.key()] = it.value();
     }
@@ -70,8 +71,8 @@ json TaskWithPriority::toJson(){
     return j;
 }
 
-json TaskWithDeadline::toJson(){
-    json j;
+json& TaskWithDeadline::toJson(){
+    json& j = *new json;
     json j2;
     j2 = this->Task::toJson();
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
@@ -81,8 +82,8 @@ json TaskWithDeadline::toJson(){
     return j;
 }
 
-json OtherNote::toJson(){
-    json j;
+json& OtherNote::toJson(){
+    json& j = *new json;
     json j2;
     j2 = this->Note::toJson();
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
@@ -101,25 +102,78 @@ Note& Note::fromJson(json j){
     return *n;
 }
 
-NoteVersions& NoteVersions::fromJson(json j){
+Article& Article::fromJson(json j){
+    Article* a = new Article(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["text"]));
+    return *a;
+}
+
+Task& Task::fromJson(json j){
+    Task* t = new Task(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), j["taskStatus"]);
+    return *t;
+}
+
+TaskWithPriority& TaskWithPriority::fromJson(json j){
+    Task& t = Task::fromJson(j);
+    TaskWithPriority* twp = new TaskWithPriority(t.getIdentifier(), t.getTitle(), t.getDateCreation(), t.getDateLastUpdate(), t.getNoteStatus(), t.getAction(), t.getStatus(), (int)j["priority"]);
+    return *twp;
+}
+
+TaskWithDeadline& TaskWithDeadline::fromJson(json j){
+    Task& t = Task::fromJson(j);
+    TaskWithDeadline* twd = new TaskWithDeadline(t.getIdentifier(), t.getTitle(), t.getDateCreation(), t.getDateLastUpdate(), t.getNoteStatus(), t.getAction(), t.getStatus(), Note::dateFromQString(QString::fromStdString(j["deadline"])));
+    return *twd;
+}
+
+OtherNote& OtherNote::fromJson(json j){
+    OtherNote* t = new OtherNote(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["description"]), QString::fromStdString(j["fileName"]), j["type"]);
+    return *t;
+}
+
+
+NoteVersions &NoteVersions::fromJson(json j){
     NoteVersions * NV = new NoteVersions;
     NV->type = j["type"];
     json j2 = j["Versions"];
+    cout<<"-------------------"<<endl
+        <<"Versions : "<<endl
+        <<j2<<endl
+        <<"-------------------"<<endl;
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
-        NV->addNote(&Note::fromJson(*it));
+        switch(NV->type){
+        case NoteType::A :
+        {
+            Article& a = Article::fromJson(*it);
+            NV->addNote(&a);
+        }
+        break;
+        case NoteType::T :
+        {
+            Task& t = Task::fromJson(*it);
+            NV->addNote(&t);
+        }
+        break;
+        case NoteType::TWD :
+        {
+            TaskWithDeadline& twd = TaskWithDeadline::fromJson(*it);
+            NV->addNote(&twd);
+        }
+        break;
+        case NoteType::TWP :{
+            TaskWithPriority& twp = TaskWithPriority::fromJson(*it);
+            NV->addNote(&twp);
+        }
+        break;
+        case NoteType::ON:{
+            OtherNote& on = OtherNote::fromJson(*it);
+            NV->addNote(&on);
+        }
+        break;
+        }
+        cout<<*NV;
     }
     return *NV;
 }
-/*
-void NoteManager::fromJson(json j){
-    json j2 = j["NoteVersions"];
-    for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
-        NoteVersions NV;
-        NV.fromJson(*it);
-        addNoteVersion(&NV);
-    }
-}
-*/
+
 
 void NoteManager::save(){
     ofstream file(directory.toStdString()+"plurinotes.json");
@@ -140,31 +194,10 @@ void NoteManager::load(){
     file.close();
     json j2 = j["NoteVersions"];
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
+        cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
         addNoteVersion(&NoteVersions::fromJson(*it));
     }
-    //return NM;
+    cout<<"NM : \n"<<*this;
 }
 
-/*
-void NotesManager::load(){
-    std::ifstream i(filename.toStdString());
-    if(!i.good()){
-        throw FileNotFoundException(filename);
-    }
-    json j;
-    i >> j;
-    i.close();
 
-    removeAllNotes();
-
-    for(json::iterator it = j.begin() ; it != j.end() ; ++it){
-        json note = *it;
-        Note * toAdd;
-        if(note["type"]=="Article"){
-            toAdd = Article::fromJSON(note);
-        }
-
-        addNote(toAdd);
-    }
-}
-*/

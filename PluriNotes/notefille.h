@@ -32,8 +32,8 @@ public :
         return f;
     }
     QString& getStringAttributes();
-    json toJson();
-    void fromJson();
+    json& toJson();
+    static Article& fromJson(json j);
 };
 
 /*!
@@ -48,7 +48,7 @@ public :
     Task(const QString& i, const QString& t, tm* dC, tm* dLU,NoteStatus ns, const QString& ac, TaskStatus s = waiting)
         : Note(i, t, dC, dLU, ns), action(ac), status(s){}
     //getters
-    const QString getAction() const{return action;}
+    const QString& getAction() const{return action;}
     const TaskStatus& getStatus() const{return status;}
     QString getStatusQS(){ //!Getter pour avoir status en QString
         switch(status){
@@ -82,8 +82,8 @@ public :
     }
 
     QString& getStringAttributes();
-    json toJson();
-    void fromJson();
+    json& toJson();
+    static Task& fromJson(json j);
 };
 
 /*!
@@ -112,8 +112,8 @@ public :
         return f;
     }
     QString& getStringAttributes();
-    json toJson();
-    void fromJson();
+    json& toJson();
+    static TaskWithPriority& fromJson(json j);
 };
 
 /*!
@@ -140,8 +140,8 @@ public :
         return f;
     }
     QString& getStringAttributes();
-    json toJson();
-    void fromJson();
+    json& toJson();
+    static TaskWithDeadline& fromJson(json j);
 };
 
 /*!
@@ -182,8 +182,8 @@ public :
         return f;
     }
     QString& getStringAttributes();
-    json toJson();
-    void fromJson();
+    json& toJson();
+    static OtherNote& fromJson(json j);
 };
 
 //redéfinition des opérateurs

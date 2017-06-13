@@ -29,12 +29,11 @@ void TrashViewer::initialisationTrash(){
         NoteVersions nv = it.current();
         NoteVersions::iterator it2 = nv.getIterator();
         Note n = it2.current();
-        cout<<"premier for initialisation"<<endl;
         QTreeWidgetItem* note1;
-        if(n.getNoteStatus()==trash){
-            cout<<"if initialisation"<<endl;
+        if(n.getNoteStatus()==trash){   
             note1 = MainWindow::addRoot(ui->listTrash, n.getIdentifier(), nv.getTypeQS());
-            for(NoteVersions::iterator it2=nv.getIterator1();!it2.isDone(); it2.isNext()){
+            it2.isNext();
+            for(it2 ;!it2.isDone(); it2.isNext()){
                  Note temp = it2.current();
                  MainWindow::addChild(note1, temp.getIdentifier(), nv.getTypeQS());
              }

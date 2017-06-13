@@ -101,6 +101,13 @@ ostream& operator<< (ostream& f, Note& N){
     return f;
 }
 
+//NoteVersions::~NoteVersions(){
+//    for (unsigned int i=0 ; i<nb ; i++){
+//        delete versions[i];
+//    }
+//    delete[] versions;
+//}
+
 void NoteVersions::restoreVersion(Note *N){
     //on parcours le tableau à la recherche de la note à restaurer
     iterator it = getIterator();
@@ -203,13 +210,13 @@ void NoteManager::restoreNoteVersions(NoteVersions *NV){
 
 void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
-    NoteVersions* NV = getNVfromNote(N);
+    NoteVersions& NV = *getNVfromNote(N);
      if ( Reference::isNoteReferenced(N) ){
-        archiveNoteVersions(NV);
+        archiveNoteVersions(&NV);
      }
      else {
         deleteNoteCouples(N);
-        putNVToTrash(NV);
+        putNVToTrash(&NV);
      }
 }
 
@@ -221,8 +228,8 @@ void NoteManager::deleteNoteCouples(Note* N){
         Relation R = it.current();
         for (Relation::iterator it2 = it.current().getIterator() ; !it2.isDone() ; it2.isNext() ){
             if ( it2.current().getX() == N || it2.current().getY() == N ){
-                R.deleteCouple(&it2.current());
-
+                Couple * tmp = it2.currentPtr();
+                tmp = nullptr;
             }
         }
     }

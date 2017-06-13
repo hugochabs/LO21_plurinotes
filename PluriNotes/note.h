@@ -7,7 +7,6 @@
 //#include "contener.h"
 #include <QDateTime>
 
-
 using json = nlohmann::json;
 using namespace std;
 //using namespace TD;
@@ -43,6 +42,7 @@ public :
         : identifier(id), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(s){}//!constructeur de la classe
     Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
 
+    virtual ~Note(){}
     //getters
     const QString& getIdentifier() const{return identifier;}//!getter d'identifier
     const QString& getTitle() const{return title;}//!getter de title
@@ -74,6 +74,10 @@ public :
     void setNoteStatus(NoteStatus s){noteStatus = s;}//!setter de noteStatus
 
     //autres méthodes
+    static QString createID(const QString& title, unsigned int version){
+        QString id = title+"V"+QString::number(version+1);
+        return id;
+    }
 
     QString getTypeOfNote();
 
@@ -119,8 +123,9 @@ public :
         int min = date->tm_min;
         int hour = date->tm_hour;
         int sec = date->tm_sec;
+        QTime t(hour, min ,sec);
         QDate d(y, mo, day);
-        QDateTime* dt = new QDateTime(d);
+        QDateTime* dt = new QDateTime(d, t);
         return dt;
     }
 
@@ -137,7 +142,7 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la note
      */
-    virtual json toJson();
+    virtual json &toJson();
 
     virtual QString& getStringAttributes();
     vector<Note> getReferences();
@@ -150,7 +155,7 @@ public :
  * de pointeurs. Pour des questions de simplicité la version la plus récente est en tête
  * de tableau.
 */
-//template<class T>
+
 class NoteVersions {
 private :
     Note** versions;        //!tableau de pointeurs de notes regroupant les versions
@@ -165,6 +170,16 @@ public :
             versions[i] = t[i];
         }                   //!constructeur de NoteVersions
     }
+
+     virtual ~NoteVersions(){
+//        delete[] versions;
+    }
+//        for (unsigned int i=0 ; i<nb ; i++){
+//            delete versions[i];
+//        }
+//            delete[] versions;
+//    }
+
     // getters
     Note** getVersions(){return versions;}          //! getter de versions
     const unsigned int& getNb(){return nb;}         //!getter de nb
@@ -254,15 +269,6 @@ public :
     iterator getIterator(){
         return iterator(versions, nb);
     }
-
-    iterator getIterator1(){
-        return iterator(++versions, nb-1);
-    }
-
-    iterator end(){
-        return iterator(versions+nb-1,1);
-    }
-
 };
 
 /*!
@@ -278,16 +284,21 @@ private :
     static NoteManager * uniqueInstance;
 
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
-    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "C:\\Users\\Public\\Documents")
+    //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"
+    //Directory Hugo :
+    //Directory Garance :
+    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/")
         :notes(new NoteVersions*[nM]),nb(n),nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
-    }       //!constructeur de NoteManager
-    // valeur par défaut à changer selon les personnes
-    NoteManager(QString dir = "/home/guillaume/DATA/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
-    }       //! overload du constructeur pour pouvoir facilement modifier le directory
+
+    }//!constructeur de NoteManager
+    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+    }//! overload du constructeur pour pouvoir facilement modifier le directory.
+    NoteManager(const NoteManager& nm);
+    NoteManager& operator=(const NoteManager &nm);
     ~NoteManager();
 
 public :

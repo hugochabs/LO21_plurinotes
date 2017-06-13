@@ -7,6 +7,9 @@ NoteManager& manager2 = NoteManager::getNoteManager();
 //! SLOT : Connecté au signal, itemClicked(), permet d'afficher sur la note active sélectionnée
 void MainWindow::affichage(QTreeWidgetItem* item, int i){
     QString id = item->text(i);
+    ui->saveMW->setEnabled(true);
+    ui->restoreButton_2->setEnabled(true);
+    ui->delete_2->setEnabled(true);
     for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
         NoteVersions& nvt = it.current();       
         for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
@@ -17,7 +20,6 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
                  n=&temp;
                  nv=&nvt;
                  return ;
-
              }
          }
 
@@ -122,11 +124,12 @@ void MainWindow::slotON(){
 
 void MainWindow::updateN(){
 
-    QString i = ui->id->text();
+    QString id = ui->id->text();
     QString title = ui->titre->text();
+    QString i = Note::createID(title, id.right(1).toInt());
     QString  datec;
     datec = ui->dc->dateTime().toString();
-//    QString dc = ui->dc->text();
+
     tm* DC = Note::dateFromQString(datec);
     time_t ti = time(0);
     struct tm * now = localtime( & ti );
@@ -134,7 +137,7 @@ void MainWindow::updateN(){
     case 1:{
         QString t = ui->text->toPlainText();
 
-        Article* a = new Article(i+"nv", title, DC, now,  active, t);
+        Article* a = new Article(i, title, DC, now,  active, t);
         nv->updateNewVersion(a);
         break;
     }
@@ -145,16 +148,16 @@ void MainWindow::updateN(){
         Task* t;
         if(nv->getType()==TWP){
             QString p = ui->prop2->text();
-            t = new TaskWithPriority(i+"nv", title, DC, now,  active, act, ts, p.toInt());
+            t = new TaskWithPriority(i, title, DC, now,  active, act, ts, p.toInt());
         }
         else if(nv->getType()==TWD){
             QString d = ui->dm->dateTime().toString(DATEFORMAT);
             tm* dl = Note::dateFromQString(d);
-             t = new TaskWithDeadline(i+"nv",title,DC, now,  active, act, ts, dl);
+             t = new TaskWithDeadline(i,title,DC, now,  active, act, ts, dl);
         }
         else{
 
-             t= new Task(i+"nv", title, DC, now,  active, act, ts);
+             t= new Task(i, title, DC, now,  active, act, ts);
 
         }
         nv->updateNewVersion(t);
@@ -165,7 +168,7 @@ void MainWindow::updateN(){
         QString desc = ui->prop1->text();
         //QString fn = ui->prop2->text();
         //QString dir = ui->directoryFile->selec
-        OtherNote* on = new OtherNote(i+"nv",title,DC,now,  active, desc, dir, OtherNoteType::audio);
+        OtherNote* on = new OtherNote(i,title,DC,now,  active, desc, dir, OtherNoteType::audio);
         nv->updateNewVersion(on);
         break;
     }
@@ -215,9 +218,6 @@ void MainWindow::chooseFile(){
     cout<<dir<<endl;
 }
 
-void MainWindow::open(){
-    //Qmedi
-}
 
 void MainWindow::restore(){
     nv->restoreVersion(n);
@@ -233,11 +233,25 @@ void  MainWindow::goToTrash(){
 }
 
 void  MainWindow::goToRelation(){
+    cout<<"gotorelation"<<endl;
     RelationViewer* newWindow = new RelationViewer(2);
-    //newWindow->initialisationTrash();
+    cout<<"gotorelation"<<endl;
+
     mediator->registerC(newWindow);
+    cout<<"gotorelation"<<endl;
     newWindow->initialisation();
+    cout<<"gotorelation"<<endl;
     newWindow->show();
+
 }
 
 
+void MainWindow::emptyTrash(){
+    for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
+        NoteVersions& nv = it.current();
+        Note& nc=nv.getIterator().current();
+        if(nc.getNoteStatus()==NoteStatus::trash){
+            nv.~NoteVersions();
+        }
+    }
+}
