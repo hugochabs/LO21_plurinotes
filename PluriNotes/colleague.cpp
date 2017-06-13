@@ -11,6 +11,7 @@ Mediator::~Mediator(){
 }
 
 void Widget::sendMessage(const string& message){
+    cout<<"distribute message"<<endl;
     mediator->distributeMessage(this, message);
 }
 
@@ -20,7 +21,7 @@ void Widget::receiveMessage(const string &message){
 }
 
 void Mediator::distributeMessage(Widget* sender, string message){
-
+    cout<<"distribute message"<<endl;
     for(unsigned int i = 0 ; i<colleagues.size() ; i++){
 
         if(colleagues[i]->getCode()!= sender->getCode()){

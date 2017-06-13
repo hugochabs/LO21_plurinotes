@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia
+QT       += core gui
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     trashviewer.cpp \
     relationviewer.cpp \
     colleague.cpp \
-    alertviewer.cpp
+    alertviewer.cpp \
+    createrelation.cpp
 
 HEADERS  += \
     exception.h \
@@ -49,9 +50,11 @@ HEADERS  += \
     trashviewer.h \
     relationviewer.h \
     colleague.h \
-    alertviewer.h
+    alertviewer.h \
+    createrelation.h
 
 FORMS    += \
     mainwindow.ui \
     trashviewer.ui \
-    relationviewer.ui
+    relationviewer.ui \
+    createrelation.ui

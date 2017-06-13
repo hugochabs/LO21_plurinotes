@@ -6,6 +6,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RelationViewer), r(0), c(0)
 {
+    mediator = &Mediator::getMediator();
     cout<<"constructeur relation viewer"<<endl;
     ui->setupUi(this);
     setWindowTitle(tr("Ensemble des relations"));
@@ -21,6 +22,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     connect(ui->listRelation, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affichageCouple(QTreeWidgetItem*,int)));
     //connect(ui->listRelation, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->create, SIGNAL(clicked()), this, SLOT(addRel()));
+
 }
 
 RelationViewer::~RelationViewer()
@@ -49,7 +51,9 @@ void RelationViewer::initialisation(){
 }
 
 void RelationViewer::quit(){
+    cout<<"quit"<<endl;
     mediator->distributeMessage(this, "salut");
+    cout<<"quit"<<endl;
     close();
 }
 
@@ -84,6 +88,8 @@ void RelationViewer::fillCouple(Couple& c){
 }
 
 void RelationViewer::addRel(){
-
+    CreateRelation* newCR = new CreateRelation(3);
+    mediator->registerC(newCR);
+    newCR->show();
 }
 

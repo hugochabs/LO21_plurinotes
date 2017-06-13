@@ -61,13 +61,13 @@ void TrashViewer::select(QTreeWidgetItem* item, int i){
 void TrashViewer::restore(){
     cout<<"restore"<<endl;
     manager.restoreNoteVersions(nv);
-    mediator->distributeMessage(this, "salut");
+    mediator->distributeMessage(this, "Restauration effectuee");
     ui->listTrash->clear();
     initialisationTrash();
 }
 
 
 void TrashViewer::quit(){
-    mediator->distributeMessage(this, "salut");
+    mediator->distributeMessage(this, "Fermeture de la corbeille");
     close();
 }

@@ -5,6 +5,7 @@
 #include "relation.h"
 #include "colleague.h"
 #include "mainwindow.h"
+#include "createrelation.h"
 
 
 
@@ -22,7 +23,9 @@ public:
     explicit RelationViewer( unsigned int i, QWidget *parent = 0);
     ~RelationViewer();
     void initialisation();
-    void update(){}
+    void update(){
+        initialisation();
+    }
     void fillRelation(Relation& r);
     void fillCouple(Couple& c);
 
@@ -31,6 +34,7 @@ private:
     Relation* r;
     Couple* c;
     Ui::RelationViewer *ui;
+    Mediator* mediator;
     void addChild(QTreeWidgetItem* parent, QString label);
 
 public slots:

@@ -309,7 +309,7 @@ private :
             notes[i] = note[i];
         }
     }//!consturcteur de NoteManager
-    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+    NoteManager( QString dir = "/home/hugo/LO21/Depot/LO21_plurinotes/PluriNotes"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
     NoteManager(const NoteManager& nm);
     NoteManager& operator=(const NoteManager &nm);
