@@ -151,7 +151,7 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la note
      */
-    virtual json toJson();
+    virtual json &toJson();
 
     virtual QString& getStringAttributes();
     vector<Note> getReferences();
