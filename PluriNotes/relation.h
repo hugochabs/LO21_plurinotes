@@ -20,15 +20,14 @@ private :
     Note* y;
 public :
     Couple(const QString& l, Note* x , Note* y): label(l), x(x), y(y) {}
+
     //getters
     const QString& getLabel() const{return label;}
     const Note* getX() const{return x;}
     const Note* getY() const{return y;}
 
-    QString& getLabel(){return label;}
-    Note* getX(){return x;}
-    Note* getY(){return y;}
     //setters
+    void setLabel(QString& l){label = l;}
     void setX(Note * Xs){x = Xs;}
     void setY(Note * Ys){y = Ys;}
 };
@@ -57,11 +56,6 @@ public :
     const QString& getTitle() const{return title;}
     const QString& getDescription() const{return description;}
     const RelationOrientation& getOrientation() const{return orientation;}
-    unsigned int& getNb(){return nb;}
-    unsigned int& getNbMax(){return nbMax;}
-    QString& getTitle(){return title;}
-    QString& getDescription(){return description;}
-    RelationOrientation& getOrientation(){return orientation;}
 
     QString getOrientationQS(){
         switch(orientation){
@@ -81,7 +75,7 @@ public :
     void setOrientation(RelationOrientation& ori){orientation = ori;}
     void setCouple(Couple ** C){couples = C;} // TO DELETE ? (NOT USED)
     void addCouple(Couple * c);
-    void deleteCouple(Couple * c); // TODO
+    void deleteCouple(Couple * c);
 
     class iterator{
         friend class Relation;
@@ -140,7 +134,6 @@ public :
     static RelationManager& getRelationManager();
     static void freeRelationManager();
     //getters
-
     static unsigned int& getNb(){return nb;}
     static unsigned int& getNbMax(){return nbMax;}
     //setters
@@ -148,7 +141,6 @@ public :
     static void setNbMax(unsigned int nM){nbMax = nM;}
 
     static void addRelation(Relation* R);
-    //faire un iterator
     static Relation* getNthElement(unsigned int n){return relations[n];}
     /*!
      * \brief getDescendants renvoie l'ensemble des descendants d'une note
@@ -192,7 +184,7 @@ public :
 class Reference : public Relation {
 private :
     static Reference * uniqueRef;
-    Reference(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const QString& t = "References", const QString& d = "Cette realtion contient les références", const RelationOrientation& o = oriented)
+    Reference(Couple ** c = new Couple*[0], unsigned int n = 0, unsigned int nM = 0, const QString& t = "References", const QString& d = "Cette relation contient les références", const RelationOrientation& o = oriented)
         : Relation(c, n, nM, t, d, o){}
     ~Reference(){}
 
