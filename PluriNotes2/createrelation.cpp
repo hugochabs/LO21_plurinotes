@@ -9,6 +9,8 @@ CreateRelation::CreateRelation(unsigned int i, QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("Ajouter une relation"));
     ui->ok->setEnabled(false);
+    //ui->orientation->setTristate(true);
+
     setModal(true);
 
     connect(ui->title, SIGNAL(textChanged(QString)), this, SLOT(activeOK()));
@@ -29,7 +31,14 @@ void CreateRelation::activeOK(){
 void CreateRelation::addRelation(){
     QString t = ui->title->text();
     QString d = ui->description->toPlainText();
-    Relation* newR = new Relation;
+    Relation* newR;
+    cout<<ui->orientation->isTristate()<<endl;
+    if(ui->orientation->isTristate()==true){
+         newR = new Relation(oriented);
+    }
+    else{
+         newR = new Relation(non_oriented);
+    }
     newR->setTitle(t);
     newR->setDescription(d);
     rm1.addRelation(newR);

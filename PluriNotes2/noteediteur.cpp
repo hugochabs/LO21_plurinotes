@@ -5,6 +5,11 @@ MainWindow& mymw = MainWindow::getMainWindow();*/
 
 Mediator& med = Mediator::getMediator();
 
+/*!
+ * \brief NoteEditeur::NoteEditeur est le constructeur de NoteEditeur
+ * \param i est le code du Widget pour l'ajouter au Mediator
+ * \param parent
+ */
 NoteEditeur::NoteEditeur( unsigned int i,QWidget* parent): QDialog(parent), Widget(i){
 
     setWhatsThis("Pour ajouter une note, veuillez sélectionner le type de note. Ensuite rentrez les différentes informations");
@@ -142,6 +147,7 @@ void NoteEditeur::activerSave(){
     save->setEnabled(true);
 }
 
+//! Fonctions pour affichage dynamique de la fenetre
 void NoteEditeur::changeTask(){
     if(ind!=1){
         prop1L->setVisible(true);
@@ -227,6 +233,7 @@ void NoteEditeur::changeOther(){
       }
 }
 
+//!Fonctions pour choix du type de Task
 void NoteEditeur::activeDeadline(){
     ind2 = 1;
 }
@@ -236,6 +243,10 @@ void NoteEditeur::activePriority(){
 
 
 NoteManager& nm = NoteManager::getNoteManager();
+
+/*!
+ * \brief NoteEditeur::addN est un slot qui permet d'ajouter une note quand on appuie sur le bouton ajouter
+ */
 void NoteEditeur::addN(){
     time_t t = time(0);   // get time now
     struct tm * now1 = localtime( & t );

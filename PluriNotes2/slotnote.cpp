@@ -174,6 +174,8 @@ void MainWindow::updateN(){
         break;
     }
     }
+    Reference& ref = Reference::getRef();
+    ref.getReferences();
     emit modify();
 
 }

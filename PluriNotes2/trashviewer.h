@@ -12,8 +12,10 @@ namespace Ui {
 class TrashViewer;
 }
 
-//!TrashViewer est hérité de la classe Widget pour pouvoir communiquer
-//! avec le Mediator ainsi que ses collegues
+/*!
+ * \brief La classe TrashViewer hérite de la classe Widget
+ * la classe trashViewer permet de visualiser les éléments dans la corbeille
+ */
 class TrashViewer : public QDialog, public Widget
 {
     Q_OBJECT

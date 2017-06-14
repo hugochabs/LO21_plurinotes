@@ -14,8 +14,10 @@
 
 #include <QFileDialog>
 #include <QObject>
+
 #include "notefille.h"
 #include "noteediteur.h"
+#include "relation.h"
 
 #include "trashviewer.h"
 #include "relationviewer.h"

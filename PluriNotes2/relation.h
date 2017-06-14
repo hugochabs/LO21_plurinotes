@@ -64,6 +64,12 @@ public :
             couples[i] = c[i];
         }
     }
+    Relation(const RelationOrientation& o)
+        : couples(new Couple*[0]), nb(0), nbMax(0), title(""), description(""), orientation(o){
+//        for (unsigned int i = 0 ; i< n ; i++){
+//            couples[i] = c[i];
+    }
+
     virtual ~Relation(){
 //        for(unsigned int i=0 ; i<nb ; i++){
 //            delete couples[i];
@@ -90,7 +96,7 @@ public :
         case non_oriented:
             return "non orientée";
         }
-        return "orientée";
+        //return "orientée";
     }
 
     //setters

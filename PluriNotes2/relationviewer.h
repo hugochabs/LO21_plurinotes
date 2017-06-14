@@ -13,8 +13,10 @@ namespace Ui {
 class RelationViewer;
 }
 
-//!RelationViewer est hérité de la classe Widget pour pouvoir communiquer
-//! avec le Mediator ainsi que ses collegues
+/*!
+ * \brief La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator
+ * Cette classe permet de visualiser toutes les relations
+ */
 class RelationViewer : public QDialog, public Widget
 {
     Q_OBJECT
