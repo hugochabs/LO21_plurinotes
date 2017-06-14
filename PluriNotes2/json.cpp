@@ -108,21 +108,19 @@ Article& Article::fromJson(json j){
 }
 
 Task& Task::fromJson(json j){
-    Task* t = new Task(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"])/*, j["taskStatus"]*/);
+    Task* t = new Task(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), waiting);
     return *t;
 }
 
 TaskWithPriority& TaskWithPriority::fromJson(json j){
-
-//    TaskWithPriority* twp = new TaskWithPriority(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), waiting, j["priority"]);
     Task& t = Task::fromJson(j);
-    TaskWithPriority* twp = new TaskWithPriority(t.getIdentifier(), t.getTitle(), const_cast<tm*>(t.getDateCreation()), const_cast<tm*>(t.getDateLastUpdate()), t.getNoteStatus(), t.getAction(), t.getStatus(), (int)j["priority"]);
+    TaskWithPriority* twp = new TaskWithPriority(t.getIdentifier(), t.getTitle(), t.getDateCreation(), t.getDateLastUpdate(), t.getNoteStatus(), t.getAction(), waiting, (int)j["priority"]);
     return *twp;
 }
 
 TaskWithDeadline& TaskWithDeadline::fromJson(json j){
     Task& t = Task::fromJson(j);
-    TaskWithDeadline* twd = new TaskWithDeadline(t.getIdentifier(), t.getTitle(),const_cast<tm*>( t.getDateCreation()),const_cast<tm*>(t.getDateLastUpdate()), t.getNoteStatus(), t.getAction(), t.getStatus(), Note::dateFromQString(QString::fromStdString(j["deadline"])));
+    TaskWithDeadline* twd = new TaskWithDeadline(t.getIdentifier(), t.getTitle(), t.getDateCreation(), t.getDateLastUpdate(), t.getNoteStatus(), t.getAction(), waiting, Note::dateFromQString(QString::fromStdString(j["deadline"])));
     return *twd;
 }
 
@@ -186,11 +184,9 @@ void NoteManager::save(){
 
 void NoteManager::load(){
     ifstream file(directory.toStdString()+"plurinotes.json");
-    cout<<"debug2"<<endl;
-    cout<<directory.toStdString()+"plurinotes.json"<<endl;
-    if(file.good()!=true){
+    if(!file.good()){
         QString message;
-        message.fromStdString(directory.toStdString()+"plurinotes.json was not found");
+        message.fromStdString(directory.toStdString()+"pluriontes.json was not found");
         throw NotesException(message);
     }
     json j;
@@ -198,7 +194,7 @@ void NoteManager::load(){
     file.close();
     json j2 = j["NoteVersions"];
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
-        //cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
+        cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
         addNoteVersion(&NoteVersions::fromJson(*it));
     }
     cout<<"NM : \n"<<*this;
