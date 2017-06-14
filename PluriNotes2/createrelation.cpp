@@ -38,3 +38,21 @@ void CreateRelation::addRelation(){
     newAV->exec();
     close();
 }
+
+EnrichRelation::EnrichRelation(unsigned int i, QWidget *parent): Widget(i){
+    mediator = &Mediator::getMediator();
+
+    label = new QLabel("Label");
+    note1 = new QLabel("Note X");
+    note2 = new QLabel("Note Y");
+    labelEdit = new QLineEdit;
+    note1Edit = new QLineEdit;
+    note2Edit = new QLineEdit;
+    cancel = new QPushButton("Annuler");
+    ok = new QPushButton("Valider");
+    setWindowTitle(tr("Enrichir une relation"));
+    setModal(true);
+    ok->setEnabled(false);
+
+    //connect(ok, S)
+}

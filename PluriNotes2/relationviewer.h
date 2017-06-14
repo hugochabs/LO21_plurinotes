@@ -41,6 +41,7 @@ public slots:
     void affichageRelation(QTreeWidgetItem* item, int i=0);
     void affichageCouple(QTreeWidgetItem* item, int i);
     void addRel();
+    void enrichRel();
 };
 
 #endif // RELATIONVIEWER_H

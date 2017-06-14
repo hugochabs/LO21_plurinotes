@@ -9,7 +9,9 @@
 namespace Ui {
 class CreateRelation;
 }
-
+/*!
+ * \brief la classe CreateRelation est responsable de l'affichage de le fenêtre pour créer une nouvlle relation.
+ */
 class CreateRelation : public QDialog, public Widget
 {
     Q_OBJECT
@@ -26,6 +28,28 @@ private:
 public slots:
     void activeOK();
     void addRelation();
+};
+
+class EnrichRelation : public QDialog, public Widget{
+    Q_OBJECT
+private :
+    QLabel* label;
+    QLineEdit* labelEdit;
+    QLabel* note1;
+    QLabel* note2;
+    QLineEdit* note1Edit;
+    QLineEdit* note2Edit;
+    QPushButton* cancel;
+    QPushButton* ok;
+
+public:
+    EnrichRelation(unsigned int i, QWidget* parent=0);
+    //~EnrichRelation();
+    Mediator* mediator;
+    void update(){}
+
+public slots:
+
 };
 
 #endif // CREATERELATION_H

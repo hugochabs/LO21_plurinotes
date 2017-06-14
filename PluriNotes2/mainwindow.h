@@ -29,7 +29,7 @@ namespace Ui {
 class MainWindow;
 }
 
-//! MainWindow est hérité de la classe Widget pour pouvoir communiquer
+//! MainWindow hérite de la classe Widget pour pouvoir communiquer
 //! avec le Mediator ainsi que ses collegues
 
 class MainWindow : public QMainWindow, public Widget

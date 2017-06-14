@@ -142,9 +142,6 @@ void NoteEditeur::activerSave(){
     save->setEnabled(true);
 }
 
-
-
-
 void NoteEditeur::changeTask(){
     if(ind!=1){
         prop1L->setVisible(true);

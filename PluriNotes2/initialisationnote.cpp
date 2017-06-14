@@ -5,7 +5,13 @@ NoteManager& manager1 = NoteManager::getNoteManager();
 
 int n=manager1.getNb();
 
-//!Fonctions qui permet d'ajouter les notes présentes dans Notemanager
+/*!
+ * \brief MainWindow::addRoot ajoute un item dans QtreeWidget
+ * \param parent est l'adresse du QTreeWidget où l'on veut ajouter l'item
+ * \param id d'une note
+ * \param type d'une note
+ * \return on retourne le QTreeWidgetItem qu'on vient d'ajouter
+ */
 QTreeWidgetItem* MainWindow::addRoot(QTreeWidget* parent, QString id, QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem(parent);
     note->setText(0, id);
@@ -13,14 +19,24 @@ QTreeWidgetItem* MainWindow::addRoot(QTreeWidget* parent, QString id, QString ty
     parent->addTopLevelItem(note);
     return note;
 }
-
+/*!
+ * \brief MainWindow::addRootBis
+ * \param parent
+ * \param id
+ * \return
+ */
 QTreeWidgetItem* MainWindow::addRootBis(QTreeWidget* parent, QString id){
     QTreeWidgetItem* note = new QTreeWidgetItem(parent);
     note->setText(0, id);
     parent->addTopLevelItem(note);
     return note;
 }
-
+/*!
+ * \brief MainWindow::addChild ajoute un fils à un item passé en paramètre
+ * \param parent est l'adresse de l'item où l'on veut ajouter un fils
+ * \param title
+ * \param type
+ */
 void MainWindow::addChild(QTreeWidgetItem* parent, QString title,QString type){
     QTreeWidgetItem* note = new QTreeWidgetItem();
     note->setText(0, title);
@@ -35,7 +51,9 @@ QTreeWidgetItem* MainWindow::addChildBis(QTreeWidgetItem* parent, QString title)
     return note;
 }
 
-//!On initialise l'affichage au lancement de l'application
+/*!
+ * \brief MainWindow::initialisationNA initialise l'affichage au lancement de l'application
+ */
 void MainWindow::initialisationNA(){
     for(NoteManager::iterator it = manager1.getIterator();!it.isDone();it.isNext()){
             NoteVersions nv = it.current();
@@ -55,7 +73,9 @@ void MainWindow::initialisationNA(){
     }
 
 }
-
+/*!
+ * \brief MainWindow::initialisationT initialise l'affichage au lancement de l'application
+ */
 void MainWindow::initialisationT(){
     //unsigned int i=1;
     for(NoteManager::iterator it = manager1.NoteManager::getIterator();!it.isDone();it.isNext()){
@@ -116,6 +136,9 @@ void MainWindow::initialisationT(){
 }
 }
 
+/*!
+ * \brief MainWindow::initialisationArchive initialise l'affichage au lancement de l'application
+ */
 void MainWindow::initialisationArchive(){
     for(NoteManager::iterator it = manager1.getIterator();!it.isDone();it.isNext()){
             NoteVersions nv = it.current();
@@ -131,7 +154,11 @@ void MainWindow::initialisationArchive(){
     }
 }
 
-
+/*!
+ * \brief MainWindow::setAffichage modifie l'affichage en fonction du type de note selectionné
+ * \param nt type de la note
+ * \param n est la note
+ */
 void MainWindow::setAffichage(NoteType nt, Note& n){
     RelationManager& rm = RelationManager::getRelationManager();
     map<Note*, int> asc = rm.getAscendants(&n);
@@ -171,7 +198,11 @@ void MainWindow::setAffichage(NoteType nt, Note& n){
     }
 }
 
-
+/*!
+ * \brief MainWindow::addElementsInWidgets
+ * \param N
+ * \param widget
+ */
 void MainWindow::addElementsInWidgets(map<Note*, int>& N, QTreeWidget* widget){
     //on nettoie le widget
     widget->clear();

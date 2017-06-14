@@ -21,6 +21,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     connect(ui->listRelation, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affichageCouple(QTreeWidgetItem*,int)));
     //connect(ui->listRelation, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(affichageRelation(QTreeWidgetItem*,int)));
     connect(ui->create, SIGNAL(clicked()), this, SLOT(addRel()));
+    connect(ui->enrich, SIGNAL(clicked(bool)), this, SLOT(enrichRel()));
 }
 
 RelationViewer::~RelationViewer()
@@ -89,3 +90,9 @@ void RelationViewer::addRel(){
     newR->show();
 }
 
+
+void RelationViewer::enrichRel(){
+    EnrichRelation* newC = new EnrichRelation(4);
+    mediator->registerC(newC);
+    newC->show();
+}
