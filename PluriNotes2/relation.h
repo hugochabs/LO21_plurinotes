@@ -21,6 +21,7 @@ private :
 public :
     Couple(const QString& l, Note* x , Note* y): label(l), x(x), y(y) {}
     //getters
+    Couple(): label(""), x(new Note), y(new Note){}
     const QString& getLabel() const{return label;}
     const Note* getX() const{return x;}
     const Note* getY() const{return y;}
@@ -31,6 +32,18 @@ public :
     //setters
     void setX(Note * Xs){x = Xs;}
     void setY(Note * Ys){y = Ys;}
+    /*!
+     * \brief fromJson ajoute les informations contenues dans le
+     * fichier json à l'intérieur du Couple
+     * \param j l'objet de type json
+     */
+    json toJson();
+    /*!
+     * \brief toJson insère le contenu d'un objet Couple dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations du Couple
+    */
+    static Couple& fromJson(json j);
 };
 
 /*!
@@ -90,6 +103,20 @@ public :
     void addCouple(Couple * c);
     void deleteCouple(Couple * c); // TODO
 
+    /*!
+     * \brief fromJson ajoute les informations contenues dans le
+     * fichier json à l'intérieur du Relation
+     * \param j l'objet de type json
+     */
+    json toJson();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Relation dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la Relation
+    */
+    static Relation& fromJson(json j);
+
     class iterator{
         friend class Relation;
     private:
@@ -136,6 +163,7 @@ private :
     static Relation ** relations;
     static unsigned int nb;
     static unsigned int nbMax;
+    static QString directory;
     RelationManager(Relation ** r = new Relation*[0], unsigned int n = 0, unsigned int nM = 0){
         nb = n;
         nbMax = nM;
@@ -171,6 +199,17 @@ public :
      */
     static map<Note *, int> getDescendants(Note* N, int order = 2);
     static map<Note *, int> getAscendants(Note* N, int order = 2);
+
+    /*!
+     * \brief fromJson ajoute les informations contenues dans le
+     * fichier json à l'intérieur du RelationManager
+     * \param j l'objet de type json
+     */
+    json toJson();
+
+    void save();
+    void load();
+
     class iterator{
         friend class RelationManager;
     private:

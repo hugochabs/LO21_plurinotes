@@ -32,8 +32,25 @@ public :
         f<<"Text\t: "<<getText()<<endl;
         return f;
     }
+
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     QString& getStringAttributes();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     json& toJson();
+    /*!
+     * \brief fromJson Renvoie une référence sur un Article qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return L'article créé
+     */
     static Article& fromJson(json j);
 };
 
@@ -42,18 +59,18 @@ public :
  */
 class Task : public Note {
 private :
-    QString action;
-    TaskStatus status;
+    QString action;//!action à réaliser
+    TaskStatus status;//!statut de la tâche
 
 public :
     Task(const QString& i, const QString& t, tm* dC,  tm* dLU,NoteStatus a, const QString& ac, TaskStatus s = waiting)
-        : Note(i, t, dC, dLU, a), action(ac), status(s){}
+        : Note(i, t, dC, dLU, a), action(ac), status(s){}//!constructeur de Task
     //getters
-    QString& getAction(){return action;}
-    const QString& getAction() const{return action;}
-    TaskStatus& getStatus(){return status;}
-    const TaskStatus& getStatus() const{return status;}
-    QString getStatusQS(){ //!Getter pour avoir status en QString
+    QString& getAction(){return action;}//!getter de action
+    const QString& getAction() const{return action;}//!getter de action
+    TaskStatus& getStatus(){return status;}//!getter de status
+    const TaskStatus& getStatus() const{return status;}//!getter de status
+    QString getStatusQS(){
         switch(status){
         case TaskStatus::doing:
             return "Doing";
@@ -62,7 +79,8 @@ public :
         case TaskStatus::waiting:
             return "Waiting";
         }
-    }
+        return "Waiting";
+    }//!Getter pour avoir status en QString
 
     static TaskStatus toTSfromQString(const QString& t){
         if(t=="waiting")
@@ -71,18 +89,41 @@ public :
              return done;
          else if(t=="en realisation")
              return doing;
-    }
+    }//!getter de TaskStatus en QString
 
     //setters
-    void setAction(QString& a){action = a;}
-    void setStatus(TaskStatus& s){status = s;}
+    void setAction(QString& a){action = a;}//!setter de action
+    void setStatus(TaskStatus& s){status = s;}//!setter de status
+
+    /*!
+     * \brief afficheSuite surcharge pour l'affichage
+     * \param f flot de sortie
+     * \return flot de sortie
+     */
     ostream& afficheSuite(ostream& f){
         f<<"Action\t: "<<getAction()<<endl
         <<"Status\t: "<<getStatus()<<endl;
         return f;
     }
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     QString& getStringAttributes();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     json& toJson();
+
+    /*!
+     * \brief fromJson Renvoie une référence sur une Task qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return La task créée
+     */
     static Task& fromJson(json j);
 };
 
@@ -91,27 +132,51 @@ public :
  */
 class TaskWithPriority : public Task {
 private :
-    int priority;
+    int priority;//!indice de priorité de la classe
 public :
     TaskWithPriority(const QString& i, const QString& t,  tm* dC,tm* dLU, NoteStatus a, const QString& ac, TaskStatus s, int p)
-        : Task(i, t, dC, dLU, a, ac, s), priority(p){}
+        : Task(i, t, dC, dLU, a, ac, s), priority(p){}//!constructeur de TWP
     //getters
-    int& getPriority(){return priority;}
-    const int& getPriority() const{return priority;}
-    QString getPriorityQS(){//!On convertit priority en QString
+    int& getPriority(){return priority;}//!getter de priority
+    const int& getPriority() const{return priority;}//!getter de priority
+    QString getPriorityQS(){
         return QString::number(priority);
-    }
+    }//!Conversion de priority en QString
 
     //setters
-    void setPriority(int & p){priority = p;}
+    void setPriority(int & p){priority = p;}//!setter de priority
+
+    /*!
+     * \brief afficheSuite surcharge pour l'affichage
+     * \param f flot de sortie
+     * \return flot de sortie
+     */
     ostream& afficheSuite(ostream& f){
         f<<"Action : "<<getAction()<<endl
         <<"Status : "<<getStatus()<<endl
         <<"Priority : "<<getPriority()<<endl;
         return f;
     }
+
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     QString& getStringAttributes();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     json& toJson();
+
+    /*!
+     * \brief fromJson Renvoie une référence sur une TWP qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return La TWP créée
+     */
     static TaskWithPriority& fromJson(json j);
 };
 
@@ -120,25 +185,49 @@ public :
  */
 class TaskWithDeadline : public Task {
 private :
-    struct tm* deadline;
+    struct tm* deadline;//!deadline de la tâche
 public :
     TaskWithDeadline(const QString& i, const QString& t, tm* dC,tm* dLU, NoteStatus a, const QString& ac, TaskStatus s,  tm* d)
-        : Task(i, t, dC, dLU, a, ac, s), deadline(d){}
+        : Task(i, t, dC, dLU, a, ac, s), deadline(d){}//!consturcteur de TWD
 
     //getters
-    const tm* getDeadline() const{return deadline;}
-   // tm* getDeadline(){return deadline;}
+    const tm* getDeadline() const{return deadline;}//!getter de deadline
+    // tm* getDeadline(){return deadline;}
 
     //setters
-    void setDeadline(tm* d){deadline = d;}
+    void setDeadline(tm* d){deadline = d;}//!setter de deadline
+
+    /*!
+     * \brief afficheSuite surcharge pour l'affichage
+     * \param f flot de sortie
+     * \return flot de sortie
+     */
     ostream& afficheSuite(ostream& f){
         f<<"Action : "<<getAction()<<endl
         <<"Status : "<<getStatus()<<endl
         <<"Deadline : "<<getDeadline()<<endl;
         return f;
     }
+
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     QString& getStringAttributes();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     json& toJson();
+
+    /*!
+     * \brief fromJson Renvoie une référence sur une TWD qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return La TWD créée
+     */
     static TaskWithDeadline& fromJson(json j);
 };
 
@@ -147,16 +236,16 @@ public :
  */
 class OtherNote : public Note{
 private :
-    QString description;
-    QString fileName;
-    OtherNoteType type;
+    QString description;//!description de la note
+    QString fileName;//!lien du fichier media
+    OtherNoteType type;//!type de média
 public :
     OtherNote(const QString& i, const QString& t, tm* dC,  tm* dLU, NoteStatus a, const QString& d, const QString& fName, const OtherNoteType& ty)
-        : Note(i, t, dC, dLU, a), description(d), fileName(fName), type(ty){}
+        : Note(i, t, dC, dLU, a), description(d), fileName(fName), type(ty){}//!constructeur de OtherNote
     //getters
-    const QString& getDescription() const{return description;}
-    const QString& getFileName() const{return fileName;}
-    const OtherNoteType& getType() const{return type;}
+    const QString& getDescription() const{return description;}//!getter de description
+    const QString& getFileName() const{return fileName;}//!getter de fileName
+    const OtherNoteType& getType() const{return type;}//!getter de type
 //    QString& getDescription(){return description;}
 //    QString& getFileName(){return fileName;}
 //    OtherNoteType& getType(){return type;}
@@ -164,39 +253,51 @@ public :
     static OtherNoteType toONTFromQString(const QString& t){
         if(t=="Audio")
              return OtherNoteType::audio;
-         else if(t=="Vidéo")
+        else if(t=="Vidéo")
              return OtherNoteType::video;
-         else if(t=="Image")
+        else if(t=="Image")
              return OtherNoteType::image;
-    }
+        return OtherNoteType::image;
+    }//!conversion de l'otherNoteType en QString
 
     //setters
-    void setDescription(QString& d){description = d;}
-    void setFileName(QString& f){fileName = f;}
-    void setType(OtherNoteType& t){type = t;}
+    void setDescription(QString& d){description = d;}//!setter de description
+    void setFileName(QString& f){fileName = f;}//!setter de fileName
+    void setType(OtherNoteType& t){type = t;}//!setter de type
 
-
+    /*!
+     * \brief afficheSuite surcharge pour l'affichage
+     * \param f flot de sortie
+     * \return flot de sortie
+     */
     ostream& afficheSuite(ostream& f){
         f<<"Description : "<<getDescription()<<endl
         <<"File : "<<getFileName()<<endl
         <<"Type : "<<getType()<<endl;
         return f;
     }
+
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     QString& getStringAttributes();
+
+    /*!
+     * \brief toJson insère le contenu d'un objet Note dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations de la note
+     */
     json& toJson();
+
+    /*!
+     * \brief fromJson Renvoie une référence sur une OtherNote qui aura été
+     * créée à partir d'un objet json.
+     * \param j l'objet de type json
+     * \return L'OtherNote créée
+     */
     static OtherNote& fromJson(json j);
 };
-
-//redéfinition des opérateurs
-/*
-ostream& operator<< (ostream& f, Article& A);
-ostream& operator<< (ostream& f, Task& T);
-ostream& operator<< (ostream& f, TaskWithPriority& T);
-ostream& operator<< (ostream& f, TaskWithDeadline& T);
-ostream& operator<< (ostream& f, OtherNote& T);
-*/
-
-
 
 
 #endif // NOTEFILLE_H

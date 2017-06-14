@@ -10,7 +10,8 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
 {
     NoteManager& NM = NoteManager::getNoteManager();
     NM.load();
-
+    RelationManager& RM = RelationManager::getRelationManager();
+    RM.load();
     dir="";
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));
@@ -113,12 +114,14 @@ void MainWindow::update(){
 
 void MainWindow::quit(){
     NoteManager& NM = NoteManager::getNoteManager();
+    RelationManager& RM = RelationManager::getRelationManager();
     AlertViewer* alert = new AlertViewer("Corbeille", "Voulez-vous vider la corbeille ?");
     QPushButton* yes = alert->addButton("Oui", QMessageBox::YesRole);
     QPushButton* no = alert->addButton("Non", QMessageBox::NoRole);
     connect(yes, SIGNAL(clicked(bool)), this, SLOT(emptyTrash()));
     alert->exec();
     NM.save();
+    RM.save();
     close();
 }
 

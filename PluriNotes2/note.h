@@ -12,14 +12,33 @@ using namespace std;
 //using namespace TD;
 
 //Définition des énumérations
-
-enum TaskStatus{waiting, doing, done}; //pour le statut d'un objet Task
-enum OtherNoteType{audio, video, image}; //Pour le type d'un objet qui comprend un média
-enum RelationOrientation{oriented, non_oriented}; //pour l'orientation des relations entre couples de Notes
+/*!
+ * \brief L'enum TaskStatus sert à définir le statut d'un objet Task
+ */
+enum TaskStatus{waiting, doing, done};
+/*!
+ * \brief L'enum OtherNoteType sert à définir le type de note contenant un média
+ */
+enum OtherNoteType{audio, video, image};
+/*!
+ * \brief L'enum  RelationOrientation sert à définir l'orientation d'une relation
+ */
+enum RelationOrientation{oriented, non_oriented};
+/*!
+ * \brief L'enum NoteType sert à définir le type de Notes contenues dans une objet NoteVersions
+ */
 enum NoteType{A, T, TWP, TWD, ON};
+/*!
+ * \brief L'enum Notestatus sert à définir le statut d'une Note
+ */
 enum NoteStatus{active, archived, trash};
 
+
+/*!
+ * \brief DATEFORMAT Format d'affichage des dates
+ */
 const QString DATEFORMAT = "%d/%m/%Y %H:%M:%S";
+
 
 //----Classes de Notes----//
 
@@ -38,27 +57,29 @@ private :
 protected:
 
 public :
+    /*!
+     * \brief Note constructeur de la classe Note
+     */
     Note(const QString& i, const QString& t, tm* dC, tm* dLU, NoteStatus a)
-        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}//!constructeur de la classe
-    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}
+        : identifier(i), title(t), dateCreation(dC), dateLastUpdate(dLU), noteStatus(a){}
+    Note(): identifier(""), title(""), dateCreation(new tm), dateLastUpdate(new tm), noteStatus(active){}//!redéfinition du constructeur
 
+    /*!
+     * \brief ~Note destructeur de la classe
+     */
     virtual ~Note(){}
     //getters
     const QString& getIdentifier() const{return identifier;}//!getter d'identifier
     QString& getIdentifier(){return identifier;}//!getter d'identifier
     const QString& getTitle() const{return title;}//!getter de title
-    QString& getTitle(){return title;}
+    QString& getTitle(){return title;}//!getter de title
     tm* getDateCreation(){return dateCreation;}//!getter de dateCreation
     const tm* getDateCreation() const{return dateCreation;}//!getter de dateCreation
-
     tm* getDateLastUpdate(){return dateLastUpdate;}//!getter de dateLastUpdate
     const tm* getDateLastUpdate() const{return dateLastUpdate;}//!getter de dateLastUpdate
-
-    //virtual const QString& getText()const;
-   NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
+    NoteStatus getNoteStatus(){return noteStatus;}//!getter de noteStatus
     const NoteStatus& getNoteStatus() const{return noteStatus;}//!getter de noteStatus
     /*!
-
      * \brief getNoteStatusString retourne la valeur de NoteStatus
      * sous forme de chaîne de caractères.
      * \return (string)noteStatus.
@@ -86,9 +107,7 @@ public :
         QString id = title+"V"+QString::number(version+1);
         return id;
     }
-
     QString getTypeOfNote();
-
     /*!
      * \brief afficheSuite définition de la méthode affiche suite vouée à être
      * surchargée par les classes filles
@@ -96,14 +115,18 @@ public :
      * \return flux de sortie
      */
     virtual ostream& afficheSuite(ostream& f){return f;}
+
+    /*!
+     * \brief affiche Fonction d'affichage d'une Note
+     * \param f flux de sortie
+     */
     void affiche(ostream& f);
 
     /*!
-     * \brief Utility method to convert a QString into a date
-     *
+     * \brief Méthode de conversion d'un QString en date
      * \see DATEFORMAT
-     * \param s the QString to parse
-     * \return the date associated to the QString
+     * \param s le QString à convertir
+     * \return la date associée au QString
      */
     static tm * dateFromQString(const QString& s){
         struct tm* date = new tm;
@@ -113,10 +136,10 @@ public :
 
 
     /*!
-     * \brief Utility method to convert a date into a QString
+     * \brief Méthode pour convertir une date en QString
      * \see DATEFORMAT
-     * \param date the date to QStringify
-     * \return a QString representation of the date
+     * \param date la date à transformer
+     * \return le QString associé à la date
      */
     static const QString& QStringFromDate(const struct tm* date){
         char date_char[64];
@@ -124,7 +147,11 @@ public :
         QString * res = new QString(date_char);
         return *res;
     }
-
+    /*!
+     * \brief QdatefromDate Transforme un tm* en QDateTime
+     * \param date date à convertir
+     * \return la date sous format QDateTime
+     */
     static const QDateTime* QdatefromDate(const struct tm* date){
         int y = date->tm_year + 1900;
         int mo = date->tm_mon + 1;
@@ -134,8 +161,8 @@ public :
         int sec = date->tm_sec;
         QTime t(hour, min ,sec);
         QDate d(y, mo, day);
-        QDateTime* dt = new QDateTime(d, t);
-        return dt;
+        QDateTime& dt = *new QDateTime(d, t);
+        return &dt;
     }
 
     /*!
@@ -144,8 +171,8 @@ public :
      * \param j l'objet de type json
      * \return La note créée
      */
-
     static Note& fromJson(json j);
+
     /*!
      * \brief toJson insère le contenu d'un objet Note dans un objet de
      * type json
@@ -153,41 +180,44 @@ public :
      */
     virtual json &toJson();
 
+    /*!
+     * \brief getStringAttributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings
+     * \return Concaténation des attributs QString
+     */
     virtual QString& getStringAttributes();
+    /*!
+     * \brief getReferences Renvoie l'ensemble des notes référencées dans la note
+     * \return le vector contenant les notes référencées
+     */
     vector<Note> getReferences();
 };
 
 
 
 /*!
- * Classe chargée de gérer toutes les versions d'un même fichier, regroupées dans un tableau
+ * \brief Classe chargée de gérer toutes les versions d'un même fichier, regroupées dans un tableau
  * de pointeurs. Pour des questions de simplicité la version la plus récente est en tête
  * de tableau.
 */
-
 class NoteVersions {
 private :
     Note** versions;//!tableau de pointeurs de notes regroupant les versions
     unsigned int nb;//!nombre de versions
     unsigned int nbMax;//!nombre max de versions
-    NoteType type;
+    NoteType type;//!Type des Notes contenues dans ce NoteVersions
 public :
     NoteVersions(Note ** t = new Note*[0], unsigned int n = 0, unsigned int nM = 0, NoteType ty = A)
         : versions(new Note*[nM]), nb(n), nbMax(nM), type(ty){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             versions[i] = t[i];
-        }//!constructeur de NoteVersions
+        }
+    }//!constructeur de NoteVersions
+    /*!
+     * \brief ~NoteVersions Destructeur de la classe
+     */
+    virtual ~NoteVersions(){
     }
-
-     virtual ~NoteVersions(){
-//        delete[] versions;
-    }
-//        for (unsigned int i=0 ; i<nb ; i++){
-//            delete versions[i];
-//        }
-//            delete[] versions;
-//    }
 
     // getters
     const unsigned int& getNb() const{return nb;}//!getter de nb
@@ -198,15 +228,16 @@ public :
     const unsigned int& getNb(){return nb;}//!getter de nb
     const unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
     const NoteType& getType(){return type;}//!getter de type
-    QString getTypeQS();
+    QString getTypeQS();//!Renvoie le type sous forme de QString
 
     //setters
-    void setNoteType(NoteType t){type = t;}
+    void setNoteType(NoteType t){type = t;}//!setter de type
     /*!
      * \brief addNote ajoute une note à la fin du tableau
      * \param N Note à ajouter
      */
     void addNote(Note* N);
+
     /*!
      * \brief Méthode qui ajoute une note (dernière version)
      * en tête de la liste.
@@ -228,7 +259,6 @@ public :
      * type json
      * \return Le fichier json contenant les informations de la NoteVersions
      */
-
     json toJson();
 
     /*!
@@ -290,7 +320,6 @@ public :
 /*!
  * \brief La classe NoteManager sert à gérer et stocker les différentes NotesVersions
  */
-
 class NoteManager{
 private :
     NoteVersions** notes;       //!tableau des NoteVersions
@@ -299,30 +328,47 @@ private :
     QString directory;
     static NoteManager * uniqueInstance;
     //Attention, pensez à changer le chemin de filename, normalement vous devez avoir ce chemin aussi sur votre pc.
-    //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"
+    //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/"
     //Directory Hugo :
     //Directory Garance :
-    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/hugo/")
+    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/")
         :notes(new NoteVersions*[nM]),nb(n),nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
     }//!consturcteur de NoteManager
-    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
+    /*!
+     * \brief NoteManager constructeur par recopie
+     * \param nm NoteManager à recopier
+     */
     NoteManager(const NoteManager& nm);
+    /*!
+     * \brief operator = redéfirition de l'opérateur d'affectation
+     * \param nm Le NoteManager à affecter
+     * \return
+     */
     NoteManager& operator=(const NoteManager &nm);
+    /*!
+     * \brief Destructeur de la classe
+     */
     ~NoteManager();
 
 public :
+    /*!
+     * \brief freeNoteManager désalloue l'espace mémoire du singleton
+     */
     static void freeNoteManager();
+    /*!
+     * \brief getNoteManager alloue l'espace mémoire du singleton et le renvoie
+     * \return pointeur vers l'unique instance
+     */
     static NoteManager& getNoteManager(NoteVersions ** nv = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0);
     // getters
     const unsigned int& getNb() const{return nb;}//!getter de nb
     const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
-//    unsigned int& getNb(){return nb;}//!getter de nb
-//    unsigned int& getNbMax(){return nbMax;}//!getter de nbMax
 
     /*!
      * \brief addNoteVersion permet d'ajouter une NoteVersions dans le tableau
@@ -330,17 +376,7 @@ public :
      */
     void addNoteVersion(NoteVersions *NV);
 
-    /*!
-     * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
-     * type json
-     * \return Le fichier json contenant les informations du NoteManager
-    */
-    /*!
-     * \brief getNVfromNote permet de récupérer le NoteVersions
-    */
-
-     /*! \brief getNVfromNote permet de récupérer le NoteVersions
-
+    /*! \brief getNVfromNote permet de récupérer le NoteVersions
      * en fonction de la Note passée en paramètres
      * \param N note dont on veut récupérer le NoteVersions
      */
@@ -383,7 +419,11 @@ public :
     void deleteNoteCouples(Note* N);
 
 
-
+    /*!
+     * \brief toJson insère le contenu d'un objet NoteManager dans un objet de
+     * type json
+     * \return Le fichier json contenant les informations du NoteManager
+    */
     json toJson();
 
     /*!
@@ -460,21 +500,12 @@ public :
 
 //redéfinition des opérateurs
 
-ostream& operator<< (ostream& f, const tm* t); //necessiare pour afficher les heures de façon stylée
-/*La redéfiniton de l'opérateur << est nécessaire pour les
- * enum car sinon lors de l'affichage, il n'affiche pas le nom de la variable
- * mais l'entier associé.
- * Exemple :
- * cout<<waiting affiche : 0
- * cout<<doing affiche : 1, etc...
- */
+ostream& operator<< (ostream& f, const tm* t);
 ostream& operator<< (ostream& f, const TaskStatus& S);
 ostream& operator<< (ostream& f, const OtherNoteType& T);
 ostream& operator<< (ostream& f, const RelationOrientation& R);
 ostream& operator<< (ostream& f, const QString& S);
 ostream& operator<< (ostream& f, const tm* tps);
-
-
 ostream& operator << (ostream& f, Note& N);
 ostream& operator<< (ostream& f, NoteVersions& V);
 ostream& operator<< (ostream& f, NoteManager& NM);

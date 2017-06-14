@@ -96,6 +96,62 @@ json& OtherNote::toJson(){
 }
 
 
+json Couple::toJson(){
+    json& j = *new json;
+    j["x"] = getX()->toJson();
+    j["y"] = getY()->toJson();
+    j["label"] = getLabel().toStdString();
+    return j;
+}
+
+
+json Relation::toJson(){
+    json& j = *new json;
+    json j2;
+    for(Relation::iterator it = getIterator() ; !it.isDone() ; it.isNext()){
+        j2.push_back(it.current().toJson());
+    }
+    j["couples"] = j2;
+    j["title"] = title.toStdString();
+    j["description"] = description.toStdString();
+    j["RelationOrientation"] = orientation;
+    return j;
+}
+
+json RelationManager::toJson(){
+    json& j = *new json;
+    json RM;
+    for(RelationManager::iterator it = getIterator() ; !it.isDone() ; it.isNext()){
+        RM.push_back(it.current().toJson());
+    }
+    j["relations"] = RM;
+    return j;
+}
+
+
+void RelationManager::save(){
+    ofstream file(directory.toStdString()+"relations.json");
+    file << toJson();
+    file.close();
+}
+
+void RelationManager::load(){
+    ifstream file(directory.toStdString()+"relations.json");
+    if(!file.good()){
+        QString message;
+        message.fromStdString(directory.toStdString()+"relations.json was not found");
+        throw NotesException(message);
+    }
+    json j;
+    file >> j;
+    file.close();
+    json j2 = j["relations"];
+    for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
+        addRelation(&Relation::fromJson(*it));
+    }
+
+}
+
 
 Note& Note::fromJson(json j){
     Note* n = new Note(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"]);
@@ -130,14 +186,30 @@ OtherNote& OtherNote::fromJson(json j){
 }
 
 
+Relation& Relation::fromJson(json j){
+    Relation& R = *new Relation;
+    R.title = QString::fromStdString(j["title"]);
+    R.description = QString::fromStdString(j["description"]);
+    R.orientation = oriented;
+    json j2 = j["couples"];
+    for(json::iterator it = j2.begin() ; it != j2.end() ; it++){
+        R.addCouple(&Couple::fromJson(*it));
+    }
+    return R;
+}
+
+Couple& Couple::fromJson(json j){
+    Couple& C = *new Couple;
+    C.label = QString::fromStdString(j["label"]);
+    C.x = &Note::fromJson(j["x"]);
+    C.y = &Note::fromJson(j["y"]);
+    return C;
+}
+
 NoteVersions &NoteVersions::fromJson(json j){
     NoteVersions * NV = new NoteVersions;
     NV->type = j["type"];
     json j2 = j["Versions"];
-    cout<<"-------------------"<<endl
-        <<"Versions : "<<endl
-        <<j2<<endl
-        <<"-------------------"<<endl;
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
         switch(NV->type){
         case NoteType::A :
