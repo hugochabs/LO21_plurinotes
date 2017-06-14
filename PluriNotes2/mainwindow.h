@@ -31,9 +31,11 @@ namespace Ui {
 class MainWindow;
 }
 
-//! MainWindow hérite de la classe Widget pour pouvoir communiquer
-//! avec le Mediator ainsi que ses collegues
-
+/*!
+ * \brief La classe MainWindow est la fenêtre principale
+ * c'est ici que sont disposés tous les widgets de l'interface principale
+ * elle hérite de la classe Widget pour pouvoir communiiquer avec les autres fenêtres
+ */
 class MainWindow : public QMainWindow, public Widget
 {
     Q_OBJECT
@@ -44,8 +46,7 @@ public:
     explicit MainWindow(unsigned int i, QWidget *parent = 0);
     ~MainWindow();
 
-    /*static MainWindow& getMainWindow();
-    static void freeMainWindow();*/
+    //! Fonctions qui permettent l'initialisation et MaJ de l'affichage des différents QWidgets d'affichage
     void initialisationNA();
     void initialisationT();
     void initialisationArchive();
@@ -69,6 +70,9 @@ public:
     void clearAffichage();
     void addElementsInWidgets(map<Note *, int>& N, QTreeWidget* widget);
 
+    /*!
+     * \brief update est une méthode virtuelle pure qui est définie ici, héritée de la classe Widget
+     */
     void update();
 
 

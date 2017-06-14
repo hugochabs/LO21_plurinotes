@@ -37,12 +37,35 @@ private:
     void addChild(QTreeWidgetItem* parent, QString label);
 
 public slots:
+    /*!
+     * \brief quit est un slot appelé à la sortie de la fenetre
+     */
     void quit();
+
+    /*!
+     * \brief affichageRelation slot appelé quand on clique sur une relation
+     * \param item
+     * \param i
+     */
     void affichageRelation(QTreeWidgetItem* item, int i=0);
+
+    /*!
+     * \brief affichageCouple appelé quand on clique sur un couple
+     * \param item
+     * \param i
+     */
     void affichageCouple(QTreeWidgetItem* item, int i);
+
+    /*!
+     * \brief addRel permet d'ajouter une relation
+     */
     void addRel();
+
+    /*!
+     * \brief enrichRel permet d'enrichir une relation, c'est-a-dire qu'on peut rajouter un couple dans cette relation
+     */
     void enrichRel();
-    Relation* getRelation(){return r;}
+    Relation* getRelation()const{return r;}
 };
 
 #endif // RELATIONVIEWER_H

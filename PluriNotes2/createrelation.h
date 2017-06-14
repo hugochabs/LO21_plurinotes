@@ -12,7 +12,7 @@ namespace Ui {
 class CreateRelation;
 }
 /*!
- * \brief la classe CreateRelation est responsable de l'affichage de le fenêtre pour créer une nouvlle relation.
+ * \brief la classe CreateRelation est responsable de l'affichage de le fenêtre pour créer une nouvelle relation.
  */
 class CreateRelation : public QDialog, public Widget
 {
@@ -32,6 +32,10 @@ public slots:
     void addRelation();
 };
 
+/*!
+ * \brief La classe EnrichRelation permet d'enrichier une relation graphiquement
+ * on rentre le label du couple, et on sélectionne les deux Notes du couple
+ */
 class EnrichRelation : public QDialog, public Widget{
     Q_OBJECT
 private :
@@ -61,7 +65,13 @@ public:
     Relation* getRelation(){return r;}
 
 public slots:
+    /*!
+     * \brief addC Ajoute un couple à la relation selectionnée dansle RelationViewer
+     */
     void addC();
+    /*!
+     * \brief activeOK rend le bouton ok active quand le label est rentré
+     */
     void activeOK();
 
 };
