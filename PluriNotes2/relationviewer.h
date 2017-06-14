@@ -23,9 +23,7 @@ public:
     explicit RelationViewer( unsigned int i, QWidget *parent = 0);
     ~RelationViewer();
     void initialisation();
-    void update(){
-        initialisation();
-    }
+    void update();
     void fillRelation(Relation& r);
     void fillCouple(Couple& c);
 
@@ -42,6 +40,7 @@ public slots:
     void affichageCouple(QTreeWidgetItem* item, int i);
     void addRel();
     void enrichRel();
+    Relation* getRelation(){return r;}
 };
 
 #endif // RELATIONVIEWER_H

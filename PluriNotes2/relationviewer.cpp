@@ -60,15 +60,21 @@ void RelationViewer::affichageRelation(QTreeWidgetItem* item, int i){
         if(it.current().getTitle()==title){
             r = &it.current();
             fillRelation(it.current());
+            r = &it.current();
         }
     }
 }
 
 void RelationViewer::affichageCouple(QTreeWidgetItem* item, int i){
     QString label = item->text(i);
+    cout<<"affichage couple"<<endl;
     for(Relation::iterator it = r->getIterator();!it.isDone();it.isNext()){
         if(it.current().getLabel()==label){
+            cout<<"if affichge couple"<<endl;
+            cout<<it.current().getLabel()<<endl;
             fillCouple(it.current());
+            //c = &it.current();
+            cout<<"apres fill"<<endl;
         }
     }
 }
@@ -92,7 +98,13 @@ void RelationViewer::addRel(){
 
 
 void RelationViewer::enrichRel(){
-    EnrichRelation* newC = new EnrichRelation(4);
+    EnrichRelation* newC = new EnrichRelation(4, r);
+    cout<<r->getTitle()<<endl;
     mediator->registerC(newC);
     newC->show();
+}
+
+void RelationViewer::update(){
+    ui->listRelation->clear();
+    initialisation();
 }

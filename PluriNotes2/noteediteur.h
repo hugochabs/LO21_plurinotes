@@ -68,6 +68,7 @@ class NoteEditeur : public QDialog, public Widget {
     QComboBox* menu;
     QRadioButton* twp;
     QRadioButton* twd;
+
     //layout
     QHBoxLayout* layout1;
     QHBoxLayout* layout2;
