@@ -293,14 +293,9 @@ private :
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
-<<<<<<< HEAD
     }//!consturcteur de NoteManager
-    NoteManager( QString dir = "/home/hugo/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
-=======
 
-    }//!constructeur de NoteManager
     NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
->>>>>>> f13093ab7f2880ee27e4751e0c52058e0851c632
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
     NoteManager(const NoteManager& nm);
     NoteManager& operator=(const NoteManager &nm);

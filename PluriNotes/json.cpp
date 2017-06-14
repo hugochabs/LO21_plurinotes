@@ -114,8 +114,8 @@ Task& Task::fromJson(json j){
 
 TaskWithPriority& TaskWithPriority::fromJson(json j){
 
-//    TaskWithPriority* twp = new TaskWithPriority(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), waiting, j["priority"]);
-//    Task& t = Task::fromJson(j);
+    //TaskWithPriority* twp = new TaskWithPriority(QString::fromStdString(j["id"]), QString::fromStdString(j["title"]), dateFromQString(QString::fromStdString(j["dateCreation"])), dateFromQString(QString::fromStdString(j["dateLastUpdate"])), j["noteStatus"], QString::fromStdString(j["action"]), waiting, j["priority"]);
+    Task& t = Task::fromJson(j);
     TaskWithPriority* twp = new TaskWithPriority(t.getIdentifier(), t.getTitle(), t.getDateCreation(), t.getDateLastUpdate(), t.getNoteStatus(), t.getAction(), t.getStatus(), (int)j["priority"]);
     return *twp;
 }
