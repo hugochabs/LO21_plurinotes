@@ -250,9 +250,9 @@ NoteManager::~NoteManager(){
 }
 
 
-NoteManager& NoteManager::getNoteManager(){
+NoteManager& NoteManager::getNoteManager(NoteVersions **nv, unsigned int n, unsigned int nM){
     if (!uniqueInstance){
-        uniqueInstance = new NoteManager;
+        uniqueInstance = new NoteManager(nv, n, nM);
     }
     return *uniqueInstance;
 }
