@@ -41,17 +41,15 @@ void \hyperlink{classRelationViewer_ad3fd7a4cd0c8deb9f7590d85ba84a4b7}{enrich\+R
 {\bfseries Relation\+Viewer} (unsigned int i, Q\+Widget $\ast$parent=0)
 \item 
 \mbox{\Hypertarget{classRelationViewer_a33eeeabaf7997a37990c4174ac9b421c}\label{classRelationViewer_a33eeeabaf7997a37990c4174ac9b421c}} 
-void {\bfseries initialisation} ()
-\item 
+void \hyperlink{classRelationViewer_a33eeeabaf7997a37990c4174ac9b421c}{initialisation} ()
+\begin{DoxyCompactList}\small\item\em initialisation initialise tous les objets de la classe \hyperlink{classRelationViewer}{Relation\+Viewer} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classRelationViewer_a264358e294cd4b94f5061f5aed79c856}\label{classRelationViewer_a264358e294cd4b94f5061f5aed79c856}} 
-void {\bfseries update} ()
-\item 
-\mbox{\Hypertarget{classRelationViewer_a236974b7e44ea4c67da7794812623194}\label{classRelationViewer_a236974b7e44ea4c67da7794812623194}} 
-void {\bfseries fill\+Relation} (\hyperlink{classRelation}{Relation} \&r)
-\item 
-\mbox{\Hypertarget{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}\label{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}} 
-void {\bfseries fill\+Couple} (\hyperlink{classCouple}{Couple} \&c)
-\end{DoxyCompactItemize}
+void \hyperlink{classRelationViewer_a264358e294cd4b94f5061f5aed79c856}{update} ()
+\begin{DoxyCompactList}\small\item\em update est une méthode virtuelle héritée de la classe \hyperlink{classWidget}{Widget}, ici l\textquotesingle{}affichage est mis à jour \end{DoxyCompactList}\item 
+void \hyperlink{classRelationViewer_a236974b7e44ea4c67da7794812623194}{fill\+Relation} (\hyperlink{classRelation}{Relation} \&r)
+\begin{DoxyCompactList}\small\item\em fill\+Relation remplit les champs présents sur la droite de la fenetre quand on clique sur une relation \end{DoxyCompactList}\item 
+void \hyperlink{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}{fill\+Couple} (\hyperlink{classCouple}{Couple} \&c)
+\begin{DoxyCompactList}\small\item\em fill\+Couple remplit les champs sur la droite de la fenetre quand on double-\/clique sur un couple \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -91,6 +89,36 @@ affichage\+Relation slot appelé quand on clique sur une relation
 {\em item} & \\
 \hline
 {\em i} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}\label{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}} 
+\index{Relation\+Viewer@{Relation\+Viewer}!fill\+Couple@{fill\+Couple}}
+\index{fill\+Couple@{fill\+Couple}!Relation\+Viewer@{Relation\+Viewer}}
+\subsubsection{\texorpdfstring{fill\+Couple()}{fillCouple()}}
+{\footnotesize\ttfamily void Relation\+Viewer\+::fill\+Couple (\begin{DoxyParamCaption}\item[{\hyperlink{classCouple}{Couple} \&}]{c }\end{DoxyParamCaption})}
+
+
+
+fill\+Couple remplit les champs sur la droite de la fenetre quand on double-\/clique sur un couple 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & est le couplle à afficher \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRelationViewer_a236974b7e44ea4c67da7794812623194}\label{classRelationViewer_a236974b7e44ea4c67da7794812623194}} 
+\index{Relation\+Viewer@{Relation\+Viewer}!fill\+Relation@{fill\+Relation}}
+\index{fill\+Relation@{fill\+Relation}!Relation\+Viewer@{Relation\+Viewer}}
+\subsubsection{\texorpdfstring{fill\+Relation()}{fillRelation()}}
+{\footnotesize\ttfamily void Relation\+Viewer\+::fill\+Relation (\begin{DoxyParamCaption}\item[{\hyperlink{classRelation}{Relation} \&}]{r }\end{DoxyParamCaption})}
+
+
+
+fill\+Relation remplit les champs présents sur la droite de la fenetre quand on clique sur une relation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & est la \hyperlink{classRelation}{Relation} à afficher \\
 \hline
 \end{DoxyParams}
 

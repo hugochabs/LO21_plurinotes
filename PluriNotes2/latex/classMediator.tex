@@ -2,6 +2,11 @@
 \label{classMediator}\index{Mediator@{Mediator}}
 
 
+la classe \hyperlink{classMediator}{Mediator} est responsable de la communication entre les différents objets dont elle a l\textquotesingle{}adresse dans un vector Cette classe est implémentée avec le design pattern singleton  
+
+
+
+
 {\ttfamily \#include $<$colleague.\+h$>$}
 
 \subsection*{Signals}
@@ -20,9 +25,8 @@ virtual void \hyperlink{classMediator_aeb991fe5844fcb6ccd40086369373e37}{registe
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMediator_a4f9ee710da1df5348e19a54ce4396952}\label{classMediator_a4f9ee710da1df5348e19a54ce4396952}} 
-static \hyperlink{classMediator}{Mediator} \& {\bfseries get\+Mediator} ()
-\item 
+static \hyperlink{classMediator}{Mediator} \& \hyperlink{classMediator_a4f9ee710da1df5348e19a54ce4396952}{get\+Mediator} ()
+\begin{DoxyCompactList}\small\item\em get\+Mediator est une méthode static pour retourner la référence de l\textquotesingle{}instance unique \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMediator_a44737f7a290891afafa9f94832d1895c}\label{classMediator_a44737f7a290891afafa9f94832d1895c}} 
 static void {\bfseries free\+Mediator} ()
 \end{DoxyCompactItemize}
@@ -44,7 +48,7 @@ unsigned int {\bfseries nb\+Max}
 
 
 \subsection{Detailed Description}
-Classe \hyperlink{classMediator}{Mediator} qui permet la transmission de message entre les differents \hyperlink{classWidget}{Widget} de l\textquotesingle{}application 
+la classe \hyperlink{classMediator}{Mediator} est responsable de la communication entre les différents objets dont elle a l\textquotesingle{}adresse dans un vector Cette classe est implémentée avec le design pattern singleton 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}\label{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}} 
@@ -64,6 +68,19 @@ Classe \hyperlink{classMediator}{Mediator} qui permet la transmission de message
 {\em message} & à envoyer \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classMediator_a4f9ee710da1df5348e19a54ce4396952}\label{classMediator_a4f9ee710da1df5348e19a54ce4396952}} 
+\index{Mediator@{Mediator}!get\+Mediator@{get\+Mediator}}
+\index{get\+Mediator@{get\+Mediator}!Mediator@{Mediator}}
+\subsubsection{\texorpdfstring{get\+Mediator()}{getMediator()}}
+{\footnotesize\ttfamily static \hyperlink{classMediator}{Mediator}\& Mediator\+::get\+Mediator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+get\+Mediator est une méthode static pour retourner la référence de l\textquotesingle{}instance unique 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \mbox{\Hypertarget{classMediator_aeb991fe5844fcb6ccd40086369373e37}\label{classMediator_aeb991fe5844fcb6ccd40086369373e37}} 
 \index{Mediator@{Mediator}!registerC@{registerC}}
 \index{registerC@{registerC}!Mediator@{Mediator}}

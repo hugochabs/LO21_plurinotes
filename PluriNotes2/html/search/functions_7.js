@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['initialisation',['initialisation',['../classRelationViewer.html#a33eeeabaf7997a37990c4174ac9b421c',1,'RelationViewer']]],
   ['initialisationarchive',['initialisationArchive',['../classMainWindow.html#a6a25cc27e98750de7ce4e2d319aae9c4',1,'MainWindow']]],
   ['initialisationna',['initialisationNA',['../classMainWindow.html#afd599be0a61a634d3a91a53dfb7679cf',1,'MainWindow']]],
   ['initialisationt',['initialisationT',['../classMainWindow.html#a091f96fb561d3663a491ff96d29c837a',1,'MainWindow']]],

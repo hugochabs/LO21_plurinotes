@@ -67,7 +67,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>La classe <a class="el" href="classRelationViewer.html" title="La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator Cette classe permet ...">RelationViewer</a> hérite de <a class="el" href="classWidget.html">Widget</a> pour pouvoir communiquer avec <a class="el" href="classMediator.html">Mediator</a> Cette classe permet de visualiser toutes les relations.  
+<p>La classe <a class="el" href="classRelationViewer.html" title="La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator Cette classe permet ...">RelationViewer</a> hérite de <a class="el" href="classWidget.html">Widget</a> pour pouvoir communiquer avec <a class="el" href="classMediator.html" title="la classe Mediator est responsable de la communication entre les différents objets dont elle a l&#39;adre...">Mediator</a> Cette classe permet de visualiser toutes les relations.  
  <a href="classRelationViewer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="relationviewer_8h_source.html">relationviewer.h</a>&gt;</code></p>
@@ -111,23 +111,29 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>RelationViewer</b> (unsigned int i, QWidget *parent=0)</td></tr>
 <tr class="separator:ad3be69ff8a6363a5bd929ad97ea4bc21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33eeeabaf7997a37990c4174ac9b421c"><td class="memItemLeft" align="right" valign="top"><a id="a33eeeabaf7997a37990c4174ac9b421c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialisation</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationViewer.html#a33eeeabaf7997a37990c4174ac9b421c">initialisation</a> ()</td></tr>
+<tr class="memdesc:a33eeeabaf7997a37990c4174ac9b421c"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialisation initialise tous les objets de la classe <a class="el" href="classRelationViewer.html" title="La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator Cette classe permet ...">RelationViewer</a> <br /></td></tr>
 <tr class="separator:a33eeeabaf7997a37990c4174ac9b421c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264358e294cd4b94f5061f5aed79c856"><td class="memItemLeft" align="right" valign="top"><a id="a264358e294cd4b94f5061f5aed79c856"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationViewer.html#a264358e294cd4b94f5061f5aed79c856">update</a> ()</td></tr>
+<tr class="memdesc:a264358e294cd4b94f5061f5aed79c856"><td class="mdescLeft">&#160;</td><td class="mdescRight">update est une méthode virtuelle héritée de la classe <a class="el" href="classWidget.html">Widget</a>, ici l'affichage est mis à jour <br /></td></tr>
 <tr class="separator:a264358e294cd4b94f5061f5aed79c856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a236974b7e44ea4c67da7794812623194"><td class="memItemLeft" align="right" valign="top"><a id="a236974b7e44ea4c67da7794812623194"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fillRelation</b> (<a class="el" href="classRelation.html">Relation</a> &amp;r)</td></tr>
+<tr class="memitem:a236974b7e44ea4c67da7794812623194"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationViewer.html#a236974b7e44ea4c67da7794812623194">fillRelation</a> (<a class="el" href="classRelation.html">Relation</a> &amp;r)</td></tr>
+<tr class="memdesc:a236974b7e44ea4c67da7794812623194"><td class="mdescLeft">&#160;</td><td class="mdescRight">fillRelation remplit les champs présents sur la droite de la fenetre quand on clique sur une relation  <a href="#a236974b7e44ea4c67da7794812623194">More...</a><br /></td></tr>
 <tr class="separator:a236974b7e44ea4c67da7794812623194"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3923d489adae30c57fd94b64ced8924"><td class="memItemLeft" align="right" valign="top"><a id="aa3923d489adae30c57fd94b64ced8924"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fillCouple</b> (<a class="el" href="classCouple.html">Couple</a> &amp;c)</td></tr>
+<tr class="memitem:aa3923d489adae30c57fd94b64ced8924"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationViewer.html#aa3923d489adae30c57fd94b64ced8924">fillCouple</a> (<a class="el" href="classCouple.html">Couple</a> &amp;c)</td></tr>
+<tr class="memdesc:aa3923d489adae30c57fd94b64ced8924"><td class="mdescLeft">&#160;</td><td class="mdescRight">fillCouple remplit les champs sur la droite de la fenetre quand on double-clique sur un couple  <a href="#aa3923d489adae30c57fd94b64ced8924">More...</a><br /></td></tr>
 <tr class="separator:aa3923d489adae30c57fd94b64ced8924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classWidget"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classWidget')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classWidget.html">Widget</a></td></tr>
 <tr class="memitem:afa1760fea43981e946d64c52d7f11956 inherit pub_methods_classWidget"><td class="memItemLeft" align="right" valign="top"><a id="afa1760fea43981e946d64c52d7f11956"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b> (unsigned int i)</td></tr>
 <tr class="separator:afa1760fea43981e946d64c52d7f11956 inherit pub_methods_classWidget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a714cf798aadb4d615f6f60a355382c02 inherit pub_methods_classWidget"><td class="memItemLeft" align="right" valign="top"><a id="a714cf798aadb4d615f6f60a355382c02"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWidget.html#a714cf798aadb4d615f6f60a355382c02">~Widget</a> ()</td></tr>
+<tr class="memdesc:a714cf798aadb4d615f6f60a355382c02 inherit pub_methods_classWidget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mediator::~Mediator destructeur de <a class="el" href="classMediator.html" title="la classe Mediator est responsable de la communication entre les différents objets dont elle a l&#39;adre...">Mediator</a>. <br /></td></tr>
+<tr class="separator:a714cf798aadb4d615f6f60a355382c02 inherit pub_methods_classWidget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f249ee26ae63058896027c045477804 inherit pub_methods_classWidget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWidget.html#a3f249ee26ae63058896027c045477804">sendMessage</a> (const string &amp;message)</td></tr>
-<tr class="memdesc:a3f249ee26ae63058896027c045477804 inherit pub_methods_classWidget"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonctions virtuelles qui permettent la communcation avec le mediator  <a href="classWidget.html#a3f249ee26ae63058896027c045477804">More...</a><br /></td></tr>
+<tr class="memdesc:a3f249ee26ae63058896027c045477804 inherit pub_methods_classWidget"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classWidget.html#a3f249ee26ae63058896027c045477804" title="Widget::sendMessage envoie un message au Mediator. ">Widget::sendMessage</a> envoie un message au <a class="el" href="classMediator.html" title="la classe Mediator est responsable de la communication entre les différents objets dont elle a l&#39;adre...">Mediator</a>.  <a href="classWidget.html#a3f249ee26ae63058896027c045477804">More...</a><br /></td></tr>
 <tr class="separator:a3f249ee26ae63058896027c045477804 inherit pub_methods_classWidget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa985218b1841d00fedc817d44b81b2ac inherit pub_methods_classWidget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWidget.html#aa985218b1841d00fedc817d44b81b2ac">receiveMessage</a> (const string &amp;message)</td></tr>
 <tr class="memdesc:aa985218b1841d00fedc817d44b81b2ac inherit pub_methods_classWidget"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classWidget.html#aa985218b1841d00fedc817d44b81b2ac" title="Widget::receiveMessage permet de recevoir un message pour le widget. ">Widget::receiveMessage</a> permet de recevoir un message pour le widget.  <a href="classWidget.html#aa985218b1841d00fedc817d44b81b2ac">More...</a><br /></td></tr>
@@ -150,7 +156,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>colleagueCode
 <tr class="separator:aaf728cdeb457d08deabd5fa4f9e06f24 inherit pro_attribs_classWidget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>La classe <a class="el" href="classRelationViewer.html" title="La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator Cette classe permet ...">RelationViewer</a> hérite de <a class="el" href="classWidget.html">Widget</a> pour pouvoir communiquer avec <a class="el" href="classMediator.html">Mediator</a> Cette classe permet de visualiser toutes les relations. </p>
+<div class="textblock"><p>La classe <a class="el" href="classRelationViewer.html" title="La classe RelationViewer hérite de Widget pour pouvoir communiquer avec Mediator Cette classe permet ...">RelationViewer</a> hérite de <a class="el" href="classWidget.html">Widget</a> pour pouvoir communiquer avec <a class="el" href="classMediator.html" title="la classe Mediator est responsable de la communication entre les différents objets dont elle a l&#39;adre...">Mediator</a> Cette classe permet de visualiser toutes les relations. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad0771f0bf9198b53ad8e0d77b4425e93"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0771f0bf9198b53ad8e0d77b4425e93">&#9670;&nbsp;</a></span>affichageCouple</h2>
@@ -236,6 +242,58 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>colleagueCode
   <table class="params">
     <tr><td class="paramname">item</td><td></td></tr>
     <tr><td class="paramname">i</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa3923d489adae30c57fd94b64ced8924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3923d489adae30c57fd94b64ced8924">&#9670;&nbsp;</a></span>fillCouple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RelationViewer::fillCouple </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCouple.html">Couple</a> &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fillCouple remplit les champs sur la droite de la fenetre quand on double-clique sur un couple </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>est le couplle à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a236974b7e44ea4c67da7794812623194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236974b7e44ea4c67da7794812623194">&#9670;&nbsp;</a></span>fillRelation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RelationViewer::fillRelation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRelation.html">Relation</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fillRelation remplit les champs présents sur la droite de la fenetre quand on clique sur une relation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>est la <a class="el" href="classRelation.html" title="La classe Relation. ">Relation</a> à afficher </td></tr>
   </table>
   </dd>
 </dl>
