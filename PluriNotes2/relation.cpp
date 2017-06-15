@@ -261,7 +261,7 @@ bool Reference::isNoteReferenced(Note * N){
     R.getReferences();
     for (Reference::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
         Couple& C = it.current();
-        if(C.getY() != nullptr){
+        if(C.getY() != nullptr && N != nullptr){
             if (C.getY()->getIdentifier() == N->getIdentifier() ){
                 return true;
             }

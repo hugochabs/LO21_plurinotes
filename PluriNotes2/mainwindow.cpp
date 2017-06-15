@@ -10,8 +10,8 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
 {
     NoteManager& nm = NoteManager::getNoteManager();
     nm.load();
-    RelationManager& rm = RelationManager::getRelationManager();
-    rm.load();
+    //RelationManager& rm = RelationManager::getRelationManager();
+    //rm.load();
 
     dir="";
     ui->setupUi(this);
