@@ -22,6 +22,22 @@ void MainWindow::affichage(QTreeWidgetItem* item, int i){
                  return ;
              }
          }
+    }
+}
+
+void MainWindow::selectNote(QTreeWidgetItem* item, int i){
+    cout<<"selectednote"<<endl;
+    QString id = item->text(i);
+    for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
+        NoteVersions& nvt = it.current();
+        for(NoteVersions::iterator it2=nvt.getIterator();!it2.isDone(); it2.isNext()){
+             Note& temp = it2.current();
+             if(id==temp.getIdentifier()){
+                 n=&temp;
+                 nv=&nvt;
+                 return ;
+             }
+         }
 
     }
 }
@@ -195,13 +211,6 @@ void MainWindow::updateAff(){
 
 }
 
-// TO DELETE LATER ? (NOT USED)
-void MainWindow::archive(){
-    for(NoteVersions::iterator it = nv->getIterator() ; !it.isDone() ; it.isNext())
-        it.current().setNoteStatus(archived);
-    updateAff();
-}
-
 void MainWindow::delete2(){
     // TO DO (work mais seulement si on sélectionne une note d'abord)
     for(NoteVersions::iterator it = nv->getIterator() ; !it.isDone() ; it.isNext()){
@@ -255,7 +264,7 @@ void MainWindow::emptyTrash(){
         NoteVersions& nv = it.current();
         if(&nv != nullptr){
             Note& nc=nv.getIterator().current();
-            if(nc.getNoteStatus()==NoteStatus::trash){
+            if(nc.getNoteStatus()==NoteStatus::trash || nc.getNoteStatus() == NoteStatus::archived){
                 nm.removeNV(nv);
             }
         }

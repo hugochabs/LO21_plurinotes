@@ -10,8 +10,8 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
 {
     NoteManager& nm = NoteManager::getNoteManager();
     nm.load();
-    //RelationManager& rm = RelationManager::getRelationManager();
-    //rm.load();
+    RelationManager& rm = RelationManager::getRelationManager();
+    rm.load();
 
     dir="";
     ui->setupUi(this);
@@ -64,6 +64,7 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
 
     //on connecte les différents signaux et slots
     QObject::connect(ui->ListNotes, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(affichage(QTreeWidgetItem*, int)));
+    QObject::connect(ui->listArchived, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(selectNote(QTreeWidgetItem*, int)));
     QObject::connect(ui->addNote, SIGNAL(clicked(bool)), this, SLOT(add()));
     connect(this, SIGNAL(signalA()), this, SLOT(slotA()));
     connect(this, SIGNAL(signalT()), this, SLOT(slotT()));

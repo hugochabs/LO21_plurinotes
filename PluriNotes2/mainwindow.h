@@ -101,6 +101,7 @@ signals:
 public slots:
     //!slot quand on clique sur une note active dans l'arbre de gauche
     void affichage(QTreeWidgetItem *item, int i);
+    void selectNote(QTreeWidgetItem *item, int i);
 
     //!Slots modification affichage principal
     void add();

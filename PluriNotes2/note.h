@@ -104,8 +104,8 @@ public :
 
     //autres méthodes
     static QString createID(const QString& title, unsigned int version){
-        //QString id = title+"V"+QString::number(version+1);
-        QString id = title;
+        QString id = title+"V"+QString::number(version+1);
+        //QString id = title;
         return id;
     }
     QString getTypeOfNote();

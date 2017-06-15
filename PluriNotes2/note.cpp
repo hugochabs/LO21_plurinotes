@@ -225,11 +225,9 @@ void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
     NoteVersions& NV = *getNVfromNote(N);
      if ( Reference::isNoteReferenced(N) ){
-         cout<<"is referenced"<<endl;
         archiveNoteVersions(&NV);
      }
      else{
-        cout<<"is not referenced"<<endl;
         deleteNoteCouples(N);
         putNVToTrash(&NV);
      }

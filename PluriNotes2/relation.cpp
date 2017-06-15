@@ -81,7 +81,7 @@ void RelationManager::addRelation(Relation* R){
     if (getNb() == getNbMax()){
         setNbMax(getNbMax() + 5);
         Relation ** newTab = new Relation*[getNbMax()];
-        for (RelationManager::iterator it = ){
+        for (unsigned int i = 0 ; i < nb ; i++){
             newTab[i] = relations[i];
             for(Relation::iterator it2 = relations[i]->getIterator() ; !it2.isDone() ; it2.isNext()){
                 newTab[i]->addCouple(&it2.current());
@@ -264,10 +264,12 @@ bool Reference::isNoteReferenced(Note * N){
     Reference& R = *getRef();
     R.getReferences();
     for (Reference::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
-        Couple& C = it.current();
-        if(C.getY() != nullptr && N != nullptr){
-            if (C.getY()->getIdentifier() == N->getIdentifier() ){
-                return true;
+        if (&it.current() != nullptr){
+            Couple& C = it.current();
+            if(C.getY() != nullptr && N != nullptr){
+                if (C.getY()->getIdentifier() == N->getIdentifier() ){
+                    return true;
+                }
             }
         }
     }
