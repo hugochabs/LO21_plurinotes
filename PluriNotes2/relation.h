@@ -91,7 +91,7 @@ public :
         case non_oriented:
             return "non orientée";
         }
-        //return "orientée";
+        return "orientée";
     }//!getter de orientation sous forme de QString
 
     //setters

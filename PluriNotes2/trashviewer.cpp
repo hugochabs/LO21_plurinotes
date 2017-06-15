@@ -24,13 +24,13 @@ TrashViewer::~TrashViewer()
 NoteManager& manager = NoteManager::getNoteManager();
 
 void TrashViewer::initialisationTrash(){
-    cout<<"initialisation"<<endl;
+    //cout<<"initialisation"<<endl;
     for(NoteManager::iterator it = manager.getIterator() ;!it.isDone();it.isNext()){
         NoteVersions nv = it.current();
         NoteVersions::iterator it2 = nv.getIterator();
         Note n = it2.current();
         QTreeWidgetItem* note1;
-        if(n.getNoteStatus()==trash){   
+        if(n.getNoteStatus()==trash || n.getNoteStatus()==archived){
             note1 = MainWindow::addRoot(ui->listTrash, n.getIdentifier(), nv.getTypeQS());
             it2.isNext();
             for(it2 ;!it2.isDone(); it2.isNext()){
@@ -59,7 +59,7 @@ void TrashViewer::select(QTreeWidgetItem* item, int i){
 }
 
 void TrashViewer::restore(){
-    cout<<"restore"<<endl;
+    //cout<<"restore"<<endl;
     manager.restoreNoteVersions(nv);
     mediator->distributeMessage(this, "salut");
     ui->listTrash->clear();

@@ -89,7 +89,8 @@ public :
              return done;
          else if(t=="en realisation")
              return doing;
-    }//!getter de TaskStatus en QString
+        return waiting;
+    }//!getter de TaskStatus à partir d'un QString
 
     //setters
     void setAction(QString& a){action = a;}//!setter de action

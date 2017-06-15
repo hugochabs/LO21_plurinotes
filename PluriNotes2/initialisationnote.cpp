@@ -83,9 +83,9 @@ void MainWindow::initialisationT(){
             NoteVersions::iterator it1 = nv.NoteVersions::getIterator();
             Note& n = it1.current();
             int row;
-            cout<<nv.getTypeQS()<<endl;
-            cout<<it.getNbRemain()<<endl;
-            cout<<manager1.getNb()<<endl;
+            //cout<<nv.getTypeQS()<<endl;
+            //cout<<it.getNbRemain()<<endl;
+            //cout<<manager1.getNb()<<endl;
             if(n.getNoteStatusString()=="active"){
                 switch(nv.getType()){
                 case NoteType::T :{
@@ -93,7 +93,7 @@ void MainWindow::initialisationT(){
                         QTableWidgetItem* action = new QTableWidgetItem(t.Task::getAction());
                         ui->listTask->insertRow(ui->listTask->rowCount());
                         row = ui->listTask->rowCount()-1;
-                        cout<<row<<endl;
+                        //cout<<row<<endl;
                         ui->listTask->setItem(row,0, action);
                         break;}
 
@@ -109,7 +109,7 @@ void MainWindow::initialisationT(){
                     ui->listTask->insertRow(ui->listTask->rowCount());
 
                     row = ui->listTask->rowCount()-1;
-                    cout<<row<<endl;
+                    //cout<<row<<endl;
                     ui->listTask->setItem(row,0, action);
                     ui->listTask->setItem(row,1, d);
 
@@ -126,11 +126,14 @@ void MainWindow::initialisationT(){
                    ui->listTask->insertRow(ui->listTask->rowCount());
 
                    row = ui->listTask->rowCount()-1;
-                   cout<<row<<endl;
+                   //cout<<row<<endl;
                    ui->listTask->setItem(row,0, action);
                    ui->listTask->setItem(row,2, prio);
                    break;}
-
+                case NoteType::A :
+                    break;
+                case NoteType::ON :
+                    break;
                }
             }
 }
@@ -144,7 +147,7 @@ void MainWindow::initialisationArchive(){
             NoteVersions nv = it.current();
             NoteVersions::iterator it1 = nv.getIterator();
             Note n = it1.current();
-            cout<<n<<endl;
+            //cout<<n<<endl;
 
             QTreeWidgetItem* note1;
             if(n.getNoteStatus() == NoteStatus::archived){

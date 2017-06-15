@@ -27,7 +27,7 @@ void Widget::sendMessage(const string& message){
  */
 void Widget::receiveMessage(const string &message){
     update();
-    cout<<"le widget "<<getCode()<<" a recu le message : " <<message<<endl;
+    //cout<<"le widget "<<getCode()<<" a recu le message : " <<message<<endl;
 }
 /*!
  * \brief Mediator::distributeMessage distribue un message à tous les widgets enregitrés dans le mediator

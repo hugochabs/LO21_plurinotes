@@ -66,6 +66,7 @@ QString NoteVersions::getTypeQS(){
     case NoteType::ON:
         return "Other note";
     }
+    return "Article";
 }
 
 
@@ -119,7 +120,6 @@ void NoteVersions::restoreVersion(Note *N){
      * afin qu'on ne laisse pas d'espace vide en enlevant la note.
      */
     for(unsigned int i = (nb - it.getNbRemain()) ; i < nb-1 ; i++){
-        cout<<"T["<<i<<"] passe de : "<<versions[i]->getIdentifier()<<" a : "<<versions[i+1]->getIdentifier()<<endl;
         versions[i] = versions[i+1];
     }
     //puisqu'on a tout décalé vers la gauche, la dernière note ne doit plus exister
@@ -151,13 +151,10 @@ void NoteVersions::updateNewVersion(Note *N){
     if (nb == nbMax){
         ++nbMax;
     }
-
-    cout<<nb<<endl<<nbMax<<endl;
     //décalage de tous les éléments dans le tableau pour
     //laisser la première place libre
     Note ** newTab = new Note*[nbMax];
     for (unsigned int i = 0 ; i < nb ; i++){
-        cout<<"boucle for :"<<i<<endl;
         newTab[i+1] = versions[i];
     }
     Note** old = versions;
@@ -168,6 +165,8 @@ void NoteVersions::updateNewVersion(Note *N){
 
     //ajout de la note en tête de tableau
     versions[0] = N;
+    Reference::updateRefs();
+    cout<<"references updated"<<endl;
 }
 
 void NoteManager::addNoteVersion(NoteVersions *NV){
@@ -182,7 +181,21 @@ void NoteManager::addNoteVersion(NoteVersions *NV){
     }
     //ajout de la NoteVersions dans le tableau
     notes[nb++] = NV;
-    cout<<"ajout de la noteersion" <<endl;
+}
+
+
+void NoteManager::removeNV(NoteVersions& nv){
+    bool removed = false;
+    for(unsigned int i = 0 ; i < nb-1 ; i++){
+        if(notes[i] == &nv){
+            removed = true;
+        }
+        if(removed){
+            notes[i] = notes[i+1];
+        }
+    }
+    notes[nb-1] = nullptr;
+    nb--;
 }
 
 NoteVersions* NoteManager::getNVfromNote(Note* N){
@@ -212,9 +225,11 @@ void NoteManager::deleteNoteVersions(Note* N){
     // get NoteVersions for the Note in parameter
     NoteVersions& NV = *getNVfromNote(N);
      if ( Reference::isNoteReferenced(N) ){
+         cout<<"is referenced"<<endl;
         archiveNoteVersions(&NV);
      }
-     else {
+     else{
+        cout<<"is not referenced"<<endl;
         deleteNoteCouples(N);
         putNVToTrash(&NV);
      }
@@ -327,6 +342,7 @@ QString Note::getTypeOfNote(){
             return nv.getTypeQS();
         }
     }
+    return "N/A";
 }
 
 

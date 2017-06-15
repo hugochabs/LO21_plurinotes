@@ -131,7 +131,7 @@ void MainWindow::updateN(){
     datec = ui->dc->dateTime().toString();
 
     tm* DC = Note::dateFromQString(datec);
-    cout<<"year "<<DC->tm_year<<endl;
+    //cout<<"year "<<DC->tm_year<<endl;
     time_t ti = time(0);
     struct tm * now = localtime( & ti );
     switch(ind){
@@ -218,7 +218,7 @@ void MainWindow::delete2(){
 void MainWindow::chooseFile(){
     QString dF = QFileDialog::getOpenFileName();
     dir = dF;
-    cout<<dir<<endl;
+    //cout<<dir<<endl;
 }
 
 
@@ -236,25 +236,28 @@ void  MainWindow::goToTrash(){
 }
 
 void  MainWindow::goToRelation(){
-    cout<<"gotorelation"<<endl;
+    //cout<<"gotorelation"<<endl;
     RelationViewer* newWindow = new RelationViewer(2);
-    cout<<"gotorelation"<<endl;
+    //cout<<"gotorelation"<<endl;
 
     mediator->registerC(newWindow);
-    cout<<"gotorelation"<<endl;
+    //cout<<"gotorelation"<<endl;
     newWindow->initialisation();
-    cout<<"gotorelation"<<endl;
+    //cout<<"gotorelation"<<endl;
     newWindow->show();
 
 }
 
 
 void MainWindow::emptyTrash(){
-    for(NoteManager::iterator it = manager2.getIterator();!it.isDone();it.isNext()){
+    NoteManager& nm = NoteManager::getNoteManager();
+    for(NoteManager::iterator it = nm.getIterator();!it.isDone();it.isNext()){
         NoteVersions& nv = it.current();
-        Note& nc=nv.getIterator().current();
-        if(nc.getNoteStatus()==NoteStatus::trash){
-            nv.~NoteVersions();
+        if(&nv != nullptr){
+            Note& nc=nv.getIterator().current();
+            if(nc.getNoteStatus()==NoteStatus::trash){
+                nm.removeNV(nv);
+            }
         }
     }
 }

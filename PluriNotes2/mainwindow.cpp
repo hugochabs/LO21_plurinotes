@@ -8,10 +8,11 @@ MainWindow::MainWindow(unsigned int i, QWidget *parent) :
      ui(new Ui::MainWindow),ind(-1), n(0), nv(0), Widget(i)
 
 {
-    NoteManager& NM = NoteManager::getNoteManager();
-    NM.load();
-    RelationManager& RM = RelationManager::getRelationManager();
-    RM.load();
+    NoteManager& nm = NoteManager::getNoteManager();
+    nm.load();
+    RelationManager& rm = RelationManager::getRelationManager();
+    rm.load();
+
     dir="";
     ui->setupUi(this);
     setWindowTitle(tr("PluriNote"));

@@ -29,7 +29,6 @@ SOURCES += main.cpp \
     notefille.cpp \
     relation.cpp \
     noteediteur.cpp \
-    notefille.cpp \
     mainwindow.cpp \
     initialisationnote.cpp \
     slotnote.cpp \

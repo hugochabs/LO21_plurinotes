@@ -104,7 +104,8 @@ public :
 
     //autres méthodes
     static QString createID(const QString& title, unsigned int version){
-        QString id = title+"V"+QString::number(version+1);
+        //QString id = title+"V"+QString::number(version+1);
+        QString id = title;
         return id;
     }
     QString getTypeOfNote();
@@ -369,6 +370,8 @@ public :
     // getters
     const unsigned int& getNb() const{return nb;}//!getter de nb
     const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
+
+    void removeNV(NoteVersions& nv);
 
     /*!
      * \brief addNoteVersion permet d'ajouter une NoteVersions dans le tableau
