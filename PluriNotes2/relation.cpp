@@ -5,7 +5,7 @@ unsigned int RelationManager::nbMax = 0;
 RelationManager* RelationManager::uniqueInstance = 0;
 Relation** RelationManager::relations = 0;
 Reference* Reference::uniqueRef = 0;
-QString RelationManager::directory = "/home/hugo/";
+QString RelationManager::directory = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/";
 
 ostream& operator << (ostream& f, Relation& R){
     f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;

@@ -1,1 +1,1 @@
-{"relations":[{"RelationOrientation":0,"couples":null,"description":"desc","title":"Relation"}]}
+{"relations":[{"RelationOrientation":0,"couples":[{"label":"label","x":{"dateCreation":"14/06/2017 18:03:57","dateLastUpdate":"14/06/2017 18:03:57","id":"ArticleV1","noteStatus":0,"title":"Article"},"y":{"dateCreation":"14/06/2017 18:03:57","dateLastUpdate":"14/06/2017 18:03:57","id":"TaskV1","noteStatus":0,"title":"Task"}}],"description":"desc","title":"Relation"}]}
