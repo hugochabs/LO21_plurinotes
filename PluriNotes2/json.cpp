@@ -63,7 +63,6 @@ json& TaskWithPriority::toJson(){
     json& j = *new json;
     json j2;
     j2 = this->Task::toJson();
-    cout<<"j2 : \n"<<j2;
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
         j[it.key()] = it.value();
     }
@@ -241,7 +240,6 @@ NoteVersions &NoteVersions::fromJson(json j){
         }
         break;
         }
-        cout<<*NV;
     }
     return *NV;
 }
@@ -266,10 +264,8 @@ void NoteManager::load(){
     file.close();
     json j2 = j["NoteVersions"];
     for (json::iterator it = j2.begin() ; it != j2.end() ; ++it){
-        cout<<"Noteversion : "<<NoteVersions::fromJson(*it)<<endl;
         addNoteVersion(&NoteVersions::fromJson(*it));
     }
-    cout<<"NM : \n"<<*this;
 }
 
 

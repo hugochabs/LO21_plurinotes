@@ -5,7 +5,7 @@ unsigned int RelationManager::nbMax = 0;
 RelationManager* RelationManager::uniqueInstance = 0;
 Relation** RelationManager::relations = 0;
 Reference* Reference::uniqueRef = 0;
-QString RelationManager::directory = "/home/hugo/";
+QString RelationManager::directory = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/";
 
 ostream& operator << (ostream& f, Relation& R){
     f<<"----------Relation - "<<R.getTitle()<<"---------"<<endl;
@@ -116,8 +116,8 @@ Relation& getRelations(Note* N){
 
 
 RelationManager::~RelationManager(){
-    for (unsigned int i = 0 ; i< nb ; i++){
-        delete getNthElement(i);
+    for(RelationManager::iterator it = getIterator() ; !it.isDone() ; it.isNext()){
+        delete &it.current();
     }
 }
 
@@ -185,7 +185,6 @@ map<Note *, int> RelationManager::getAscendants(Note* N, int order){
     //map de retour de la forme :
     //<Note* ,  ordre auquel la Note* à été trouvée>
     map<Note*, int> M;
-    cout<<"Ordre : "<<order<<endl;
     //condition d'arrèt de la procédure récursive
     if(order > 0){
         //Petite itération de tous les couples
@@ -196,12 +195,10 @@ map<Note *, int> RelationManager::getAscendants(Note* N, int order){
                 bool added = false;
                 Couple& C = it2.current();
                 //On regarde si la note en paramètre est Y tq le couple soit (X,Y)
-                if(&C != nullptr){
-                    if (C.getY()->getIdentifier() == N->getIdentifier()){
-                        //si c'est le cas on l'ajoute au map avec l'ordre correspondant
-                        M[C.getX()] = 2 - order;
-                        added = true;
-                    }
+                if (C.getY()->getIdentifier() == N->getIdentifier()){
+                    //si c'est le cas on l'ajoute au map avec l'ordre correspondant
+                    M[C.getX()] = 2 - order;
+                    added = true;
                 }
                 //Si Le fils n'est pas nul, on relance la procédure récursivement
                 if (added){
@@ -253,7 +250,6 @@ void Reference::getReferences(){
             vector<Note> refs;
             refs = N->getReferences();
             for (unsigned int i = 0 ; i < refs.size() ; i++){
-                cout<<"refs["<<i<<"]"<<refs[i]<<endl;
                 QString desc = "" + i;
                 Note& tmp = refs[i];
                 Couple * c = new Couple(desc, N, &tmp);
@@ -269,8 +265,10 @@ bool Reference::isNoteReferenced(Note * N){
     R.getReferences();
     for (Reference::iterator it = R.getIterator() ; !it.isDone() ; it.isNext()){
         Couple& C = it.current();
-             if ( C.getX() == N || C.getY() == N ){
-            return true;
+        if(C.getY() != nullptr){
+            if (C.getY()->getIdentifier() == N->getIdentifier() ){
+                return true;
+            }
         }
     }
     return false;

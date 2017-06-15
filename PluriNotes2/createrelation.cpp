@@ -32,7 +32,7 @@ void CreateRelation::addRelation(){
     QString t = ui->title->text();
     QString d = ui->description->toPlainText();
     Relation* newR;
-    cout<<ui->orientation->isTristate()<<endl;
+    //cout<<ui->orientation->isTristate()<<endl;
     if(ui->orientation->isTristate()==true){
          newR = new Relation(oriented);
     }
@@ -116,8 +116,8 @@ void EnrichRelation::addC(){
     QString n2 = choice2->currentText();
     Note* nx = NoteManager::searchNote(n1);
     Note* ny = NoteManager::searchNote(n2);
-    cout<<nx->getIdentifier()<<endl;
-    cout<<ny->getIdentifier()<<endl;
+    //cout<<nx->getIdentifier()<<endl;
+    //cout<<ny->getIdentifier()<<endl;
 
     Couple* newCouple = new Couple(l, nx, ny);
     r->addCouple(newCouple);

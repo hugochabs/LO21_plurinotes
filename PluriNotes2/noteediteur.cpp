@@ -266,8 +266,8 @@ void NoteEditeur::addN(){
             nv->setNoteType(NoteType::TWD);
             QString d = dl->dateTime().toString(DATEFORMAT);
             tm* date = Note::dateFromQString(d);
-            cout<<"annee : "<<date->tm_year<<endl;
-            cout<<"jour : "<<date->tm_mday<<endl;
+            //cout<<"annee : "<<date->tm_year<<endl;
+            //cout<<"jour : "<<date->tm_mday<<endl;
             t = new TaskWithDeadline(idN, titleN, now1, now1, active, action, waiting, date);
         }
         else if(ind2==2){
@@ -287,7 +287,8 @@ void NoteEditeur::addN(){
         OtherNote* on = new OtherNote(idN, titleN, now1, now1,  active, desc, fn, t);
         nv->updateNewVersion(on);
     }
-    nm.addNoteVersion(nv);    
+    nm.addNoteVersion(nv);
+    Reference::updateRefs();
     mediator->distributeMessage(this, "salut");
     AlertViewer* alert = new AlertViewer("Confirmation", "Votre note a bien ajoutée");
     alert->exec();

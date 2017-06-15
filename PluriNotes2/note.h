@@ -104,7 +104,8 @@ public :
 
     //autres méthodes
     static QString createID(const QString& title, unsigned int version){
-        QString id = title+"V"+QString::number(version+1);
+        //QString id = title+"V"+QString::number(version+1);
+        QString id = title;
         return id;
     }
     QString getTypeOfNote();
@@ -331,14 +332,14 @@ private :
     //Directory de Guillaume : "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/"
     //Directory Hugo :
     //Directory Garance :
-    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/hugo/")
+    NoteManager(NoteVersions ** note = new NoteVersions*[0], unsigned int n = 0, unsigned int nM = 0, QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/")
         :notes(new NoteVersions*[nM]),nb(n),nbMax(nM), directory(dir){
         //copie du tableau en paramètre.
         for (unsigned int i = 0 ; i < n ; i++){
             notes[i] = note[i];
         }
     }//!consturcteur de NoteManager
-    NoteManager( QString dir = "/home/hugo/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
+    NoteManager( QString dir = "/home/guilllaume/Documents/UTC/GI02/LO21/LO21_plurinotes/LO21_plurinotes/PluriNotes2/"):nb(0),nbMax(0),notes(new NoteVersions*[0]), directory(dir){
     }//! overload du constructeur pour pouvoir facilement modifier le directory.
     /*!
      * \brief NoteManager constructeur par recopie
@@ -369,6 +370,8 @@ public :
     // getters
     const unsigned int& getNb() const{return nb;}//!getter de nb
     const unsigned int& getNbMax() const{return nbMax;}//!getter de nbMax
+
+    void removeNV(NoteVersions& nv);
 
     /*!
      * \brief addNoteVersion permet d'ajouter une NoteVersions dans le tableau

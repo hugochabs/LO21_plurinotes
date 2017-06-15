@@ -6,7 +6,7 @@ RelationViewer::RelationViewer(unsigned int i, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RelationViewer), r(0), c(0)
 {
-    cout<<"constructeur relation viewer"<<endl;
+    //cout<<"constructeur relation viewer"<<endl;
     ui->setupUi(this);
     setWindowTitle(tr("Ensemble des relations"));
     ui->listRelation->setColumnCount(2);
@@ -68,14 +68,14 @@ void RelationViewer::affichageRelation(QTreeWidgetItem* item, int i){
 
 void RelationViewer::affichageCouple(QTreeWidgetItem* item, int i){
     QString label = item->text(i);
-    cout<<"affichage couple"<<endl;
+    //cout<<"affichage couple"<<endl;
     for(Relation::iterator it = r->getIterator();!it.isDone();it.isNext()){
         if(it.current().getLabel()==label){
-            cout<<"if affichge couple"<<endl;
-            cout<<it.current().getLabel()<<endl;
+            //cout<<"if affichge couple"<<endl;
+            //cout<<it.current().getLabel()<<endl;
             fillCouple(it.current());
             //c = &it.current();
-            cout<<"apres fill"<<endl;
+            //cout<<"apres fill"<<endl;
         }
     }
 }
@@ -100,7 +100,7 @@ void RelationViewer::addRel(){
 
 void RelationViewer::enrichRel(){
     EnrichRelation* newC = new EnrichRelation(4, r);
-    cout<<r->getTitle()<<endl;
+    //cout<<r->getTitle()<<endl;
     mediator->registerC(newC);
     newC->show();
 }
