@@ -15,8 +15,11 @@ using namespace std;
 class Widget;
 
 
-//!Classe Mediator qui permet la transmission de message
-//! entre les differents Widget de l'application
+/*!
+ * \brief la classe Mediator est responsable de la communication entre les différents objets dont elle a l'adresse dans un vector
+ * Cette classe est implémentée avec le design pattern singleton
+ */
+
 class Mediator{
 private:
     static Mediator* uniqueInstance;
@@ -36,9 +39,24 @@ protected:
     unsigned int nbMax;
 
 public :
+
+    /*!
+     * \brief Mediator::distributeMessage distribue un message à tous les widgets enregitrés dans le mediator
+     * \param sender est l'adresse du widget qui envoie le message
+     * \param message à envoyer
+     */
     virtual void distributeMessage(Widget* sender, const string message);
+
+    /*!
+     * \brief Mediator::registerC permet d'enregistrer l'adresse d'un widget
+     * \param c est l'adresse du widget qu'on enregistre dans le Mediator
+     */
     virtual void registerC(Widget* c);
 
+    /*!
+     * \brief getMediator est une méthode static pour retourner la référence de l'instance unique
+     * \return
+     */
     static Mediator& getMediator(){
         if (!uniqueInstance){
             uniqueInstance = new Mediator;
@@ -71,10 +89,23 @@ public:
     Widget(unsigned int i) : colleagueCode(i){
         mediator = &Mediator::getMediator();
     }
+
+    /*!
+     * \brief Mediator::~Mediator destructeur de Mediator
+     */
     virtual ~Widget(){}
-    //!fonctions virtuelles qui permettent la communcation avec le mediator
-    virtual void sendMessage(const string &message);//ok implémenté
-    virtual void receiveMessage(const string& message);//ok implémenté
+
+    /*!
+     * \brief Widget::sendMessage envoie un message au Mediator
+     * \param message à envoyer
+     */
+    virtual void sendMessage(const string &message);
+
+    /*!
+     * \brief Widget::receiveMessage permet de recevoir un message pour le widget
+     * \param message reçu
+     */
+    virtual void receiveMessage(const string& message);
     unsigned int getCode()const{return colleagueCode;}
     const Mediator* getMediator()const{return mediator;}
 
