@@ -195,8 +195,8 @@ public :
     static void setNbMax(unsigned int nM){nbMax = nM;}
 
     static void addRelation(Relation* R);
-    //faire un iterator
-    static Relation* getNthElement(unsigned int n){return relations[n];}
+
+    static void deleteRelation();
     /*!
      * \brief getDescendants renvoie l'ensemble des descendants d'une note
      * \param N La note en question
