@@ -55,7 +55,7 @@ ostream& operator<< (ostream& f, map<Note*, int> M){
 /**********************************/
 
 
-
+RelationManager& relationManager = RelationManager::getRelationManager();
 
 void Relation::addCouple(Couple * c){
     //agrandissement du tableau si nécessaire
@@ -81,7 +81,7 @@ void RelationManager::addRelation(Relation* R){
     if (getNb() == getNbMax()){
         setNbMax(getNbMax() + 5);
         Relation ** newTab = new Relation*[getNbMax()];
-        for (unsigned int i = 0 ; i < getNb() ; i++){
+        for (RelationManager::iterator it = ){
             newTab[i] = relations[i];
             for(Relation::iterator it2 = relations[i]->getIterator() ; !it2.isDone() ; it2.isNext()){
                 newTab[i]->addCouple(&it2.current());
@@ -91,6 +91,10 @@ void RelationManager::addRelation(Relation* R){
     }
     //ajout de l'élément
     relations[nb++] = R;
+}
+
+void RelationManager::deleteRelation(){
+
 }
 
 Relation& getRelations(Note* N){

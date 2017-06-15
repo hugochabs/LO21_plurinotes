@@ -224,6 +224,9 @@ public :
      */
     static void addRelation(Relation* R);
 
+
+    static void deleteRelation();
+
     //faire un iterator
     //static Relation* getNthElement(unsigned int n){return relations[n];}
 
