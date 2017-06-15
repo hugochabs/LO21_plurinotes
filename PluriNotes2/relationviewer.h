@@ -23,10 +23,29 @@ class RelationViewer : public QDialog, public Widget
 
 public:
     explicit RelationViewer( unsigned int i, QWidget *parent = 0);
+
     ~RelationViewer();
+
+    /*!
+     * \brief initialisation initialise tous les objets de la classe RelationViewer
+     */
     void initialisation();
+
+    /*!
+     * \brief update est une méthode virtuelle héritée de la classe Widget, ici l'affichage est mis à jour
+     */
     void update();
+
+    /*!
+     * \brief fillRelation remplit les champs présents sur la droite de la fenetre quand on clique sur une relation
+     * \param r est la Relation à afficher
+     */
     void fillRelation(Relation& r);
+
+    /*!
+     * \brief fillCouple remplit les champs sur la droite de la fenetre quand on double-clique sur un couple
+     * \param c est le couplle à afficher
+     */
     void fillCouple(Couple& c);
 
 
