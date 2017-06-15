@@ -1,0 +1,181 @@
+\hypertarget{classNoteVersions}{}\section{Note\+Versions Class Reference}
+\label{classNoteVersions}\index{Note\+Versions@{Note\+Versions}}
+
+
+Classe chargée de gérer toutes les versions d\textquotesingle{}un même fichier, regroupées dans un tableau de pointeurs. Pour des questions de simplicité la version la plus récente est en tête de tableau.  
+
+
+
+
+{\ttfamily \#include $<$note.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNoteVersions_1_1iterator}{iterator}
+\begin{DoxyCompactList}\small\item\em La classe iterator sert à parcourir les éléments de la classe sans exposer la structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNoteVersions_a5b5ce778ba505aa3d54d3ab35699e91e}\label{classNoteVersions_a5b5ce778ba505aa3d54d3ab35699e91e}} 
+\hyperlink{classNoteVersions_a5b5ce778ba505aa3d54d3ab35699e91e}{Note\+Versions} (\hyperlink{classNote}{Note} $\ast$$\ast$t=new \hyperlink{classNote}{Note} $\ast$\mbox{[}0\mbox{]}, unsigned int n=0, unsigned int nM=0, Note\+Type ty=A)
+\begin{DoxyCompactList}\small\item\em Type des Notes contenues dans ce \hyperlink{classNoteVersions}{Note\+Versions}. \end{DoxyCompactList}\item 
+virtual \hyperlink{classNoteVersions_a4e44ca55ef4a836e1da94933b87b1148}{$\sim$\+Note\+Versions} ()
+\begin{DoxyCompactList}\small\item\em constructeur de \hyperlink{classNoteVersions}{Note\+Versions} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a1433cc485e271d4969207f2dd072b2d6}\label{classNoteVersions_a1433cc485e271d4969207f2dd072b2d6}} 
+const unsigned int \& {\bfseries get\+Nb} () const
+\item 
+\mbox{\Hypertarget{classNoteVersions_a58728fddeb28c0f8485c8eb6db2e5742}\label{classNoteVersions_a58728fddeb28c0f8485c8eb6db2e5742}} 
+const unsigned int \& \hyperlink{classNoteVersions_a58728fddeb28c0f8485c8eb6db2e5742}{get\+Nb\+Max} () const
+\begin{DoxyCompactList}\small\item\em getter de nb \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a894cdd113569ffbeaae3e66ff321f63f}\label{classNoteVersions_a894cdd113569ffbeaae3e66ff321f63f}} 
+const Note\+Type \& \hyperlink{classNoteVersions_a894cdd113569ffbeaae3e66ff321f63f}{get\+Type} () const
+\begin{DoxyCompactList}\small\item\em getter de nb\+Max \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a6d73ab55ce082005d7792b434687af0e}\label{classNoteVersions_a6d73ab55ce082005d7792b434687af0e}} 
+\hyperlink{classNote}{Note} $\ast$$\ast$ \hyperlink{classNoteVersions_a6d73ab55ce082005d7792b434687af0e}{get\+Versions} ()
+\begin{DoxyCompactList}\small\item\em getter de type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a3ffef9a1d03684e001d185a639f9d933}\label{classNoteVersions_a3ffef9a1d03684e001d185a639f9d933}} 
+const unsigned int \& \hyperlink{classNoteVersions_a3ffef9a1d03684e001d185a639f9d933}{get\+Nb} ()
+\begin{DoxyCompactList}\small\item\em getter de versions \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a412e6b047de73185311bef7fc3534d9c}\label{classNoteVersions_a412e6b047de73185311bef7fc3534d9c}} 
+const unsigned int \& \hyperlink{classNoteVersions_a412e6b047de73185311bef7fc3534d9c}{get\+Nb\+Max} ()
+\begin{DoxyCompactList}\small\item\em getter de nb \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_ad863091211ff6098a8a39ec404eee146}\label{classNoteVersions_ad863091211ff6098a8a39ec404eee146}} 
+const Note\+Type \& \hyperlink{classNoteVersions_ad863091211ff6098a8a39ec404eee146}{get\+Type} ()
+\begin{DoxyCompactList}\small\item\em getter de nb\+Max \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a2407a577050556fad1c6f6473fa77ddf}\label{classNoteVersions_a2407a577050556fad1c6f6473fa77ddf}} 
+Q\+String \hyperlink{classNoteVersions_a2407a577050556fad1c6f6473fa77ddf}{get\+Type\+QS} ()
+\begin{DoxyCompactList}\small\item\em getter de type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_a3404c34de28cc36dec5711e1347ccf4f}\label{classNoteVersions_a3404c34de28cc36dec5711e1347ccf4f}} 
+void \hyperlink{classNoteVersions_a3404c34de28cc36dec5711e1347ccf4f}{set\+Note\+Type} (Note\+Type t)
+\begin{DoxyCompactList}\small\item\em Renvoie le type sous forme de Q\+String. \end{DoxyCompactList}\item 
+void \hyperlink{classNoteVersions_aa3cea52090130714aae7ba4a6383c563}{add\+Note} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em setter de type \end{DoxyCompactList}\item 
+void \hyperlink{classNoteVersions_aae6abd5625c6741a7a1edc251372a469}{update\+New\+Version} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em Méthode qui ajoute une note (dernière version) en tête de la liste. \end{DoxyCompactList}\item 
+void \hyperlink{classNoteVersions_ab96dcb43270c73c6a918c6cc6a4aa924}{restore\+Version} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em restore\+Version permet de restaurer une version existante d\textquotesingle{}une note et de la placer comme version courante. \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \hyperlink{classNoteVersions_aee4095478320c9899cc0891af31f1151}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNoteVersions}{Note\+Versions} dans un objet de type json \end{DoxyCompactList}\item 
+\hyperlink{classNoteVersions_1_1iterator}{iterator} \hyperlink{classNoteVersions_ad7531c8a160453b440f7d8194fe5c404}{get\+Iterator} ()
+\begin{DoxyCompactList}\small\item\em get\+Iterator retourne un iterator pour parcourir les versions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classNoteVersions}{Note\+Versions} \& \hyperlink{classNoteVersions_ac3bcced08e0e7b8afb62514e1f828abb}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json Renvoie une référence sur une \hyperlink{classNoteVersions}{Note\+Versions} qui aura été créée à partir d\textquotesingle{}un objet json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe chargée de gérer toutes les versions d\textquotesingle{}un même fichier, regroupées dans un tableau de pointeurs. Pour des questions de simplicité la version la plus récente est en tête de tableau. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNoteVersions_a4e44ca55ef4a836e1da94933b87b1148}\label{classNoteVersions_a4e44ca55ef4a836e1da94933b87b1148}} 
+\index{Note\+Versions@{Note\+Versions}!````~Note\+Versions@{$\sim$\+Note\+Versions}}
+\index{````~Note\+Versions@{$\sim$\+Note\+Versions}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{$\sim$\+Note\+Versions()}{~NoteVersions()}}
+{\footnotesize\ttfamily virtual Note\+Versions\+::$\sim$\+Note\+Versions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+constructeur de \hyperlink{classNoteVersions}{Note\+Versions} 
+
+$\sim$\+Note\+Versions Destructeur de la classe 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNoteVersions_aa3cea52090130714aae7ba4a6383c563}\label{classNoteVersions_aa3cea52090130714aae7ba4a6383c563}} 
+\index{Note\+Versions@{Note\+Versions}!add\+Note@{add\+Note}}
+\index{add\+Note@{add\+Note}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{add\+Note()}{addNote()}}
+{\footnotesize\ttfamily void Note\+Versions\+::add\+Note (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+setter de type 
+
+add\+Note ajoute une note à la fin du tableau 
+\begin{DoxyParams}{Parameters}
+{\em N} & \hyperlink{classNote}{Note} à ajouter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteVersions_ac3bcced08e0e7b8afb62514e1f828abb}\label{classNoteVersions_ac3bcced08e0e7b8afb62514e1f828abb}} 
+\index{Note\+Versions@{Note\+Versions}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classNoteVersions}{Note\+Versions} \& Note\+Versions\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json Renvoie une référence sur une \hyperlink{classNoteVersions}{Note\+Versions} qui aura été créée à partir d\textquotesingle{}un objet json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La \hyperlink{classNoteVersions}{Note\+Versions} créée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteVersions_ad7531c8a160453b440f7d8194fe5c404}\label{classNoteVersions_ad7531c8a160453b440f7d8194fe5c404}} 
+\index{Note\+Versions@{Note\+Versions}!get\+Iterator@{get\+Iterator}}
+\index{get\+Iterator@{get\+Iterator}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{get\+Iterator()}{getIterator()}}
+{\footnotesize\ttfamily \hyperlink{classNoteVersions_1_1iterator}{iterator} Note\+Versions\+::get\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Iterator retourne un iterator pour parcourir les versions 
+
+\begin{DoxyReturn}{Returns}
+un iterator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteVersions_ab96dcb43270c73c6a918c6cc6a4aa924}\label{classNoteVersions_ab96dcb43270c73c6a918c6cc6a4aa924}} 
+\index{Note\+Versions@{Note\+Versions}!restore\+Version@{restore\+Version}}
+\index{restore\+Version@{restore\+Version}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{restore\+Version()}{restoreVersion()}}
+{\footnotesize\ttfamily void Note\+Versions\+::restore\+Version (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+restore\+Version permet de restaurer une version existante d\textquotesingle{}une note et de la placer comme version courante. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & version à restaurer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteVersions_aee4095478320c9899cc0891af31f1151}\label{classNoteVersions_aee4095478320c9899cc0891af31f1151}} 
+\index{Note\+Versions@{Note\+Versions}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} Note\+Versions\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNoteVersions}{Note\+Versions} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations de la \hyperlink{classNoteVersions}{Note\+Versions} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteVersions_aae6abd5625c6741a7a1edc251372a469}\label{classNoteVersions_aae6abd5625c6741a7a1edc251372a469}} 
+\index{Note\+Versions@{Note\+Versions}!update\+New\+Version@{update\+New\+Version}}
+\index{update\+New\+Version@{update\+New\+Version}!Note\+Versions@{Note\+Versions}}
+\subsubsection{\texorpdfstring{update\+New\+Version()}{updateNewVersion()}}
+{\footnotesize\ttfamily void Note\+Versions\+::update\+New\+Version (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+Méthode qui ajoute une note (dernière version) en tête de la liste. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & \hyperlink{classNote}{Note} à ajouter \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+note.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

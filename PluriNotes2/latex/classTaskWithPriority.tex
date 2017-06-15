@@ -1,0 +1,133 @@
+\hypertarget{classTaskWithPriority}{}\section{Task\+With\+Priority Class Reference}
+\label{classTaskWithPriority}\index{Task\+With\+Priority@{Task\+With\+Priority}}
+
+
+The \hyperlink{classTaskWithPriority}{Task\+With\+Priority} class.  
+
+
+
+
+{\ttfamily \#include $<$notefille.\+h$>$}
+
+Inheritance diagram for Task\+With\+Priority\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classTaskWithPriority}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTaskWithPriority_a7b0da02312ddf743f7119c1fb6202483}\label{classTaskWithPriority_a7b0da02312ddf743f7119c1fb6202483}} 
+\hyperlink{classTaskWithPriority_a7b0da02312ddf743f7119c1fb6202483}{Task\+With\+Priority} (const Q\+String \&i, const Q\+String \&t, tm $\ast$dC, tm $\ast$d\+LU, Note\+Status a, const Q\+String \&ac, Task\+Status s, int p)
+\begin{DoxyCompactList}\small\item\em indice de priorité de la classe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTaskWithPriority_a18e66b621d0e9614b096ce11f03dee64}\label{classTaskWithPriority_a18e66b621d0e9614b096ce11f03dee64}} 
+int \& \hyperlink{classTaskWithPriority_a18e66b621d0e9614b096ce11f03dee64}{get\+Priority} ()
+\begin{DoxyCompactList}\small\item\em constructeur de T\+WP \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTaskWithPriority_ace8a1d270eb7efebfdb1321e0cc86081}\label{classTaskWithPriority_ace8a1d270eb7efebfdb1321e0cc86081}} 
+const int \& \hyperlink{classTaskWithPriority_ace8a1d270eb7efebfdb1321e0cc86081}{get\+Priority} () const
+\begin{DoxyCompactList}\small\item\em getter de priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTaskWithPriority_a5c6539bb82fa4a23cba89d47d493ee54}\label{classTaskWithPriority_a5c6539bb82fa4a23cba89d47d493ee54}} 
+Q\+String \hyperlink{classTaskWithPriority_a5c6539bb82fa4a23cba89d47d493ee54}{get\+Priority\+QS} ()
+\begin{DoxyCompactList}\small\item\em getter de priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTaskWithPriority_a9fb2a61da47d26ea236657f451be370d}\label{classTaskWithPriority_a9fb2a61da47d26ea236657f451be370d}} 
+void \hyperlink{classTaskWithPriority_a9fb2a61da47d26ea236657f451be370d}{set\+Priority} (int \&p)
+\begin{DoxyCompactList}\small\item\em Conversion de priority en Q\+String. \end{DoxyCompactList}\item 
+ostream \& \hyperlink{classTaskWithPriority_abba0d3458bd4ef1aed57ddd0d0cbe233}{affiche\+Suite} (ostream \&f)
+\begin{DoxyCompactList}\small\item\em setter de priority \end{DoxyCompactList}\item 
+Q\+String \& \hyperlink{classTaskWithPriority_a8463ac90713f33e4e9ca04de18eebb8b}{get\+String\+Attributes} ()
+\begin{DoxyCompactList}\small\item\em get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \& \hyperlink{classTaskWithPriority_adeda4ce31e96224993db991c60fccbc7}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTaskWithPriority}{Task\+With\+Priority} \& \hyperlink{classTaskWithPriority_ad198d3bb6af6f3e7e10518cabc08bf1f}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json Renvoie une référence sur une T\+WP qui aura été créée à partir d\textquotesingle{}un objet json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classTaskWithPriority}{Task\+With\+Priority} class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTaskWithPriority_abba0d3458bd4ef1aed57ddd0d0cbe233}\label{classTaskWithPriority_abba0d3458bd4ef1aed57ddd0d0cbe233}} 
+\index{Task\+With\+Priority@{Task\+With\+Priority}!affiche\+Suite@{affiche\+Suite}}
+\index{affiche\+Suite@{affiche\+Suite}!Task\+With\+Priority@{Task\+With\+Priority}}
+\subsubsection{\texorpdfstring{affiche\+Suite()}{afficheSuite()}}
+{\footnotesize\ttfamily ostream\& Task\+With\+Priority\+::affiche\+Suite (\begin{DoxyParamCaption}\item[{ostream \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+setter de priority 
+
+affiche\+Suite surcharge pour l\textquotesingle{}affichage 
+\begin{DoxyParams}{Parameters}
+{\em f} & flot de sortie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flot de sortie 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classTask_aaef115655e5c20b9919da726ae526f8a}{Task}.
+
+\mbox{\Hypertarget{classTaskWithPriority_ad198d3bb6af6f3e7e10518cabc08bf1f}\label{classTaskWithPriority_ad198d3bb6af6f3e7e10518cabc08bf1f}} 
+\index{Task\+With\+Priority@{Task\+With\+Priority}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Task\+With\+Priority@{Task\+With\+Priority}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classTaskWithPriority}{Task\+With\+Priority} \& Task\+With\+Priority\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json Renvoie une référence sur une T\+WP qui aura été créée à partir d\textquotesingle{}un objet json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La T\+WP créée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTaskWithPriority_a8463ac90713f33e4e9ca04de18eebb8b}\label{classTaskWithPriority_a8463ac90713f33e4e9ca04de18eebb8b}} 
+\index{Task\+With\+Priority@{Task\+With\+Priority}!get\+String\+Attributes@{get\+String\+Attributes}}
+\index{get\+String\+Attributes@{get\+String\+Attributes}!Task\+With\+Priority@{Task\+With\+Priority}}
+\subsubsection{\texorpdfstring{get\+String\+Attributes()}{getStringAttributes()}}
+{\footnotesize\ttfamily Q\+String \& Task\+With\+Priority\+::get\+String\+Attributes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings 
+
+\begin{DoxyReturn}{Returns}
+Concaténation des attributs Q\+String 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classTask_a410f65f8d06198e75d8faec574827726}{Task}.
+
+\mbox{\Hypertarget{classTaskWithPriority_adeda4ce31e96224993db991c60fccbc7}\label{classTaskWithPriority_adeda4ce31e96224993db991c60fccbc7}} 
+\index{Task\+With\+Priority@{Task\+With\+Priority}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Task\+With\+Priority@{Task\+With\+Priority}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} \& Task\+With\+Priority\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations de la note 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classTask_af20f0085e2426cbf64955a03d8920400}{Task}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+notefille.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{classRelationViewer}{}\section{Relation\+Viewer Class Reference}
+\label{classRelationViewer}\index{Relation\+Viewer@{Relation\+Viewer}}
+
+
+La classe \hyperlink{classRelationViewer}{Relation\+Viewer} hérite de \hyperlink{classWidget}{Widget} pour pouvoir communiquer avec \hyperlink{classMediator}{Mediator} Cette classe permet de visualiser toutes les relations.  
+
+
+
+
+{\ttfamily \#include $<$relationviewer.\+h$>$}
+
+Inheritance diagram for Relation\+Viewer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRelationViewer}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRelationViewer_a9dea233145d67866160d7cab617e2986}\label{classRelationViewer_a9dea233145d67866160d7cab617e2986}} 
+void \hyperlink{classRelationViewer_a9dea233145d67866160d7cab617e2986}{quit} ()
+\begin{DoxyCompactList}\small\item\em quit est un slot appelé à la sortie de la fenetre \end{DoxyCompactList}\item 
+void \hyperlink{classRelationViewer_ac357dab8075b96af014ad4dd70a1a7dd}{affichage\+Relation} (Q\+Tree\+Widget\+Item $\ast$item, int i=0)
+\begin{DoxyCompactList}\small\item\em affichage\+Relation slot appelé quand on clique sur une relation \end{DoxyCompactList}\item 
+void \hyperlink{classRelationViewer_ad0771f0bf9198b53ad8e0d77b4425e93}{affichage\+Couple} (Q\+Tree\+Widget\+Item $\ast$item, int i)
+\begin{DoxyCompactList}\small\item\em affichage\+Couple appelé quand on clique sur un couple \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationViewer_af5aa5728e902de2f6d25a4b68fff6493}\label{classRelationViewer_af5aa5728e902de2f6d25a4b68fff6493}} 
+void \hyperlink{classRelationViewer_af5aa5728e902de2f6d25a4b68fff6493}{add\+Rel} ()
+\begin{DoxyCompactList}\small\item\em add\+Rel permet d\textquotesingle{}ajouter une relation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationViewer_ad3fd7a4cd0c8deb9f7590d85ba84a4b7}\label{classRelationViewer_ad3fd7a4cd0c8deb9f7590d85ba84a4b7}} 
+void \hyperlink{classRelationViewer_ad3fd7a4cd0c8deb9f7590d85ba84a4b7}{enrich\+Rel} ()
+\begin{DoxyCompactList}\small\item\em enrich\+Rel permet d\textquotesingle{}enrichir une relation, c\textquotesingle{}est-\/a-\/dire qu\textquotesingle{}on peut rajouter un couple dans cette relation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationViewer_aa0eabc2876b5f079a647668ebc72ea0b}\label{classRelationViewer_aa0eabc2876b5f079a647668ebc72ea0b}} 
+\hyperlink{classRelation}{Relation} $\ast$ {\bfseries get\+Relation} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRelationViewer_ad3be69ff8a6363a5bd929ad97ea4bc21}\label{classRelationViewer_ad3be69ff8a6363a5bd929ad97ea4bc21}} 
+{\bfseries Relation\+Viewer} (unsigned int i, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classRelationViewer_a33eeeabaf7997a37990c4174ac9b421c}\label{classRelationViewer_a33eeeabaf7997a37990c4174ac9b421c}} 
+void {\bfseries initialisation} ()
+\item 
+\mbox{\Hypertarget{classRelationViewer_a264358e294cd4b94f5061f5aed79c856}\label{classRelationViewer_a264358e294cd4b94f5061f5aed79c856}} 
+void {\bfseries update} ()
+\item 
+\mbox{\Hypertarget{classRelationViewer_a236974b7e44ea4c67da7794812623194}\label{classRelationViewer_a236974b7e44ea4c67da7794812623194}} 
+void {\bfseries fill\+Relation} (\hyperlink{classRelation}{Relation} \&r)
+\item 
+\mbox{\Hypertarget{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}\label{classRelationViewer_aa3923d489adae30c57fd94b64ced8924}} 
+void {\bfseries fill\+Couple} (\hyperlink{classCouple}{Couple} \&c)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classRelationViewer}{Relation\+Viewer} hérite de \hyperlink{classWidget}{Widget} pour pouvoir communiquer avec \hyperlink{classMediator}{Mediator} Cette classe permet de visualiser toutes les relations. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRelationViewer_ad0771f0bf9198b53ad8e0d77b4425e93}\label{classRelationViewer_ad0771f0bf9198b53ad8e0d77b4425e93}} 
+\index{Relation\+Viewer@{Relation\+Viewer}!affichage\+Couple@{affichage\+Couple}}
+\index{affichage\+Couple@{affichage\+Couple}!Relation\+Viewer@{Relation\+Viewer}}
+\subsubsection{\texorpdfstring{affichage\+Couple}{affichageCouple}}
+{\footnotesize\ttfamily void Relation\+Viewer\+::affichage\+Couple (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget\+Item $\ast$}]{item,  }\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+affichage\+Couple appelé quand on clique sur un couple 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRelationViewer_ac357dab8075b96af014ad4dd70a1a7dd}\label{classRelationViewer_ac357dab8075b96af014ad4dd70a1a7dd}} 
+\index{Relation\+Viewer@{Relation\+Viewer}!affichage\+Relation@{affichage\+Relation}}
+\index{affichage\+Relation@{affichage\+Relation}!Relation\+Viewer@{Relation\+Viewer}}
+\subsubsection{\texorpdfstring{affichage\+Relation}{affichageRelation}}
+{\footnotesize\ttfamily void Relation\+Viewer\+::affichage\+Relation (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget\+Item $\ast$}]{item,  }\item[{int}]{i = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+affichage\+Relation slot appelé quand on clique sur une relation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+relationviewer.\+h\item 
+relationviewer.\+cpp\end{DoxyCompactItemize}

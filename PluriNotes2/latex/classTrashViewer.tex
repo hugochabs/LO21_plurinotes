@@ -1,0 +1,70 @@
+\hypertarget{classTrashViewer}{}\section{Trash\+Viewer Class Reference}
+\label{classTrashViewer}\index{Trash\+Viewer@{Trash\+Viewer}}
+
+
+La classe \hyperlink{classTrashViewer}{Trash\+Viewer} hérite de la classe \hyperlink{classWidget}{Widget} la classe trash\+Viewer permet de visualiser les éléments dans la corbeille.  
+
+
+
+
+{\ttfamily \#include $<$trashviewer.\+h$>$}
+
+Inheritance diagram for Trash\+Viewer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTrashViewer}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTrashViewer_af0a0aff3c6455da8c4129342ab5a7a5f}\label{classTrashViewer_af0a0aff3c6455da8c4129342ab5a7a5f}} 
+void \hyperlink{classTrashViewer_af0a0aff3c6455da8c4129342ab5a7a5f}{quit} ()
+\begin{DoxyCompactList}\small\item\em quit slot appelé à la sortie de la fenetre, il envoie un message à Mainwindow pour notifier que \hyperlink{classNoteManager}{Note\+Manager} a peut etre changer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTrashViewer_a2d393e2eb2606e0e7dc20b5a3ffbd3f2}\label{classTrashViewer_a2d393e2eb2606e0e7dc20b5a3ffbd3f2}} 
+void \hyperlink{classTrashViewer_a2d393e2eb2606e0e7dc20b5a3ffbd3f2}{restore} ()
+\begin{DoxyCompactList}\small\item\em restore permet de restaurer la note selectionnée \end{DoxyCompactList}\item 
+void \hyperlink{classTrashViewer_aa5bef46480167fc713a7f6044c14873f}{select} (Q\+Tree\+Widget\+Item $\ast$item, int i)
+\begin{DoxyCompactList}\small\item\em select \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTrashViewer_a47811f379d0de5ab29fa113a9815a39d}\label{classTrashViewer_a47811f379d0de5ab29fa113a9815a39d}} 
+{\bfseries Trash\+Viewer} (unsigned int i, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classTrashViewer_a84ed16ad2bf205453291f0a9c0699867}\label{classTrashViewer_a84ed16ad2bf205453291f0a9c0699867}} 
+void \hyperlink{classTrashViewer_a84ed16ad2bf205453291f0a9c0699867}{initialisation\+Trash} ()
+\begin{DoxyCompactList}\small\item\em initialisation\+Trash est une fonction qui initialise et met à jour l\textquotesingle{}affichage du trash\+Viewer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTrashViewer_a841eb043f2ca34b72d9154d0b91bcd48}\label{classTrashViewer_a841eb043f2ca34b72d9154d0b91bcd48}} 
+void \hyperlink{classTrashViewer_a841eb043f2ca34b72d9154d0b91bcd48}{update} ()
+\begin{DoxyCompactList}\small\item\em update est une fonction virtuelle héritée de la classe \hyperlink{classWidget}{Widget} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classTrashViewer}{Trash\+Viewer} hérite de la classe \hyperlink{classWidget}{Widget} la classe trash\+Viewer permet de visualiser les éléments dans la corbeille. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTrashViewer_aa5bef46480167fc713a7f6044c14873f}\label{classTrashViewer_aa5bef46480167fc713a7f6044c14873f}} 
+\index{Trash\+Viewer@{Trash\+Viewer}!select@{select}}
+\index{select@{select}!Trash\+Viewer@{Trash\+Viewer}}
+\subsubsection{\texorpdfstring{select}{select}}
+{\footnotesize\ttfamily void Trash\+Viewer\+::select (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget\+Item $\ast$}]{item,  }\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+select 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+trashviewer.\+h\item 
+trashviewer.\+cpp\end{DoxyCompactItemize}

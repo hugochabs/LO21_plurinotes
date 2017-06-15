@@ -1,0 +1,156 @@
+\hypertarget{classRelationManager}{}\section{Relation\+Manager Class Reference}
+\label{classRelationManager}\index{Relation\+Manager@{Relation\+Manager}}
+
+
+La classe \hyperlink{classRelationManager}{Relation\+Manager} permet de gérer l\textquotesingle{}ensemble des relations, c\textquotesingle{}est un singleton.  
+
+
+
+
+{\ttfamily \#include $<$relation.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classRelationManager_1_1iterator}{iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \hyperlink{classRelationManager_a18ec52e110ddb59a526a8fdbbb1b8d7a}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classRelationManager}{Relation\+Manager} dans un objet de type json \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_ac9b805487819264d8ef7faab68521822}\label{classRelationManager_ac9b805487819264d8ef7faab68521822}} 
+void \hyperlink{classRelationManager_ac9b805487819264d8ef7faab68521822}{save} ()
+\begin{DoxyCompactList}\small\item\em save Sauvegarde les informations contenues dans le \hyperlink{classRelationManager}{Relation\+Manager} dans la mémoire à l\textquotesingle{}endroit ou est défini directory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a593a538680d22c21a8d1a8dd981f6b44}\label{classRelationManager_a593a538680d22c21a8d1a8dd981f6b44}} 
+void \hyperlink{classRelationManager_a593a538680d22c21a8d1a8dd981f6b44}{load} ()
+\begin{DoxyCompactList}\small\item\em load récupère les informations contenues dans le fichier directory/relations.\+json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classRelationManager}{Relation\+Manager} \& \hyperlink{classRelationManager_a82106c99bec406c5e2834992a776c739}{get\+Relation\+Manager} (\hyperlink{classRelation}{Relation} $\ast$$\ast$r, unsigned int n, unsigned int nM)
+\begin{DoxyCompactList}\small\item\em get\+Relation\+Manager alloue de la mémoire pour l\textquotesingle{}instance unique et la retourne \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a68dcf85c233f99a17dc790692eef02bb}\label{classRelationManager_a68dcf85c233f99a17dc790692eef02bb}} 
+static \hyperlink{classRelationManager}{Relation\+Manager} \& \hyperlink{classRelationManager_a68dcf85c233f99a17dc790692eef02bb}{get\+Relation\+Manager} ()
+\begin{DoxyCompactList}\small\item\em get\+Relation\+Manager redéfinition de la méthode pour récupérer un RM \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a0905aa5f5e3e7dd971f2d72c93a563c8}\label{classRelationManager_a0905aa5f5e3e7dd971f2d72c93a563c8}} 
+static void \hyperlink{classRelationManager_a0905aa5f5e3e7dd971f2d72c93a563c8}{free\+Relation\+Manager} ()
+\begin{DoxyCompactList}\small\item\em free\+Relation\+Manager libère l\textquotesingle{}espace mémoire utilisé par le RM \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_ac415d7de6ef6c243bc17a949ed31995c}\label{classRelationManager_ac415d7de6ef6c243bc17a949ed31995c}} 
+static unsigned int \& {\bfseries get\+Nb} ()
+\item 
+\mbox{\Hypertarget{classRelationManager_aa1ab693f6378ea9664d2c54cc14898ad}\label{classRelationManager_aa1ab693f6378ea9664d2c54cc14898ad}} 
+static unsigned int \& \hyperlink{classRelationManager_aa1ab693f6378ea9664d2c54cc14898ad}{get\+Nb\+Max} ()
+\begin{DoxyCompactList}\small\item\em getter de nb \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a2e448eef67482eb1d539e47b10a3fb67}\label{classRelationManager_a2e448eef67482eb1d539e47b10a3fb67}} 
+static void \hyperlink{classRelationManager_a2e448eef67482eb1d539e47b10a3fb67}{set\+Nb} (unsigned int n)
+\begin{DoxyCompactList}\small\item\em getter de nb\+Max \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a10dafb1ee3d627b8f1ca38f9a76bda13}\label{classRelationManager_a10dafb1ee3d627b8f1ca38f9a76bda13}} 
+static void \hyperlink{classRelationManager_a10dafb1ee3d627b8f1ca38f9a76bda13}{set\+Nb\+Max} (unsigned int nM)
+\begin{DoxyCompactList}\small\item\em setter de nb \end{DoxyCompactList}\item 
+static void \hyperlink{classRelationManager_ac48cfb1433282f4fe1f0a94c5a9520ae}{add\+Relation} (\hyperlink{classRelation}{Relation} $\ast$R)
+\begin{DoxyCompactList}\small\item\em setter de nb\+Max \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a727aa8d353c1f92ebed9337dfc9e45a2}\label{classRelationManager_a727aa8d353c1f92ebed9337dfc9e45a2}} 
+static void {\bfseries delete\+Relation} ()
+\item 
+static map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ \hyperlink{classRelationManager_ae3a50ade39caadb752a6dc48d068eb72}{get\+Descendants} (\hyperlink{classNote}{Note} $\ast$N, int order=2)
+\begin{DoxyCompactList}\small\item\em get\+Descendants renvoie l\textquotesingle{}ensemble des descendants d\textquotesingle{}une note \end{DoxyCompactList}\item 
+static map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ \hyperlink{classRelationManager_a5566fe92255e852c87c97c18e6f55c11}{get\+Ascendants} (\hyperlink{classNote}{Note} $\ast$N, int order=2)
+\begin{DoxyCompactList}\small\item\em get\+Ascendants renvoie l\textquotesingle{}ensemble des ascendants d\textquotesingle{}une note \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRelationManager_a59fcd249882ad6fd91f53c8e2c8c925d}\label{classRelationManager_a59fcd249882ad6fd91f53c8e2c8c925d}} 
+static \hyperlink{classRelationManager_1_1iterator}{iterator} {\bfseries get\+Iterator} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classRelationManager}{Relation\+Manager} permet de gérer l\textquotesingle{}ensemble des relations, c\textquotesingle{}est un singleton. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRelationManager_ac48cfb1433282f4fe1f0a94c5a9520ae}\label{classRelationManager_ac48cfb1433282f4fe1f0a94c5a9520ae}} 
+\index{Relation\+Manager@{Relation\+Manager}!add\+Relation@{add\+Relation}}
+\index{add\+Relation@{add\+Relation}!Relation\+Manager@{Relation\+Manager}}
+\subsubsection{\texorpdfstring{add\+Relation()}{addRelation()}}
+{\footnotesize\ttfamily void Relation\+Manager\+::add\+Relation (\begin{DoxyParamCaption}\item[{\hyperlink{classRelation}{Relation} $\ast$}]{R }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+setter de nb\+Max 
+
+add\+Relation ajoute une relation au tableau de relations 
+\begin{DoxyParams}{Parameters}
+{\em R} & la relation à ajouter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRelationManager_a5566fe92255e852c87c97c18e6f55c11}\label{classRelationManager_a5566fe92255e852c87c97c18e6f55c11}} 
+\index{Relation\+Manager@{Relation\+Manager}!get\+Ascendants@{get\+Ascendants}}
+\index{get\+Ascendants@{get\+Ascendants}!Relation\+Manager@{Relation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Ascendants()}{getAscendants()}}
+{\footnotesize\ttfamily map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ Relation\+Manager\+::get\+Ascendants (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N,  }\item[{int}]{order = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Ascendants renvoie l\textquotesingle{}ensemble des ascendants d\textquotesingle{}une note 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & La note en question \\
+\hline
+{\em order} & l\textquotesingle{}ordre jusqu\textquotesingle{}auquel on veut chercher des ascendants \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un map de la forme $<$Note$\ast$ , ordre auquel la Note$\ast$ à été trouvée$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRelationManager_ae3a50ade39caadb752a6dc48d068eb72}\label{classRelationManager_ae3a50ade39caadb752a6dc48d068eb72}} 
+\index{Relation\+Manager@{Relation\+Manager}!get\+Descendants@{get\+Descendants}}
+\index{get\+Descendants@{get\+Descendants}!Relation\+Manager@{Relation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Descendants()}{getDescendants()}}
+{\footnotesize\ttfamily map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ Relation\+Manager\+::get\+Descendants (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N,  }\item[{int}]{order = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Descendants renvoie l\textquotesingle{}ensemble des descendants d\textquotesingle{}une note 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & La note en question \\
+\hline
+{\em order} & l\textquotesingle{}ordre jusqu\textquotesingle{}auquel on veut chercher des descendants \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un map de la forme $<$Note$\ast$ , ordre auquel la Note$\ast$ à été trouvée$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRelationManager_a82106c99bec406c5e2834992a776c739}\label{classRelationManager_a82106c99bec406c5e2834992a776c739}} 
+\index{Relation\+Manager@{Relation\+Manager}!get\+Relation\+Manager@{get\+Relation\+Manager}}
+\index{get\+Relation\+Manager@{get\+Relation\+Manager}!Relation\+Manager@{Relation\+Manager}}
+\subsubsection{\texorpdfstring{get\+Relation\+Manager()}{getRelationManager()}}
+{\footnotesize\ttfamily \hyperlink{classRelationManager}{Relation\+Manager} \& Relation\+Manager\+::get\+Relation\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classRelation}{Relation} $\ast$$\ast$}]{r,  }\item[{unsigned int}]{n,  }\item[{unsigned int}]{nM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Relation\+Manager alloue de la mémoire pour l\textquotesingle{}instance unique et la retourne 
+
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}unique instance de RM 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRelationManager_a18ec52e110ddb59a526a8fdbbb1b8d7a}\label{classRelationManager_a18ec52e110ddb59a526a8fdbbb1b8d7a}} 
+\index{Relation\+Manager@{Relation\+Manager}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Relation\+Manager@{Relation\+Manager}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} Relation\+Manager\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classRelationManager}{Relation\+Manager} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations du \hyperlink{classRelationManager}{Relation\+Manager} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+relation.\+h\item 
+json.\+cpp\item 
+relation.\+cpp\end{DoxyCompactItemize}

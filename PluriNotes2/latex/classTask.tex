@@ -1,0 +1,157 @@
+\hypertarget{classTask}{}\section{Task Class Reference}
+\label{classTask}\index{Task@{Task}}
+
+
+The \hyperlink{classTask}{Task} class.  
+
+
+
+
+{\ttfamily \#include $<$notefille.\+h$>$}
+
+Inheritance diagram for Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classTask}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTask_a5f0da3938bd101b7fff51d18fb567503}\label{classTask_a5f0da3938bd101b7fff51d18fb567503}} 
+\hyperlink{classTask_a5f0da3938bd101b7fff51d18fb567503}{Task} (const Q\+String \&i, const Q\+String \&t, tm $\ast$dC, tm $\ast$d\+LU, Note\+Status a, const Q\+String \&ac, Task\+Status s=waiting)
+\begin{DoxyCompactList}\small\item\em statut de la tâche \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_a53fbad8336b141bfffffda6dac17596d}\label{classTask_a53fbad8336b141bfffffda6dac17596d}} 
+Q\+String \& \hyperlink{classTask_a53fbad8336b141bfffffda6dac17596d}{get\+Action} ()
+\begin{DoxyCompactList}\small\item\em constructeur de \hyperlink{classTask}{Task} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_a638b4578e5bc135e1e24cc7125e2ba0d}\label{classTask_a638b4578e5bc135e1e24cc7125e2ba0d}} 
+const Q\+String \& \hyperlink{classTask_a638b4578e5bc135e1e24cc7125e2ba0d}{get\+Action} () const
+\begin{DoxyCompactList}\small\item\em getter de action \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_a72dad7ede510324a4a95f74ee305bb2c}\label{classTask_a72dad7ede510324a4a95f74ee305bb2c}} 
+Task\+Status \& \hyperlink{classTask_a72dad7ede510324a4a95f74ee305bb2c}{get\+Status} ()
+\begin{DoxyCompactList}\small\item\em getter de action \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_ae41cd94fc9578dcee38ea3a9315db717}\label{classTask_ae41cd94fc9578dcee38ea3a9315db717}} 
+const Task\+Status \& \hyperlink{classTask_ae41cd94fc9578dcee38ea3a9315db717}{get\+Status} () const
+\begin{DoxyCompactList}\small\item\em getter de status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_a830f8699d625ac07cd4c1c7951e2fec0}\label{classTask_a830f8699d625ac07cd4c1c7951e2fec0}} 
+Q\+String \hyperlink{classTask_a830f8699d625ac07cd4c1c7951e2fec0}{get\+Status\+QS} ()
+\begin{DoxyCompactList}\small\item\em getter de status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_abe5ac8e46428a9f3a127f583acc9beff}\label{classTask_abe5ac8e46428a9f3a127f583acc9beff}} 
+void \hyperlink{classTask_abe5ac8e46428a9f3a127f583acc9beff}{set\+Action} (Q\+String \&a)
+\begin{DoxyCompactList}\small\item\em getter de Task\+Status à partir d\textquotesingle{}un Q\+String \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTask_a53cf044a6d3a91711706eb8d88e3e0a6}\label{classTask_a53cf044a6d3a91711706eb8d88e3e0a6}} 
+void \hyperlink{classTask_a53cf044a6d3a91711706eb8d88e3e0a6}{set\+Status} (Task\+Status \&s)
+\begin{DoxyCompactList}\small\item\em setter de action \end{DoxyCompactList}\item 
+ostream \& \hyperlink{classTask_aaef115655e5c20b9919da726ae526f8a}{affiche\+Suite} (ostream \&f)
+\begin{DoxyCompactList}\small\item\em setter de status \end{DoxyCompactList}\item 
+Q\+String \& \hyperlink{classTask_a410f65f8d06198e75d8faec574827726}{get\+String\+Attributes} ()
+\begin{DoxyCompactList}\small\item\em get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \& \hyperlink{classTask_af20f0085e2426cbf64955a03d8920400}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTask_af7b1d5478fb4d5f53faa71478bf24d38}\label{classTask_af7b1d5478fb4d5f53faa71478bf24d38}} 
+static Task\+Status \hyperlink{classTask_af7b1d5478fb4d5f53faa71478bf24d38}{to\+T\+Sfrom\+Q\+String} (const Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em Getter pour avoir status en Q\+String. \end{DoxyCompactList}\item 
+static \hyperlink{classTask}{Task} \& \hyperlink{classTask_a9b3bf109c5f117a106f2443cba792dd9}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json Renvoie une référence sur une \hyperlink{classTask}{Task} qui aura été créée à partir d\textquotesingle{}un objet json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classTask}{Task} class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTask_aaef115655e5c20b9919da726ae526f8a}\label{classTask_aaef115655e5c20b9919da726ae526f8a}} 
+\index{Task@{Task}!affiche\+Suite@{affiche\+Suite}}
+\index{affiche\+Suite@{affiche\+Suite}!Task@{Task}}
+\subsubsection{\texorpdfstring{affiche\+Suite()}{afficheSuite()}}
+{\footnotesize\ttfamily ostream\& Task\+::affiche\+Suite (\begin{DoxyParamCaption}\item[{ostream \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+setter de status 
+
+affiche\+Suite surcharge pour l\textquotesingle{}affichage 
+\begin{DoxyParams}{Parameters}
+{\em f} & flot de sortie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flot de sortie 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_ad3c0d7e48ef8244ead577128993a6f1f}{Note}.
+
+
+
+Reimplemented in \hyperlink{classTaskWithDeadline_a594623304e3500104c071ebbb95d1670}{Task\+With\+Deadline}, and \hyperlink{classTaskWithPriority_abba0d3458bd4ef1aed57ddd0d0cbe233}{Task\+With\+Priority}.
+
+\mbox{\Hypertarget{classTask_a9b3bf109c5f117a106f2443cba792dd9}\label{classTask_a9b3bf109c5f117a106f2443cba792dd9}} 
+\index{Task@{Task}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Task@{Task}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classTask}{Task} \& Task\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json Renvoie une référence sur une \hyperlink{classTask}{Task} qui aura été créée à partir d\textquotesingle{}un objet json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La task créée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTask_a410f65f8d06198e75d8faec574827726}\label{classTask_a410f65f8d06198e75d8faec574827726}} 
+\index{Task@{Task}!get\+String\+Attributes@{get\+String\+Attributes}}
+\index{get\+String\+Attributes@{get\+String\+Attributes}!Task@{Task}}
+\subsubsection{\texorpdfstring{get\+String\+Attributes()}{getStringAttributes()}}
+{\footnotesize\ttfamily Q\+String \& Task\+::get\+String\+Attributes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings 
+
+\begin{DoxyReturn}{Returns}
+Concaténation des attributs Q\+String 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_a0ffff907bdb41b8c6a4abe62dfa3a2c1}{Note}.
+
+
+
+Reimplemented in \hyperlink{classTaskWithDeadline_a2fda40b455e7eebb550b41edf451dfdb}{Task\+With\+Deadline}, and \hyperlink{classTaskWithPriority_a8463ac90713f33e4e9ca04de18eebb8b}{Task\+With\+Priority}.
+
+\mbox{\Hypertarget{classTask_af20f0085e2426cbf64955a03d8920400}\label{classTask_af20f0085e2426cbf64955a03d8920400}} 
+\index{Task@{Task}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Task@{Task}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} \& Task\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations de la note 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_ac5bd9736feb45b144795d7ef1fc6a1ae}{Note}.
+
+
+
+Reimplemented in \hyperlink{classTaskWithDeadline_a7ded765b2eb469cb31538bd52f75ae6e}{Task\+With\+Deadline}, and \hyperlink{classTaskWithPriority_adeda4ce31e96224993db991c60fccbc7}{Task\+With\+Priority}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+notefille.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\hypertarget{classArticle}{}\section{Article Class Reference}
+\label{classArticle}\index{Article@{Article}}
+
+
+La classe \hyperlink{classArticle}{Article} représente les article, identifiés par un texte en supplément des attirbuts de \hyperlink{classNote}{Note}.  
+
+
+
+
+{\ttfamily \#include $<$notefille.\+h$>$}
+
+Inheritance diagram for Article\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classArticle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classArticle_aa35841d6c1af4c57dd607ab6537038dc}\label{classArticle_aa35841d6c1af4c57dd607ab6537038dc}} 
+\hyperlink{classArticle_aa35841d6c1af4c57dd607ab6537038dc}{Article} (const Q\+String \&i, const Q\+String \&t, tm $\ast$dC, tm $\ast$d\+LU, Note\+Status a, const Q\+String \&s)
+\begin{DoxyCompactList}\small\item\em texte de l\textquotesingle{}article \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArticle_a235fb07dfa8507b171c35624ada564d7}\label{classArticle_a235fb07dfa8507b171c35624ada564d7}} 
+const Q\+String \& \hyperlink{classArticle_a235fb07dfa8507b171c35624ada564d7}{get\+Text} () const
+\begin{DoxyCompactList}\small\item\em constructeur de l\textquotesingle{}article \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArticle_a172524cad2a3497e041ff4e562dfd587}\label{classArticle_a172524cad2a3497e041ff4e562dfd587}} 
+Q\+String \& \hyperlink{classArticle_a172524cad2a3497e041ff4e562dfd587}{get\+Text} ()
+\begin{DoxyCompactList}\small\item\em getter de text \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArticle_ab9c6639a56ea4c979dbac4153595937a}\label{classArticle_ab9c6639a56ea4c979dbac4153595937a}} 
+void \hyperlink{classArticle_ab9c6639a56ea4c979dbac4153595937a}{set\+Text} (Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em getter de text \end{DoxyCompactList}\item 
+ostream \& \hyperlink{classArticle_a63e4e505cdfb8b11a9504ba4e3ba3c29}{affiche\+Suite} (ostream \&f)
+\begin{DoxyCompactList}\small\item\em setter de text \end{DoxyCompactList}\item 
+Q\+String \& \hyperlink{classArticle_aaddf8d9717ead08fce20be1052af82c9}{get\+String\+Attributes} ()
+\begin{DoxyCompactList}\small\item\em get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \& \hyperlink{classArticle_af1ca7d2c39aae800610504319526f3e3}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classArticle}{Article} \& \hyperlink{classArticle_a6c17d092d93e155dbd7f8a7fa037ff61}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json Renvoie une référence sur un \hyperlink{classArticle}{Article} qui aura été créée à partir d\textquotesingle{}un objet json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classArticle}{Article} représente les article, identifiés par un texte en supplément des attirbuts de \hyperlink{classNote}{Note}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classArticle_a63e4e505cdfb8b11a9504ba4e3ba3c29}\label{classArticle_a63e4e505cdfb8b11a9504ba4e3ba3c29}} 
+\index{Article@{Article}!affiche\+Suite@{affiche\+Suite}}
+\index{affiche\+Suite@{affiche\+Suite}!Article@{Article}}
+\subsubsection{\texorpdfstring{affiche\+Suite()}{afficheSuite()}}
+{\footnotesize\ttfamily ostream\& Article\+::affiche\+Suite (\begin{DoxyParamCaption}\item[{ostream \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+setter de text 
+
+affiche\+Suite surcharge pour l\textquotesingle{}affichage 
+\begin{DoxyParams}{Parameters}
+{\em f} & flot de sortie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flot de sortie 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_ad3c0d7e48ef8244ead577128993a6f1f}{Note}.
+
+\mbox{\Hypertarget{classArticle_a6c17d092d93e155dbd7f8a7fa037ff61}\label{classArticle_a6c17d092d93e155dbd7f8a7fa037ff61}} 
+\index{Article@{Article}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Article@{Article}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classArticle}{Article} \& Article\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json Renvoie une référence sur un \hyperlink{classArticle}{Article} qui aura été créée à partir d\textquotesingle{}un objet json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}article créé 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArticle_aaddf8d9717ead08fce20be1052af82c9}\label{classArticle_aaddf8d9717ead08fce20be1052af82c9}} 
+\index{Article@{Article}!get\+String\+Attributes@{get\+String\+Attributes}}
+\index{get\+String\+Attributes@{get\+String\+Attributes}!Article@{Article}}
+\subsubsection{\texorpdfstring{get\+String\+Attributes()}{getStringAttributes()}}
+{\footnotesize\ttfamily Q\+String \& Article\+::get\+String\+Attributes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings 
+
+\begin{DoxyReturn}{Returns}
+Concaténation des attributs Q\+String 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_a0ffff907bdb41b8c6a4abe62dfa3a2c1}{Note}.
+
+\mbox{\Hypertarget{classArticle_af1ca7d2c39aae800610504319526f3e3}\label{classArticle_af1ca7d2c39aae800610504319526f3e3}} 
+\index{Article@{Article}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Article@{Article}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} \& Article\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations de la note 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classNote_ac5bd9736feb45b144795d7ef1fc6a1ae}{Note}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+notefille.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

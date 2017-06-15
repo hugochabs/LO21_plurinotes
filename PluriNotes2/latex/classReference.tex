@@ -1,0 +1,84 @@
+\hypertarget{classReference}{}\section{Reference Class Reference}
+\label{classReference}\index{Reference@{Reference}}
+Inheritance diagram for Reference\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classReference}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classReference_ab804f3401b2e29c1b4e6c92896d66d0a}{get\+References\+Note} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em get\+References\+Note retourne les références de la \hyperlink{classNote}{Note} en paramètre \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classReference_af09455e15425c5a82491a22569496abc}\label{classReference_af09455e15425c5a82491a22569496abc}} 
+void \hyperlink{classReference_af09455e15425c5a82491a22569496abc}{get\+References} ()
+\begin{DoxyCompactList}\small\item\em get\+References retourne l\textquotesingle{}ensemble des références de l\textquotesingle{}ensembled des notes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classReference_adf2012d05f8ec519da77c22aaecda7c0}\label{classReference_adf2012d05f8ec519da77c22aaecda7c0}} 
+\hyperlink{classReference}{Reference} \& \hyperlink{classReference_adf2012d05f8ec519da77c22aaecda7c0}{operator$\ast$} ()
+\begin{DoxyCompactList}\small\item\em operator $\ast$ retourne la valeur pointée par l\textquotesingle{}unique instance \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classReference}{Reference} \& \hyperlink{classReference_a0a885183c4a9c26de166f6e3339786ba}{get\+Ref} ()
+\begin{DoxyCompactList}\small\item\em get\+Ref alloue de la mémoire à l\textquotesingle{}unique instance et la retourne \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classReference_a7544ea6ad6e62ad784d65cddb91d29c3}\label{classReference_a7544ea6ad6e62ad784d65cddb91d29c3}} 
+static void \hyperlink{classReference_a7544ea6ad6e62ad784d65cddb91d29c3}{free\+Ref} ()
+\begin{DoxyCompactList}\small\item\em free\+Ref libère l\textquotesingle{}espace mémoire occupé par l\textquotesingle{}unique instance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classReference_ae48d8e71f277df20aaa1d6db617b362f}\label{classReference_ae48d8e71f277df20aaa1d6db617b362f}} 
+static void \hyperlink{classReference_ae48d8e71f277df20aaa1d6db617b362f}{update\+Refs} ()
+\begin{DoxyCompactList}\small\item\em update\+Refs Mets à jour les references en parcourrant l\textquotesingle{}ensemble des notes \end{DoxyCompactList}\item 
+static bool \hyperlink{classReference_a591e94c8fc4526305181b563867b85d1}{is\+Note\+Referenced} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em is\+Note\+Referenced permet de vérifier si une \hyperlink{classNote}{Note} se trouve dans une Référence \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classReference_a0a885183c4a9c26de166f6e3339786ba}\label{classReference_a0a885183c4a9c26de166f6e3339786ba}} 
+\index{Reference@{Reference}!get\+Ref@{get\+Ref}}
+\index{get\+Ref@{get\+Ref}!Reference@{Reference}}
+\subsubsection{\texorpdfstring{get\+Ref()}{getRef()}}
+{\footnotesize\ttfamily \hyperlink{classReference}{Reference} \& Reference\+::get\+Ref (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Ref alloue de la mémoire à l\textquotesingle{}unique instance et la retourne 
+
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}unique instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReference_ab804f3401b2e29c1b4e6c92896d66d0a}\label{classReference_ab804f3401b2e29c1b4e6c92896d66d0a}} 
+\index{Reference@{Reference}!get\+References\+Note@{get\+References\+Note}}
+\index{get\+References\+Note@{get\+References\+Note}!Reference@{Reference}}
+\subsubsection{\texorpdfstring{get\+References\+Note()}{getReferencesNote()}}
+{\footnotesize\ttfamily void Reference\+::get\+References\+Note (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+get\+References\+Note retourne les références de la \hyperlink{classNote}{Note} en paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & La note en question \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classReference_a591e94c8fc4526305181b563867b85d1}\label{classReference_a591e94c8fc4526305181b563867b85d1}} 
+\index{Reference@{Reference}!is\+Note\+Referenced@{is\+Note\+Referenced}}
+\index{is\+Note\+Referenced@{is\+Note\+Referenced}!Reference@{Reference}}
+\subsubsection{\texorpdfstring{is\+Note\+Referenced()}{isNoteReferenced()}}
+{\footnotesize\ttfamily bool Reference\+::is\+Note\+Referenced (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+is\+Note\+Referenced permet de vérifier si une \hyperlink{classNote}{Note} se trouve dans une Référence 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & \hyperlink{classNote}{Note} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+relation.\+h\item 
+relation.\+cpp\end{DoxyCompactItemize}

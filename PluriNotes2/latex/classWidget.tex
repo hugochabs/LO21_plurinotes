@@ -1,0 +1,84 @@
+\hypertarget{classWidget}{}\section{Widget Class Reference}
+\label{classWidget}\index{Widget@{Widget}}
+
+
+{\ttfamily \#include $<$colleague.\+h$>$}
+
+Inheritance diagram for Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.777778cm]{classWidget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWidget_afa1760fea43981e946d64c52d7f11956}\label{classWidget_afa1760fea43981e946d64c52d7f11956}} 
+{\bfseries Widget} (unsigned int i)
+\item 
+virtual void \hyperlink{classWidget_a3f249ee26ae63058896027c045477804}{send\+Message} (const string \&message)
+\begin{DoxyCompactList}\small\item\em fonctions virtuelles qui permettent la communcation avec le mediator \end{DoxyCompactList}\item 
+virtual void \hyperlink{classWidget_aa985218b1841d00fedc817d44b81b2ac}{receive\+Message} (const string \&message)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classWidget_aa985218b1841d00fedc817d44b81b2ac}{Widget\+::receive\+Message} permet de recevoir un message pour le widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWidget_a2da3cc9ed15edf1ad2340844a29aa2e1}\label{classWidget_a2da3cc9ed15edf1ad2340844a29aa2e1}} 
+unsigned int {\bfseries get\+Code} () const
+\item 
+\mbox{\Hypertarget{classWidget_a6451a6dc0ba268da5547a147fe909821}\label{classWidget_a6451a6dc0ba268da5547a147fe909821}} 
+const \hyperlink{classMediator}{Mediator} $\ast$ {\bfseries get\+Mediator} () const
+\item 
+\mbox{\Hypertarget{classWidget_a726dc97add2c6eb82967144207280ace}\label{classWidget_a726dc97add2c6eb82967144207280ace}} 
+virtual void {\bfseries update} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWidget_a4b00dc8bd9a954f49082d3d1db5f3d01}\label{classWidget_a4b00dc8bd9a954f49082d3d1db5f3d01}} 
+\hyperlink{classMediator}{Mediator} $\ast$ {\bfseries mediator}
+\item 
+\mbox{\Hypertarget{classWidget_aaf728cdeb457d08deabd5fa4f9e06f24}\label{classWidget_aaf728cdeb457d08deabd5fa4f9e06f24}} 
+unsigned int {\bfseries colleague\+Code}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe \hyperlink{classWidget}{Widget} qui regroupe les attributs pour identifier chaque Colleague et définit l\textquotesingle{}interface 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classWidget_aa985218b1841d00fedc817d44b81b2ac}\label{classWidget_aa985218b1841d00fedc817d44b81b2ac}} 
+\index{Widget@{Widget}!receive\+Message@{receive\+Message}}
+\index{receive\+Message@{receive\+Message}!Widget@{Widget}}
+\subsubsection{\texorpdfstring{receive\+Message()}{receiveMessage()}}
+{\footnotesize\ttfamily void Widget\+::receive\+Message (\begin{DoxyParamCaption}\item[{const string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\hyperlink{classWidget_aa985218b1841d00fedc817d44b81b2ac}{Widget\+::receive\+Message} permet de recevoir un message pour le widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & reçu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWidget_a3f249ee26ae63058896027c045477804}\label{classWidget_a3f249ee26ae63058896027c045477804}} 
+\index{Widget@{Widget}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Widget@{Widget}}
+\subsubsection{\texorpdfstring{send\+Message()}{sendMessage()}}
+{\footnotesize\ttfamily void Widget\+::send\+Message (\begin{DoxyParamCaption}\item[{const string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+fonctions virtuelles qui permettent la communcation avec le mediator 
+
+\hyperlink{classWidget_a3f249ee26ae63058896027c045477804}{Widget\+::send\+Message} envoie un message au \hyperlink{classMediator}{Mediator}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & à envoyer \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+colleague.\+h\item 
+colleague.\+cpp\end{DoxyCompactItemize}

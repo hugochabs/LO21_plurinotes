@@ -1,0 +1,309 @@
+\hypertarget{classNote}{}\section{Note Class Reference}
+\label{classNote}\index{Note@{Note}}
+
+
+La classe \hyperlink{classNote}{Note} est la classe mère de tous les autres types de notes. elle est caractérisée par un identificateur, un titre, une date de création, une date de dernière modification, et un statut.  
+
+
+
+
+{\ttfamily \#include $<$note.\+h$>$}
+
+Inheritance diagram for Note\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classNote}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNote_a02fb01f74090a4f302882782445ca9ef}{Note} (const Q\+String \&i, const Q\+String \&t, tm $\ast$dC, tm $\ast$d\+LU, Note\+Status a)
+\begin{DoxyCompactList}\small\item\em statut de la note \end{DoxyCompactList}\item 
+virtual \hyperlink{classNote_a673b00445b14ee36a2471662b83f7c1c}{$\sim$\+Note} ()
+\begin{DoxyCompactList}\small\item\em redéfinition du constructeur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a842387aa742b9c81df5681071703497d}\label{classNote_a842387aa742b9c81df5681071703497d}} 
+const Q\+String \& {\bfseries get\+Identifier} () const
+\item 
+\mbox{\Hypertarget{classNote_a486bececfcdb31bdbda140914dea43f3}\label{classNote_a486bececfcdb31bdbda140914dea43f3}} 
+Q\+String \& \hyperlink{classNote_a486bececfcdb31bdbda140914dea43f3}{get\+Identifier} ()
+\begin{DoxyCompactList}\small\item\em getter d\textquotesingle{}identifier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a4d09b0e195203cdbc9464a0080de99c5}\label{classNote_a4d09b0e195203cdbc9464a0080de99c5}} 
+const Q\+String \& \hyperlink{classNote_a4d09b0e195203cdbc9464a0080de99c5}{get\+Title} () const
+\begin{DoxyCompactList}\small\item\em getter d\textquotesingle{}identifier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_aef7f23af8457fede2bc63f91f32d4d0c}\label{classNote_aef7f23af8457fede2bc63f91f32d4d0c}} 
+Q\+String \& \hyperlink{classNote_aef7f23af8457fede2bc63f91f32d4d0c}{get\+Title} ()
+\begin{DoxyCompactList}\small\item\em getter de title \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a30b86249384892471f698e8bf0c685ec}\label{classNote_a30b86249384892471f698e8bf0c685ec}} 
+tm $\ast$ \hyperlink{classNote_a30b86249384892471f698e8bf0c685ec}{get\+Date\+Creation} ()
+\begin{DoxyCompactList}\small\item\em getter de title \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_adc6ce36a76c088f60bfe33befc09e01d}\label{classNote_adc6ce36a76c088f60bfe33befc09e01d}} 
+const tm $\ast$ \hyperlink{classNote_adc6ce36a76c088f60bfe33befc09e01d}{get\+Date\+Creation} () const
+\begin{DoxyCompactList}\small\item\em getter de date\+Creation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_aa54ad72e399cbcf3313725ce5aaec08b}\label{classNote_aa54ad72e399cbcf3313725ce5aaec08b}} 
+tm $\ast$ \hyperlink{classNote_aa54ad72e399cbcf3313725ce5aaec08b}{get\+Date\+Last\+Update} ()
+\begin{DoxyCompactList}\small\item\em getter de date\+Creation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a464f61abdf03be37a2860bc3732c883d}\label{classNote_a464f61abdf03be37a2860bc3732c883d}} 
+const tm $\ast$ \hyperlink{classNote_a464f61abdf03be37a2860bc3732c883d}{get\+Date\+Last\+Update} () const
+\begin{DoxyCompactList}\small\item\em getter de date\+Last\+Update \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_aff9b6c2cc81a3a302a6544b9dab0ef33}\label{classNote_aff9b6c2cc81a3a302a6544b9dab0ef33}} 
+Note\+Status \hyperlink{classNote_aff9b6c2cc81a3a302a6544b9dab0ef33}{get\+Note\+Status} ()
+\begin{DoxyCompactList}\small\item\em getter de date\+Last\+Update \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_ab880a7a12c1832bb0db6ea2ee44cff44}\label{classNote_ab880a7a12c1832bb0db6ea2ee44cff44}} 
+const Note\+Status \& \hyperlink{classNote_ab880a7a12c1832bb0db6ea2ee44cff44}{get\+Note\+Status} () const
+\begin{DoxyCompactList}\small\item\em getter de note\+Status \end{DoxyCompactList}\item 
+Q\+String \hyperlink{classNote_aaabdeec91ac3ba33d4513f11da478f6d}{get\+Note\+Status\+String} ()
+\begin{DoxyCompactList}\small\item\em getter de note\+Status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_aab6015157af6b820ca4f8e0ac9496d8e}\label{classNote_aab6015157af6b820ca4f8e0ac9496d8e}} 
+void {\bfseries set\+Identifier} (Q\+String \&i)
+\item 
+\mbox{\Hypertarget{classNote_abdc1edf43c8a726494fea803c7c0308d}\label{classNote_abdc1edf43c8a726494fea803c7c0308d}} 
+void \hyperlink{classNote_abdc1edf43c8a726494fea803c7c0308d}{set\+Title} (Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em setter de identifier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a5f41e99b5c555746bb87700ac4c0411b}\label{classNote_a5f41e99b5c555746bb87700ac4c0411b}} 
+void \hyperlink{classNote_a5f41e99b5c555746bb87700ac4c0411b}{set\+Date\+Creation} (tm $\ast$dC)
+\begin{DoxyCompactList}\small\item\em setter de title \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_a8ed9a6b738003ef4c138b23a927dd6d1}\label{classNote_a8ed9a6b738003ef4c138b23a927dd6d1}} 
+void \hyperlink{classNote_a8ed9a6b738003ef4c138b23a927dd6d1}{set\+Date\+Last\+Update} (tm $\ast$d\+LU)
+\begin{DoxyCompactList}\small\item\em setter de date\+Creation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_aa72d89b6c782cfc5e90f360757307746}\label{classNote_aa72d89b6c782cfc5e90f360757307746}} 
+void \hyperlink{classNote_aa72d89b6c782cfc5e90f360757307746}{set\+Note\+Status} (Note\+Status a)
+\begin{DoxyCompactList}\small\item\em setter de datelast\+Update \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNote_ad82cb1f2fe6f5c8fab8ca4cf1f0759b4}\label{classNote_ad82cb1f2fe6f5c8fab8ca4cf1f0759b4}} 
+Q\+String {\bfseries get\+Type\+Of\+Note} ()
+\item 
+virtual ostream \& \hyperlink{classNote_ad3c0d7e48ef8244ead577128993a6f1f}{affiche\+Suite} (ostream \&f)
+\begin{DoxyCompactList}\small\item\em affiche\+Suite définition de la méthode affiche suite vouée à être surchargée par les classes filles \end{DoxyCompactList}\item 
+void \hyperlink{classNote_aa1130702f72fac6d9a600066d76ba939}{affiche} (ostream \&f)
+\begin{DoxyCompactList}\small\item\em affiche Fonction d\textquotesingle{}affichage d\textquotesingle{}une \hyperlink{classNote}{Note} \end{DoxyCompactList}\item 
+virtual \hyperlink{classnlohmann_1_1basic__json}{json} \& \hyperlink{classNote_ac5bd9736feb45b144795d7ef1fc6a1ae}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json \end{DoxyCompactList}\item 
+virtual Q\+String \& \hyperlink{classNote_a0ffff907bdb41b8c6a4abe62dfa3a2c1}{get\+String\+Attributes} ()
+\begin{DoxyCompactList}\small\item\em get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{classNote}{Note} $>$ \hyperlink{classNote_ae98495ca6805e2bfa8da4d1d03ed449b}{get\+References} ()
+\begin{DoxyCompactList}\small\item\em get\+References Renvoie l\textquotesingle{}ensemble des notes référencées dans la note \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNote_a34e2e9bbaa92afe9cf2dfee241627df6}\label{classNote_a34e2e9bbaa92afe9cf2dfee241627df6}} 
+static Q\+String \hyperlink{classNote_a34e2e9bbaa92afe9cf2dfee241627df6}{create\+ID} (const Q\+String \&title, unsigned int version)
+\begin{DoxyCompactList}\small\item\em setter de note\+Status \end{DoxyCompactList}\item 
+static tm $\ast$ \hyperlink{classNote_aad3d92ba06eb33c3f1710b1e4cac3d5e}{date\+From\+Q\+String} (const Q\+String \&s)
+\begin{DoxyCompactList}\small\item\em Méthode de conversion d\textquotesingle{}un Q\+String en date. \end{DoxyCompactList}\item 
+static const Q\+String \& \hyperlink{classNote_acee08a412ed39b96daac7f8391b375bf}{Q\+String\+From\+Date} (const struct tm $\ast$date)
+\begin{DoxyCompactList}\small\item\em Méthode pour convertir une date en Q\+String. \end{DoxyCompactList}\item 
+static const Q\+Date\+Time $\ast$ \hyperlink{classNote_ae970e7fb5ef01469aa488d8cdc8bdd57}{Qdatefrom\+Date} (const struct tm $\ast$date)
+\begin{DoxyCompactList}\small\item\em Qdatefrom\+Date Transforme un tm$\ast$ en Q\+Date\+Time. \end{DoxyCompactList}\item 
+static \hyperlink{classNote}{Note} \& \hyperlink{classNote_aaa48dd8dd594ee6daddd25c17c67ba65}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json Renvoie une référence sur une \hyperlink{classNote}{Note} qui aura été créée à partir d\textquotesingle{}un objet json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classNote}{Note} est la classe mère de tous les autres types de notes. elle est caractérisée par un identificateur, un titre, une date de création, une date de dernière modification, et un statut. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNote_a02fb01f74090a4f302882782445ca9ef}\label{classNote_a02fb01f74090a4f302882782445ca9ef}} 
+\index{Note@{Note}!Note@{Note}}
+\index{Note@{Note}!Note@{Note}}
+\subsubsection{\texorpdfstring{Note()}{Note()}}
+{\footnotesize\ttfamily Note\+::\+Note (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{i,  }\item[{const Q\+String \&}]{t,  }\item[{tm $\ast$}]{dC,  }\item[{tm $\ast$}]{d\+LU,  }\item[{Note\+Status}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+statut de la note 
+
+\hyperlink{classNote}{Note} constructeur de la classe \hyperlink{classNote}{Note} \mbox{\Hypertarget{classNote_a673b00445b14ee36a2471662b83f7c1c}\label{classNote_a673b00445b14ee36a2471662b83f7c1c}} 
+\index{Note@{Note}!````~Note@{$\sim$\+Note}}
+\index{````~Note@{$\sim$\+Note}!Note@{Note}}
+\subsubsection{\texorpdfstring{$\sim$\+Note()}{~Note()}}
+{\footnotesize\ttfamily virtual Note\+::$\sim$\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+redéfinition du constructeur 
+
+$\sim$\+Note destructeur de la classe 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNote_aa1130702f72fac6d9a600066d76ba939}\label{classNote_aa1130702f72fac6d9a600066d76ba939}} 
+\index{Note@{Note}!affiche@{affiche}}
+\index{affiche@{affiche}!Note@{Note}}
+\subsubsection{\texorpdfstring{affiche()}{affiche()}}
+{\footnotesize\ttfamily void Note\+::affiche (\begin{DoxyParamCaption}\item[{ostream \&}]{f }\end{DoxyParamCaption})}
+
+
+
+affiche Fonction d\textquotesingle{}affichage d\textquotesingle{}une \hyperlink{classNote}{Note} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & flux de sortie \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNote_ad3c0d7e48ef8244ead577128993a6f1f}\label{classNote_ad3c0d7e48ef8244ead577128993a6f1f}} 
+\index{Note@{Note}!affiche\+Suite@{affiche\+Suite}}
+\index{affiche\+Suite@{affiche\+Suite}!Note@{Note}}
+\subsubsection{\texorpdfstring{affiche\+Suite()}{afficheSuite()}}
+{\footnotesize\ttfamily virtual ostream\& Note\+::affiche\+Suite (\begin{DoxyParamCaption}\item[{ostream \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+affiche\+Suite définition de la méthode affiche suite vouée à être surchargée par les classes filles 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & flux de sortie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flux de sortie 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classOtherNote_acff4b0946c0ce0a4e15bad6cbb8ff13d}{Other\+Note}, \hyperlink{classTaskWithDeadline_a594623304e3500104c071ebbb95d1670}{Task\+With\+Deadline}, \hyperlink{classTaskWithPriority_abba0d3458bd4ef1aed57ddd0d0cbe233}{Task\+With\+Priority}, \hyperlink{classTask_aaef115655e5c20b9919da726ae526f8a}{Task}, and \hyperlink{classArticle_a63e4e505cdfb8b11a9504ba4e3ba3c29}{Article}.
+
+\mbox{\Hypertarget{classNote_aad3d92ba06eb33c3f1710b1e4cac3d5e}\label{classNote_aad3d92ba06eb33c3f1710b1e4cac3d5e}} 
+\index{Note@{Note}!date\+From\+Q\+String@{date\+From\+Q\+String}}
+\index{date\+From\+Q\+String@{date\+From\+Q\+String}!Note@{Note}}
+\subsubsection{\texorpdfstring{date\+From\+Q\+String()}{dateFromQString()}}
+{\footnotesize\ttfamily static tm$\ast$ Note\+::date\+From\+Q\+String (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Méthode de conversion d\textquotesingle{}un Q\+String en date. 
+
+\begin{DoxySeeAlso}{See also}
+D\+A\+T\+E\+F\+O\+R\+M\+AT 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & le Q\+String à convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+la date associée au Q\+String 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_aaa48dd8dd594ee6daddd25c17c67ba65}\label{classNote_aaa48dd8dd594ee6daddd25c17c67ba65}} 
+\index{Note@{Note}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Note@{Note}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classNote}{Note} \& Note\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json Renvoie une référence sur une \hyperlink{classNote}{Note} qui aura été créée à partir d\textquotesingle{}un objet json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La note créée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_aaabdeec91ac3ba33d4513f11da478f6d}\label{classNote_aaabdeec91ac3ba33d4513f11da478f6d}} 
+\index{Note@{Note}!get\+Note\+Status\+String@{get\+Note\+Status\+String}}
+\index{get\+Note\+Status\+String@{get\+Note\+Status\+String}!Note@{Note}}
+\subsubsection{\texorpdfstring{get\+Note\+Status\+String()}{getNoteStatusString()}}
+{\footnotesize\ttfamily Q\+String Note\+::get\+Note\+Status\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+getter de note\+Status 
+
+get\+Note\+Status\+String retourne la valeur de Note\+Status sous forme de chaîne de caractères. \begin{DoxyReturn}{Returns}
+(string)note\+Status. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_ae98495ca6805e2bfa8da4d1d03ed449b}\label{classNote_ae98495ca6805e2bfa8da4d1d03ed449b}} 
+\index{Note@{Note}!get\+References@{get\+References}}
+\index{get\+References@{get\+References}!Note@{Note}}
+\subsubsection{\texorpdfstring{get\+References()}{getReferences()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{classNote}{Note} $>$ Note\+::get\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+References Renvoie l\textquotesingle{}ensemble des notes référencées dans la note 
+
+\begin{DoxyReturn}{Returns}
+le vector contenant les notes référencées 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_a0ffff907bdb41b8c6a4abe62dfa3a2c1}\label{classNote_a0ffff907bdb41b8c6a4abe62dfa3a2c1}} 
+\index{Note@{Note}!get\+String\+Attributes@{get\+String\+Attributes}}
+\index{get\+String\+Attributes@{get\+String\+Attributes}!Note@{Note}}
+\subsubsection{\texorpdfstring{get\+String\+Attributes()}{getStringAttributes()}}
+{\footnotesize\ttfamily Q\+String \& Note\+::get\+String\+Attributes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+String\+Attributes Renvoie une concaténationdes attributs de la note qui sont des Qstrings 
+
+\begin{DoxyReturn}{Returns}
+Concaténation des attributs Q\+String 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classOtherNote_a3f475cf0cfc1a9cd8785618c0a7f3496}{Other\+Note}, \hyperlink{classTaskWithDeadline_a2fda40b455e7eebb550b41edf451dfdb}{Task\+With\+Deadline}, \hyperlink{classTaskWithPriority_a8463ac90713f33e4e9ca04de18eebb8b}{Task\+With\+Priority}, \hyperlink{classTask_a410f65f8d06198e75d8faec574827726}{Task}, and \hyperlink{classArticle_aaddf8d9717ead08fce20be1052af82c9}{Article}.
+
+\mbox{\Hypertarget{classNote_ae970e7fb5ef01469aa488d8cdc8bdd57}\label{classNote_ae970e7fb5ef01469aa488d8cdc8bdd57}} 
+\index{Note@{Note}!Qdatefrom\+Date@{Qdatefrom\+Date}}
+\index{Qdatefrom\+Date@{Qdatefrom\+Date}!Note@{Note}}
+\subsubsection{\texorpdfstring{Qdatefrom\+Date()}{QdatefromDate()}}
+{\footnotesize\ttfamily static const Q\+Date\+Time$\ast$ Note\+::\+Qdatefrom\+Date (\begin{DoxyParamCaption}\item[{const struct tm $\ast$}]{date }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Qdatefrom\+Date Transforme un tm$\ast$ en Q\+Date\+Time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & date à convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+la date sous format Q\+Date\+Time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_acee08a412ed39b96daac7f8391b375bf}\label{classNote_acee08a412ed39b96daac7f8391b375bf}} 
+\index{Note@{Note}!Q\+String\+From\+Date@{Q\+String\+From\+Date}}
+\index{Q\+String\+From\+Date@{Q\+String\+From\+Date}!Note@{Note}}
+\subsubsection{\texorpdfstring{Q\+String\+From\+Date()}{QStringFromDate()}}
+{\footnotesize\ttfamily static const Q\+String\& Note\+::\+Q\+String\+From\+Date (\begin{DoxyParamCaption}\item[{const struct tm $\ast$}]{date }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Méthode pour convertir une date en Q\+String. 
+
+\begin{DoxySeeAlso}{See also}
+D\+A\+T\+E\+F\+O\+R\+M\+AT 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em date} & la date à transformer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le Q\+String associé à la date 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNote_ac5bd9736feb45b144795d7ef1fc6a1ae}\label{classNote_ac5bd9736feb45b144795d7ef1fc6a1ae}} 
+\index{Note@{Note}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Note@{Note}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} \& Note\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNote}{Note} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations de la note 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classOtherNote_a0fb04e9da102ac17fb777f29bfc24a57}{Other\+Note}, \hyperlink{classTaskWithDeadline_a7ded765b2eb469cb31538bd52f75ae6e}{Task\+With\+Deadline}, \hyperlink{classTaskWithPriority_adeda4ce31e96224993db991c60fccbc7}{Task\+With\+Priority}, \hyperlink{classTask_af20f0085e2426cbf64955a03d8920400}{Task}, and \hyperlink{classArticle_af1ca7d2c39aae800610504319526f3e3}{Article}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+note.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

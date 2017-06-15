@@ -1,1 +1,1 @@
-{"relations":null}
+{"relations":[{"RelationOrientation":0,"couples":[{"label":"label","x":{"dateCreation":"15/06/2017 18:00:38","dateLastUpdate":"15/06/2017 18:00:38","id":"CoursesV1","noteStatus":0,"title":"Courses"},"y":{"dateCreation":"15/06/2017 18:00:38","dateLastUpdate":"15/06/2017 18:00:38","id":"FaireCoursesV1","noteStatus":0,"title":"FaireCourses"}}],"description":"Ceci est la relation1","title":"Relation1"}]}

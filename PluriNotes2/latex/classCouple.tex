@@ -1,0 +1,91 @@
+\hypertarget{classCouple}{}\section{Couple Class Reference}
+\label{classCouple}\index{Couple@{Couple}}
+
+
+La classe \hyperlink{classCouple}{Couple} représente une liaison entre 2 notes. La note choisie devra toujours être le premier élément du tableau tab de la classe Notes\+Versions (première version)  
+
+
+
+
+{\ttfamily \#include $<$relation.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCouple_ab0b5e66ed39d872431d285e0f5e547f3}\label{classCouple_ab0b5e66ed39d872431d285e0f5e547f3}} 
+\hyperlink{classCouple_ab0b5e66ed39d872431d285e0f5e547f3}{Couple} (const Q\+String \&l, \hyperlink{classNote}{Note} $\ast$x, \hyperlink{classNote}{Note} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Not du couple. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_a9302f43d53b9b947f2668c42ed196b79}\label{classCouple_a9302f43d53b9b947f2668c42ed196b79}} 
+\hyperlink{classCouple_a9302f43d53b9b947f2668c42ed196b79}{Couple} ()
+\begin{DoxyCompactList}\small\item\em Constructeur de \hyperlink{classCouple}{Couple}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_a0f04e0130d4d44ce39e322033d85a8df}\label{classCouple_a0f04e0130d4d44ce39e322033d85a8df}} 
+const Q\+String \& \hyperlink{classCouple_a0f04e0130d4d44ce39e322033d85a8df}{get\+Label} () const
+\begin{DoxyCompactList}\small\item\em redéfinition du constructeur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_a1360afaba2687fc85ff985d39051974a}\label{classCouple_a1360afaba2687fc85ff985d39051974a}} 
+const \hyperlink{classNote}{Note} $\ast$ \hyperlink{classCouple_a1360afaba2687fc85ff985d39051974a}{getX} () const
+\begin{DoxyCompactList}\small\item\em getter de label \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_a470aafc69542f36b366388154ff14957}\label{classCouple_a470aafc69542f36b366388154ff14957}} 
+const \hyperlink{classNote}{Note} $\ast$ \hyperlink{classCouple_a470aafc69542f36b366388154ff14957}{getY} () const
+\begin{DoxyCompactList}\small\item\em getter de x \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_aed5ff56ec61e0eb83113a5b81fc21c30}\label{classCouple_aed5ff56ec61e0eb83113a5b81fc21c30}} 
+Q\+String \& \hyperlink{classCouple_aed5ff56ec61e0eb83113a5b81fc21c30}{get\+Label} ()
+\begin{DoxyCompactList}\small\item\em getter de y \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_adae350ec8fd8fac09a8e24e7f728f870}\label{classCouple_adae350ec8fd8fac09a8e24e7f728f870}} 
+\hyperlink{classNote}{Note} $\ast$ \hyperlink{classCouple_adae350ec8fd8fac09a8e24e7f728f870}{getX} ()
+\begin{DoxyCompactList}\small\item\em getter de label \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_ae8e23e78c17ecd7d9edd150c96a47e62}\label{classCouple_ae8e23e78c17ecd7d9edd150c96a47e62}} 
+\hyperlink{classNote}{Note} $\ast$ \hyperlink{classCouple_ae8e23e78c17ecd7d9edd150c96a47e62}{getY} ()
+\begin{DoxyCompactList}\small\item\em getter de x \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_a6004e48fdba0ebc994d624bc79379921}\label{classCouple_a6004e48fdba0ebc994d624bc79379921}} 
+void \hyperlink{classCouple_a6004e48fdba0ebc994d624bc79379921}{setX} (\hyperlink{classNote}{Note} $\ast$Xs)
+\begin{DoxyCompactList}\small\item\em getter de y \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCouple_aa7d5e1669a2602d77885f01e5ad233b2}\label{classCouple_aa7d5e1669a2602d77885f01e5ad233b2}} 
+void \hyperlink{classCouple_aa7d5e1669a2602d77885f01e5ad233b2}{setY} (\hyperlink{classNote}{Note} $\ast$Ys)
+\begin{DoxyCompactList}\small\item\em setter de x \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \hyperlink{classCouple_a3173f8ef915e051870cbe81e4b1483ae}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em setter de y \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classCouple}{Couple} \& \hyperlink{classCouple_a77415b206cf9155e5fa6d9e64a9a03f9}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json ajoute les informations contenues dans le fichier json à l\textquotesingle{}intérieur du \hyperlink{classCouple}{Couple} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classCouple}{Couple} représente une liaison entre 2 notes. La note choisie devra toujours être le premier élément du tableau tab de la classe Notes\+Versions (première version) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCouple_a77415b206cf9155e5fa6d9e64a9a03f9}\label{classCouple_a77415b206cf9155e5fa6d9e64a9a03f9}} 
+\index{Couple@{Couple}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Couple@{Couple}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily \hyperlink{classCouple}{Couple} \& Couple\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+from\+Json ajoute les informations contenues dans le fichier json à l\textquotesingle{}intérieur du \hyperlink{classCouple}{Couple} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCouple_a3173f8ef915e051870cbe81e4b1483ae}\label{classCouple_a3173f8ef915e051870cbe81e4b1483ae}} 
+\index{Couple@{Couple}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Couple@{Couple}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} Couple\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+setter de y 
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classCouple}{Couple} dans un objet de type json \begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations du \hyperlink{classCouple}{Couple} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+relation.\+h\item 
+json.\+cpp\end{DoxyCompactItemize}

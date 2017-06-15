@@ -1,0 +1,317 @@
+\hypertarget{classMainWindow}{}\section{Main\+Window Class Reference}
+\label{classMainWindow}\index{Main\+Window@{Main\+Window}}
+
+
+La classe \hyperlink{classMainWindow}{Main\+Window} est la fenêtre principale c\textquotesingle{}est ici que sont disposés tous les widgets de l\textquotesingle{}interface principale elle hérite de la classe \hyperlink{classWidget}{Widget} pour pouvoir communiiquer avec les autres fenêtres.  
+
+
+
+
+{\ttfamily \#include $<$mainwindow.\+h$>$}
+
+Inheritance diagram for Main\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMainWindow}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMainWindow_a20e1b77fb7ab423eb41040fe84b3e723}{affichage} (Q\+Tree\+Widget\+Item $\ast$item, int i)
+\begin{DoxyCompactList}\small\item\em slot quand on clique sur une note active dans l\textquotesingle{}arbre de gauche \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a27d651d36d16ebcbd50b89e29a292387}\label{classMainWindow_a27d651d36d16ebcbd50b89e29a292387}} 
+void {\bfseries select\+Note} (Q\+Tree\+Widget\+Item $\ast$item, int i)
+\item 
+void \hyperlink{classMainWindow_a25d69f74e563bb6df70d8b67cba8d794}{add} ()
+\begin{DoxyCompactList}\small\item\em Slots modification affichage principal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a814b24397c149491c2956b9a67eab44a}\label{classMainWindow_a814b24397c149491c2956b9a67eab44a}} 
+void \hyperlink{classMainWindow_a814b24397c149491c2956b9a67eab44a}{slotA} ()
+\begin{DoxyCompactList}\small\item\em S\+L\+OT \+: modifiant l\textquotesingle{}affichage principal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a82494aeaf064533c8201d78bddcd12bc}\label{classMainWindow_a82494aeaf064533c8201d78bddcd12bc}} 
+void {\bfseries slotT} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_a08e299f9068f7fb8415d88578f9388ea}\label{classMainWindow_a08e299f9068f7fb8415d88578f9388ea}} 
+void {\bfseries slot\+ON} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_ac873f317956e3846fd64f3900e721add}\label{classMainWindow_ac873f317956e3846fd64f3900e721add}} 
+void \hyperlink{classMainWindow_ac873f317956e3846fd64f3900e721add}{updateN} ()
+\begin{DoxyCompactList}\small\item\em Permet l\textquotesingle{}enregistrement de note dans une nouvelle version de note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_ae70f95ed37a4eaf8bc0c20b3c316d234}\label{classMainWindow_ae70f95ed37a4eaf8bc0c20b3c316d234}} 
+void \hyperlink{classMainWindow_ae70f95ed37a4eaf8bc0c20b3c316d234}{update\+Aff} ()
+\begin{DoxyCompactList}\small\item\em Met à jour les différents widges de la fenêtre. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a2562c05eaca016e6e195d75fd6e3ad22}\label{classMainWindow_a2562c05eaca016e6e195d75fd6e3ad22}} 
+void {\bfseries delete2} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_ad9414920d90d79a159c013deb5adbfbe}\label{classMainWindow_ad9414920d90d79a159c013deb5adbfbe}} 
+void \hyperlink{classMainWindow_ad9414920d90d79a159c013deb5adbfbe}{choose\+File} ()
+\begin{DoxyCompactList}\small\item\em S\+L\+OT activé quand on on veut supprimer une note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_acdc8ce6bfc3a9ea7d724e99563d1822e}\label{classMainWindow_acdc8ce6bfc3a9ea7d724e99563d1822e}} 
+void \hyperlink{classMainWindow_acdc8ce6bfc3a9ea7d724e99563d1822e}{restore} ()
+\begin{DoxyCompactList}\small\item\em permet de sélectionner un fichier pour \hyperlink{classOtherNote}{Other\+Note} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a26578fda936961697c19bd77212d3197}\label{classMainWindow_a26578fda936961697c19bd77212d3197}} 
+void \hyperlink{classMainWindow_a26578fda936961697c19bd77212d3197}{go\+To\+Trash} ()
+\begin{DoxyCompactList}\small\item\em permet de restaurer une note archivée \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_afaac38f937603bdad968530f853e800e}\label{classMainWindow_afaac38f937603bdad968530f853e800e}} 
+void \hyperlink{classMainWindow_afaac38f937603bdad968530f853e800e}{go\+To\+Relation} ()
+\begin{DoxyCompactList}\small\item\em permet d\textquotesingle{}ouvrir la corbeille \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a5de69af7ba114e000c0ee400eeca4d8a}\label{classMainWindow_a5de69af7ba114e000c0ee400eeca4d8a}} 
+void \hyperlink{classMainWindow_a5de69af7ba114e000c0ee400eeca4d8a}{empty\+Trash} ()
+\begin{DoxyCompactList}\small\item\em permet d\textquotesingle{}ouvrir la fenêtre de visualisation des relations \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a542a7527ced73b2c9bc14f8dc9661a66}\label{classMainWindow_a542a7527ced73b2c9bc14f8dc9661a66}} 
+void \hyperlink{classMainWindow_a542a7527ced73b2c9bc14f8dc9661a66}{quit} ()
+\begin{DoxyCompactList}\small\item\em S\+L\+OT activé à la sortie de l\textquotesingle{}application, vide la corbeille. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMainWindow_ada963514542ea406cb4bbda85f136b4d}\label{classMainWindow_ada963514542ea406cb4bbda85f136b4d}} 
+void \hyperlink{classMainWindow_ada963514542ea406cb4bbda85f136b4d}{signalA} ()
+\begin{DoxyCompactList}\small\item\em Signaux pour modifier affichage principal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a062ade3e6f2faa57029c665c60da6e72}\label{classMainWindow_a062ade3e6f2faa57029c665c60da6e72}} 
+void {\bfseries signalT} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_a60d52b271cbb216a643818269d66c967}\label{classMainWindow_a60d52b271cbb216a643818269d66c967}} 
+void {\bfseries signal\+T\+WD} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_aa0bf148da373a83bd8a7c7719d408d22}\label{classMainWindow_aa0bf148da373a83bd8a7c7719d408d22}} 
+void {\bfseries signal\+T\+WP} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_af7b7ddd9fe3cabf40dd87dd41b71fdad}\label{classMainWindow_af7b7ddd9fe3cabf40dd87dd41b71fdad}} 
+void {\bfseries signal\+ON} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_ac91b2f01c4c6abe81ac7c495112b1576}\label{classMainWindow_ac91b2f01c4c6abe81ac7c495112b1576}} 
+void {\bfseries modify} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMainWindow_a23f6a1e1df544f675935ad139936e99b}\label{classMainWindow_a23f6a1e1df544f675935ad139936e99b}} 
+{\bfseries Main\+Window} (unsigned int i, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classMainWindow_ae98d00a93bc118200eeef9f9bba1dba7}\label{classMainWindow_ae98d00a93bc118200eeef9f9bba1dba7}} 
+\hyperlink{classMainWindow_ae98d00a93bc118200eeef9f9bba1dba7}{$\sim$\+Main\+Window} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+void \hyperlink{classMainWindow_afd599be0a61a634d3a91a53dfb7679cf}{initialisation\+NA} ()
+\begin{DoxyCompactList}\small\item\em Fonctions qui permettent l\textquotesingle{}initialisation et MaJ de l\textquotesingle{}affichage des différents Q\+Widgets d\textquotesingle{}affichage. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a091f96fb561d3663a491ff96d29c837a}\label{classMainWindow_a091f96fb561d3663a491ff96d29c837a}} 
+void \hyperlink{classMainWindow_a091f96fb561d3663a491ff96d29c837a}{initialisationT} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMainWindow_a091f96fb561d3663a491ff96d29c837a}{Main\+Window\+::initialisationT} initialise l\textquotesingle{}affichage au lancement de l\textquotesingle{}application. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a6a25cc27e98750de7ce4e2d319aae9c4}\label{classMainWindow_a6a25cc27e98750de7ce4e2d319aae9c4}} 
+void \hyperlink{classMainWindow_a6a25cc27e98750de7ce4e2d319aae9c4}{initialisation\+Archive} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMainWindow_a6a25cc27e98750de7ce4e2d319aae9c4}{Main\+Window\+::initialisation\+Archive} initialise l\textquotesingle{}affichage au lancement de l\textquotesingle{}application. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_aa701a7e0cd234d2529d1bb756571b390}\label{classMainWindow_aa701a7e0cd234d2529d1bb756571b390}} 
+Q\+Tree\+Widget $\ast$ \hyperlink{classMainWindow_aa701a7e0cd234d2529d1bb756571b390}{get\+Tree\+Note} ()
+\begin{DoxyCompactList}\small\item\em Getters element \hyperlink{classMainWindow}{Main\+Window}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_ad0e00a6772299d12797d2d13d7e9ab98}\label{classMainWindow_ad0e00a6772299d12797d2d13d7e9ab98}} 
+Q\+Tree\+Widget $\ast$ {\bfseries get\+Tree\+Archived} ()
+\item 
+\mbox{\Hypertarget{classMainWindow_a6440bda1786c5ee51cf9c43e3a29b0e7}\label{classMainWindow_a6440bda1786c5ee51cf9c43e3a29b0e7}} 
+void \hyperlink{classMainWindow_a6440bda1786c5ee51cf9c43e3a29b0e7}{fill\+Note} (\hyperlink{classNote}{Note} $\ast$n) const
+\begin{DoxyCompactList}\small\item\em Fonctions qui permettent de remplir les champs de l\textquotesingle{}affichage principal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a1f5cc352fe49759eee6fdba0ed59c4c4}\label{classMainWindow_a1f5cc352fe49759eee6fdba0ed59c4c4}} 
+void \hyperlink{classMainWindow_a1f5cc352fe49759eee6fdba0ed59c4c4}{fillA} (\hyperlink{classArticle}{Article} \&a) const
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de la note selectionnée sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a84a0509ab8740884a3f95b3c11e634a8}\label{classMainWindow_a84a0509ab8740884a3f95b3c11e634a8}} 
+void \hyperlink{classMainWindow_a84a0509ab8740884a3f95b3c11e634a8}{fillT} (\hyperlink{classTask}{Task} \&t) const
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de l\textquotesingle{}article selectionné sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_ab18ce7466299d0ba82bf82963e2efa52}\label{classMainWindow_ab18ce7466299d0ba82bf82963e2efa52}} 
+void \hyperlink{classMainWindow_ab18ce7466299d0ba82bf82963e2efa52}{fill\+T\+WD} (\hyperlink{classTaskWithDeadline}{Task\+With\+Deadline} \&t) const
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de la tâche selectionnée sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_a7512d623741ab1e351f3b67743f228c1}\label{classMainWindow_a7512d623741ab1e351f3b67743f228c1}} 
+void \hyperlink{classMainWindow_a7512d623741ab1e351f3b67743f228c1}{fill\+T\+WP} (\hyperlink{classTaskWithPriority}{Task\+With\+Priority} \&t) const
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de la note selectionnée sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_afeb237449315f413ba2ae5a3841c9f46}\label{classMainWindow_afeb237449315f413ba2ae5a3841c9f46}} 
+void \hyperlink{classMainWindow_afeb237449315f413ba2ae5a3841c9f46}{fill\+ON} (\hyperlink{classOtherNote}{Other\+Note} \&on) const
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de la note selectionnée sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+void \hyperlink{classMainWindow_a379d0333137913ea4e2fe46bd123d815}{set\+Affichage} (Note\+Type nt, \hyperlink{classNote}{Note} \&n)
+\begin{DoxyCompactList}\small\item\em affiche les propriétés de la note selectionnée sur l\textquotesingle{}affichage principal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_adc755852beadb459c938a9162bab8606}\label{classMainWindow_adc755852beadb459c938a9162bab8606}} 
+void {\bfseries clear\+Affichage} ()
+\item 
+void \hyperlink{classMainWindow_a40ae3ab77e534e73aefc94d4bdf12ee7}{add\+Elements\+In\+Widgets} (map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ \&N, Q\+Tree\+Widget $\ast$widget)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMainWindow_a40ae3ab77e534e73aefc94d4bdf12ee7}{Main\+Window\+::add\+Elements\+In\+Widgets}. \end{DoxyCompactList}\item 
+void \hyperlink{classMainWindow_a128f71880d4b9683149023fc46fcc9f8}{update} ()
+\begin{DoxyCompactList}\small\item\em update est une méthode virtuelle pure qui est définie ici, héritée de la classe \hyperlink{classWidget}{Widget} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Q\+Tree\+Widget\+Item $\ast$ \hyperlink{classMainWindow_ae153bcf0a046bdd377ffa161368ec90e}{add\+Root} (Q\+Tree\+Widget $\ast$parent, Q\+String id, Q\+String type)
+\begin{DoxyCompactList}\small\item\em Fonctions pour remplir Q\+Tree\+Widget. \end{DoxyCompactList}\item 
+static Q\+Tree\+Widget\+Item $\ast$ \hyperlink{classMainWindow_aa5864092893ae56234b7c6a6f6de41d4}{add\+Root\+Bis} (Q\+Tree\+Widget $\ast$parent, Q\+String id)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMainWindow_aa5864092893ae56234b7c6a6f6de41d4}{Main\+Window\+::add\+Root\+Bis}. \end{DoxyCompactList}\item 
+static void \hyperlink{classMainWindow_a34eb6cdb9e565f9455e54ba5e1f3c434}{add\+Child} (Q\+Tree\+Widget\+Item $\ast$parent, Q\+String title, Q\+String type)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMainWindow_a34eb6cdb9e565f9455e54ba5e1f3c434}{Main\+Window\+::add\+Child} ajoute un fils à un item passé en paramètre. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMainWindow_af87ad0d848a3f96eee6a5e4065e18809}\label{classMainWindow_af87ad0d848a3f96eee6a5e4065e18809}} 
+static Q\+Tree\+Widget\+Item $\ast$ {\bfseries add\+Child\+Bis} (Q\+Tree\+Widget\+Item $\ast$parent, Q\+String title)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMainWindow_abfe6faf8aea4b608cb1b7cbe0db6e9e3}\label{classMainWindow_abfe6faf8aea4b608cb1b7cbe0db6e9e3}} 
+class {\bfseries Note\+Editeur}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classMainWindow}{Main\+Window} est la fenêtre principale c\textquotesingle{}est ici que sont disposés tous les widgets de l\textquotesingle{}interface principale elle hérite de la classe \hyperlink{classWidget}{Widget} pour pouvoir communiiquer avec les autres fenêtres. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMainWindow_a25d69f74e563bb6df70d8b67cba8d794}\label{classMainWindow_a25d69f74e563bb6df70d8b67cba8d794}} 
+\index{Main\+Window@{Main\+Window}!add@{add}}
+\index{add@{add}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{add}{add}}
+{\footnotesize\ttfamily void Main\+Window\+::add (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slots modification affichage principal. 
+
+S\+L\+OT \+: Quand on clique sur \char`\"{}\+Ajouter une Note\char`\"{}, ouverture d\textquotesingle{}une nouvelle fenêtre. \mbox{\Hypertarget{classMainWindow_a34eb6cdb9e565f9455e54ba5e1f3c434}\label{classMainWindow_a34eb6cdb9e565f9455e54ba5e1f3c434}} 
+\index{Main\+Window@{Main\+Window}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{add\+Child()}{addChild()}}
+{\footnotesize\ttfamily void Main\+Window\+::add\+Child (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget\+Item $\ast$}]{parent,  }\item[{Q\+String}]{title,  }\item[{Q\+String}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\hyperlink{classMainWindow_a34eb6cdb9e565f9455e54ba5e1f3c434}{Main\+Window\+::add\+Child} ajoute un fils à un item passé en paramètre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & est l\textquotesingle{}adresse de l\textquotesingle{}item où l\textquotesingle{}on veut ajouter un fils \\
+\hline
+{\em title} & \\
+\hline
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMainWindow_a40ae3ab77e534e73aefc94d4bdf12ee7}\label{classMainWindow_a40ae3ab77e534e73aefc94d4bdf12ee7}} 
+\index{Main\+Window@{Main\+Window}!add\+Elements\+In\+Widgets@{add\+Elements\+In\+Widgets}}
+\index{add\+Elements\+In\+Widgets@{add\+Elements\+In\+Widgets}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{add\+Elements\+In\+Widgets()}{addElementsInWidgets()}}
+{\footnotesize\ttfamily void Main\+Window\+::add\+Elements\+In\+Widgets (\begin{DoxyParamCaption}\item[{map$<$ \hyperlink{classNote}{Note} $\ast$, int $>$ \&}]{N,  }\item[{Q\+Tree\+Widget $\ast$}]{widget }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{classMainWindow_a40ae3ab77e534e73aefc94d4bdf12ee7}{Main\+Window\+::add\+Elements\+In\+Widgets}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & \\
+\hline
+{\em widget} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMainWindow_ae153bcf0a046bdd377ffa161368ec90e}\label{classMainWindow_ae153bcf0a046bdd377ffa161368ec90e}} 
+\index{Main\+Window@{Main\+Window}!add\+Root@{add\+Root}}
+\index{add\+Root@{add\+Root}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{add\+Root()}{addRoot()}}
+{\footnotesize\ttfamily Q\+Tree\+Widget\+Item $\ast$ Main\+Window\+::add\+Root (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget $\ast$}]{parent,  }\item[{Q\+String}]{id,  }\item[{Q\+String}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fonctions pour remplir Q\+Tree\+Widget. 
+
+Fonctions qui permet d\textquotesingle{}ajouter les notes présentes dans \hyperlink{classNoteManager}{Note\+Manager}.
+
+\hyperlink{classMainWindow_ae153bcf0a046bdd377ffa161368ec90e}{Main\+Window\+::add\+Root} ajoute un item dans Qtree\+Widget.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & est l\textquotesingle{}adresse du Q\+Tree\+Widget où l\textquotesingle{}on veut ajouter l\textquotesingle{}item \\
+\hline
+{\em id} & d\textquotesingle{}une note \\
+\hline
+{\em type} & d\textquotesingle{}une note \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+on retourne le Q\+Tree\+Widget\+Item qu\textquotesingle{}on vient d\textquotesingle{}ajouter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMainWindow_aa5864092893ae56234b7c6a6f6de41d4}\label{classMainWindow_aa5864092893ae56234b7c6a6f6de41d4}} 
+\index{Main\+Window@{Main\+Window}!add\+Root\+Bis@{add\+Root\+Bis}}
+\index{add\+Root\+Bis@{add\+Root\+Bis}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{add\+Root\+Bis()}{addRootBis()}}
+{\footnotesize\ttfamily Q\+Tree\+Widget\+Item $\ast$ Main\+Window\+::add\+Root\+Bis (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget $\ast$}]{parent,  }\item[{Q\+String}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\hyperlink{classMainWindow_aa5864092893ae56234b7c6a6f6de41d4}{Main\+Window\+::add\+Root\+Bis}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMainWindow_a20e1b77fb7ab423eb41040fe84b3e723}\label{classMainWindow_a20e1b77fb7ab423eb41040fe84b3e723}} 
+\index{Main\+Window@{Main\+Window}!affichage@{affichage}}
+\index{affichage@{affichage}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{affichage}{affichage}}
+{\footnotesize\ttfamily void Main\+Window\+::affichage (\begin{DoxyParamCaption}\item[{Q\+Tree\+Widget\+Item $\ast$}]{item,  }\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+slot quand on clique sur une note active dans l\textquotesingle{}arbre de gauche 
+
+S\+L\+OT \+: Connecté au signal, item\+Clicked(), permet d\textquotesingle{}afficher sur la note active sélectionnée.
+
+S\+L\+OT \+: Connecté au signal, item\+Clicked(), permet d\textquotesingle{}afficher sur la note actie sélectionnée. \mbox{\Hypertarget{classMainWindow_afd599be0a61a634d3a91a53dfb7679cf}\label{classMainWindow_afd599be0a61a634d3a91a53dfb7679cf}} 
+\index{Main\+Window@{Main\+Window}!initialisation\+NA@{initialisation\+NA}}
+\index{initialisation\+NA@{initialisation\+NA}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{initialisation\+N\+A()}{initialisationNA()}}
+{\footnotesize\ttfamily void Main\+Window\+::initialisation\+NA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonctions qui permettent l\textquotesingle{}initialisation et MaJ de l\textquotesingle{}affichage des différents Q\+Widgets d\textquotesingle{}affichage. 
+
+On initialise l\textquotesingle{}affichage au lancement de l\textquotesingle{}application.
+
+\hyperlink{classMainWindow_afd599be0a61a634d3a91a53dfb7679cf}{Main\+Window\+::initialisation\+NA} initialise l\textquotesingle{}affichage au lancement de l\textquotesingle{}application. \mbox{\Hypertarget{classMainWindow_a379d0333137913ea4e2fe46bd123d815}\label{classMainWindow_a379d0333137913ea4e2fe46bd123d815}} 
+\index{Main\+Window@{Main\+Window}!set\+Affichage@{set\+Affichage}}
+\index{set\+Affichage@{set\+Affichage}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{set\+Affichage()}{setAffichage()}}
+{\footnotesize\ttfamily void Main\+Window\+::set\+Affichage (\begin{DoxyParamCaption}\item[{Note\+Type}]{nt,  }\item[{\hyperlink{classNote}{Note} \&}]{n }\end{DoxyParamCaption})}
+
+
+
+affiche les propriétés de la note selectionnée sur l\textquotesingle{}affichage principal 
+
+\hyperlink{classMainWindow_a379d0333137913ea4e2fe46bd123d815}{Main\+Window\+::set\+Affichage} modifie l\textquotesingle{}affichage en fonction du type de note selectionné
+
+
+\begin{DoxyParams}{Parameters}
+{\em nt} & type de la note \\
+\hline
+{\em n} & est la note \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMainWindow_a128f71880d4b9683149023fc46fcc9f8}\label{classMainWindow_a128f71880d4b9683149023fc46fcc9f8}} 
+\index{Main\+Window@{Main\+Window}!update@{update}}
+\index{update@{update}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Main\+Window\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update est une méthode virtuelle pure qui est définie ici, héritée de la classe \hyperlink{classWidget}{Widget} 
+
+Méthode virtuelle définit dans la classe \hyperlink{classWidget}{Widget} Elle permet de mettre à jour l\textquotesingle{}affichage quand un de ses collègues le notifie 
+
+Implements \hyperlink{classWidget}{Widget}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mainwindow.\+h\item 
+initialisationnote.\+cpp\item 
+mainwindow.\+cpp\item 
+notedisplay.\+cpp\item 
+slotnote.\+cpp\end{DoxyCompactItemize}

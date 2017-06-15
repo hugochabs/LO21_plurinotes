@@ -1,0 +1,257 @@
+\hypertarget{classNoteManager}{}\section{Note\+Manager Class Reference}
+\label{classNoteManager}\index{Note\+Manager@{Note\+Manager}}
+
+
+La classe \hyperlink{classNoteManager}{Note\+Manager} sert à gérer et stocker les différentes Notes\+Versions.  
+
+
+
+
+{\ttfamily \#include $<$note.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNoteManager_1_1iterator}{iterator}
+\begin{DoxyCompactList}\small\item\em La classe iterator sert à parcourir les éléments de la classe sans exposer la structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNoteManager_ab5be40a9b52098812241d324dee8c5fa}\label{classNoteManager_ab5be40a9b52098812241d324dee8c5fa}} 
+const unsigned int \& {\bfseries get\+Nb} () const
+\item 
+\mbox{\Hypertarget{classNoteManager_a0f2fe0b27005ac9dcf5d822ef1b83123}\label{classNoteManager_a0f2fe0b27005ac9dcf5d822ef1b83123}} 
+const unsigned int \& \hyperlink{classNoteManager_a0f2fe0b27005ac9dcf5d822ef1b83123}{get\+Nb\+Max} () const
+\begin{DoxyCompactList}\small\item\em getter de nb \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteManager_a0eb6318998b3237f03d5dcf00d4e1d8f}\label{classNoteManager_a0eb6318998b3237f03d5dcf00d4e1d8f}} 
+void \hyperlink{classNoteManager_a0eb6318998b3237f03d5dcf00d4e1d8f}{remove\+NV} (\hyperlink{classNoteVersions}{Note\+Versions} \&nv)
+\begin{DoxyCompactList}\small\item\em getter de nb\+Max \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_a69d289844606be132d3c76f5f49128b9}{add\+Note\+Version} (\hyperlink{classNoteVersions}{Note\+Versions} $\ast$NV)
+\begin{DoxyCompactList}\small\item\em add\+Note\+Version permet d\textquotesingle{}ajouter une \hyperlink{classNoteVersions}{Note\+Versions} dans le tableau \end{DoxyCompactList}\item 
+\hyperlink{classNoteVersions}{Note\+Versions} $\ast$ \hyperlink{classNoteManager_a9c4e9b0b563de66246f813290a4744d9}{get\+N\+Vfrom\+Note} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em get\+N\+Vfrom\+Note permet de récupérer le \hyperlink{classNoteVersions}{Note\+Versions} en fonction de la \hyperlink{classNote}{Note} passée en paramètres \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_a8afd2b5e03732ed59778e96b201cc847}{archive\+Note\+Versions} (\hyperlink{classNoteVersions}{Note\+Versions} $\ast$NV)
+\begin{DoxyCompactList}\small\item\em archive\+Note\+Versions permet d\textquotesingle{}archiver une note ainsi que toutes ses versions (= archiver une \hyperlink{classNoteVersions}{Note\+Versions}) \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_a12f662fc21e236883b8b047df9017ebc}{restore\+Note\+Versions} (\hyperlink{classNoteVersions}{Note\+Versions} $\ast$NV)
+\begin{DoxyCompactList}\small\item\em restore\+Note\+Versions permet de restaurer une note ainsi que toutes ses versions (= restaurer une \hyperlink{classNoteVersions}{Note\+Versions}) \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_af6d2605fc8319600c4a283ba9879dbd6}{delete\+Note\+Versions} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em delete\+Note\+Versions permet de supprimer une note ainsi que toutes ses versions. (= mettre à la corbeille si possible, soit si la \hyperlink{classNote}{Note} n\textquotesingle{}apparaît pas dans une Référence, et l\textquotesingle{}archiver sinon) \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_a2104f9d473176be2f0f25b853ffc8217}{put\+N\+V\+To\+Trash} (\hyperlink{classNoteVersions}{Note\+Versions} $\ast$NV)
+\begin{DoxyCompactList}\small\item\em put\+N\+V\+To\+Trash permet de mettre dans la corbeille une note ainsi que toutes ses versions. \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_a3e871a622b36acb98257cd60002c558c}{delete\+Note\+Couples} (\hyperlink{classNote}{Note} $\ast$N)
+\begin{DoxyCompactList}\small\item\em delete\+Note\+Couples permet de supprimer tous les Couples des Relations dans lesquels une note passée en paramètre se trouve. \end{DoxyCompactList}\item 
+\hyperlink{classnlohmann_1_1basic__json}{json} \hyperlink{classNoteManager_ae545854ea1add5db3b819a05842b0bf5}{to\+Json} ()
+\begin{DoxyCompactList}\small\item\em to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNoteManager}{Note\+Manager} dans un objet de type json \end{DoxyCompactList}\item 
+void \hyperlink{classNoteManager_adc36b51fd28662048fb1f1a8b73cb61e}{from\+Json} (\hyperlink{classnlohmann_1_1basic__json}{json} j)
+\begin{DoxyCompactList}\small\item\em from\+Json ajoute les informations contenues dans le fichier json à l\textquotesingle{}intérieur du tableau de \hyperlink{classNoteVersions}{Note\+Versions} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteManager_a51432f6bb1766fcc422250b8121cb8ba}\label{classNoteManager_a51432f6bb1766fcc422250b8121cb8ba}} 
+void \hyperlink{classNoteManager_a51432f6bb1766fcc422250b8121cb8ba}{save} ()
+\begin{DoxyCompactList}\small\item\em save Méthode permettant de sauvegarder en mémoire les informations sur les Notes dans un fichier json \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteManager_aa0ee3cbb998fa333b6bd3f21706f2e0c}\label{classNoteManager_aa0ee3cbb998fa333b6bd3f21706f2e0c}} 
+void \hyperlink{classNoteManager_aa0ee3cbb998fa333b6bd3f21706f2e0c}{load} ()
+\begin{DoxyCompactList}\small\item\em load méthode permettant de récupérer les informations stockées en mémoire dans le fichier json \end{DoxyCompactList}\item 
+\hyperlink{classNoteManager_1_1iterator}{iterator} \hyperlink{classNoteManager_ab61b63ebe1e10b97635ffc5c13820121}{get\+Iterator} ()
+\begin{DoxyCompactList}\small\item\em get\+Iterator retourne un iterator pour parcourir les éléments du tableau. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteManager_acdecec90ac5cde0783b50d2e4fc4461f}\label{classNoteManager_acdecec90ac5cde0783b50d2e4fc4461f}} 
+\hyperlink{classNoteManager_1_1iterator}{iterator} {\bfseries end} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNoteManager_a3390485b8367f6405417893fdf643d5e}\label{classNoteManager_a3390485b8367f6405417893fdf643d5e}} 
+static void \hyperlink{classNoteManager_a3390485b8367f6405417893fdf643d5e}{free\+Note\+Manager} ()
+\begin{DoxyCompactList}\small\item\em free\+Note\+Manager désalloue l\textquotesingle{}espace mémoire du singleton \end{DoxyCompactList}\item 
+static \hyperlink{classNoteManager}{Note\+Manager} \& \hyperlink{classNoteManager_a3bfcec9380fa00d216be61126e2a9459}{get\+Note\+Manager} (\hyperlink{classNoteVersions}{Note\+Versions} $\ast$$\ast$nv=new \hyperlink{classNoteVersions}{Note\+Versions} $\ast$\mbox{[}0\mbox{]}, unsigned int n=0, unsigned int nM=0)
+\begin{DoxyCompactList}\small\item\em get\+Note\+Manager alloue l\textquotesingle{}espace mémoire du singleton et le renvoie \end{DoxyCompactList}\item 
+static \hyperlink{classNote}{Note} $\ast$ \hyperlink{classNoteManager_a4326fc99844021381e66451d951cb079}{search\+Note} (Q\+String \&id)
+\begin{DoxyCompactList}\small\item\em search\+Note retourne un pointeur vers la \hyperlink{classNote}{Note} dont l\textquotesingle{}id est passé en paramètre \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classNoteManager}{Note\+Manager} sert à gérer et stocker les différentes Notes\+Versions. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNoteManager_a69d289844606be132d3c76f5f49128b9}\label{classNoteManager_a69d289844606be132d3c76f5f49128b9}} 
+\index{Note\+Manager@{Note\+Manager}!add\+Note\+Version@{add\+Note\+Version}}
+\index{add\+Note\+Version@{add\+Note\+Version}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{add\+Note\+Version()}{addNoteVersion()}}
+{\footnotesize\ttfamily void Note\+Manager\+::add\+Note\+Version (\begin{DoxyParamCaption}\item[{\hyperlink{classNoteVersions}{Note\+Versions} $\ast$}]{NV }\end{DoxyParamCaption})}
+
+
+
+add\+Note\+Version permet d\textquotesingle{}ajouter une \hyperlink{classNoteVersions}{Note\+Versions} dans le tableau 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NV} & \hyperlink{classNoteVersions}{Note\+Versions} à ajouter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_a8afd2b5e03732ed59778e96b201cc847}\label{classNoteManager_a8afd2b5e03732ed59778e96b201cc847}} 
+\index{Note\+Manager@{Note\+Manager}!archive\+Note\+Versions@{archive\+Note\+Versions}}
+\index{archive\+Note\+Versions@{archive\+Note\+Versions}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{archive\+Note\+Versions()}{archiveNoteVersions()}}
+{\footnotesize\ttfamily void Note\+Manager\+::archive\+Note\+Versions (\begin{DoxyParamCaption}\item[{\hyperlink{classNoteVersions}{Note\+Versions} $\ast$}]{NV }\end{DoxyParamCaption})}
+
+
+
+archive\+Note\+Versions permet d\textquotesingle{}archiver une note ainsi que toutes ses versions (= archiver une \hyperlink{classNoteVersions}{Note\+Versions}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NV} & \hyperlink{classNoteVersions}{Note\+Versions} à archiver \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_a3e871a622b36acb98257cd60002c558c}\label{classNoteManager_a3e871a622b36acb98257cd60002c558c}} 
+\index{Note\+Manager@{Note\+Manager}!delete\+Note\+Couples@{delete\+Note\+Couples}}
+\index{delete\+Note\+Couples@{delete\+Note\+Couples}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{delete\+Note\+Couples()}{deleteNoteCouples()}}
+{\footnotesize\ttfamily void Note\+Manager\+::delete\+Note\+Couples (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+delete\+Note\+Couples permet de supprimer tous les Couples des Relations dans lesquels une note passée en paramètre se trouve. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & note que l\textquotesingle{}on veut supprimer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_af6d2605fc8319600c4a283ba9879dbd6}\label{classNoteManager_af6d2605fc8319600c4a283ba9879dbd6}} 
+\index{Note\+Manager@{Note\+Manager}!delete\+Note\+Versions@{delete\+Note\+Versions}}
+\index{delete\+Note\+Versions@{delete\+Note\+Versions}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{delete\+Note\+Versions()}{deleteNoteVersions()}}
+{\footnotesize\ttfamily void Note\+Manager\+::delete\+Note\+Versions (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+delete\+Note\+Versions permet de supprimer une note ainsi que toutes ses versions. (= mettre à la corbeille si possible, soit si la \hyperlink{classNote}{Note} n\textquotesingle{}apparaît pas dans une Référence, et l\textquotesingle{}archiver sinon) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & note à supprimer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_adc36b51fd28662048fb1f1a8b73cb61e}\label{classNoteManager_adc36b51fd28662048fb1f1a8b73cb61e}} 
+\index{Note\+Manager@{Note\+Manager}!from\+Json@{from\+Json}}
+\index{from\+Json@{from\+Json}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{from\+Json()}{fromJson()}}
+{\footnotesize\ttfamily void Note\+Manager\+::from\+Json (\begin{DoxyParamCaption}\item[{\hyperlink{classnlohmann_1_1basic__json}{json}}]{j }\end{DoxyParamCaption})}
+
+
+
+from\+Json ajoute les informations contenues dans le fichier json à l\textquotesingle{}intérieur du tableau de \hyperlink{classNoteVersions}{Note\+Versions} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet de type json \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_ab61b63ebe1e10b97635ffc5c13820121}\label{classNoteManager_ab61b63ebe1e10b97635ffc5c13820121}} 
+\index{Note\+Manager@{Note\+Manager}!get\+Iterator@{get\+Iterator}}
+\index{get\+Iterator@{get\+Iterator}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{get\+Iterator()}{getIterator()}}
+{\footnotesize\ttfamily \hyperlink{classNoteManager_1_1iterator}{iterator} Note\+Manager\+::get\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Iterator retourne un iterator pour parcourir les éléments du tableau. 
+
+\begin{DoxyReturn}{Returns}
+iterator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteManager_a3bfcec9380fa00d216be61126e2a9459}\label{classNoteManager_a3bfcec9380fa00d216be61126e2a9459}} 
+\index{Note\+Manager@{Note\+Manager}!get\+Note\+Manager@{get\+Note\+Manager}}
+\index{get\+Note\+Manager@{get\+Note\+Manager}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{get\+Note\+Manager()}{getNoteManager()}}
+{\footnotesize\ttfamily \hyperlink{classNoteManager}{Note\+Manager} \& Note\+Manager\+::get\+Note\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classNoteVersions}{Note\+Versions} $\ast$$\ast$}]{nv = {\ttfamily new~\hyperlink{classNoteVersions}{Note\+Versions}$\ast$\mbox{[}0\mbox{]}},  }\item[{unsigned int}]{n = {\ttfamily 0},  }\item[{unsigned int}]{nM = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Note\+Manager alloue l\textquotesingle{}espace mémoire du singleton et le renvoie 
+
+\begin{DoxyReturn}{Returns}
+pointeur vers l\textquotesingle{}unique instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteManager_a9c4e9b0b563de66246f813290a4744d9}\label{classNoteManager_a9c4e9b0b563de66246f813290a4744d9}} 
+\index{Note\+Manager@{Note\+Manager}!get\+N\+Vfrom\+Note@{get\+N\+Vfrom\+Note}}
+\index{get\+N\+Vfrom\+Note@{get\+N\+Vfrom\+Note}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{get\+N\+Vfrom\+Note()}{getNVfromNote()}}
+{\footnotesize\ttfamily \hyperlink{classNoteVersions}{Note\+Versions} $\ast$ Note\+Manager\+::get\+N\+Vfrom\+Note (\begin{DoxyParamCaption}\item[{\hyperlink{classNote}{Note} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+get\+N\+Vfrom\+Note permet de récupérer le \hyperlink{classNoteVersions}{Note\+Versions} en fonction de la \hyperlink{classNote}{Note} passée en paramètres 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & note dont on veut récupérer le \hyperlink{classNoteVersions}{Note\+Versions} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_a2104f9d473176be2f0f25b853ffc8217}\label{classNoteManager_a2104f9d473176be2f0f25b853ffc8217}} 
+\index{Note\+Manager@{Note\+Manager}!put\+N\+V\+To\+Trash@{put\+N\+V\+To\+Trash}}
+\index{put\+N\+V\+To\+Trash@{put\+N\+V\+To\+Trash}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{put\+N\+V\+To\+Trash()}{putNVToTrash()}}
+{\footnotesize\ttfamily void Note\+Manager\+::put\+N\+V\+To\+Trash (\begin{DoxyParamCaption}\item[{\hyperlink{classNoteVersions}{Note\+Versions} $\ast$}]{NV }\end{DoxyParamCaption})}
+
+
+
+put\+N\+V\+To\+Trash permet de mettre dans la corbeille une note ainsi que toutes ses versions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & note à mettre à la corbeille \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_a12f662fc21e236883b8b047df9017ebc}\label{classNoteManager_a12f662fc21e236883b8b047df9017ebc}} 
+\index{Note\+Manager@{Note\+Manager}!restore\+Note\+Versions@{restore\+Note\+Versions}}
+\index{restore\+Note\+Versions@{restore\+Note\+Versions}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{restore\+Note\+Versions()}{restoreNoteVersions()}}
+{\footnotesize\ttfamily void Note\+Manager\+::restore\+Note\+Versions (\begin{DoxyParamCaption}\item[{\hyperlink{classNoteVersions}{Note\+Versions} $\ast$}]{NV }\end{DoxyParamCaption})}
+
+
+
+restore\+Note\+Versions permet de restaurer une note ainsi que toutes ses versions (= restaurer une \hyperlink{classNoteVersions}{Note\+Versions}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NV} & \hyperlink{classNoteVersions}{Note\+Versions} à archiver \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoteManager_a4326fc99844021381e66451d951cb079}\label{classNoteManager_a4326fc99844021381e66451d951cb079}} 
+\index{Note\+Manager@{Note\+Manager}!search\+Note@{search\+Note}}
+\index{search\+Note@{search\+Note}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{search\+Note()}{searchNote()}}
+{\footnotesize\ttfamily \hyperlink{classNote}{Note} $\ast$ Note\+Manager\+::search\+Note (\begin{DoxyParamCaption}\item[{Q\+String \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+search\+Note retourne un pointeur vers la \hyperlink{classNote}{Note} dont l\textquotesingle{}id est passé en paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & identificateur de la note à chercher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La \hyperlink{classNote}{Note} correspondante 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteManager_ae545854ea1add5db3b819a05842b0bf5}\label{classNoteManager_ae545854ea1add5db3b819a05842b0bf5}} 
+\index{Note\+Manager@{Note\+Manager}!to\+Json@{to\+Json}}
+\index{to\+Json@{to\+Json}!Note\+Manager@{Note\+Manager}}
+\subsubsection{\texorpdfstring{to\+Json()}{toJson()}}
+{\footnotesize\ttfamily \hyperlink{classnlohmann_1_1basic__json}{json} Note\+Manager\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+to\+Json insère le contenu d\textquotesingle{}un objet \hyperlink{classNoteManager}{Note\+Manager} dans un objet de type json 
+
+\begin{DoxyReturn}{Returns}
+Le fichier json contenant les informations du \hyperlink{classNoteManager}{Note\+Manager} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+note.\+h\item 
+json.\+cpp\item 
+note.\+cpp\end{DoxyCompactItemize}

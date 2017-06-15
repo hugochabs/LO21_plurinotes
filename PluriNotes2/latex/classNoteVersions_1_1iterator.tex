@@ -1,0 +1,70 @@
+\hypertarget{classNoteVersions_1_1iterator}{}\section{Note\+Versions\+:\+:iterator Class Reference}
+\label{classNoteVersions_1_1iterator}\index{Note\+Versions\+::iterator@{Note\+Versions\+::iterator}}
+
+
+La classe iterator sert à parcourir les éléments de la classe sans exposer la structure.  
+
+
+
+
+{\ttfamily \#include $<$note.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_ab47ad2f61d11e6b7d2a0db1fdc49e20a}\label{classNoteVersions_1_1iterator_ab47ad2f61d11e6b7d2a0db1fdc49e20a}} 
+unsigned int \hyperlink{classNoteVersions_1_1iterator_ab47ad2f61d11e6b7d2a0db1fdc49e20a}{get\+Nb\+Remain} () const
+\begin{DoxyCompactList}\small\item\em constructeur de l\textquotesingle{}iterator \end{DoxyCompactList}\item 
+bool \hyperlink{classNoteVersions_1_1iterator_a981d1e3329e25ef490506907839b7ce8}{is\+Done} ()
+\begin{DoxyCompactList}\small\item\em getter de nb\+Remain \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_ae1b0c335d1af0916a2aacbc742016f96}\label{classNoteVersions_1_1iterator_ae1b0c335d1af0916a2aacbc742016f96}} 
+bool {\bfseries is\+Done1} ()
+\item 
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_ae5942b37e9d2d385fdebc6668e3b9f5e}\label{classNoteVersions_1_1iterator_ae5942b37e9d2d385fdebc6668e3b9f5e}} 
+void \hyperlink{classNoteVersions_1_1iterator_ae5942b37e9d2d385fdebc6668e3b9f5e}{is\+Next} ()
+\begin{DoxyCompactList}\small\item\em is\+Next passe à l\textquotesingle{}élément suivant si c\textquotesingle{}est possible. \end{DoxyCompactList}\item 
+\hyperlink{classNote}{Note} \& \hyperlink{classNoteVersions_1_1iterator_a564a1e530f36e8eecdbece8b64c100e1}{current} ()
+\begin{DoxyCompactList}\small\item\em current retourne l\textquotesingle{}élément courant si c\textquotesingle{}est possible \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_a1485bf2f5e79100d22491341fc00da08}\label{classNoteVersions_1_1iterator_a1485bf2f5e79100d22491341fc00da08}} 
+class {\bfseries Note\+Versions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe iterator sert à parcourir les éléments de la classe sans exposer la structure. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_a564a1e530f36e8eecdbece8b64c100e1}\label{classNoteVersions_1_1iterator_a564a1e530f36e8eecdbece8b64c100e1}} 
+\index{Note\+Versions\+::iterator@{Note\+Versions\+::iterator}!current@{current}}
+\index{current@{current}!Note\+Versions\+::iterator@{Note\+Versions\+::iterator}}
+\subsubsection{\texorpdfstring{current()}{current()}}
+{\footnotesize\ttfamily \hyperlink{classNote}{Note}\& Note\+Versions\+::iterator\+::current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+current retourne l\textquotesingle{}élément courant si c\textquotesingle{}est possible 
+
+\begin{DoxyReturn}{Returns}
+current 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoteVersions_1_1iterator_a981d1e3329e25ef490506907839b7ce8}\label{classNoteVersions_1_1iterator_a981d1e3329e25ef490506907839b7ce8}} 
+\index{Note\+Versions\+::iterator@{Note\+Versions\+::iterator}!is\+Done@{is\+Done}}
+\index{is\+Done@{is\+Done}!Note\+Versions\+::iterator@{Note\+Versions\+::iterator}}
+\subsubsection{\texorpdfstring{is\+Done()}{isDone()}}
+{\footnotesize\ttfamily bool Note\+Versions\+::iterator\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+getter de nb\+Remain 
+
+is\+Done savoir s\textquotesingle{}il reste des éléments à parcourir \begin{DoxyReturn}{Returns}
+bool dépendant de la valeur de nb\+Remain 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+note.\+h\end{DoxyCompactItemize}

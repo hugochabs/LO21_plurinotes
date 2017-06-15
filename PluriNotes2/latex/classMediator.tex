@@ -1,0 +1,87 @@
+\hypertarget{classMediator}{}\section{Mediator Class Reference}
+\label{classMediator}\index{Mediator@{Mediator}}
+
+
+{\ttfamily \#include $<$colleague.\+h$>$}
+
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMediator_a52b7c6839f25654bbc8b4d42d4409f60}\label{classMediator_a52b7c6839f25654bbc8b4d42d4409f60}} 
+void {\bfseries signal\+Mediator} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}{distribute\+Message} (\hyperlink{classWidget}{Widget} $\ast$sender, const string message)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}{Mediator\+::distribute\+Message} distribue un message à tous les widgets enregitrés dans le mediator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMediator_aeb991fe5844fcb6ccd40086369373e37}{registerC} (\hyperlink{classWidget}{Widget} $\ast$c)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMediator_aeb991fe5844fcb6ccd40086369373e37}{Mediator\+::registerC} permet d\textquotesingle{}enregistrer l\textquotesingle{}adresse d\textquotesingle{}un widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMediator_a4f9ee710da1df5348e19a54ce4396952}\label{classMediator_a4f9ee710da1df5348e19a54ce4396952}} 
+static \hyperlink{classMediator}{Mediator} \& {\bfseries get\+Mediator} ()
+\item 
+\mbox{\Hypertarget{classMediator_a44737f7a290891afafa9f94832d1895c}\label{classMediator_a44737f7a290891afafa9f94832d1895c}} 
+static void {\bfseries free\+Mediator} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMediator_a0b7efbede213b7a9ac81e25bdda7f943}\label{classMediator_a0b7efbede213b7a9ac81e25bdda7f943}} 
+vector$<$ \hyperlink{classWidget}{Widget} $\ast$ $>$ \hyperlink{classMediator_a0b7efbede213b7a9ac81e25bdda7f943}{colleagues}
+\begin{DoxyCompactList}\small\item\em Attributs protégés si la classe \hyperlink{classMediator}{Mediator} vient à être sous-\/classé \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMediator_aff24a86b4a88e6c4da795216c72ad89a}\label{classMediator_aff24a86b4a88e6c4da795216c72ad89a}} 
+\hyperlink{classNoteManager}{Note\+Manager} $\ast$ {\bfseries nm}
+\item 
+\mbox{\Hypertarget{classMediator_a1165c6f9067f39254a76dbca31f7f35a}\label{classMediator_a1165c6f9067f39254a76dbca31f7f35a}} 
+unsigned int {\bfseries nb}
+\item 
+\mbox{\Hypertarget{classMediator_a0f0f1c89941f4a9eee97d39a374683cc}\label{classMediator_a0f0f1c89941f4a9eee97d39a374683cc}} 
+unsigned int {\bfseries nb\+Max}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe \hyperlink{classMediator}{Mediator} qui permet la transmission de message entre les differents \hyperlink{classWidget}{Widget} de l\textquotesingle{}application 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}\label{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}} 
+\index{Mediator@{Mediator}!distribute\+Message@{distribute\+Message}}
+\index{distribute\+Message@{distribute\+Message}!Mediator@{Mediator}}
+\subsubsection{\texorpdfstring{distribute\+Message()}{distributeMessage()}}
+{\footnotesize\ttfamily void Mediator\+::distribute\+Message (\begin{DoxyParamCaption}\item[{\hyperlink{classWidget}{Widget} $\ast$}]{sender,  }\item[{const string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\hyperlink{classMediator_a6d85bc8652e2fbd4f37b7ba67559c9e3}{Mediator\+::distribute\+Message} distribue un message à tous les widgets enregitrés dans le mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & est l\textquotesingle{}adresse du widget qui envoie le message \\
+\hline
+{\em message} & à envoyer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMediator_aeb991fe5844fcb6ccd40086369373e37}\label{classMediator_aeb991fe5844fcb6ccd40086369373e37}} 
+\index{Mediator@{Mediator}!registerC@{registerC}}
+\index{registerC@{registerC}!Mediator@{Mediator}}
+\subsubsection{\texorpdfstring{register\+C()}{registerC()}}
+{\footnotesize\ttfamily void Mediator\+::registerC (\begin{DoxyParamCaption}\item[{\hyperlink{classWidget}{Widget} $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\hyperlink{classMediator_aeb991fe5844fcb6ccd40086369373e37}{Mediator\+::registerC} permet d\textquotesingle{}enregistrer l\textquotesingle{}adresse d\textquotesingle{}un widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & est l\textquotesingle{}adresse du widget qu\textquotesingle{}on enregistre dans le \hyperlink{classMediator}{Mediator} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+colleague.\+h\item 
+colleague.\+cpp\end{DoxyCompactItemize}
