@@ -3,4 +3,4 @@ Application dédiée à la gestion de prise de Note : Articles, Tâches, Photo, 
 
 Application développée en C++ avec les frameworks Qt pour les interfaces graphiques
 
-Dans un souci de ré-utilisation du code et de maintenance, plusieurs Design Pattern on été utilisés
+Dans un souci de ré-utilisation du code et de maintenance, plusieurs Design Pattern ont été utilisés
